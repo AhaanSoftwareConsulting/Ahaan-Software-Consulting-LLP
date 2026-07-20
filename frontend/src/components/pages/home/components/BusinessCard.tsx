@@ -63,7 +63,7 @@ export const BusinessCard = () => {
           "linear-gradient(180deg, #f1e7c6 0%, #E6E6E6 80%, #e6dbbb 100%)",
       }}
     >
-      <div className="container mx-auto flex flex-col items-center">
+      <div className="max-w-[1600px] mx-auto flex flex-col items-center">
         {/* --- Main image layout row --- */}
         <div
           className={

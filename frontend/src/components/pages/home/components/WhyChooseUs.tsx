@@ -60,6 +60,27 @@ export const WhyChooseUs: React.FC = () => {
   const activeReason = REASONS.find((r) => r.id === activeId) ?? REASONS[0];
 
   return (
+
+    <section className="w-full bg-[#0A0A0A] text-[#F5F1E8] py-28 px-6 md:px-12 lg:px-20 overflow-hidden font-['Outfit']">
+      <div className="mx-auto max-w-[1600px]">
+        
+        {/* TOP INTERACTIVE CONTROLLER / HEADER */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end pb-12 ">
+          <div className="lg:col-span-6">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-1 w-8 bg-[#CD912A]" />
+              <span className="text-xs tracking-[0.4em] uppercase text-[#CD912A] font-semibold">
+                Strategic Advantages
+              </span>
+            </div>
+            <h2 className="font-['Fraunces'] text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-[1.1]">
+              Engineered for <br />
+              <span className="italic font-light text-[#CD912A]">Performance</span> & Trust.
+            </h2>
+          </div>
+          
+         
+
     <section className="w-full bg-[#0A0A0A] text-[#F5F1E8] py-20 lg:py-28 overflow-hidden font-['Outfit']">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
         {/* TOP HEADER */}

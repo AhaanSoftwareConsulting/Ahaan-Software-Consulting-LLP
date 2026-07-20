@@ -65,10 +65,14 @@ export const OurProcess = () => {
   }, []);
 
   return (
+
+    <div className="bg-[#0a0800] overflow-hidden py-[50px]">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+
     <div className="bg-[#0A0A0A] overflow-hidden py-[50px]">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-14">
-        {/* Header Section */}
-        {/* Header */}
+
         <div className="max-w-5xl mx-auto text-center pb-16">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fff] leading-tight">
             Our Proven Development Process
