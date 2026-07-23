@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CheckCircleIcon , PlayCircleIcon  } from "@phosphor-icons/react";
+import { CheckCircleIcon, PlayCircleIcon } from "@phosphor-icons/react";
 import { XIcon } from "@phosphor-icons/react";
 
 export const AboutSection: React.FC = () => {
@@ -17,7 +17,7 @@ export const AboutSection: React.FC = () => {
     <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20 mt-[15em] sm:mt-0 font-['Outfit',sans-serif]">
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
-          
+
           {/* LEFT COLUMN: IMAGES & PLAY BUTTON */}
           <div className="w-full max-w-[500px] lg:max-w-[600px] mx-auto text-center sm:text-left">
             <div className="relative w-full">
@@ -40,9 +40,9 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Animated Play Button */}
-             <div
-  onClick={handlePlayClick}
-  className="group relative sm:absolute top-[22%] left-[90%]
+              <div
+                onClick={handlePlayClick}
+                className="group relative sm:absolute top-[22%] left-[90%]
   -translate-x-1/2 -translate-y-1/2    p-4
   rounded-full border-2 border-black
   bg-white flex items-center justify-center
@@ -50,26 +50,23 @@ export const AboutSection: React.FC = () => {
   animate-[rotateBorder_2s_linear_infinite]
   hover:bg-[#c07f1e]
   "
->
-  
-    <PlayCircleIcon  weight="fill" 
-      className="w-15 h-15 text-3xl transition-colors duration-300 text-[#c07f1e] group-hover:text-white"
-    />
-  
-</div>
+              >
+
+                <PlayCircleIcon weight="fill"
+                  className="w-15 h-15 text-3xl transition-colors duration-300 text-[#c07f1e] group-hover:text-white"
+                />
+
+              </div>
             </div>
           </div>
 
           {/* RIGHT COLUMN: TEXT CONTENT */}
           <div className="flex flex-col text-center lg:text-left">
             {/* Subtitle */}
-            <h6 className="text-xl font-semibold text-black mb-2 inline-flex items-center justify-center lg:justify-start">
-              24/7 Support
-              <span className="inline-block h-[3px] w-12 bg-[#ffbf00] ml-2.5 align-middle animate-pulse" />
-            </h6>
+            
 
             {/* Main Gradient Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[45px] font-bold leading-tight mb-8 text-transparent bg-clip-text bg-[length:300%_300%] bg-[linear-gradient(90deg,#cfa74a,#000000,#cfa74a)] animate-[gradientFlow_4s_ease-in-out_infinite] drop-shadow-[0_0_8px_rgba(207,167,74,0.3)]">
+            <h2 className="heading-primary">
               Highly Tailored Technology, Develop & Support Services.
             </h2>
 
@@ -83,15 +80,15 @@ export const AboutSection: React.FC = () => {
             {/* Bullet List */}
             <ul className="mb-8 space-y-3 p-0 list-none text-left">
               <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
-                <CheckCircleIcon  className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
+                <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
                 <span>Website & Mobile application design & Development</span>
               </li>
               <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
-                <CheckCircleIcon  className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
+                <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
                 <span>Dramatically re-engineer value added IT systems via mission</span>
               </li>
               <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
-                <CheckCircleIcon  className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
+                <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
                 <span>Professional User Experience & Interface researching</span>
               </li>
             </ul>

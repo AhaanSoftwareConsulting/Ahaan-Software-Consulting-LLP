@@ -71,11 +71,8 @@ export const Team: React.FC = () => {
     <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 font-['Outfit',sans-serif]">
       {/* SECTION HEADER */}
       <div className="mb-8 text-center sm:text-left">
-        <h6 className="inline-block text-xl font-semibold text-black mb-2">
-          Teams
-          <span className="inline-block h-[3px] w-12 bg-[#ffbf00] ml-2.5 align-middle animate-pulse" />
-        </h6>
-        <h2 className="text-3xl sm:text-4xl lg:text-[35px] font-bold text-black mb-3">
+        
+        <h2 className="heading-primary">
           Meet Our Team
         </h2>
         <p className="text-gray-600 text-sm sm:text-base max-w-4xl leading-relaxed mb-10">

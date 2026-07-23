@@ -21,6 +21,19 @@
   transform: skewX(-25deg);
   animation: shine 3s linear infinite;
 }
+@layer components{
+  .heading-primary{
+    font-size: var(--text-2xl);
+     line-height: var(--text-2xl--line-height);
+    font-weight: var(--font-weight-extrabold);
+    @media (width>=40rem){
+      font-size: var(--text-4xl);
+      line-height: var(--text-4xl--line-height);
+    }
+    
+  }
+
+}
 
 @keyframes shine {
   0% {

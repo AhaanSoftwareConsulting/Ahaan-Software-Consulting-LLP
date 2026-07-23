@@ -44,15 +44,9 @@ export const AboutBanner: React.FC = () => {
 
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-            <div className="mb-2">
-              <h6 className="inline-block text-xl md:text-2xl font-semibold text-black mb-2">
-                Who We Are
-                <span className="inline-block h-[3px] w-12 bg-[#ffbf00] ml-2.5 align-middle animate-pulse" />
-              </h6>
-              <h2 className="text-3xl md:text-4xl lg:text-[50px] font-bold leading-tight text-transparent bg-clip-text bg-[length:300%_300%] bg-[linear-gradient(40deg,#f9ae00,#3d2f0c,#d49500)] animate-[gradientFlow_4s_ease-in-out_infinite]">
+              <h2 className="heading-primary">
                 Who Are We?
               </h2>
-            </div>
 
             <h3 className="text-xl font-bold text-black">
               Your Tech, Development And Creative Transformation Partner!
@@ -88,15 +82,12 @@ export const AboutBanner: React.FC = () => {
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-            <div className="mb-2">
-              <h6 className="inline-block text-xl md:text-2xl font-semibold text-black mb-2">
-                Mission & Vision
-                <span className="inline-block h-[3px] w-12 bg-[#ffbf00] ml-2.5 align-middle animate-pulse" />
-              </h6>
-              <h2 className="text-3xl md:text-4xl lg:text-[50px] font-bold leading-tight text-transparent bg-clip-text bg-[length:300%_300%] bg-[linear-gradient(40deg,#f9ae00,#3d2f0c,#d49500)] animate-[gradientFlow_4s_ease-in-out_infinite]">
+           
+
+              <h2 className="heading-primary">
                 Our Mission & Vision
               </h2>
-            </div>
+
 
             <h4 className="text-xl font-bold text-black">Mission</h4>
             <p className="text-base leading-relaxed text-gray-600 text-left">

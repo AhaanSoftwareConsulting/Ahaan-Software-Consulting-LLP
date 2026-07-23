@@ -1,24 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllCaseStudies } from "../../../../api/WordpressAPI";
+import type { CaseStudyItem } from "../../../../types/caseStudies";
 
-interface WordPressRenderedText {
-  rendered: string;
-}
-
-interface WordPressFeaturedMedia {
-  source_url: string;
-}
-
-interface CaseStudyItem {
-  id: number;
-  slug: string;
-  title: WordPressRenderedText;
-  content: WordPressRenderedText;
-  _embedded?: {
-    "wp:featuredmedia"?: WordPressFeaturedMedia[];
-  };
-}
 
 export const CaseStudies = () => {
   const [caseStudies, setCaseStudies] = useState<CaseStudyItem[]>([]);
