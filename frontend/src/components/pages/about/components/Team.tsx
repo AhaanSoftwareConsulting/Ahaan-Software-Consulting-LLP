@@ -12,7 +12,7 @@ export const Team: React.FC = () => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
-  
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
@@ -70,12 +70,11 @@ export const Team: React.FC = () => {
   return (
     <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 font-['Outfit',sans-serif]">
       {/* SECTION HEADER */}
-      <div className="mb-8 text-center sm:text-left">
-        
+      <div className="mb-8 text-center">
         <h2 className="heading-primary">
           Meet Our Team
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base max-w-4xl leading-relaxed mb-10">
+        <p className="text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-10">
           Driven to be future-ready, and push beyond the building blocks of
           technology, digital, and marketing, Ahaan Software Consulting proudly
           participated in The Asia Business Show 2024 in Singapore—the powerhouse

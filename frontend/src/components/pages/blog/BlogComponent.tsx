@@ -1,6 +1,11 @@
+import { BlogBanner } from "./components/BlogBanner"
+import { BlogPage } from "./components/BlogPage"
 
 export const BlogComponent = () => {
   return (
-    <div>BlogComponent</div>
+    <div>
+      <BlogBanner/>
+      <BlogPage/>
+    </div>
   )
 }
