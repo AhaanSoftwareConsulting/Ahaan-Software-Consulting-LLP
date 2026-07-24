@@ -2,8 +2,7 @@ import React from "react";
 import {
   FacebookLogo,
   InstagramLogo,
-  LinkedinLogo,
-  TwitterLogo,
+  LinkedinLogo
 } from "@phosphor-icons/react";
 
 export const FollowUs: React.FC = () => {
@@ -38,15 +37,7 @@ export const FollowUs: React.FC = () => {
         >
           <LinkedinLogo weight="fill" />
         </a>
-        <a
-          href="#"
-          target="_blank"
-          rel="noreferrer"
-          className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-[#deaa0f] text-lg border border-white/10 transition-all duration-300 hover:bg-[#d4a701] hover:text-black hover:-translate-y-0.5"
-          aria-label="Twitter"
-        >
-          <TwitterLogo weight="fill" />
-        </a>
+        
       </div>
     </div>
   );

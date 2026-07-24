@@ -156,7 +156,7 @@ export const Footer = () => {
           <div className="border-b border-white/10 pb-4 sm:border-none sm:pb-0">
             <button
               onClick={() => toggleSection("about")}
-              className="flex w-full items-center justify-between text-left sm:cursor-default"
+              className="flex w-full items-center justify-between text-left sm:!cursor-default "
             >
               <div>
                 <h3 className="text-2xl font-semibold uppercase">About Company</h3>
@@ -170,11 +170,12 @@ export const Footer = () => {
             </button>
 
             <div
-              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 ${openSection === "about"
-                ? "grid-rows-[1fr] opacity-100 mt-6"
-                : "grid-rows-[0fr] opacity-0 sm:mt-8"
-                }`}
-            >
+  className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${
+    openSection === "about"
+      ? "grid-rows-[1fr] opacity-100 mt-6"
+      : "grid-rows-[0fr] opacity-0 mt-0"
+  }`}
+>
               <div className="overflow-hidden">
                 <p className="leading-8 text-gray-400">
                   Professionally redefine transparent ROI through low-risk
@@ -215,7 +216,7 @@ export const Footer = () => {
           <div className="border-b border-white/10 pb-4 sm:border-none sm:pb-0">
             <button
               onClick={() => toggleSection("pages")}
-              className="flex w-full items-center justify-between text-left sm:cursor-default"
+              className="flex w-full items-center justify-between text-left sm:!cursor-default"
             >
               <div>
                 <h3 className="text-2xl font-semibold uppercase">Pages</h3>
@@ -229,9 +230,9 @@ export const Footer = () => {
             </button>
 
             <div
-              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 ${openSection === "pages"
+              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${openSection === "pages"
                 ? "grid-rows-[1fr] opacity-100 mt-6"
-                : "grid-rows-[0fr] opacity-0 sm:mt-8"
+                : "grid-rows-[0fr] opacity-0 mt-0"
                 }`}
             >
               <div className="overflow-hidden">
@@ -256,7 +257,7 @@ export const Footer = () => {
           <div className="border-b border-white/10 pb-4 sm:border-none sm:pb-0">
             <button
               onClick={() => toggleSection("quickLinks")}
-              className="flex w-full items-center justify-between text-left sm:cursor-default"
+              className="flex w-full items-center justify-between text-left sm:!cursor-default"
             >
               <div>
                 <h3 className="text-2xl font-semibold uppercase">Quick Links</h3>
@@ -270,9 +271,9 @@ export const Footer = () => {
             </button>
 
             <div
-              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 ${openSection === "quickLinks"
+              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${openSection === "quickLinks"
                 ? "grid-rows-[1fr] opacity-100 mt-6"
-                : "grid-rows-[0fr] opacity-0 sm:mt-8"
+                : "grid-rows-[0fr] opacity-0 mt-0"
                 }`}
             >
               <div className="overflow-hidden">
@@ -297,7 +298,7 @@ export const Footer = () => {
           <div>
             <button
               onClick={() => toggleSection("contact")}
-              className="flex w-full items-center justify-between text-left sm:cursor-default"
+              className="flex w-full items-center justify-between text-left sm:!cursor-default"
             >
               <div>
                 <h3 className="text-2xl font-semibold uppercase">Contact Info</h3>
@@ -311,9 +312,9 @@ export const Footer = () => {
             </button>
 
             <div
-              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 ${openSection === "contact"
+              className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${openSection === "contact"
                 ? "grid-rows-[1fr] opacity-100 mt-6"
-                : "grid-rows-[0fr] opacity-0 sm:mt-8"
+                : "grid-rows-[0fr] opacity-0 mt-0"
                 }`}
             >
               <div className="overflow-hidden space-y-6 sm:space-y-8">

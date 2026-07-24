@@ -200,12 +200,12 @@ export const BlogDetails: React.FC = () => {
             </div>
 
             {/* Title */}
-            <h1 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 md:text-4xl">
+            <h1 className="heading-primary">
               {blog.title || "Untitled Blog"}
             </h1>
 
             {/* Social Share & Reactions */}
-            <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+            <div className="my-6 flex flex-wrap items-center justify-between gap-4">
               {/* Share Buttons */}
               <div className="flex items-center gap-2">
                 <ShareNetwork size={24} weight="bold" className="text-black" />

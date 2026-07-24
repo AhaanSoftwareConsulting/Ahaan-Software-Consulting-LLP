@@ -153,7 +153,7 @@ export const SearchResults: React.FC = () => {
   return (
     <>
       <BlogSearchBanner />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 font-sans">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 mt-12 font-sans">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-black mb-8">
           Search Results for "{query}"
         </h2>
@@ -169,7 +169,7 @@ export const SearchResults: React.FC = () => {
                 <div
                   key={blog.id}
                   onClick={() => window.open(`/blog/${slug}`, "_blank")}
-                  className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-1"
+                  className="bg-white rounded-md shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full cursor-pointer transition-all duration-300 hover:shadow-md hover:-translate-y-1"
                 >
                   {blog.image && (
                     <img
@@ -179,7 +179,7 @@ export const SearchResults: React.FC = () => {
                           : `https://ahaansoftware.com/${blog.image}`
                       }
                       alt={blog.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-48 object-content"
                     />
                   )}
 
@@ -236,7 +236,7 @@ export const SearchResults: React.FC = () => {
                     >
                       <button
                         onClick={() => window.open(`/blog/${slug}`, "_blank")}
-                        className="bg-black hover:bg-amber-500 text-white hover:text-black px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300"
+                        className="shine-btn bg-black text-[#c78a2b] hover:bg-[#c78a2b] hover:text-black font-sans text-xs px-4 py-2 rounded-md font-medium transition-all duration-300"
                       >
                         Read More
                       </button>
