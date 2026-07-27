@@ -16,6 +16,10 @@ export interface ContactPayload {
   message: string;
 }
 
+export interface NewsletterPayload {
+  email: string;
+}
+
 export const getTeams = async () => {
   try {
     const response = await API.get("/team/all");
@@ -59,6 +63,16 @@ export const createContact = async (data: ContactPayload) => {
     return response.data;
   } catch (error) {
     console.error("❌ Error submitting contact form:", error);
+    throw error;
+  }
+};
+
+export const subscribeNewsletter = async (data: NewsletterPayload) => {
+  try {
+    const response = await API.post("/newsletter", data);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error subscribing newsletter:", error);
     throw error;
   }
 };
