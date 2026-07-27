@@ -7,6 +7,15 @@ const API = axios.create({
   timeout: 30000 // 30-second timeout to give Render cold starts time to respond
 });
 
+// Interface for contact payload
+export interface ContactPayload {
+  name: string;
+  email: string;
+  phone: string;
+  website: string;
+  message: string;
+}
+
 export const getTeams = async () => {
   try {
     const response = await API.get("/team/all");
@@ -40,3 +49,18 @@ export const getAllUiUxDesignsAPI = async () => {
     return [];
   }
 };
+
+
+
+// ➤ Post contact form details
+export const createContact = async (data: ContactPayload) => {
+  try {
+    const response = await API.post("/contact/add", data);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error submitting contact form:", error);
+    throw error;
+  }
+};
+
+
