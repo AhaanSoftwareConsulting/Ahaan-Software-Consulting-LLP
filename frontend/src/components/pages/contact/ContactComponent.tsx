@@ -1,5 +1,5 @@
 import { ContactBanner } from "./components/ContactBanner"
-import ContactUs from "./components/ContactUs"
+import {ContactUs} from "./components/ContactUs"
 
 
 export const ContactComponent = () => {
@@ -7,6 +7,7 @@ export const ContactComponent = () => {
     <div>
       <ContactBanner/>
       <ContactUs/>
+
     </div>
   )
 }
