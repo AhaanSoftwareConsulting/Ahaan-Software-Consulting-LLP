@@ -14,7 +14,7 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20 mt-[15em] sm:mt-0 font-['Outfit',sans-serif]">
+    <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20 mt-[15em] sm:mt-0">
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
 
