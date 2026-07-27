@@ -118,7 +118,7 @@ export const CareerDetails: React.FC = () => {
         {/* Layout Grid: 12 Columns Grid with 2XL/1600px breakpoint ratio */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-start">
           {/* Main Content Area (Spans 7 cols on lg, 8 cols on 2xl) */}
-          <section className="lg:col-span-7 2xl:col-span-8  p-6 sm:p-10 space-y-8">
+          <section className="lg:col-span-8 2xl:col-span-8  p-6 sm:p-10 space-y-8">
             {/* Featured Image */}
             {job.featured_image && (
               <div className=" overflow-hidden flex p-2">
@@ -199,7 +199,7 @@ export const CareerDetails: React.FC = () => {
           </section>
 
           {/* Sticky Form Sidebar (Spans 5 cols on lg, 4 cols on 2xl) */}
-          <section className="lg:col-span-5 2xl:col-span-4 sticky top-6">
+          <section className="lg:col-span-4 2xl:col-span-4 sticky top-6">
             <CareerApplyForm currentJob={decodeHtml(job.designation)} />
           </section>
         </div>
