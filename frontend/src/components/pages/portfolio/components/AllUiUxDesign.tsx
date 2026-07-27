@@ -194,7 +194,7 @@ export  function AllUiUxDesign() {
               lg:w-72
               lg:min-w-[280px]
               lg:sticky
-              lg:top-28
+              lg:top-0
               lg:h-[calc(100vh-7rem)]
 
               overflow-x-auto
@@ -202,7 +202,7 @@ export  function AllUiUxDesign() {
               lg:overflow-y-auto
               lg:overflow-x-hidden
 
-              scrollbar-hide
+              scrollbar-none
             "
           >
             <div
