@@ -14,35 +14,35 @@ export const AboutSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20 mt-[15em] sm:mt-0">
-      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
+    <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20">
+      <div className="mx-auto w-full max-w-[1600px] px-4  lg:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center md:gap-6 lg:gap-8">
 
           {/* LEFT COLUMN: IMAGES & PLAY BUTTON */}
           <div className="w-full max-w-[500px] lg:max-w-[600px] mx-auto text-center sm:text-left">
             <div className="relative w-full">
               {/* Main Image */}
-              <div className="relative overflow-hidden rounded-xl mb-2 sm:mb-0">
+              <div className="relative overflow-hidden rounded-md mb-0">
                 <img
                   src="https://ahaanmedia.com/ahaanwebsite/All/team1.webp"
                   alt="Team"
-                  className="w-full sm:w-[60%] h-auto block rounded-tl-[70px] sm:rounded-tl-[85px] sm:rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-br-2xl shadow-[0_8px_20px_rgba(0,0,0,0.15)] mx-auto sm:mx-0"
+                  className="w-[60%] h-auto block rounded-tl-[85px] sm:rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-br-2xl shadow-[0_8px_20px_rgba(0,0,0,0.15)] mx-0"
                 />
               </div>
 
               {/* Overlapping Secondary Image */}
-              <div className="relative sm:absolute sm:-bottom-8 sm:-right-2 w-[90%] sm:w-[50%] -mt-[140px] sm:mt-0 mx-auto sm:mx-0 z-0 sm:z-10 overflow-hidden rounded-2xl shadow-[0_5px_15px_rgba(0,0,0,0.2)]">
+              <div className="absolute -bottom-8 -right-2  w-[50%] rounded-br-[85px]  mt-0 mx-auto mx-0 z-0 z-10 overflow-hidden rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.2)]">
                 <img
                   src="https://ahaanmedia.com/ahaanwebsite/All/team2.webp"
                   alt="Team Working"
-                  className="w-full h-auto rounded-xl sm:rounded-br-[85px]"
+                  className="w-full h-auto  "
                 />
               </div>
 
               {/* Animated Play Button */}
               <div
                 onClick={handlePlayClick}
-                className="group relative sm:absolute top-[22%] left-[90%]
+                className="group absolute top-[25%] lg:top-[22%] left-[90%]
   -translate-x-1/2 -translate-y-1/2    p-4
   rounded-full border-2 border-black
   bg-white flex items-center justify-center
@@ -53,7 +53,7 @@ export const AboutSection: React.FC = () => {
               >
 
                 <PlayCircleIcon weight="fill"
-                  className="w-15 h-15 text-3xl transition-colors duration-300 text-[#c07f1e] group-hover:text-white"
+                  className=" w-10 h-10 lg:w-15 lg:h-15 text-3xl transition-colors duration-300 text-[#c07f1e] group-hover:text-white"
                 />
 
               </div>
@@ -61,7 +61,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* RIGHT COLUMN: TEXT CONTENT */}
-          <div className="flex flex-col text-center lg:text-left">
+          <div className="mt-15 md:mt-0 flex flex-col text-left space-y-4">
             {/* Subtitle */}
             
 
@@ -71,25 +71,25 @@ export const AboutSection: React.FC = () => {
             </h2>
 
             {/* Description */}
-            <p className="text-black text-sm sm:text-base mb-8 leading-relaxed">
+            <p className="text-black text-sm lg:text-base">
               Accelerate innovation with world-class tech teams. We’ll match
               you to an entire remote team of incredible freelance talent for
               all your software development needs.
             </p>
 
             {/* Bullet List */}
-            <ul className="mb-8 space-y-3 p-0 list-none text-left">
-              <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
+            <ul className="space-y-1 p-0 list-none text-left">
+              <li className="flex items-center justify-start text-black text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
-                <span>Website & Mobile application design & Development</span>
+                <span className="text-sm lg:text-base">Website & Mobile application design & Development</span>
               </li>
-              <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
+              <li className="flex items-center justify-start text-black text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
-                <span>Dramatically re-engineer value added IT systems via mission</span>
+                <span className="text-sm lg:text-base">Dramatically re-engineer value added IT systems via mission</span>
               </li>
-              <li className="flex items-center justify-center sm:justify-start text-black text-sm sm:text-base">
+              <li className="flex items-center justify-start text-black text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-lg mr-2.5 shrink-0" />
-                <span>Professional User Experience & Interface researching</span>
+                <span className="text-sm lg:text-base">Professional User Experience & Interface researching</span>
               </li>
             </ul>
 

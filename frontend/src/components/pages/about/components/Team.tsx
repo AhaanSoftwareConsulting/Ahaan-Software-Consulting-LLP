@@ -13,7 +13,8 @@ export const Team: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const offsetRef = useRef<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   useEffect(() => {
@@ -29,22 +30,26 @@ export const Team: React.FC = () => {
     fetchTeam();
   }, []);
 
-  // Smooth Auto-Scroll Effect (Replaces Swiper Autoplay)
+  // Smooth Auto-Scroll Effect using transform (GPU-composited, no scroll-behavior conflicts)
   useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container || teamMembers.length === 0) return;
+    const track = trackRef.current;
+    if (!track || teamMembers.length === 0) return;
 
     let animationFrameId: number;
-    const speed = 0.8; // Adjust speed as needed
+    const speed = 0.8; // px per frame
 
     const scroll = () => {
       if (!isPaused && !showModal) {
-        if (container.scrollLeft >= container.scrollWidth / 2) {
-          // Seamless loop reset when halfway through duplicated array
-          container.scrollLeft = 0;
-        } else {
-          container.scrollLeft += speed;
+        const halfWidth = track.scrollWidth / 2;
+
+        offsetRef.current += speed;
+
+        // Seamless loop reset when halfway through duplicated array
+        if (offsetRef.current >= halfWidth) {
+          offsetRef.current -= halfWidth;
         }
+
+        track.style.transform = `translate3d(-${offsetRef.current}px, 0, 0)`;
       }
       animationFrameId = requestAnimationFrame(scroll);
     };
@@ -87,31 +92,35 @@ export const Team: React.FC = () => {
         <p className="text-center text-gray-500 py-10">Loading team members...</p>
       ) : (
         <div
-          ref={scrollContainerRef}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-4 scroll-smooth"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="overflow-x-hidden py-4"
         >
-          {displayMembers.map((member, idx) => (
-            <div
-              key={idx}
-              onClick={() => handleShow(member)}
-              className="group flex-shrink-0 w-[calc(50%-8px)] sm:w-[calc(33.333%-14px)] md:w-[calc(25%-18px)] lg:w-[calc(20%-20px)] flex flex-col items-center justify-center rounded-2xl bg-white p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-3"
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="h-[100px] w-[100px] sm:h-[130px] sm:w-[130px] rounded-full object-cover shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover:scale-105 mb-4"
-              />
-              <h5 className="text-base sm:text-lg font-semibold text-black mb-1 truncate w-full">
-                {member.name}
-              </h5>
-              <p className="text-[#ebb800] text-sm sm:text-base font-normal leading-normal truncate w-full">
-                {member.position}
-              </p>
-            </div>
-          ))}
+          <div
+            ref={trackRef}
+            className="flex gap-4 sm:gap-6 will-change-transform"
+            style={{ width: "max-content" }}
+          >
+            {displayMembers.map((member, idx) => (
+              <div
+                key={idx}
+                onClick={() => handleShow(member)}
+                className="group flex-shrink-0 max-w-[45vw] sm:w-[220px] md:w-[250px] lg:w-[270px] flex flex-col items-center justify-center bg-white p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-3"
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="h-[100px] w-[100px] sm:h-[130px] sm:w-[130px] rounded-full object-cover shadow-[0_10px_25px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover:scale-105 mb-4"
+                />
+                <h5 className="text-base sm:text-lg font-semibold text-black mb-1 truncate w-full">
+                  {member.name}
+                </h5>
+                <p className="text-[#ebb800] text-sm sm:text-base font-normal leading-normal truncate w-full">
+                  {member.position}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -154,13 +163,6 @@ export const Team: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Hide Scrollbar Utility */}
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 };
