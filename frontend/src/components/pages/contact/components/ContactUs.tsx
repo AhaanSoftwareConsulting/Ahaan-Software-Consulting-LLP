@@ -25,7 +25,7 @@ interface ContactFormData {
   message: string;
 }
 
-const ContactUs: React.FC = () => {
+export const ContactUs: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -326,4 +326,3 @@ const ContactUs: React.FC = () => {
   );
 };
 
-export default ContactUs;
