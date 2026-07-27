@@ -26,13 +26,20 @@
 }
 @layer components{
   .heading-primary{
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
      line-height: var(--text-2xl--line-height);
     font-weight: var(--font-weight-extrabold);
-    @media (width>=40rem){
-      font-size: var(--text-4xl);
-      line-height: var(--text-4xl--line-height);
-    }
+    /* sm */
+  @media (width >= 40rem) {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+  }
+
+  /* lg */
+  @media (width >= 64rem) {
+    font-size: var(--text-4xl);
+    line-height: var(--text-4xl--line-height);
+  }
     
   }
   .section-banner {
