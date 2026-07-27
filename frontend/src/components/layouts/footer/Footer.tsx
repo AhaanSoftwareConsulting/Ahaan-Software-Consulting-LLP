@@ -10,6 +10,7 @@ import {
   CaretDown,
 } from "@phosphor-icons/react";
 import { useState } from "react";
+import { CallToAction } from "../../pages/home/components/CallToAction";
 const socialLinks = [
   {
     name: "Facebook",
@@ -73,6 +74,8 @@ export const Footer = () => {
     { name: "Intellectual Property Policy", url: "/intellectual-property-policy" },
   ];
   return (
+    <>
+    <CallToAction/>
     <footer className="relative overflow-hidden bg-[#000] text-white">
 
       <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-6">
@@ -418,5 +421,6 @@ export const Footer = () => {
 
       <div className="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-[#6c4cff]/10 blur-[140px]"></div>
     </footer>
+    </>
   );
 };
