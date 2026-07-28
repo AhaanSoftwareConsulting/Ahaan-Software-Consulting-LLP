@@ -51,7 +51,7 @@ export  function AllDevelopment() {
   return (
     <>
 <AllDevBanner/>
-    <div className="py-10 sm:py-14 lg:py-16">
+    <div className="py-6 sm:py-10 lg:py-16">
         
         
       <div className="relative mx-auto max-w-[1600px] px-4">

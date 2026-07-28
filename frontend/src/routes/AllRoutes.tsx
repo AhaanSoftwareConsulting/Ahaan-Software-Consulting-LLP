@@ -26,6 +26,7 @@ import { SearchResults } from "../components/pages/blog/components/SearchResults
 import  { CareerDetails } from "../components/pages/career/components/CareerDetails";
 import {AllDevelopment} from "../components/pages/portfolio/components/AllDevelopment";
 import {AllUiUxDesign} from "../components/pages/portfolio/components/AllUiUxDesign";
+import {AllSocialMediaMarketing} from "../components/pages/portfolio/components/AllSocialMediaMarketing";
 
 export const AllRoutes = () => {
   return (
@@ -38,6 +39,7 @@ export const AllRoutes = () => {
         <Route path="/portfolio" element={<PortfolioComponent />} />
         <Route path="/all-development" element={<AllDevelopment />} />
       <Route path="/all-design" element={<AllUiUxDesign />} />
+      <Route path="/all-media-marketing" element={<AllSocialMediaMarketing />} />
         <Route path="/solution" element={<SolutionComponent />} />
         <Route path="/solution/ecommerce" element={<EcommerceSolution />} />
         <Route path="/solution/education" element={<Education />} />
