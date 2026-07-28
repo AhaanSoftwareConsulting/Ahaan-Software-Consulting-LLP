@@ -84,8 +84,8 @@ export function HomeBanner() {
   return (
     <div className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-slate-50/70 ">
       {/* Brand Golden Ambient Glows */}
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-[#E5C473]/15 blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-[-15%] left-[-5%] w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-[#C5A85A]/10 blur-[150px] pointer-events-none" />
+      <div className="absolute  w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-[#E5C473]/15 blur-[130px] pointer-events-none" />
+      <div className="absolute  w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-[#C5A85A]/10 blur-[150px] pointer-events-none" />
 
       {/* Constrained to max-w-[1600px] & Fully Responsive */}
       <div className="relative max-w-[1600px] mx-autow-full grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-4 xl:gap-8 items-center relative z-10 ">
