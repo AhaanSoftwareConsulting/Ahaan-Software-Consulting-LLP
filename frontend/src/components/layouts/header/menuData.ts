@@ -21,6 +21,32 @@ export const menuData: MenuItem[] = [
   {
     name: "IT Services",
     path: "/service",
+     submenu: [
+      {
+        name: "UI/UX Design",
+        path: "/all-design",
+      },
+      {
+        name: "Web Development",
+        path: "/all-development",
+      },
+      {
+        name: "Application Development",
+        path: "/all-development",
+      },
+      {
+        name: "E-commerce Development",
+        path: "/all-development",
+      },
+      {
+        name: "Social Media Management",
+        path: "/all-development",
+      },
+      {
+        name: "Google Marketing",
+        path: "/all-development",
+      }
+    ]
   },
   {
     name: "Case Studies",

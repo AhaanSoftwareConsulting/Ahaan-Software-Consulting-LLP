@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Link } from "react-router-dom";
+import AllSocialBanner from "./AllSocialBanner";
 
 type CardItem = {
   id: number;
@@ -183,18 +183,19 @@ const Card = memo(
   }
 );
 
-    export default function SocialMediaMarketing() {
-  const [visibleCount] = useState<number>(3);
+    export  function AllSocialMediaMarketing() {
+  const [visibleCount] = useState<number>(9);
 
-  // const handleLoadMore = () => {
-  //   setVisibleCount((prev) => Math.min(prev + 3, cardsData.length));
-  // };
+
 
   const visibleCards = cardsData.slice(0, visibleCount);
 
 
 return (
-  <section className="py-3">
+    <> 
+    <AllSocialBanner />
+  <section className="py-6 sm:py-10 lg:py-16">
+   
     {/* Heading */}
     <div className="mb-12 text-center">
     <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
@@ -215,33 +216,8 @@ return (
       ))}
     </div>
 
-    {/* Load More */}
-    {visibleCount < cardsData.length && (
-      <div className="mt-8 flex justify-center">
-         <Link  to="/all-media-marketing"
-              className="shine-btn relative overflow-hidden uppercase
-                bg-gradient-to-r
-                from-[#C48A18]
-                to-[#E6B33C]
-                px-5
-                xl:px-6
-                2xl:px-8
-                py-3
-                xl:py-3.5
-                text-sm
-                xl:text-base
-                font-semibold
-                text-black
-                shadow-xl
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:from-[#B57A0C]
-                hover:to-[#D69D20]"
-            >View All
-            </Link>
-      </div>
-    )}
+   
   </section>
+  </>
 );
 };

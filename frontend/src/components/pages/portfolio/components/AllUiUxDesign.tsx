@@ -182,7 +182,7 @@ export  function AllUiUxDesign() {
   <>
     <AllDesignBanner />
 
-    <section className="py-8 lg:py-12">
+    <section className="py-6 sm:py-10 lg:py-16">
       <div className="relative mx-auto max-w-[1600px] px-4">
 
         {/* Layout */}
