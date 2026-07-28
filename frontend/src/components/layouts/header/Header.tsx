@@ -258,7 +258,7 @@ export const Header = () => {
                 to="/contact"
                 className="shine-btn relative overflow-hidden uppercase bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-5 xl:px-6 2xl:px-8 py-3 xl:py-3.5 text-sm xl:text-base font-semibold text-black shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:from-[#B57A0C] hover:to-[#D69D20]"
               >
-                Book A Free Discovery Call
+                Book A  Discovery Call
               </NavLink>
             </div>
           </div>
