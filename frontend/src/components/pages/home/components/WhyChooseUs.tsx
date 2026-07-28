@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import {
   MagnifyingGlassPlus,
   ShieldCheck,
@@ -64,6 +65,35 @@ const REASONS: Reason[] = [
   },
 ];
 
+const tabListVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 }as const },
+};
+
+const tabItemVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 180, damping: 16 }as const },
+};
+
+// The image panel reveals by scaling open from the top-left corner
+// (rather than an animated clip-path, which conflicts with overflow-hidden
+// + rounded corners on the same element in some browsers) — and shrinks
+// back into the corner on scroll-up.
+const panelVariants = {
+  hidden: { scale: 0.3, opacity: 0, rotate: -3 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    rotate: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
+
+const contentVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.1 }as const },
+};
+
 export const WhyChooseUs: React.FC = () => {
   const [activeId, setActiveId] = useState<string>(REASONS[0].id);
   const activeReason = REASONS.find((r) => r.id === activeId) ?? REASONS[0];
@@ -72,7 +102,13 @@ export const WhyChooseUs: React.FC = () => {
     <section className="w-full bg-[#0A0A0A] text-[#F5F1E8] py-20 lg:py-28 overflow-hidden font-['Outfit']">
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
         {/* TOP HEADER */}
-        <div className="max-w-6xl mx-auto text-center pb-4">
+        <motion.div
+          className="max-w-6xl mx-auto text-center pb-4"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fff] leading-tight">
             Engineered for
             <span className=""> Performance</span> & Trust.
@@ -83,15 +119,22 @@ export const WhyChooseUs: React.FC = () => {
             extension of your core engine, combining modern workflows with
             precise tactical execution.
           </p>
-        </div>
+        </motion.div>
 
         {/* PERSISTENT TAB STEP INDICATOR BAR */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-8">
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 py-8"
+          variants={tabListVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.4 }}
+        >
           {REASONS.map((item) => {
             const isSelected = item.id === activeId;
             return (
-              <button
+              <motion.button
                 key={item.id}
+                variants={tabItemVariants}
                 onClick={() => setActiveId(item.id)}
                 className="group flex flex-col text-left pt-4 border-t-2 transition-all duration-500 outline-none"
                 style={{
@@ -110,15 +153,21 @@ export const WhyChooseUs: React.FC = () => {
                 >
                   {item.title}
                 </span>
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* CORE SHOWCASE CANVAS */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mt-6 items-center">
           {/* LEFT CONTENT COLUMN: DYNAMIC SPOTLIGHT */}
-          <div className="lg:col-span-6 space-y-8 min-h-[340px] flex flex-col justify-center">
+          <motion.div
+            className="lg:col-span-6 space-y-8 min-h-[340px] flex flex-col justify-center"
+            variants={contentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+          >
             <div
               key={activeReason.id}
               className="animate-[slideUp_0.6s_cubic-bezier(0.16,_1,_0.3,_1)] space-y-6"
@@ -150,10 +199,16 @@ export const WhyChooseUs: React.FC = () => {
                 </a> */}
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT VIEWPORT COLUMN: BRUSHED PHOTO SHUTTER */}
-          <div className="lg:col-span-6 relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group/frame border border-white/5 bg-[#121212]">
+          <motion.div
+            className="lg:col-span-6 relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group/frame border border-white/5 bg-[#121212]"
+            variants={panelVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.35 }}
+          >
             {/* Embedded Static Clean Corporate Visual */}
             <img
               key={activeReason.id}
@@ -178,7 +233,7 @@ export const WhyChooseUs: React.FC = () => {
             >
               {activeReason.title.charAt(0)}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

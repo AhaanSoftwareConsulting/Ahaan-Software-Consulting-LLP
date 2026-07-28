@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+
 
 interface Service {
     title: string;
@@ -59,7 +61,6 @@ const services: Service[] = [
         description:
             "Crafting intuitive, engaging, and user-centered designs that enhance usability, improve user satisfaction, and elevate your brand's digital experience.",
         Icon: ({ className }) => (
-            // Option A — mockup screen
             <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 3.2l9 5-9 5-9-5 9-5Z" />
                 <path d="M3 12.2l9 5 9-5" />
@@ -98,6 +99,52 @@ const services: Service[] = [
         ),
     },
 ];
+
+// Parent container drives the stagger — children reveal one after another
+// and un-reveal in the same staggered order when scrolled back out of view.
+const gridVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.12,
+            delayChildren: 0.05,
+        },
+    },
+};
+
+// Alternate entrance direction per column so the grid doesn't feel uniform:
+// even index cards drop in from above-left with a slight rotation,
+// odd index cards rise in from below-right — a "shuffle into place" feel.
+const cardVariants = (index: number) => {
+    const fromLeft = index % 2 === 0;
+    return {
+        hidden: {
+            opacity: 0,
+            x: fromLeft ? -46 : 46,
+            y: fromLeft ? -18 : 18,
+            rotate: fromLeft ? -6 : 6,
+            scale: 0.88,
+        },
+        visible: {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            rotate: 0,
+            scale: 1,
+            transition: { type: "spring", stiffness: 120, damping: 16, mass: 0.7 }as const,
+        },
+    };
+};
+
+const iconVariants = {
+    hidden: { opacity: 0, scale: 0.4, rotate: -25 },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        rotate: 0,
+        transition: { type: "spring", stiffness: 220, damping: 14, delay: 0.1 }as const,
+    },
+};
 
 export const ServicesSection = () => {
     const sectionRef = useRef<HTMLElement | null>(null);
@@ -154,10 +201,15 @@ export const ServicesSection = () => {
         }
       `}</style>
 
-            <div className="max-w-6xl mx-auto  text-center mb-16">
+            <motion.div
+                className="max-w-6xl mx-auto text-center mb-16"
+                initial={{ opacity: 0, y: -24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+            >
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
                     Our Core Services <br />
-
                 </h2>
                 <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
                     We are driven by a passion to deliver excellence through continuous
@@ -166,25 +218,35 @@ export const ServicesSection = () => {
                     transform industries, and inspire progress across the digital
                     landscape.
                 </p>
-            </div>
+            </motion.div>
 
             {/* 3 Columns Grid System */}
-            <div className="mx-auto  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-6 px-0  lg:px-4">
+            <motion.div
+                className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-6 px-0 lg:px-4"
+                variants={gridVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
+            >
                 {services.map(({ title, description, Icon }, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        variants={cardVariants(index)}
                         onMouseEnter={() => replay(index)}
-                        className="group flex lg:gap-5 gap-2 items-start bg-transparent p-2 lg:p-4 rounded-xl transition-all duration-300 ease-out  hover:bg-white hover:-translate-y-1 hover:shadow-[0_28px_40px_-14px_rgba(196,138,24,0.35)]"
+                        className="group flex lg:gap-5 gap-2 items-start bg-transparent p-2 lg:p-4 rounded-xl transition-all duration-300 ease-out hover:bg-white hover:-translate-y-1 hover:shadow-[0_28px_40px_-14px_rgba(196,138,24,0.35)]"
                     >
                         {/* Custom Icon Container */}
                         <div className="flex-shrink-0 pt-1">
-                            <div
+                            <motion.div
                                 key={`${inView ? "in" : "out"}-${animGen[index]}`}
+                                variants={iconVariants}
+                                initial="hidden"
+                                animate="visible"
                                 className={`w-8 h-8 md:w-10 md:h-10 lg:w-14 lg:h-14 text-neutral-800 flex items-center justify-center transition-transform duration-300 group-hover:scale-105 ${inView ? "is-visible" : ""
                                     }`}
                             >
                                 <Icon className="w-12 h-12 svg-animate group-hover:text-[#C48A18]" />
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Typography Content */}
@@ -192,7 +254,7 @@ export const ServicesSection = () => {
                             <h3 className="mb-2 text-sm lg:text-[21px] font-bold text-[#1c1d20] tracking-tight transition-colors duration-200 group-hover:text-[#C48A18]">
                                 {title}
                             </h3>
-                            <p className="text-xs lg:text-base  leading-[1.65] text-gray-500 font-normal mb-3.5 max-w-[280px]">
+                            <p className="text-xs lg:text-base leading-[1.65] text-gray-500 font-normal mb-3.5 max-w-[280px]">
                                 {description}
                             </p>
                             <a
@@ -202,12 +264,18 @@ export const ServicesSection = () => {
                                 Discover now <span className="text-[15px] font-normal">→</span>
                             </a>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
-            </div>
+            </motion.div>
 
             {/* Bottom Action Footer Buttons */}
-            <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
+            <motion.div
+                className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 px-4"
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: false, amount: 0.7 }}
+                transition={{ type: "spring", stiffness: 160, damping: 14 }}
+            >
                 <button className="shine-btn relative overflow-hidden uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
@@ -232,7 +300,7 @@ export const ServicesSection = () => {
                 <button className="shine-btn  w-full sm:w-auto px-7 py-3.5 text-[14px] font-bold text-[#C48A18] bg-transparent  border border-[#C48A18]/30 hover:border-[#C48A18] hover:bg-[#C48A18]/05 transition-all">
                     Contact us now
                 </button>
-            </div>
+            </motion.div>
         </section>
     );
 };
