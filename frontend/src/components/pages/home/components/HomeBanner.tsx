@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Play } from "@phosphor-icons/react";
+import { Play, XIcon } from "@phosphor-icons/react";
 import TechOrbit from "./TechOrbit";
 
 const SERVICES_DATA = [
@@ -50,7 +50,20 @@ const SERVICES_DATA = [
   },
 ];
 
+ 
+
+
 export function HomeBanner() {
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handlePlayClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -75,7 +88,7 @@ export function HomeBanner() {
       <div className="absolute bottom-[-15%] left-[-5%] w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-[#C5A85A]/10 blur-[150px] pointer-events-none" />
 
       {/* Constrained to max-w-[1600px] & Fully Responsive */}
-      <div className="relative max-w-[1600px] mx-autow-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 xl:gap-8 items-center relative z-10 ">
+      <div className="relative max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 xl:gap-8 items-center relative z-10 ">
         {/* Left Typography Column */}
         <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center space-y-6 md:space-y-8 text-left px-4 sm:px-8 lg:pl-12 pb-12 lg:py-20">
           <h1 className="text-2xl sm:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] min-h-[90px] sm:min-h-[120px] md:min-h-[140px]">
@@ -139,7 +152,7 @@ export function HomeBanner() {
               Schedule a Meeting
             </button>
 
-            <button className="flex items-center gap-3 text-slate-700 hover:text-slate-900 font-bold py-3 group transition-colors text-sm sm:text-base">
+            <button  onClick={handlePlayClick} className="flex items-center gap-3 text-slate-700 hover:text-slate-900 font-bold py-3 group transition-colors text-sm sm:text-base">
 
   <span className="relative flex items-center justify-center w-14 h-14">
 
@@ -171,7 +184,34 @@ export function HomeBanner() {
         <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end ">
           <TechOrbit />
         </div>
+{/* VIDEO MODAL */}
+              {isModalOpen && (
+                <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/75 p-4">
+                  <div className="relative w-full max-w-[900px] rounded-lg">
+                    {/* Close Button */}
+                    <button
+                      className="absolute -top-12 right-0 sm:top-2 sm:right-2 z-[10001] flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-black bg-white/20 text-[#c8c8c8] hover:text-[#c07f1e] transition-colors"
+                      onClick={handleCloseModal}
+                    >
+                      <XIcon className="text-lg sm:text-xl" />
+                    </button>
+      
+                    {/* Video Element */}
+                    <div className="relative w-full overflow-hidden rounded-lg">
+                      <video className="w-full h-auto rounded-lg" controls autoPlay>
+                        <source
+                          src="https://ahaanmedia.com/ahaanwebsite/video/about-video.mp4"
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              )}
+
       </div>
+       
     </div>
   );
 }
