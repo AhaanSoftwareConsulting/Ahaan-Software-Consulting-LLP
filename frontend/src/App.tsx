@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import './App.css'
 import { AllRoutes } from './routes/AllRoutes'
+import WhatsAppChat from "./components/whatsapp/Whatsappchat";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ function App() {
    <>
     <ScrollToTop />
    <AllRoutes/>
+   <WhatsAppChat/>
    </>
   )
 }
