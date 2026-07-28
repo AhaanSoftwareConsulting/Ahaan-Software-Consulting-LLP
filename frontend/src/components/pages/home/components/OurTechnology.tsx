@@ -176,13 +176,36 @@ const InfiniteMarquee = ({
   );
 };
 
+// Each marquee row skews in from a different side with a slight tilt that
+// settles flat — like two conveyor belts sliding into frame from opposite
+// edges, then reversing back out as the section leaves the viewport.
+const rowVariants = (reverse: boolean) => ({
+  hidden: {
+    opacity: 0,
+    x: reverse ? 120 : -120,
+    skewX: reverse ? 6 : -6,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    skewX: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }as const,
+  },
+});
+
 export const OurTechnology = () => {
   return (
     <section className="py-20 bg-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
 
         {/* Header */}
-        <div className="max-w-6xl mx-auto text-center px-4">
+        <motion.div
+          className="max-w-6xl mx-auto text-center px-4"
+          initial={{ opacity: 0, filter: "blur(8px)", y: -20 }}
+          whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
             Our Technology Use
           </h2>
@@ -193,21 +216,30 @@ export const OurTechnology = () => {
             enhance user experiences, and help businesses innovate, grow, and
             achieve long-term success.
           </p>
-        </div>
+        </motion.div>
 
         {/* Technology Marquee */}
         <div className="mt-16 space-y-5">
 
           {/* First Row */}
-          <InfiniteMarquee
-            items={firstRow}
-          />
+          <motion.div
+            variants={rowVariants(false)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+          >
+            <InfiniteMarquee items={firstRow} />
+          </motion.div>
 
           {/* Second Row */}
-          <InfiniteMarquee
-            items={secondRow}
-            reverse
-          />
+          <motion.div
+            variants={rowVariants(true)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.4 }}
+          >
+            <InfiniteMarquee items={secondRow} reverse />
+          </motion.div>
 
         </div>
       </div>

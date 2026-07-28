@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
 /*  Custom icons — typed properly for React's SVG element             */
@@ -66,14 +67,18 @@ const stats: Stat[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Count-up hook — plaques tally up once they enter view              */
+/*  Count-up hook — plaques tally up once they enter view, and reset   */
+/*  back to zero once they scroll fully out of view again              */
 /* ------------------------------------------------------------------ */
 
 function useCountUp(target: number, active: boolean, duration = 1400) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    if (!active) return;
+    if (!active) {
+      setValue(0);
+      return;
+    }
     let start: number | null = null;
     let frame: number;
 
@@ -94,18 +99,17 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Plaque                                                            */
+/*  Plaque — swings in on a "wire" like a hung frame, and swings back  */
+/*  up out of view when scrolled past going up                        */
 /* ------------------------------------------------------------------ */
 
- const Plaque: React.FC<{ stat: Stat; index: number; visible: boolean }> = ({
-  stat,
-  index,
-  visible,
-}) => {
+ const Plaque: React.FC<{ stat: Stat; index: number }> = ({ stat, index }) => {
+  const ref = React.useRef(null);
+  const visible = useInView(ref, { once: false, amount: 0.5 });
   const count = useCountUp(stat.value, visible, 1200 + index * 150);
 
   return (
-    <div className="relative flex justify-center" style={{ marginTop: stat.drop }}>
+    <div ref={ref} className="relative flex justify-center" style={{ marginTop: stat.drop }}>
       {/* wire from rail down to the seal */}
       <span
         aria-hidden
@@ -119,11 +123,20 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
         style={{ top: -stat.drop - 4 }}
       />
 
-      <div
-        className={`group relative w-full max-w-[240px] transition-all duration-700 ease-out motion-reduce:transition-none ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-        }`}
-        style={{ transitionDelay: `${index * 120}ms` }}
+      <motion.div
+        className="group relative w-full max-w-[240px] origin-top motion-reduce:transition-none"
+        initial={{ opacity: 0, y: -40, rotate: index % 2 === 0 ? -10 : 10 }}
+        animate={
+          visible
+            ? { opacity: 1, y: 0, rotate: 0 }
+            : { opacity: 0, y: -40, rotate: index % 2 === 0 ? -10 : 10 }
+        }
+        transition={{
+          type: "spring",
+          stiffness: 140,
+          damping: 11,
+          delay: visible ? index * 0.12 : 0,
+        }}
       >
         {/* seal */}
         <div className="relative z-10 mx-auto -mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#E8C766] to-[#9C7A17] text-[#1C1B19] shadow-[0_6px_14px_rgba(0,0,0,0.45)] ring-1 ring-[#F5E7B8]/60 transition-transform duration-500 motion-reduce:transition-none group-hover:-rotate-6">
@@ -152,7 +165,7 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
             {stat.label}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
@@ -162,27 +175,8 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 /* ------------------------------------------------------------------ */
 
 export const TotalProject= () => {
-  const [visible, setVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-[#0A0A0A] px-6 py-28">
+    <section className="relative overflow-hidden bg-[#0A0A0A] px-6 py-28">
       {/* subtle vignette / wall texture */}
       <div
         aria-hidden
@@ -194,7 +188,13 @@ export const TotalProject= () => {
       />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="mb-24 text-center">
+        <motion.div
+          className="mb-24 text-center"
+          initial={{ opacity: 0, y: -24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fff] leading-tight">
             Measured in years, hung on the wall
           </h2>
@@ -203,18 +203,22 @@ export const TotalProject= () => {
             we follow a structured process that ensures every project is
             delivered with quality, efficiency, and measurable business results.
           </p>
-        </div>
+        </motion.div>
 
         {/* rail */}
         <div className="relative">
-          <div
+          <motion.div
             aria-hidden
-            className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A227]/80 to-transparent shadow-[0_0_10px_rgba(201,162,39,0.5)]"
+            className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A227]/80 to-transparent shadow-[0_0_10px_rgba(201,162,39,0.5)] origin-center"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           />
 
           <div className="grid grid-cols-1 gap-x-8 gap-y-24 pt-2 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat, i) => (
-              <Plaque key={stat.label} stat={stat} index={i} visible={visible} />
+              <Plaque key={stat.label} stat={stat} index={i} />
             ))}
           </div>
         </div>
