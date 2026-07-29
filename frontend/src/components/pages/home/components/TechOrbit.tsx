@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const OUTER_ICONS = [
   {
@@ -68,52 +68,33 @@ type OrbitIconProps = {
   radius: number;
 };
 
-function responsiveRadius() {
-  const [radius, setRadius] = useState(150);
+/**
+ * Measures the *actual rendered* size of an element and returns half its
+ * width as the orbit radius. This replaces hardcoded window-width
+ * breakpoints (which drifted out of sync with the Tailwind classes that
+ * size the circles, e.g. JS switching at 1024/1200 vs Tailwind's
+ * lg:1024/xl:1280) — that mismatch is what pushed icons past the ring's
+ * edge at in-between widths. Measuring the real box means the icons are
+ * mathematically always on the ring, at any viewport width.
+ */
+function useMeasuredRadius<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [radius, setRadius] = useState(0);
 
   useEffect(() => {
-    const updateRadius = () => {
-      if (window.innerWidth < 1024) {
-        setRadius(92);
-      } else if (window.innerWidth < 1200) {
-        setRadius(120);
-      } else {
-        setRadius(150);
-      }
-    };
+    const el = ref.current;
+    if (!el) return;
 
-    updateRadius();
-    window.addEventListener("resize", updateRadius);
+    const update = () => setRadius(el.clientWidth / 2);
+    update();
 
-    return () => window.removeEventListener("resize", updateRadius);
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
-  return radius;
+  return { ref, radius };
 }
-
-function flexibleRadius() {
-  const [radius, setRadius] = useState(225);
-
-  useEffect(() => {
-    const updateRadius = () => {
-      if (window.innerWidth < 1024) {
-        setRadius(162);
-      } else if (window.innerWidth < 1200) {
-        setRadius(210);
-      } else {
-        setRadius(225);
-      }
-    };
-
-    updateRadius();
-    window.addEventListener("resize", updateRadius);
-
-    return () => window.removeEventListener("resize", updateRadius);
-  }, []);
-
-  return radius;
-}
-
 
 function OrbitIcon({
   image,
@@ -174,41 +155,50 @@ function OrbitIcon({
 }
 
 export default function TechOrbit() {
-  const  innerRadius = responsiveRadius();
-   const outerRadius = flexibleRadius();
+  const { ref: outerRef, radius: outerRadius } = useMeasuredRadius<HTMLDivElement>();
+  const { ref: innerRef, radius: innerRadius } = useMeasuredRadius<HTMLDivElement>();
+
   return (
     <div className="relative flex items-center justify-center w-full h-[500px] lg:h-[650px] overflow-hidden">
       {/* Background Glow */}
       <div className="absolute w-[420px] h-[420px] rounded-full bg-[#E6B33C]/10 blur-[120px] px-2" />
 
       {/* Outer Orbit */}
-      <div className="absolute w-[325px] h-[325px] md:w-[425px] md:h-[425px] xl:w-[450px] xl:h-[450px] rounded-full border border-[#E6B33C]/20 animate-[spin_35s_linear_infinite]">
+      <div
+        ref={outerRef}
+        className="absolute w-[325px] h-[325px] lg:w-[425px] lg:h-[425px] xl:w-[450px] xl:h-[450px] rounded-full border border-[#E6B33C]/20 animate-[spin_35s_linear_infinite]"
+      >
         <div className="absolute inset-0 rounded-full border border-dashed border-[#E6B33C]/20" />
 
-        {OUTER_ICONS.map((item) => (
-          <OrbitIcon
-            key={item.label}
-            image={item.image}
-            label={item.label}
-            angle={item.angle}
-            radius={outerRadius}
-          />
-        ))}
+        {outerRadius > 0 &&
+          OUTER_ICONS.map((item) => (
+            <OrbitIcon
+              key={item.label}
+              image={item.image}
+              label={item.label}
+              angle={item.angle}
+              radius={outerRadius}
+            />
+          ))}
       </div>
 
       {/* Inner Orbit */}
-      <div className="absolute w-[185px] h-[185px] md:w-[245px] md:h-[245px]  xl:w-[300px] xl:h-[300px] rounded-full border border-slate-300 animate-[spin_25s_linear_infinite_reverse]">
+      <div
+        ref={innerRef}
+        className="absolute w-[185px] h-[185px] lg:w-[245px] lg:h-[245px]  xl:w-[300px] xl:h-[300px] rounded-full border border-slate-300 animate-[spin_25s_linear_infinite_reverse]"
+      >
         <div className="absolute inset-0 rounded-full border border-dashed border-slate-300/50" />
 
-        {INNER_ICONS.map((item) => (
-          <OrbitIcon
-            key={item.label}
-            image={item.image}
-            label={item.label}
-            angle={item.angle}
-            radius={innerRadius}
-          />
-        ))}
+        {innerRadius > 0 &&
+          INNER_ICONS.map((item) => (
+            <OrbitIcon
+              key={item.label}
+              image={item.image}
+              label={item.label}
+              angle={item.angle}
+              radius={innerRadius}
+            />
+          ))}
       </div>
 
       {/* Center Circle */}

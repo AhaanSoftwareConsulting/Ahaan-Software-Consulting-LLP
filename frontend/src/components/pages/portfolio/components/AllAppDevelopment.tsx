@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Link } from "react-router-dom";
+import AllAppBanner from "./AllAppBanner";
 
 const imageLinks = [
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
@@ -67,9 +67,10 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
   );
 });
 
-export default function AppDevelopment() {
-  const visibleImages = imageLinks.slice(0, 3);
+export  function AllAppDevelopment() {
   return (
+    <>
+      <AllAppBanner />
     <section className="py-12 sm:py-16 lg:py-20">
       <div className="relative mx-auto max-w-[1600px] px-4">
         {/* Heading */}
@@ -89,50 +90,25 @@ export default function AppDevelopment() {
 
         {/* Gallery */}
         <div
-  className="
-    grid
-    grid-cols-1
-    gap-6
-    sm:grid-cols-2
-    lg:grid-cols-3
-  "
->
-          {visibleImages.map((img, index) => (
-  <AppCard
-    key={img}
-    src={img}
-    index={index}
-  />
-))}
+          className="
+            grid
+            grid-cols-1
+            gap-6
+            sm:grid-cols-2
+            lg:grid-cols-3
+            xl:grid-cols-5
+          "
+        >
+          {imageLinks.map((img, index) => (
+            <AppCard
+              key={img}
+              src={img}
+              index={index}
+            />
+          ))}
         </div>
       </div>
-      <div className="text-center mt-12">
-      
-              <Link  to="/all-app-development"
-                    className="shine-btn relative overflow-hidden uppercase
-                      bg-gradient-to-r
-                      from-[#C48A18]
-                      to-[#E6B33C]
-                      px-5
-                      xl:px-6
-                      2xl:px-8
-                      py-3
-                      xl:py-3.5
-                      text-sm
-                      xl:text-base
-                      font-semibold
-                      text-black
-                      shadow-xl
-                      transition-all
-                      duration-300
-                      hover:-translate-y-0.5
-                      hover:from-[#B57A0C]
-                      hover:to-[#D69D20]"
-                  >View All
-                  </Link>
-      
-            </div>
-      
     </section>
+    </>
   );
 }

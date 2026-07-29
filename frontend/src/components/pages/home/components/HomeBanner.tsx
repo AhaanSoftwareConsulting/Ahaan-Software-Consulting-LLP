@@ -82,15 +82,15 @@ export function HomeBanner() {
   const currentService = SERVICES_DATA[currentIndex];
 
   return (
-    <div className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-slate-50/70 overflow-hidden">
+    <div className="relative w-full min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-slate-50/70 ">
       {/* Brand Golden Ambient Glows */}
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-[#E5C473]/15 blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-[-15%] left-[-5%] w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-[#C5A85A]/10 blur-[150px] pointer-events-none" />
+      <div className="absolute  w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-[#E5C473]/15 blur-[130px] pointer-events-none" />
+      <div className="absolute  w-[450px] sm:w-[650px] h-[450px] sm:h-[650px] rounded-full bg-[#C5A85A]/10 blur-[150px] pointer-events-none" />
 
       {/* Constrained to max-w-[1600px] & Fully Responsive */}
-      <div className="relative max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-4 xl:gap-8 items-center relative z-10 ">
+      <div className="relative max-w-[1600px] mx-autow-full grid grid-cols-1 md:grid-cols-12 gap-4 lg:gap-4 xl:gap-8 items-center relative z-10 ">
         {/* Left Typography Column */}
-        <div className="order-2 lg:order-1 lg:col-span-6 flex flex-col justify-center space-y-6 md:space-y-8 text-left px-4 sm:px-8 lg:pl-12 pb-12 lg:py-20">
+        <div className="order-2 md:order-1 md:col-span-6 flex flex-col justify-center space-y-6 md:space-y-8 text-left px-4 sm:px-8 lg:pl-12 pb-12 lg:py-20">
           <h1 className="text-2xl sm:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight leading-[1.1] min-h-[90px] sm:min-h-[120px] md:min-h-[140px]">
             <span
               className={`block transition-all duration-300 transform ${
@@ -129,7 +129,7 @@ export function HomeBanner() {
           {/* Premium Call to Actions */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-8 pt-2">
             <button
-              className="shine-btn relative overflow-hidden uppercase
+              className="shine-btn relative  uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
                 to-[#E6B33C]
@@ -181,7 +181,7 @@ export function HomeBanner() {
 
         {/* Right Dynamic Big Image/Illustration Column */}
         {/* Right Tech Orbit */}
-        <div className="order-1 lg:order-2 lg:col-span-6 flex justify-center lg:justify-end ">
+        <div className="order-1 md:order-2 md:col-span-6 flex justify-center lg:justify-end ">
           <TechOrbit />
         </div>
 {/* VIDEO MODAL */}
