@@ -9,6 +9,7 @@ import { WhyChooseUs } from "./components/WhyChooseUs";
 import { HomeBanner } from "./components/HomeBanner";
 import Testimonials from "./components/Testimonials";
 import { AboutCompany } from "./components/AboutCompany";
+import { Connection } from "./components/Connection";
 
 export const HomeComponent = () => {
   return (
@@ -16,6 +17,7 @@ export const HomeComponent = () => {
       <HomeBanner />
       <ServicesSection />
       <AboutCompany />
+      <Connection/>
       <OurTechnology />
       <WhyChooseUs />
       <BusinessCard />
