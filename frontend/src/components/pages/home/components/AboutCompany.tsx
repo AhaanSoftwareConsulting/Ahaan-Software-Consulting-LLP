@@ -191,7 +191,8 @@ export const AboutCompany = () => {
             </motion.div>
 
             {/* Button */}
-            <motion.button
+            <motion.a
+              href="/about-us"
               className="shine-btn group mt-10 inline-flex items-center gap-3  bg-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#D4AF37] hover:text-black"
               variants={buttonVariants}
               initial="hidden"
@@ -199,7 +200,7 @@ export const AboutCompany = () => {
               viewport={{ once: false, amount: 0.7 }}
             >
               Explore More
-            </motion.button>
+            </motion.a>
           </div>
         </div>
       </div>

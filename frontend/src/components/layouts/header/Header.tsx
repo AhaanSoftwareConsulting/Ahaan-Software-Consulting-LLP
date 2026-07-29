@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  getAllSolutions,
-  type WPSolution,
-} from "../../../api/WordpressAPI";
+import { getAllSolutions, type WPSolution } from "../../../api/WordpressAPI";
 import { NavLink } from "react-router-dom";
 import {
   FacebookLogo,
@@ -26,17 +23,17 @@ export const Header = () => {
   const [solutions, setSolutions] = useState<WPSolution[]>([]);
 
   useEffect(() => {
-  const fetchSolutions = async () => {
-    try {
-      const data = await getAllSolutions();
-      setSolutions(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    const fetchSolutions = async () => {
+      try {
+        const data = await getAllSolutions();
+        setSolutions(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  fetchSolutions();
-}, []);
+    fetchSolutions();
+  }, []);
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -125,7 +122,7 @@ export const Header = () => {
 
               <div className="flex items-center gap-2">
                 <NavLink
-                  to="/contact"
+                  to="https://calendly.com/leads-ahaansoftware/free-consultation"
                   className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-3 py-3 text-[12px] font-semibold text-black"
                 >
                   Free Discover Call
@@ -215,63 +212,60 @@ export const Header = () => {
                         <div className="overflow-hidden  border-b-6 border-gray-900 bg-white p-10 shadow-[0_20px_60px_rgba(0,0,0,.18)]">
                           {/* TOP */}
                           <div>
-                            <h6 className="mb-6 text-xs font-bold uppercase tracking-[3px] text-[#CE8827]">
-                              Industry Solutions
-                            </h6>
 
                             <div className="grid grid-cols-5 gap-x-6 gap-y-6">
-  {menu.name === "Solution"
-    ? solutions.map((item) => (
-        <NavLink
-          key={item.id}
-          to={`/solution/${item.slug}`}
-          className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
-            <ArrowRightIcon
-              size={18}
-              weight="bold"
-              className="transition group-hover/item:translate-x-1"
-            />
-          </div>
+                              {menu.name === "Solution"
+                                ? solutions.map((item) => (
+                                    <NavLink
+                                      key={item.id}
+                                      to={`/solution/${item.slug}`}
+                                      className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
+                                    >
+                                      <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
+                                        <ArrowRightIcon
+                                          size={18}
+                                          weight="bold"
+                                          className="transition group-hover/item:translate-x-1"
+                                        />
+                                      </div>
 
-          <div className="flex-1">
-            <h5 className="text-[16px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
-              {item.title.rendered}
-            </h5>
+                                      <div className="flex-1">
+                                        <h5 className="text-[14px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
+                                          {item.title.rendered}
+                                        </h5>
 
-            <p className="mt-1 text-[13px] leading-5 text-gray-500">
-              Enterprise Software Solution
-            </p>
-          </div>
-        </NavLink>
-      ))
-    : menu.submenu?.map((item) => (
-        <NavLink
-          key={item.path}
-          to={item.path}
-          className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
-        >
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
-            <ArrowRightIcon
-              size={18}
-              weight="bold"
-              className="transition group-hover/item:translate-x-1"
-            />
-          </div>
+                                        <p className="mt-1 text-[13px] leading-5 text-gray-500">
+                                          Enterprise Software Solution
+                                        </p>
+                                      </div>
+                                    </NavLink>
+                                  ))
+                                : menu.submenu?.map((item) => (
+                                    <NavLink
+                                      key={item.path}
+                                      to={item.path}
+                                      className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
+                                    >
+                                      <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
+                                        <ArrowRightIcon
+                                          size={18}
+                                          weight="bold"
+                                          className="transition group-hover/item:translate-x-1"
+                                        />
+                                      </div>
 
-          <div className="flex-1">
-            <h5 className="text-[16px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
-              {item.name}
-            </h5>
+                                      <div className="flex-1">
+                                        <h5 className="text-[14px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
+                                          {item.name}
+                                        </h5>
 
-            <p className="mt-1 text-[13px] leading-5 text-gray-500">
-              Enterprise Software Solution
-            </p>
-          </div>
-        </NavLink>
-      ))}
-</div>
+                                        <p className="mt-1 text-[13px] leading-5 text-gray-500">
+                                          Enterprise Software Solution
+                                        </p>
+                                      </div>
+                                    </NavLink>
+                                  ))}
+                            </div>
                           </div>
 
                           {/* BOTTOM */}
@@ -281,12 +275,13 @@ export const Header = () => {
                                 Need Custom Software?
                               </h5>
                               <p className="mt-1 text-sm text-gray-500">
-                                Build scalable enterprise solutions with Ahaan Software.
+                                Build scalable enterprise solutions with Ahaan
+                                Software.
                               </p>
                             </div>
 
                             <NavLink
-                              to="/contact"
+                              to="/contact-us"
                               className="shine-btn relative overflow-hidden uppercase bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-5 xl:px-6 2xl:px-8 py-3 xl:py-3.5 text-sm xl:text-base font-semibold text-black shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:from-[#B57A0C] hover:to-[#D69D20]"
                             >
                               Contact Us
@@ -301,10 +296,11 @@ export const Header = () => {
 
               {/* CTA */}
               <NavLink
-                to="/contact"
+                to="https://calendly.com/leads-ahaansoftware/free-consultation"
+                target="_blank"
                 className="shine-btn relative overflow-hidden uppercase bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-5 xl:px-6 2xl:px-8 py-3 xl:py-3.5 text-sm xl:text-base font-semibold text-black shadow-xl transition-all duration-300 hover:-translate-y-0.5 hover:from-[#B57A0C] hover:to-[#D69D20]"
               >
-                Book A  Discovery Call
+                Book A Discovery Call
               </NavLink>
             </div>
           </div>
