@@ -1,13 +1,24 @@
 import { memo, useState } from "react";
 import AllAppBanner from "./AllAppBanner";
+import finanzaly from  "../../../../assets/finanzally.webp";
+import johatngo from  "../../../../assets/johatngo.webp";
+import johatllc from  "../../../../assets/johatllc.webp";
+import psitpops from  "../../../../assets/psitpops.webp";
+
 
 const imageLinks = [
+  finanzaly,
+  johatngo,
+  johatllc,
+  psitpops,
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/4.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/5.webp",
+  
 ];
+
 
 type AppCardProps = {
   src: string;
@@ -95,8 +106,8 @@ export  function AllAppDevelopment() {
             grid-cols-1
             gap-6
             sm:grid-cols-2
-            lg:grid-cols-3
-            xl:grid-cols-5
+            lg:grid-cols-4
+           
           "
         >
           {imageLinks.map((img, index) => (

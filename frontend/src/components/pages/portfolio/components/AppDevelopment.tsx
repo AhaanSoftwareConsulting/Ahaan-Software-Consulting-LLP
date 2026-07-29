@@ -1,12 +1,22 @@
 import { memo, useState } from "react";
 import { Link } from "react-router-dom";
+import finanzaly from  "../../../../assets/finanzally.webp";
+import johatngo from  "../../../../assets/johatngo.webp";
+import johatllc from  "../../../../assets/johatllc.webp";
+import psitpops from  "../../../../assets/psitpops.webp";
+
 
 const imageLinks = [
+  finanzaly,
+  johatngo,
+  johatllc,
+  psitpops,
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/4.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/5.webp",
+  
 ];
 
 type AppCardProps = {
