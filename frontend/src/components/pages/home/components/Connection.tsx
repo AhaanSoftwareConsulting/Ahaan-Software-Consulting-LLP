@@ -53,13 +53,13 @@ export const Connection: React.FC = () => {
             {/* LEFT SIDE: Text Content */}
             <div className="lg:col-span-7 flex flex-col justify-center py-2 lg:py-4 pr-0 lg:pr-8">
               <div className="space-y-4 sm:space-y-6">
-                <span className="text-amber-500 font-bold tracking-widest text-xs uppercase block">
+                <span className="text-[#D4AF37] font-bold tracking-widest text-xs uppercase block">
                   Planning your next big project?
                 </span>
                 
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight uppercase">
                   Connect With Our <br className="hidden sm:block" />
-                  <span className="text-amber-500">Technology Experts</span>
+                  <span className="text-[#D4AF37]">Technology Experts</span>
                 </h2>
 
                 <p className="text-zinc-400 text-sm sm:text-base max-w-lg leading-relaxed">
@@ -70,13 +70,13 @@ export const Connection: React.FC = () => {
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                   <a
                     href="/service"
-                    className="shine-btn text-center px-6 py-3.5 bg-amber-500 text-black font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-600 transition-colors shadow-md"
+                    className="shine-btn text-center px-6 py-3.5 bg-[#D4AF37] text-black font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-600 transition-colors shadow-md"
                   >
                     Explore Services
                   </a>
                   <a
                     href="/contact-us"
-                    className="shine-btn text-center px-6 py-3.5 border border-amber-500 text-amber-500 font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-500/10 transition-colors"
+                    className="shine-btn text-center px-6 py-3.5 border border-[#D4AF37] text-[#D4AF37] font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-500/10 transition-colors"
                   >
                     Schedule Call
                   </a>

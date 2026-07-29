@@ -1,7 +1,7 @@
 import React from "react";
 
 const WhatsAppChat: React.FC = () => {
-  const phoneNumber = "+1 646-575-9575";
+  const phoneNumber = "+16465759575";
 
   return (
     <a
