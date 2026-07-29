@@ -4,6 +4,8 @@ import finanzaly from  "../../../../assets/finanzally.webp";
 import johatngo from  "../../../../assets/johatngo.webp";
 import johatllc from  "../../../../assets/johatllc.webp";
 import psitpops from  "../../../../assets/psitpops.webp";
+import boss from "../../../../assets/boss.webp";
+import innovare from "../../../../assets/innovare.webp";
 
 
 const imageLinks = [
@@ -11,6 +13,8 @@ const imageLinks = [
   johatngo,
   johatllc,
   psitpops,
+  boss,
+  innovare,
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
