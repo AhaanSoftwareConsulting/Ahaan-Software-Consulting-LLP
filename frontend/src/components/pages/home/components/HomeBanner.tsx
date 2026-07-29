@@ -128,7 +128,9 @@ export function HomeBanner() {
 
           {/* Premium Call to Actions */}
           <div className="flex flex-wrap items-center gap-4 sm:gap-8 pt-2">
-            <button
+            <a
+             href="https://calendly.com/leads-ahaansoftware/free-consultation"
+              target="_blank" 
               className="shine-btn relative  uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
@@ -150,7 +152,7 @@ export function HomeBanner() {
                 hover:to-[#D69D20]"
             >
               Schedule a Meeting
-            </button>
+            </a>
 
             <button  onClick={handlePlayClick} className="flex items-center gap-3 text-slate-700 hover:text-slate-900 font-bold py-3 group transition-colors text-sm sm:text-base">
 

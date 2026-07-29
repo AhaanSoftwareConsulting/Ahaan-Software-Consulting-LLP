@@ -52,7 +52,9 @@ export function CallToAction() {
 
         {/* CTA Button */}
         <div className="mt-5 lg:mt-16 flex justify-center">
-          <button className="shine-btn relative overflow-hidden uppercase
+          <a 
+          href="/contact-us"
+          className="shine-btn relative overflow-hidden uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
                 to-[#E6B33C]
@@ -72,7 +74,7 @@ export function CallToAction() {
                 hover:from-[#B57A0C]
                 hover:to-[#D69D20]">
             Talk to a Technology Consultant
-          </button>
+          </a>
         </div>
       </div>
     </section>

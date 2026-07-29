@@ -276,7 +276,9 @@ export const ServicesSection = () => {
                 viewport={{ once: false, amount: 0.7 }}
                 transition={{ type: "spring", stiffness: 160, damping: 14 }}
             >
-                <button className="shine-btn relative overflow-hidden uppercase
+                <a 
+                href="/contact-us"
+                className="shine-btn relative overflow-hidden uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
                 to-[#E6B33C]
@@ -296,10 +298,13 @@ export const ServicesSection = () => {
                 hover:from-[#B57A0C]
                 hover:to-[#D69D20]">
                     Talk to a consultant
-                </button>
-                <button className="shine-btn  w-full sm:w-auto px-7 py-3.5 text-[14px] font-bold text-[#C48A18] bg-transparent  border border-[#C48A18]/30 hover:border-[#C48A18] hover:bg-[#C48A18]/05 transition-all">
-                    Contact us now
-                </button>
+                </a>
+                <a 
+                href="https://calendly.com/leads-ahaansoftware/free-consultation"
+                target="_blank" 
+                className="shine-btn  w-full sm:w-auto px-7 py-3.5 text-[14px] font-bold text-[#C48A18] bg-transparent  border border-[#C48A18]/30 hover:border-[#C48A18] hover:bg-[#C48A18]/05 transition-all">
+                    Schedule a Meeting
+                </a>
             </motion.div>
         </section>
     );
