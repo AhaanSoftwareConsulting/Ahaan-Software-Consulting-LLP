@@ -1,4 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import {
+  getAllSolutions,
+  type WPSolution,
+} from "../../../api/WordpressAPI";
 import { NavLink } from "react-router-dom";
 import {
   FacebookLogo,
@@ -18,6 +23,20 @@ import { MobileSidebar } from "./MobileSidebar";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [solutions, setSolutions] = useState<WPSolution[]>([]);
+
+  useEffect(() => {
+  const fetchSolutions = async () => {
+    try {
+      const data = await getAllSolutions();
+      setSolutions(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  fetchSolutions();
+}, []);
 
   return (
     <header className="w-full bg-white shadow-sm">
@@ -201,31 +220,58 @@ export const Header = () => {
                             </h6>
 
                             <div className="grid grid-cols-5 gap-x-6 gap-y-6">
-                              {menu.submenu.map((item) => (
-                                <NavLink
-                                  key={item.path}
-                                  to={item.path}
-                                  className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
-                                >
-                                  <div className="flex h-10 w-10 shrink-0 items-center justify-center  bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
-                                    <ArrowRightIcon
-                                      size={18}
-                                      weight="bold"
-                                      className="transition group-hover/item:translate-x-1"
-                                    />
-                                  </div>
+  {menu.name === "Solution"
+    ? solutions.map((item) => (
+        <NavLink
+          key={item.id}
+          to={`/solution/${item.slug}`}
+          className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
+            <ArrowRightIcon
+              size={18}
+              weight="bold"
+              className="transition group-hover/item:translate-x-1"
+            />
+          </div>
 
-                                  <div className="flex-1">
-                                    <h5 className="text-[16px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
-                                      {item.name}
-                                    </h5>
-                                    <p className="mt-1 text-[13px] leading-5 text-gray-500">
-                                      Enterprise Software Solution
-                                    </p>
-                                  </div>
-                                </NavLink>
-                              ))}
-                            </div>
+          <div className="flex-1">
+            <h5 className="text-[16px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
+              {item.title.rendered}
+            </h5>
+
+            <p className="mt-1 text-[13px] leading-5 text-gray-500">
+              Enterprise Software Solution
+            </p>
+          </div>
+        </NavLink>
+      ))
+    : menu.submenu?.map((item) => (
+        <NavLink
+          key={item.path}
+          to={item.path}
+          className="group/item flex items-start gap-3 rounded-xl p-3 transition-all duration-300 hover:bg-[#FFF8EC] hover:shadow-md"
+        >
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#FFF4DF] text-[#161616] transition-all duration-300 group-hover/item:bg-[#000] group-hover/item:text-white">
+            <ArrowRightIcon
+              size={18}
+              weight="bold"
+              className="transition group-hover/item:translate-x-1"
+            />
+          </div>
+
+          <div className="flex-1">
+            <h5 className="text-[16px] font-semibold text-[#161616] transition group-hover/item:text-[#CE8827]">
+              {item.name}
+            </h5>
+
+            <p className="mt-1 text-[13px] leading-5 text-gray-500">
+              Enterprise Software Solution
+            </p>
+          </div>
+        </NavLink>
+      ))}
+</div>
                           </div>
 
                           {/* BOTTOM */}
