@@ -16,6 +16,14 @@ export interface ContactPayload {
   message: string;
 }
 
+export interface ConnectPayload {
+  name: string;
+  email: string;
+  service: string;
+  budget: string;
+  projectDetails: string;
+}
+
 export interface NewsletterPayload {
   email: string;
 }
@@ -73,6 +81,16 @@ export const subscribeNewsletter = async (data: NewsletterPayload) => {
     return response.data;
   } catch (error) {
     console.error("❌ Error subscribing newsletter:", error);
+    throw error;
+  }
+};
+
+export const createForm = async (data: ConnectPayload) => {
+  try {
+    const response = await API.post("/form", data);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error submitting form:", error);
     throw error;
   }
 };
