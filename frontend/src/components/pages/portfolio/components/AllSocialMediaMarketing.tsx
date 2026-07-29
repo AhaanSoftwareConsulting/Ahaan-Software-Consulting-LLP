@@ -15,209 +15,162 @@ const cardsData: CardItem[] = [
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/11.webp",
     shape: "yellow",
-    color: "#F5B942",
+    color: "#F4A62A",
   },
   {
     id: 2,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/22.webp",
     shape: "purple",
-    color: "#8028C9",
+    color: "#7C3AED",
   },
   {
     id: 3,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/33.webp",
     shape: "blue",
-    color: "#2384E0",
+    color: "#2563EB",
   },
   {
     id: 4,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/44.webp",
     shape: "yellow",
-    color: "#FF5733",
+    color: "#EF6C3B",
   },
   {
     id: 5,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/55.webp",
     shape: "purple",
-    color: "#1BB55C",
+    color: "#16A34A",
   },
   {
     id: 6,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/66.webp",
     shape: "blue",
-    color: "#FF1493",
+    color: "#EC4899",
   },
   {
     id: 7,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/7.webp",
     shape: "yellow",
-    color: "#009688",
+    color: "#0D9488",
   },
   {
     id: 8,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/8.webp",
     shape: "purple",
-    color: "#FF9800",
+    color: "#F59E0B",
   },
   {
     id: 9,
     title: "Creative Marketing Agency",
     img: "https://ahaanmedia.com/ahaanwebsite/SocialMedia/9.webp",
     shape: "blue",
-    color: "#673AB7",
+    color: "#6D28D9",
   },
 ];
 
-const Card = memo(
-  ({
-    title,
-    img,
-    shape,
-    color,
-  }: CardItem) => {
-    const clipPath =
-      shape === "yellow"
-        ? "polygon(0 25%,100% 75%,100% 100%,0 100%)"
-        : shape === "purple"
-        ? "polygon(0 15%,100% 65%,100% 100%,0 100%)"
-        : "polygon(0 70%,0 100%,100% 100%,100% 30%)";
-
-    return (
+// ---------------------------------------------
+// "Tilted backdrop" card design:
+// - a rotated colored panel sits behind the photo like a
+//   floating shadow-card, straightening out on hover
+// - the photo itself sits in a tilted, white-bordered frame
+//   that also straightens on hover (playful, layered motion)
+// - a small colored pill with the title floats at the bottom,
+//   overlapping both layers
+// - the logo becomes a corner badge that pops out past the
+//   card edge, ringed in the card's own color
+// Only the photo src, logo src, and title text are carried
+// over unchanged from the original data.
+// ---------------------------------------------
+const Card = memo(({ title, img, color }: CardItem) => {
+  return (
+    <div className="group relative aspect-square w-full max-w-[350px]">
+      {/* Rotated color backdrop */}
       <div
-        className="
-          relative
-          aspect-square
-          w-full
-          max-w-[350px]
-          overflow-hidden
-          rounded-xl
-          bg-white
-          shadow-lg
-        "
-      >
-        {/* Colored Shape */}
+        className="absolute inset-2 rounded-[28px] rotate-6 shadow-lg transition-transform duration-500 ease-out group-hover:rotate-0"
+        style={{
+          background: `linear-gradient(145deg, ${color}, ${color}99)`,
+        }}
+      />
 
-        <div
-          className="absolute inset-0"
-          style={{
-            background: color,
-            clipPath,
-          }}
+      {/* Tilted photo frame */}
+      <div className="absolute inset-2 -rotate-3 overflow-hidden rounded-[24px] border-4 border-white bg-white shadow-xl transition-transform duration-500 ease-out group-hover:rotate-0">
+        <img
+          src={img}
+          alt={title}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
         />
 
-        {/* Image */}
+        {/* Subtle bottom fade so the title pill always reads well */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
+      </div>
 
-        <div
-          className={`
-            absolute
-            bottom-6
-            z-10
-            overflow-hidden
-            bg-white
-            border-4
-            sm:border-8
-            ${
-              shape === "blue"
-                ? "left-6 rounded-lg"
-                : shape === "purple"
-                ? "right-6 rounded-full"
-                : "right-6 rounded-md"
-            }
-          `}
-          style={{
-            borderColor: color,
-            width: "calc(100% - 48px)",
-            aspectRatio: "1",
-            maxWidth: 230,
-          }}
+      {/* Title pill, floating across both layers */}
+      <div className="absolute inset-x-3 bottom-1 z-20 flex justify-center">
+        <span
+          className="max-w-full truncate rounded-full px-4 py-1.5 text-[11px] font-semibold text-white shadow-md sm:text-xs"
+          style={{ background: color }}
         >
-          <img
-            src={img}
-            alt={title}
-            loading="lazy"
-            decoding="async"
-            draggable={false}
-            className={`
-              w-full
-              h-full
-              object-cover
-              transition-transform
-              duration-300
-              hover:scale-105
-              ${
-                shape === "purple"
-                  ? "rounded-full"
-                  : ""
-              }
-            `}
-          />
-        </div>
+          {title}
+        </span>
+      </div>
 
-        {/* Logo */}
-
+      {/* Logo badge, popping past the corner */}
+      <div
+        className="absolute -right-2 -top-2 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-lg ring-2 transition-transform duration-300 group-hover:-rotate-12 sm:h-11 sm:w-11"
+        style={{ ["--tw-ring-color" as string]: color }}
+      >
         <img
           src="https://ahaanmedia.com/asc/layouts/fav.png"
           alt="logo"
-          className="
-            absolute
-            top-2
-            right-2
-            z-20
-            h-6
-            w-6
-            rounded-full
-            object-contain
-            sm:h-8
-            sm:w-8
-          "
+          className="h-6 w-6 rounded-full object-contain sm:h-7 sm:w-7"
         />
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
-    export  function AllSocialMediaMarketing() {
+export function AllSocialMediaMarketing() {
   const [visibleCount] = useState<number>(9);
-
-
 
   const visibleCards = cardsData.slice(0, visibleCount);
 
+  return (
+    <>
+      <AllSocialBanner />
+      <section className="py-6 sm:py-10 lg:py-16">
+        {/* Heading */}
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+            Social Media Marketing
+          </h2>
 
-return (
-    <> 
-    <AllSocialBanner />
-  <section className="py-6 sm:py-10 lg:py-16">
-   
-    {/* Heading */}
-    <div className="mb-12 text-center">
-    <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
-             Social Media Marketing
-    </h2>
-
-        <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
-        A showcase of engaging and creative social media designs
-      </p>
-    </div>
-
-    {/* Grid */}
-    <div className="relative mx-auto grid max-w-[1600px] grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-      {visibleCards.map((card) => (
-        <div key={card.id} className="flex justify-center">
-          <Card {...card} />
+          <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+            A showcase of engaging and creative social media designs
+          </p>
         </div>
-      ))}
-    </div>
 
-   
-  </section>
-  </>
-);
-};
+        {/* Grid — gap reduced and kept identical for rows and columns
+            at every breakpoint (a single `gap-*` utility sets both
+            row-gap and column-gap to the same value, so vertical and
+            horizontal spacing always match). */}
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-2 gap-x-1.5 gap-y-6 sm:gap-x-1.5 sm:gap-y-8 lg:grid-cols-3 lg:gap-x-2 lg:gap-y-15">
+          {visibleCards.map((card) => (
+            <div key={card.id} className="flex justify-center">
+              <Card {...card} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
