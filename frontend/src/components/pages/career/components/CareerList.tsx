@@ -71,7 +71,7 @@ export const CareerList: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-white flex justify-center items-center">
-        <h4 className="text-amber-600 text-xl font-semibold animate-pulse">
+        <h4 className="text-amber-600 text-2xl font-semibold animate-pulse">
           Loading careers...
         </h4>
       </div>
@@ -80,14 +80,15 @@ export const CareerList: React.FC = () => {
 
   return (
     <div className="bg-white text-zinc-900 min-h-screen py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-[1200px] mx-auto">
+      {/* Container Max-Width increased from 1200px to 1400px */}
+      <div className="max-w-[1300px] mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16 max-w-3xl mx-auto space-y-3">
+        <div className="text-center mb-16 max-w-4xl mx-auto space-y-4">
           <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
             Join our team of passionate professionals
           </h2>
-          {/* Sub-heading */}
-          <p className="lg:text-base text-sm px-4 sm:px-8 mt-2 text-zinc-600">
+          {/* Sub-heading size increased */}
+          <p className="text-base sm:text-lg lg:text-lg px-4 sm:px-8 mt-3 text-zinc-600 leading-relaxed">
             Explore exciting career opportunities, enhance your skills,
             collaborate with talented professionals, and make a meaningful
             impact while growing your career with us.
@@ -99,16 +100,16 @@ export const CareerList: React.FC = () => {
           {jobs.map((job, index) => (
             <div
               key={job.postId}
-              className={`p-6 sm:p-7 rounded-2xl transition-all duration-300 border hover:shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6 ${
+              className={`p-6 sm:p-8 rounded-2xl transition-all duration-300 border hover:shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 ${
                 index % 2 === 1
                   ? "bg-[#FFFDF5] border-amber-300/80 shadow-sm"
                   : "bg-white border-zinc-200/90 shadow-sm"
               }`}
             >
-              {/* Left Column: Image + Title & Metadata (Shortened width) */}
-              <div className="w-full md:w-1/3 lg:w-[32%] flex items-start gap-3.5 shrink-0">
-                {/* Image Section */}
-                <div className="w-11 h-11 rounded-lg overflow-hidden shrink-0 bg-white flex items-center justify-center p-0.5 mt-0.5">
+              {/* Left Column: Image + Title & Metadata */}
+              <div className="w-full md:w-2/5 lg:w-[38%] flex items-start gap-4 shrink-0">
+                {/* Image Section - slightly enlarged */}
+                <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-white flex items-center justify-center p-1 border border-zinc-100 shadow-xs">
                   <img
                     src={job.featured_image || "https://via.placeholder.com/80"}
                     alt={decodeHtml(job.designation)}
@@ -117,37 +118,38 @@ export const CareerList: React.FC = () => {
                 </div>
 
                 {/* Details Section */}
-                <div className="space-y-1.5 min-w-0">
-                  <h3 className="text-base sm:text-lg font-bold text-zinc-900 group-hover:text-amber-600 transition-colors truncate">
+                <div className="space-y-2 min-w-0">
+                  {/* Job Title size increased */}
+                  <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 leading-snug truncate">
                     {decodeHtml(job.designation)}
                   </h3>
 
-                  {/* Tags Grid using Phosphor Icons */}
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-zinc-600 font-medium">
+                  {/* Tags Grid - Font and Icon size increased */}
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm text-zinc-600 font-medium">
                     {job.employment_type && (
-                      <div className="flex items-center gap-1">
-                        <Briefcase size={14} className="text-amber-500 shrink-0" />
+                      <div className="flex items-center gap-1.5">
+                        <Briefcase size={16} className="text-amber-500 shrink-0" />
                         <span>{job.employment_type}</span>
                       </div>
                     )}
 
                     {job.location && (
-                      <div className="flex items-center gap-1">
-                        <MapPin size={14} className="text-amber-500 shrink-0" />
+                      <div className="flex items-center gap-1.5">
+                        <MapPin size={16} className="text-amber-500 shrink-0" />
                         <span>{job.location}</span>
                       </div>
                     )}
 
                     {job.shift && (
-                      <div className="flex items-center gap-1">
-                        <Clock size={14} className="text-amber-500 shrink-0" />
+                      <div className="flex items-center gap-1.5">
+                        <Clock size={16} className="text-amber-500 shrink-0" />
                         <span>{job.shift}</span>
                       </div>
                     )}
 
                     {job.open_positions && (
-                      <div className="flex items-center gap-1">
-                        <Users size={14} className="text-amber-500 shrink-0" />
+                      <div className="flex items-center gap-1.5">
+                        <Users size={16} className="text-amber-500 shrink-0" />
                         <span>{job.open_positions} Position</span>
                       </div>
                     )}
@@ -155,21 +157,21 @@ export const CareerList: React.FC = () => {
                 </div>
               </div>
 
-              {/* Middle Column: Summary (Expanded width) */}
-              <div className="w-full md:w-1/2 lg:w-[50%]">
-                <p className="text-sm sm:text-sm text-zinc-600 leading-relaxed line-clamp-3">
+              {/* Middle Column: Summary - Font size increased */}
+              <div className="w-full md:w-1/2 lg:w-[48%]">
+                <p className="text-base text-zinc-600 leading-relaxed line-clamp-3">
                   {job.summary}
                 </p>
               </div>
 
-              {/* Right Column: CTA Button (Compact size) */}
+              {/* Right Column: CTA Button - Scaled up */}
               <div className="w-full md:w-auto flex justify-start md:justify-end shrink-0">
                 <button
                   onClick={() => navigate(`/careers/${job.id}`)}
-                  className="shine-btn flex items-center justify-center gap-1.5 group rounded-full
+                  className="shine-btn flex items-center justify-center gap-2 group rounded-full
                     bg-gradient-to-r from-[#000] to-[#242322]
-                    px-4 sm:px-5 py-2 sm:py-2.5
-                    text-xs sm:text-sm font-semibold tracking-wider text-white uppercase
+                    px-6 py-3.5
+                    text-xs sm:text-sm font-bold tracking-widest text-white uppercase
                     shadow-md hover:shadow-lg
                     transition-all duration-300
                     hover:-translate-y-0.5
@@ -177,7 +179,7 @@ export const CareerList: React.FC = () => {
                 >
                   <span>Apply now</span>
                   <ArrowRight
-                    size={15}
+                    size={18}
                     className="transition-transform group-hover:translate-x-1"
                   />
                 </button>
