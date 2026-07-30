@@ -15,7 +15,6 @@ const imageLinks = [
   psitpops,
   boss,
   innovare,
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/4.webp",
@@ -82,7 +81,7 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
 });
 
 export default function AppDevelopment() {
-  const visibleImages = imageLinks.slice(0, 3);
+  const visibleImages = imageLinks.slice(0, 4);
   return (
     <section className="py-12 sm:py-16 lg:py-20">
       <div className="relative mx-auto max-w-[1600px] px-4">
@@ -108,7 +107,7 @@ export default function AppDevelopment() {
     grid-cols-1
     gap-6
     sm:grid-cols-2
-    lg:grid-cols-3
+    lg:grid-cols-4
   "
 >
           {visibleImages.map((img, index) => (

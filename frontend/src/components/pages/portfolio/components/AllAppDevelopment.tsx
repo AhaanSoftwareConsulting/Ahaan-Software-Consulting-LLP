@@ -15,7 +15,6 @@ const imageLinks = [
   psitpops,
   boss,
   innovare,
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/1.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
   "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/4.webp",
