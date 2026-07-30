@@ -17,12 +17,12 @@ export const HomeComponent = () => {
       <HomeBanner />
       <ServicesSection />
       <AboutCompany />
-      <Connection/>
+      <Connection />
       <OurTechnology />
       <WhyChooseUs />
       <BusinessCard />
-      <OurProcess />
       <CaseStudies />
+      <OurProcess />
       <Testimonials />
       <TotalProject />
       <OurClients />
