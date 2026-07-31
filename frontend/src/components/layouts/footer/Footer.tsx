@@ -13,6 +13,13 @@ import { useState } from "react";
 import { CallToAction } from "../../pages/home/components/CallToAction";
 import { subscribeNewsletter } from "../../../api/Api";
 import { toast } from "react-toastify";
+import londonIcon from "../../../assets/tower-bridge.svg";
+import usaIcon from "../../../assets/statue-of-liberty.svg";
+import australiaIcon from "../../../assets/sydney-opera.svg";
+import indiaIcon from "../../../assets/india-gate.svg";
+import italyIcon from "../../../assets/leaning-tower-of-pisa-.svg";
+import arabIcon from "../../../assets/burj-al-arab.svg";
+import franceIcon from "../../../assets/eiffel-tower.svg";
 
 const socialLinks = [
   {
@@ -22,7 +29,6 @@ const socialLinks = [
     gradient: "hover:bg-gradient-to-r hover:from-[#1877f2] hover:to-[#4a8df8]",
     tooltipGradient: "bg-gradient-to-r from-[#1877f2] to-[#4a8df8]",
   },
-
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/company/ahaansoftware",
@@ -50,6 +56,44 @@ const socialLinks = [
     Icon: BehanceLogoIcon,
     gradient: "hover:bg-gradient-to-r hover:from-[#0124e8] hover:to-[#758aff]",
     tooltipGradient: "bg-gradient-to-r from-[#0124e8] to-[#758aff]",
+  },
+];
+
+const globalLocations = [
+  {
+    country: "United Kingdom",
+    city: "London",
+    icon: londonIcon,
+  },
+  {
+    country: "Australia",
+    city: "Sydney",
+    icon: australiaIcon,
+  },
+  {
+    country: "USA",
+    city: "Washington, D.C.",
+    icon: usaIcon,
+  },
+  {
+    country: "India",
+    city: "Kolkata",
+    icon: indiaIcon,
+  },
+  {
+    country: "UAE",
+    city: "Dubai",
+    icon: arabIcon,
+  },
+  {
+    country: "Italy",
+    city: "Rome",
+    icon: italyIcon,
+  },
+  {
+    country: "France",
+    city: "Paris",
+    icon: franceIcon,
   },
 ];
 
@@ -108,13 +152,13 @@ export const Footer = () => {
       url: "/intellectual-property-policy",
     },
   ];
+
   return (
     <>
       <CallToAction />
       <footer className="relative overflow-hidden bg-[#000] text-white">
         <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-6">
           {/* ================= Newsletter ================= */}
-
           <div className="flex flex-col items-center justify-between gap-10 py-14 lg:flex-row">
             {/* Left */}
             <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:text-left">
@@ -153,7 +197,7 @@ export const Footer = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address"
                     disabled={loading}
-                    className="h-14 w-full border border-gray-700 bg-transparent px-6 pr-14 rounded-full outline-none placeholder:text-gray-400 disabled:opacity-50 md:w-[380px]"
+                    className="h-14 w-full rounded-full border border-gray-700 bg-transparent px-6 pr-14 outline-none placeholder:text-gray-400 disabled:opacity-50 md:w-[380px]"
                   />
 
                   <EnvelopeSimple
@@ -170,12 +214,8 @@ export const Footer = () => {
         from-[#C48A18]
         to-[#E6B33C]
         px-5
-        xl:px-6
-        2xl:px-8
         py-3
-        xl:py-3.5
         text-sm
-        xl:text-base
         font-semibold
         text-black
         shadow-xl
@@ -184,7 +224,11 @@ export const Footer = () => {
         hover:-translate-y-0.5
         hover:from-[#B57A0C]
         hover:to-[#D69D20]
-        disabled:opacity-50"
+        disabled:opacity-50
+        xl:px-6
+        xl:py-3.5
+        xl:text-base
+        2xl:px-8"
                 >
                   {loading ? "Subscribing..." : "Subscribe"}
                 </button>
@@ -193,17 +237,15 @@ export const Footer = () => {
           </div>
 
           {/* Divider */}
-
           <div className="border-t border-gray-800"></div>
 
           {/* ================= Footer Grid Start ================= */}
-
-          <div className="grid gap-4 py-5 sm:gap-10 xl:gap-14 sm:grid-cols-2 lg:[grid-template-columns:2fr_1fr_1.3fr_2fr] ">
+          <div className="grid gap-4 py-5 sm:grid-cols-2 sm:gap-10 xl:gap-14 lg:[grid-template-columns:2fr_1fr_1.3fr_2fr]">
             {/* ================= ABOUT COMPANY ================= */}
             <div className="border-b border-white/10 pb-4 sm:border-none sm:pb-0">
               <button
                 onClick={() => toggleSection("about")}
-                className="flex w-full items-center justify-between text-left sm:!cursor-default "
+                className="flex w-full items-center justify-between text-left sm:!cursor-default"
               >
                 <div>
                   <h3 className="text-2xl font-semibold uppercase">
@@ -222,8 +264,8 @@ export const Footer = () => {
               <div
                 className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${
                   openSection === "about"
-                    ? "grid-rows-[1fr] opacity-100 mt-6"
-                    : "grid-rows-[0fr] opacity-0 mt-0"
+                    ? "mt-6 grid-rows-[1fr] opacity-100"
+                    : "mt-0 grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden">
@@ -233,7 +275,7 @@ export const Footer = () => {
                     via team driven solutions.
                   </p>
 
-                  <div className="mt-6 flex pl-4 gap-2.5 xl:gap-4 sm:mt-12">
+                  <div className="mt-6 flex gap-2.5 pl-4 sm:mt-12 xl:gap-4">
                     {socialLinks.map(
                       ({ name, url, Icon, gradient, tooltipGradient }) => (
                         <a
@@ -283,8 +325,8 @@ export const Footer = () => {
               <div
                 className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${
                   openSection === "pages"
-                    ? "grid-rows-[1fr] opacity-100 mt-6"
-                    : "grid-rows-[0fr] opacity-0 mt-0"
+                    ? "mt-6 grid-rows-[1fr] opacity-100"
+                    : "mt-0 grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden">
@@ -334,8 +376,8 @@ export const Footer = () => {
               <div
                 className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${
                   openSection === "quickLinks"
-                    ? "grid-rows-[1fr] opacity-100 mt-6"
-                    : "grid-rows-[0fr] opacity-0 mt-0"
+                    ? "mt-6 grid-rows-[1fr] opacity-100"
+                    : "mt-0 grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden">
@@ -385,8 +427,8 @@ export const Footer = () => {
               <div
                 className={`grid transition-all duration-300 ease-in-out sm:grid-rows-[1fr] sm:opacity-100 sm:!mt-8 ${
                   openSection === "contact"
-                    ? "grid-rows-[1fr] opacity-100 mt-6"
-                    : "grid-rows-[0fr] opacity-0 mt-0"
+                    ? "mt-6 grid-rows-[1fr] opacity-100"
+                    : "mt-0 grid-rows-[0fr] opacity-0"
                 }`}
               >
                 <div className="overflow-hidden space-y-6 sm:space-y-8">
@@ -464,11 +506,48 @@ export const Footer = () => {
           {/* Bottom Divider */}
           <div className="border-t border-gray-800"></div>
 
+          {/* ================= Country Monument / Locations Section ================= */}
+          <div className="py-8 overflow-x-auto scrollbar-none">
+            <div className="flex items-center justify-between min-w-[768px] divide-x divide-gray-800/80">
+              {globalLocations.map((loc, idx) => (
+                <div
+                  key={idx}
+                  className="flex flex-1 flex-col items-center justify-center px-4 text-center group"
+                >
+                  {/* Monument Icon */}
+                  <div className="h-16 w-16 mb-4 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
+                    <img
+                      src={loc.icon}
+                      alt={loc.country}
+                      className="h-full w-auto object-contain filter invert opacity-80 group-hover:opacity-100"
+                    />
+                  </div>
+
+                  {/* Country Name */}
+                  <h4 className="text-base font-semibold text-white tracking-wide">
+                    {loc.country}
+                  </h4>
+
+                  {/* Underline Indicator */}
+                  <div className="my-2 h-[2px] w-8 bg-[#E6B33C] transition-all duration-300 group-hover:w-12"></div>
+
+                  {/* City Name */}
+                  <p className="text-xs text-gray-400 tracking-wider">
+                    {loc.city}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Divider */}
+          <div className="border-t border-gray-800"></div>
+
           {/* Bottom Footer */}
           <div className="flex flex-col items-center justify-between gap-6 py-8 text-center lg:flex-row">
-            <p className="text-gray-400 text-sm">
+            <p className="text-sm text-gray-400">
               © 2026{" "}
-              <span className="text-[#E6B33C] font-semibold">
+              <span className="font-semibold text-[#E6B33C]">
                 Ahaan Software Consulting LLP.{" "}
               </span>
               All Rights Reserved.

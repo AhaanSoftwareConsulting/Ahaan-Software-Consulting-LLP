@@ -206,7 +206,7 @@ export const SolutionDetails = () => {
                   }`}
                 >
 
-                  <div className="lg:w-1/2 w-full h-[320px] sm:h-[420px] overflow-hidden shadow-lg border">
+                  <div className="lg:w-1/2 w-full h-[320px] sm:h-[420px] overflow-hidden shadow-lg ">
 
                     {feature.image && (
                       <img
