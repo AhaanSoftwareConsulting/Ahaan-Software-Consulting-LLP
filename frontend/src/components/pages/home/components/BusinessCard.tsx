@@ -25,7 +25,7 @@ const middleRightImages: string[] = [
 
 // .side-image-card
 const cardBase =
-  "w-[90px] max-w-[130px] h-[150px] overflow-hidden rounded-md " +
+  "w-[100px] xl:w-full max-w-[130px] h-[150px] overflow-hidden rounded-md " +
   "shadow-[0_10px_20px_rgba(0,0,0,0.15),0_20px_40px_rgba(0,0,0,0.25),0_30px_60px_rgba(0,0,0,0.15)]";
 
 // .image-column
@@ -88,7 +88,7 @@ const centerTextVariants = {
 export const BusinessCard = () => {
   return (
     <div
-      className="pt-5  "
+      className="pt-5"
       style={{
         background:
           "linear-gradient(180deg, #f1e7c6 0%, #E6E6E6 80%, #e6dbbb 100%)",
@@ -239,7 +239,7 @@ export const BusinessCard = () => {
           viewport={{ once: false, amount: 0.6 }}
         >
           <h2
-            className="text-2xl lg:text-3xl font-extrabold text-[#161616] leading-tight"
+            className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
           >
             Trusted by Businesses Worldwide
           </h2>
