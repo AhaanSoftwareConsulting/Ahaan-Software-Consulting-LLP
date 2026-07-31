@@ -20,6 +20,7 @@ import indiaIcon from "../../../assets/india-gate.svg";
 import italyIcon from "../../../assets/leaning-tower-of-pisa-.svg";
 import arabIcon from "../../../assets/burj-al-arab.svg";
 import franceIcon from "../../../assets/eiffel-tower.svg";
+import singaporeIcon from "../../../assets/merlion.svg";
 
 const socialLinks = [
   {
@@ -61,7 +62,7 @@ const socialLinks = [
 
 const globalLocations = [
   {
-    country: "United Kingdom",
+    country: "UK",
     city: "London",
     icon: londonIcon,
   },
@@ -79,6 +80,11 @@ const globalLocations = [
     country: "India",
     city: "Kolkata",
     icon: indiaIcon,
+  },
+   {
+    country: "Singapore",
+    city: "Singapore",
+    icon: singaporeIcon,
   },
   {
     country: "UAE",
