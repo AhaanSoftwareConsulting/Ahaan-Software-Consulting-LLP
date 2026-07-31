@@ -14,15 +14,18 @@ import {
 } from "@phosphor-icons/react";
 
 import { menuData } from "./menuData";
+import type { WPSolution } from "../../../api/WordpressAPI";
 
 interface MobileMenuProps {
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  solutions: WPSolution[]; // MegaMenu-er moto API data pass kora hocche
 }
 
 export const MobileSidebar = ({
   menuOpen,
   setMenuOpen,
+  solutions,
 }: MobileMenuProps) => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
@@ -60,86 +63,100 @@ export const MobileSidebar = ({
 
         {/* Content */}
         <div className="h-[calc(100vh-82px)] overflow-y-auto">
-
           {/* Menu */}
           <ul>
+            {menuData.map((menu) => {
+              const isSolutionMenu = menu.name === "Solution";
 
-            {menuData.map((menu) => (
+              // Dynamic solution submenu check
+              const hasSubmenu =
+                (isSolutionMenu && solutions && solutions.length > 0) ||
+                (!isSolutionMenu && menu.submenu && menu.submenu.length > 0);
 
-              <li key={menu.path}>
+              return (
+                <li key={menu.name || menu.path}>
+                  {hasSubmenu ? (
+                    <>
+                      <button
+                        onClick={() =>
+                          setOpenMenu(openMenu === menu.name ? null : menu.name)
+                        }
+                        className="flex w-full items-center justify-between border-b border-white/5 px-6 py-3 text-[15px] uppercase text-white transition hover:bg-[#222]"
+                      >
+                        {menu.name}
 
-                {menu.submenu ? (
+                        <CaretDownIcon
+                          size={18}
+                          className={`transition duration-300 ${
+                            openMenu === menu.name ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
 
-                  <>
-                    <button
-                      onClick={() =>
-                        setOpenMenu(
-                          openMenu === menu.name ? null : menu.name
-                        )
+                      <div
+                        className={`overflow-hidden transition-all duration-300 ${
+                          openMenu === menu.name ? "max-h-[1000px]" : "max-h-0"
+                        }`}
+                      >
+                        {/* Solution Menu Dynamic Items */}
+                        {isSolutionMenu
+                          ? solutions.map((item) => (
+                              <NavLink
+                                key={item.id || item.slug}
+                                to={`/solution/${item.slug}`}
+                                onClick={() => setMenuOpen(false)}
+                                className={({ isActive }) =>
+                                  `block border-b border-white/5 bg-[#1e1e1e] px-10 py-3 text-sm transition ${
+                                    isActive
+                                      ? "bg-[#CE8827] text-black font-semibold"
+                                      : "text-gray-300 hover:bg-[#CE8827] hover:text-white"
+                                  }`
+                                }
+                              >
+                                {item.title?.rendered || "Solution Item"}
+                              </NavLink>
+                            ))
+                          : /* Standard Static Submenu Items (e.g. IT Services) */
+                            menu.submenu?.map((item) => (
+                              <NavLink
+                                key={item.path + item.name}
+                                to={item.path}
+                                onClick={() => setMenuOpen(false)}
+                                className={({ isActive }) =>
+                                  `block border-b border-white/5 bg-[#1e1e1e] px-10 py-3 text-sm transition ${
+                                    isActive
+                                      ? "bg-[#CE8827] text-black font-semibold"
+                                      : "text-gray-300 hover:bg-[#CE8827] hover:text-white"
+                                  }`
+                                }
+                              >
+                                {item.name}
+                              </NavLink>
+                            ))}
+                      </div>
+                    </>
+                  ) : (
+                    <NavLink
+                      to={menu.path || "#"}
+                      onClick={() => setMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `block border-b border-white/5 px-6 py-3 text-[15px] uppercase transition ${
+                          isActive
+                            ? "bg-[#CE8827] text-black font-semibold"
+                            : "text-white hover:bg-[#222]"
+                        }`
                       }
-                      className="flex w-full items-center justify-between border-b border-white/5 px-6 py-3 text-[15px] uppercase text-white transition hover:bg-[#222]"
                     >
                       {menu.name}
-
-                      <CaretDownIcon
-                        size={18}
-                        className={`transition duration-300 ${
-                          openMenu === menu.name
-                            ? "rotate-180"
-                            : ""
-                        }`}
-                      />
-                    </button>
-
-                    <div
-                      className={`overflow-hidden transition-all duration-300 ${
-                        openMenu === menu.name
-                          ? "max-h-[500px]"
-                          : "max-h-0"
-                      }`}
-                    >
-                      {menu.submenu.map((item) => (
-
-                        <NavLink
-                          key={item.path}
-                          to={item.path}
-                          onClick={() => setMenuOpen(false)}
-                          className="block border-b border-white/5 bg-[#1e1e1e] px-10 py-3 text-sm text-gray-300 transition hover:bg-[#CE8827] hover:text-white"
-                        >
-                          {item.name}
-                        </NavLink>
-
-                      ))}
-                    </div>
-                  </>
-
-                ) : (
-
-                  <NavLink
-                    to={menu.path}
-                    onClick={() => setMenuOpen(false)}
-                    className={({ isActive }) =>
-                      `block border-b border-white/5 px-6 py-3 text-[15px] uppercase transition ${
-                        isActive
-                          ? "bg-[#CE8827] text-black"
-                          : "text-white hover:bg-[#222]"
-                      }`
-                    }
-                  >
-                    {menu.name}
-                  </NavLink>
-
-                )}
-
-              </li>
-
-            ))}
-
+                    </NavLink>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {/* Contact */}
           <div className="space-y-5 px-6 py-6">
-
             <a
               href="tel:+16465759575"
               className="flex items-center gap-3 text-sm text-white hover:text-[#CE8827]"
@@ -157,7 +174,6 @@ export const MobileSidebar = ({
             </a>
 
             <div className="flex gap-6 pt-3">
-
               <a href="#" className="text-[#f6b338]">
                 <FacebookLogo size={24} weight="fill" />
               </a>
@@ -181,9 +197,7 @@ export const MobileSidebar = ({
               <a href="#" className="text-[#f6b338]">
                 <GithubLogoIcon size={24} weight="fill" />
               </a>
-
             </div>
-
           </div>
         </div>
       </div>

@@ -49,6 +49,16 @@ export interface WPMediaResponse {
   mime_type: string;
 }
 
+export interface WPServiceItem extends WPCustomPost {
+  acf: {
+    brand_color: string;
+    tech_stack: string; // HTML format from WYSIWYG
+    button_text: string;
+    button_link: string;
+    service_icon: string; // HTML <img> elements from WYSIWYG
+  };
+}
+
 // ==========================================
 // 2. Axios Client Initialization
 // ==========================================
@@ -227,6 +237,16 @@ export const getSolutionBySlug = async (
     console.error(error);
 
     return null;
+  }
+};
+
+export const getAllServices = async (): Promise<WPServiceItem[]> => {
+  try {
+    const response = await wpAPI.get<WPServiceItem[]>("/services?_embed");
+    return response.data || [];
+  } catch (error) {
+    console.error("❌ Error fetching services:", getErrorMessage(error));
+    return [];
   }
 };
 
