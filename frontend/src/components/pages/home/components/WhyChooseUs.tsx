@@ -25,7 +25,7 @@ const REASONS: Reason[] = [
     title: "Our Values",
     tagline: "Our Values",
     description:
-      "We deliver services with integrity, accuracy, and objectivity, upholding ethical standards, accountability, and credibility while honoring the dignity of labor and striving for excellence.",
+      "We deliver our services with integrity, accuracy, and objectivity, maintaining the highest standards of ethics, accountability, and professionalism. By respecting the dignity of labor and fostering trust, transparency, and continuous improvement, we strive for excellence and create lasting value for our clients and partners.",
     image:
       "https://ahaanmedia.com/ahaanwebsite/All/Our-values.png",
     Icon: MagnifyingGlassPlus,
@@ -36,7 +36,7 @@ const REASONS: Reason[] = [
     title: "Authenticity",
     tagline: "Authenticity",
     description:
-      "We ally with businesses we believe in, ensuring passion drives success. With authenticity at our core, we foster meaningful partnerships that create growth, value, and sustainability.",
+      "We partner with businesses we believe in, bringing passion, authenticity, and purpose to every collaboration. By building meaningful relationships based on trust and shared goals, we create lasting growth, sustainable value, and long-term success for our clients and partners.",
     image:
       "https://ahaanmedia.com/ahaanwebsite/All/Authenticity.png",
     Icon: ShieldCheck,
@@ -47,7 +47,7 @@ const REASONS: Reason[] = [
     title: "Top Talent",
     tagline: "Top Talent",
     description:
-      "Our experts cultivate partnerships with a win-win mindset, seeing client success as our own. Committed to mutual growth, we ensure every collaboration delivers impactful results.",
+      "Our experts build strong partnerships with a win-win mindset, treating every client’s success as our own achievement. Through trust, collaboration, and shared goals, we create meaningful solutions that deliver impactful results, foster mutual growth, and drive sustainable long-term success.",
     image:
       "https://ahaanmedia.com/ahaanwebsite/All/Top-Talent.png",
     Icon: UsersThree,
@@ -58,7 +58,7 @@ const REASONS: Reason[] = [
     title: "Quality",
     tagline: "Quality",
     description:
-      "We leverage edgy technologies, tools, and platforms to deliver breakthrough results. Beyond industry best practices, our experts innovate continuously, pushing boundaries to drive excellence.",
+      "We leverage cutting-edge technologies, tools, and platforms to deliver innovative solutions and breakthrough results. Going beyond industry best practices, our experts continuously explore new ideas, embrace emerging technologies, and push boundaries to drive excellence, efficiency, and sustainable business growth.",
     image:
       "https://ahaanmedia.com/ahaanwebsite/All/Quality.png",
     Icon: SealCheck,
@@ -67,12 +67,12 @@ const REASONS: Reason[] = [
 
 const tabListVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 }as const },
+  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } as const },
 };
 
 const tabItemVariants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 180, damping: 16 }as const },
+  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 180, damping: 16 } as const },
 };
 
 // The image panel reveals by scaling open from the top-left corner
@@ -91,7 +91,7 @@ const panelVariants = {
 
 const contentVariants = {
   hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.1 }as const },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.1 } as const },
 };
 
 export const WhyChooseUs: React.FC = () => {

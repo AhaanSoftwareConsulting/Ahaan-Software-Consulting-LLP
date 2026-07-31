@@ -161,12 +161,12 @@ export default function TechOrbit() {
   return (
     <div className="relative flex items-center justify-center w-full h-[500px] lg:h-[650px] overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute w-[420px] h-[420px] rounded-full bg-[#E6B33C]/10 blur-[120px] px-2" />
+      <div className="absolute w-[350px] h-[350px] rounded-full bg-[#E6B33C]/10 blur-[120px] px-2" />
 
       {/* Outer Orbit */}
       <div
         ref={outerRef}
-        className="absolute w-[325px] h-[325px] lg:w-[425px] lg:h-[425px] xl:w-[450px] xl:h-[450px] rounded-full border border-[#E6B33C]/20 animate-[spin_35s_linear_infinite]"
+        className="absolute w-[285px] h-[285px] lg:w-[425px] lg:h-[425px] xl:w-[450px] xl:h-[450px] rounded-full border border-[#E6B33C]/20 animate-[spin_35s_linear_infinite]"
       >
         <div className="absolute inset-0 rounded-full border border-dashed border-[#E6B33C]/20" />
 
@@ -185,7 +185,7 @@ export default function TechOrbit() {
       {/* Inner Orbit */}
       <div
         ref={innerRef}
-        className="absolute w-[185px] h-[185px] lg:w-[245px] lg:h-[245px]  xl:w-[300px] xl:h-[300px] rounded-full border border-slate-300 animate-[spin_25s_linear_infinite_reverse]"
+        className="absolute w-[145px] h-[145px] lg:w-[245px] lg:h-[245px]  xl:w-[300px] xl:h-[300px] rounded-full border border-slate-300 animate-[spin_25s_linear_infinite_reverse]"
       >
         <div className="absolute inset-0 rounded-full border border-dashed border-slate-300/50" />
 
