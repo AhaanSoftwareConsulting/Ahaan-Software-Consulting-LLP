@@ -178,7 +178,7 @@ export const ServicesSection = () => {
     };
 
     return (
-        <section ref={sectionRef} className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 py-20 font-sans">
+        <section ref={sectionRef} className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 py-20 font-sans overflow-hidden">
             <style>{`
         @keyframes drawStroke {
           to { stroke-dashoffset: 0; }

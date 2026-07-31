@@ -79,7 +79,7 @@ export const CaseStudies = () => {
   const bgBanners = ["bg-[#f0f4f8]", "bg-[#f5ebe6]", "bg-[#d6e7f7]"];
 
   return (
-    <section className="bg-[#fff] py-16 md:py-24 overflow-hidden">
+    <section className="bg-[#fff] pt-24 md:pt-56 pb-16 md:pb-24 overflow-hidden">
       <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}

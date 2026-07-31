@@ -25,7 +25,7 @@ const middleRightImages: string[] = [
 
 // .side-image-card
 const cardBase =
-  "max-w-[130px] h-[150px] overflow-hidden rounded-md " +
+  "w-[90px] max-w-[130px] h-[150px] overflow-hidden rounded-md " +
   "shadow-[0_10px_20px_rgba(0,0,0,0.15),0_20px_40px_rgba(0,0,0,0.25),0_30px_60px_rgba(0,0,0,0.15)]";
 
 // .image-column
@@ -88,13 +88,13 @@ const centerTextVariants = {
 export const BusinessCard = () => {
   return (
     <div
-      className="pt-5"
+      className="pt-5  "
       style={{
         background:
           "linear-gradient(180deg, #f1e7c6 0%, #E6E6E6 80%, #e6dbbb 100%)",
       }}
     >
-      <div className="max-w-[1600px] mx-auto flex flex-col items-center">
+      <div className="max-w-[1600px] mx-auto flex flex-col items-center ">
         {/* --- Main image layout row --- */}
         <motion.div
           className={
@@ -229,7 +229,7 @@ export const BusinessCard = () => {
         <motion.div
           className={
             "relative -top-5 text-center max-w-[60%] " +
-            "min-[992px]:max-[1023px]:top-0 min-[992px]:max-[1023px]:max-w-[40%] " +
+            "min-[992px]:max-[1023px]:top-0 min-[768px]:max-[1023px]:max-w-[50%] " +
             "min-[501px]:max-[991px]:top-[40px] " +
             "max-[500px]:top-[20px] max-[500px]:max-w-[80%]"
           }
@@ -239,13 +239,13 @@ export const BusinessCard = () => {
           viewport={{ once: false, amount: 0.6 }}
         >
           <h2
-            className="text-3xl sm:text-4xl font-extrabold text-[#161616] leading-tight"
+            className="text-2xl lg:text-3xl font-extrabold text-[#161616] leading-tight"
           >
             Trusted by Businesses Worldwide
           </h2>
           <p
             className=
-            "lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#000] leading-7  mx-auto"
+            "text-sm lg:text-base  px-4 sm:px-8 mt-3 text-[#000] leading-7  mx-auto"
           >
             We aren't just another service provider. We act as a high-velocity extension of your core engine, combining modern workflows with precise tactical execution.
           </p>
@@ -253,7 +253,7 @@ export const BusinessCard = () => {
 
         {/* --- Mobile-only image row --- */}
         <motion.div
-          className="flex items-start relative justify-center gap-2.5 min-h-[200px]"
+          className="flex items-start relative justify-center gap-2.5 min-h-0"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
@@ -282,6 +282,35 @@ export const BusinessCard = () => {
           </div>
         </motion.div>
       </div>
+
+      <div
+      className="
+        relative
+        left-1/2
+
+        w-full
+        max-w-[700px]
+        -translate-x-1/2
+        translate-y-1/3
+        px-4
+      "
+    >
+      <div
+        className="
+          overflow-hidden
+          rounded-xl
+          shadow-[0_10px_20px_rgba(0,0,0,0.15),0_20px_40px_rgba(0,0,0,0.25),0_30px_60px_rgba(0,0,0,0.15)]
+        "
+      >
+        <iframe
+          className="block aspect-video w-full"
+          src="https://www.youtube.com/embed/P_xj6hDe6ko?autoplay=1&mute=1&loop=1&playlist=P_xj6hDe6ko&rel=0"
+          title="YouTube Video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </div>
 
       {/* Animated gradient text - not expressible via plain Tailwind utilities */}
       <style>{`
