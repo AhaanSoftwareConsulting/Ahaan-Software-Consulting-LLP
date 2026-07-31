@@ -204,7 +204,7 @@ export const Header = () => {
         </div>
 
         {/* Mobile Sidebar */}
-        <MobileSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <MobileSidebar menuOpen={menuOpen} setMenuOpen={setMenuOpen} solutions={solutions} />
       </nav>
     </header>
   );
