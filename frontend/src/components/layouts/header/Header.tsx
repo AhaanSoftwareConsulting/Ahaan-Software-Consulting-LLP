@@ -38,13 +38,16 @@ export const Header = () => {
     <header className="w-full bg-white shadow-sm">
       {/* ================= TOP HEADER ================= */}
       <div className="hidden border-b border-gray-200 xl:block">
-        <div className="mx-auto flex h-28 max-w-[1600px] items-center justify-between px-6 2xl:px-10">
+        <div className="mx-auto flex p-6 max-w-[1600px] items-center justify-between  2xl:px-10">
           {/* Logo */}
+          <a href="/">
           <img
             src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
             alt="Logo"
             className="h-14 object-contain"
+            
           />
+          </a>
 
           {/* Right */}
           <div className="flex items-center">
@@ -56,8 +59,8 @@ export const Header = () => {
                 className="text-[#CE8827]"
               />
               <div>
-                <h5 className="text-[17px] font-semibold">+1-646-575-9575</h5>
-                <p className="text-gray-500">support@ahaansoftware.com</p>
+                <a href="tel:+16465759575" className="text-[17px] font-semibold">+1-646-575-9575</a> <br/>
+                <a href="mailto:support@ahaansoftware.com" className="text-gray-500">support@ahaansoftware.com</a>
               </div>
             </div>
 
@@ -89,18 +92,20 @@ export const Header = () => {
             <div className="ml-7 flex items-center gap-5">
               <InstagramLogo
                 size={28}
-                weight="fill"
-                className="cursor-pointer transition hover:text-[#CE8827]"
+               weight="light"
+                className="cursor-pointer transition text-[#CE8827]"
               />
+              
               <FacebookLogo
                 size={28}
-                weight="fill"
-                className="cursor-pointer transition hover:text-[#CE8827]"
+               weight="light"
+                className="cursor-pointer transition text-[#CE8827]"
               />
+              
               <LinkedinLogo
                 size={28}
-                weight="fill"
-                className="cursor-pointer transition hover:text-[#CE8827]"
+               weight="light"
+                className="cursor-pointer transition text-[#CE8827]"
               />
             </div>
           </div>
