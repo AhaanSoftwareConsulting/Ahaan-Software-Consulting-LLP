@@ -67,7 +67,7 @@ const AhaanChat: React.FC = () => {
           right: 15px;
           width: 14px;
           height: 14px;
-          background: #f1f1f1;
+          background: #FEF9C3;
           transform: rotate(45deg);
           border-radius: 3px;
         }
