@@ -176,7 +176,7 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 
 export const TotalProject= () => {
   return (
-    <section className="relative overflow-hidden bg-[#0A0A0A] px-6 py-28">
+    <section className="relative overflow-hidden bg-[#0A0A0A] px-4 lg:px-6 2xl:px-10 py-28">
       {/* subtle vignette / wall texture */}
       <div
         aria-hidden

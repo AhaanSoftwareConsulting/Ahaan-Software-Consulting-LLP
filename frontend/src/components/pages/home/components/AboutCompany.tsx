@@ -93,7 +93,7 @@ export const AboutCompany = () => {
       {/* Gold Glow */}
       <div className="absolute left-0 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-[#D4AF37]/10 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 xl:px-10">
+      <div className="relative z-10 mx-auto w-full max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* ================= Image ================= */}
           <div className="relative">

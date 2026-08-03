@@ -116,7 +116,7 @@ const scroll = (direction: "left" | "right") => {
   }
 };
 return (
-  <section className="relative max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 py-12 lg:py-20">
+  <section className="relative max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-12 lg:py-20">
 
     {/* Heading */}
 

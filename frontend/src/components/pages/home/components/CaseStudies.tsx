@@ -80,7 +80,7 @@ export const CaseStudies = () => {
 
   return (
     <section className="bg-[#fff] pt-24 md:pt-56 pb-16 md:pb-24 overflow-hidden">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
 
         {/* Section Header */}
 <div className="max-w-6xl mx-auto text-center mb-16">
