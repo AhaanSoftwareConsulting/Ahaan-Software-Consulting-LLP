@@ -50,7 +50,7 @@ const SolutionsGrid: React.FC = () => {
   }
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 xl:px-12 bg-gradient-to-b from-yellow-100/5 via-amber-50/40 to-white">
+    <section className="py-16  px-4 lg:px-6 2xl:px-10 bg-gradient-to-b from-yellow-100/5 via-amber-50/40 to-white">
       <div className="max-w-[1600px] mx-auto">
         {/* Heading */}
 

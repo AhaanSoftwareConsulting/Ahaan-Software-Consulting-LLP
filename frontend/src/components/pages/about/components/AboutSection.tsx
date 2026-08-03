@@ -15,7 +15,7 @@ export const AboutSection: React.FC = () => {
 
   return (
     <section className="w-full bg-[#f8f9fa] py-10 sm:py-16 md:py-20">
-      <div className="mx-auto w-full max-w-[1600px]px-4 lg:px-6 2xl:px-10">
+      <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center md:gap-6 lg:gap-8">
 
           {/* LEFT COLUMN: IMAGES & PLAY BUTTON */}

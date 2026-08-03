@@ -26,7 +26,7 @@ export const CaseStudies = () => {
 
   return (
     <section className="bg-[#fff] py-16 md:py-24 overflow-hidden">
-      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px]  px-4 lg:px-6 2xl:px-10">
         
 
         {/* 3-Column Responsive Grid */}
