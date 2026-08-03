@@ -94,7 +94,7 @@ const logoVariants = {
 export const OurClients = () => {
   return (
     <section className="bg-white py-16">
-      <div className="mx-auto max-w-[1600px] px-6">
+      <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         {/* Simple Header */}
         <motion.div
           className="max-w-6xl mx-auto text-center px-4"

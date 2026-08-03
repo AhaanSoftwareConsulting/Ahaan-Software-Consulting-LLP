@@ -100,7 +100,7 @@ export const WhyChooseUs: React.FC = () => {
 
   return (
     <section className="w-full bg-[#0A0A0A] text-[#F5F1E8] py-20 lg:py-28 overflow-hidden font-['Outfit']">
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 xl:px-14">
+      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10">
         {/* TOP HEADER */}
         <motion.div
           className="max-w-6xl mx-auto text-center pb-4"
