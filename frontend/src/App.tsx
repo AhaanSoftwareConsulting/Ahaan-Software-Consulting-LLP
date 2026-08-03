@@ -5,7 +5,6 @@ import { AllRoutes } from "./routes/AllRoutes";
 import WhatsAppChat from "./components/whatsapp/Whatsappchat";
 import CallHippoWidget from "./components/callhippowiget/CallHippoWidget";
 import AhaanChat from "./components/AhaanAI/AhaanChat";
-import BackToTop from "./components/BackToTop/BackToTop";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -25,7 +24,6 @@ function App() {
       <CallHippoWidget />
       <WhatsAppChat />
       <AhaanChat />
-      <BackToTop />
     </>
   );
 }
