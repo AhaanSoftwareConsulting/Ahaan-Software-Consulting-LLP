@@ -3,7 +3,7 @@
 export const AboutContent = () => {
   return (
     <div>
-         <div className="mx-auto my-12 max-w-[1600px] px-4  lg:px-6">
+         <div className="mx-auto my-12 max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         {/* WHO WE ARE SECTION */}
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 mb-16">
           {/* Desktop Image */}
