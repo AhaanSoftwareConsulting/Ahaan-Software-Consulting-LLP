@@ -1,0 +1,106 @@
+.blog-form-wrapper {
+  background: #fcfcf5;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 650px;
+  margin: auto;
+  box-shadow: 0 0 1.5rem rgba(148, 121, 4, 0.25);
+  transition: 0.3s ease;
+  border: 1px solid #f5be0a23;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  text-transform: capitalize;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.blog-form .form-group {
+  margin-bottom: 20px;
+}
+
+.blog-form .form-label {
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 5px;
+  display: block;
+  text-transform: capitalize;
+}
+
+.styled-input {
+  border-radius: 50px !important;
+  border: 1px solid #0000001f;
+  transition: 0.2s ease-in-out;
+  box-shadow: none;
+  line-height: 30px;
+  margin-top: 10px;
+  background: none;
+}
+
+.styled-input:focus {
+  border-color: #EFBC27;
+  box-shadow: 0 0 0 0.2rem rgba(255, 226, 99, 0.25);
+  background: none;
+}
+
+.submit-button {
+  background-color: #000 !important;
+  border: none !important;
+  padding: 15px 30px;
+  border-radius: 50px !important;
+  font-weight: 600;
+  transition: 0.2s;
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  color: #EBB428;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background-color: #1b1b1b !important;
+}
+
+/* 🧾 Quill Editor Styling */
+.editor-box {
+  background-color: #fffefc;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 220px;
+}
+
+/* 🧾 Table Styling inside Quill */
+.ql-editor table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  table-layout: auto;
+}
+
+.ql-editor th,
+.ql-editor td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.ql-editor th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+}
+
+.ql-editor tr:nth-child(even) {
+  background-color: #fdfdfd;
+}
+
+.ql-editor table {
+  overflow-x: auto;
+  display: block;
+}

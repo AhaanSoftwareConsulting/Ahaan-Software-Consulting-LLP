@@ -1,0 +1,345 @@
+/* ===========================
+   LOGOUT BUTTON
+=========================== */
+
+.logout-btn {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #ff4d4d 0%, #ff2f2f 45%, #ff1f1f 100%);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all .35s ease;
+  box-shadow: 0 10px 25px rgba(255, 49, 49, .35);
+}
+
+/* Continuous Shine Effect */
+.logout-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.35),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: logoutShine 2.8s linear infinite;
+}
+
+@keyframes logoutShine {
+  0% {
+    left: -150%;
+  }
+
+  100% {
+    left: 180%;
+  }
+}
+
+/* Hover */
+.logout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(255, 49, 49, .5);
+}
+
+/* Click */
+.logout-btn:active {
+  transform: scale(.96);
+}
+
+/* Icon */
+.logout-icon {
+  font-size: 20px;
+  animation: floatIcon 1.8s ease-in-out infinite;
+}
+
+/* Icon Hover */
+.logout-btn:hover .logout-icon {
+  transform: rotate(-20deg);
+}
+
+/* Floating Animation */
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+
+  50% {
+    transform: translateX(-4px);
+  }
+}
+
+/* Text */
+.logout-btn span {
+  letter-spacing: .4px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Icon Above Shine */
+.logout-icon {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================
+   SIDEBAR MENU
+========================== */
+
+.nav-item{
+  margin-bottom: 6px !important;
+}
+
+.nav-link{
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: .35s;
+}
+
+.nav-link::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-170%;
+  width:45%;
+  height:100%;
+  background:linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+  );
+  transform:skewX(-25deg);
+  opacity:0;
+}
+.nav-link:hover,
+.nav-link.active{
+    background:linear-gradient(90deg,#161616,#161616) !important;
+    color:#d0ad00 !important;
+    font-weight:700;
+    box-shadow:0 1px 35px rgba(180, 152, 16, 0.35);
+    animation:activePulse 2.2s ease infinite;
+    border-left: 2px solid #d0ad00 !important;
+}
+
+.nav-link.active::before{
+    opacity:1;
+    animation:menuShine 2.8s linear infinite;
+}
+
+@keyframes menuShine{
+
+    0%{
+        left:-170%;
+    }
+
+    100%{
+        left:180%;
+    }
+
+}
+
+
+
+.nav-item{
+    margin-bottom:2px !important;
+}
+
+.sidebar-transition hr{
+    margin:14px 0;
+    opacity:.15;
+}
+
+.sidebar-transition .text-uppercase{
+
+    margin-top:4px !important;
+    margin-bottom:6px;
+    font-size:13px;
+    letter-spacing:3px;
+
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  padding: 2px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.profile-avatar::before {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(
+    #ffbe31,
+    #ff8a00,
+    #ffd54f,
+    #ffbe31
+  );
+  animation: rotateBorder 2.5s linear infinite;
+}
+
+.profile-avatar::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.profile-avatar-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================
+TOPBAR
+========================== */
+
+.topbar-container{
+    width:100%;
+}
+
+.search-wrapper{
+    width:100%;
+}
+
+.admin-search-box{
+    min-height:48px;
+    border-radius:10px;
+    background:#fff;
+    border:1px solid #e5e5e5;
+}
+
+.profile-box{
+    gap:12px;
+    white-space:nowrap;
+}
+
+.weather-box,
+.date-box{
+    white-space:nowrap;
+}
+
+/* ==========================
+TABLET
+========================== */
+
+@media (max-width:991px){
+
+    .topbar-container{
+        gap:18px;
+    }
+
+    .search-wrapper{
+        width:100%;
+    }
+
+    .profile-box{
+        justify-content:flex-start;
+    }
+
+}
+
+/* ==========================
+MOBILE
+========================== */
+
+@media (max-width:768px){
+
+    .topbar-container{
+        padding:15px !important;
+    }
+
+    .weather-box{
+        width:100%;
+    }
+
+    .date-box{
+        width:100%;
+    }
+
+    .profile-box{
+        width:100%;
+    }
+
+    .profile-avatar{
+        width:48px;
+        height:48px;
+    }
+
+    .profile-avatar-img{
+        width:100%;
+        height:100%;
+    }
+
+    .admin-search-box{
+        width:100%;
+    }
+
+}
+
+/* ==========================
+SMALL MOBILE
+========================== */
+
+@media (max-width:576px){
+
+    .weather-box small,
+    .date-box small{
+        font-size:11px;
+    }
+
+    .weather-box span,
+    .date-box span{
+        font-size:14px;
+    }
+
+    .profile-box span{
+        font-size:14px;
+    }
+
+    .profile-box small{
+        font-size:12px;
+    }
+
+    .profile-avatar{
+        width:42px;
+        height:42px;
+    }
+
+}
