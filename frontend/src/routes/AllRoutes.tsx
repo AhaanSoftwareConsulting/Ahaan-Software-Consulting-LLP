@@ -19,6 +19,7 @@ import { AllDevelopment } from "../components/pages/portfolio/components/AllDeve
 import { AllUiUxDesign } from "../components/pages/portfolio/components/AllUiUxDesign";
 import { AllSocialMediaMarketing } from "../components/pages/portfolio/components/AllSocialMediaMarketing";
 import { AllAppDevelopment } from "../components/pages/portfolio/components/AllAppDevelopment";
+import { NotFoundComponent } from "../components/pages/NotFound";
 
 export const AllRoutes = () => {
   return (
@@ -31,7 +32,6 @@ export const AllRoutes = () => {
         <Route path="/portfolio" element={<PortfolioComponent />} />
         <Route path="/all-development" element={<AllDevelopment />} />
         <Route path="/all-design" element={<AllUiUxDesign />} />
-        <Route path="/all-design" element={<AllUiUxDesign />} />
         <Route path="/all-media-marketing" element={<AllSocialMediaMarketing />}/>
         <Route path="/all-app-development" element={<AllAppDevelopment />} />
         <Route path="/solution" element={<SolutionComponent />} />
@@ -39,11 +39,12 @@ export const AllRoutes = () => {
         <Route path="/career" element={<CareerComponent />} />
         <Route path="/case-study" element={<CaseStudyComponent />} />
         <Route path="/contact-us" element={<ContactComponent />} />
-        <Route path="/:slug" element={<PolicyDetails />} />
+        <Route path="/policy/:slug" element={<PolicyDetails />} />
         <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
         <Route path="/blog/:slug" element={<BlogDetails />} />
         <Route path="/blog/search" element={<SearchResults />} />
         <Route path="/careers/:jobId" element={<CareerDetails />} />
+        <Route path="*" element={<NotFoundComponent/>}/>
       </Route>
     </Routes>
   );

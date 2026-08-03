@@ -32,7 +32,7 @@ export const menuData: MenuItem[] = [
       },
       {
         name: "Application Development",
-        path: "/all-development",
+        path: "/all-app-development",
       },
       {
         name: "E-commerce Development",
@@ -40,11 +40,11 @@ export const menuData: MenuItem[] = [
       },
       {
         name: "Social Media Management",
-        path: "/all-development",
+        path: "/all-media-marketing",
       },
       {
         name: "Google Marketing",
-        path: "/all-development",
+        path: "/all-media-marketing",
       }
     ]
   },

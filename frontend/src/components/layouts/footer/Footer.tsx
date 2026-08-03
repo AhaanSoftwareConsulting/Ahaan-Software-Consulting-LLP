@@ -561,7 +561,7 @@ export const Footer = () => {
 
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
               <a
-                href="/privacy-policy"
+                href="/policy/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition hover:text-[#6c4cff]"
