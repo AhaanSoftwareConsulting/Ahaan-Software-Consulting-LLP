@@ -87,7 +87,7 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
         <span
           className="translate-y-2 rounded-full border border-white/40 bg-white/20 px-4 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition-transform duration-300 group-hover:translate-y-0 sm:text-sm"
         >
-          View Project ↗
+          View Project
         </span>
       </div>
 
