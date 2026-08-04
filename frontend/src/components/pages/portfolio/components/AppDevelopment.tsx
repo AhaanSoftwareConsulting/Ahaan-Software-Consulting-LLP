@@ -22,12 +22,17 @@ const imageLinks = [
   
 ];
 
+// Cycles through if there are more cards than colors —
+// purely a visual accent, unrelated to the image data.
+const ACCENTS = ["#DFA53A", "#7C3AED", "#2563EB", "#16A34A"];
+
 type AppCardProps = {
   src: string;
   index: number;
+  accent: string;
 };
 
-const AppCard = memo(({ src, index }: AppCardProps) => {
+const AppCard = memo(({ src, index, accent }: AppCardProps) => {
   const [loaded, setLoaded] = useState(false);
 
   return (
@@ -44,8 +49,9 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
       duration-300
       hover:-translate-y-3
       hover:scale-105
-      hover:shadow-2xl
+      hover:shadow-[0_25px_45px_-12px_var(--accent)]
     "
+      style={{ ["--accent" as string]: accent }}
     >
       {!loaded && (
         <div
@@ -115,6 +121,7 @@ export default function AppDevelopment() {
     key={img}
     src={img}
     index={index}
+    accent={ACCENTS[index % ACCENTS.length]}
   />
 ))}
         </div>
