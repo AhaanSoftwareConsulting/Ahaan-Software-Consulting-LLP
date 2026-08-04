@@ -87,7 +87,7 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
         <span
           className="translate-y-2 rounded-full border border-white/40 bg-white/20 px-4 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition-transform duration-300 group-hover:translate-y-0 sm:text-sm"
         >
-          View Project
+          View Project ↗
         </span>
       </div>
 
@@ -260,7 +260,7 @@ export default function WebDevelopment() {
 
   if (error || items.length === 0) {
     return (
-      <section className="container mx-auto py-16 text-center">
+      <section className="container mx-auto max-w-[1440px] px-4 py-16 text-center">
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#FEF3C7] text-2xl">
           !
         </div>
@@ -275,7 +275,7 @@ export default function WebDevelopment() {
   }
 
   return (
-    <section className="relative mx-auto py-8 overflow-hidden">
+    <section className="relative mx-auto max-w-[1440px] px-4 py-8 overflow-hidden">
       {/* Decorative background blobs, matching the pattern already
           used elsewhere in this project (e.g. the footer's blur decor). */}
       <div className="pointer-events-none absolute -left-20 -top-20 -z-10 h-72 w-72 rounded-full bg-[#F4A62A]/10 blur-[140px]" />

@@ -200,24 +200,25 @@ export default function UiUxDesign() {
         }
       `}</style>
 
-      {/* Heading — colors unchanged */}
-      <div className="mb-12 text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
-          UI/UX Design Portfolio
-        </h2>
+      <div className="relative mx-auto max-w-[1440px] px-4">
+        {/* Heading — colors unchanged */}
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+            UI/UX Design Portfolio
+          </h2>
 
-        <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
-          Browse through our creative UI/UX layout designs
-        </p>
-      </div>
+          <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+            Browse through our creative UI/UX layout designs
+          </p>
+        </div>
 
-      {/* Skeleton */}
-      {loading ? (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className="
+        {/* Skeleton */}
+        {loading ? (
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 md:gap-8">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className="
               aspect-[4/3]
               animate-pulse
               rounded-xl
@@ -226,26 +227,26 @@ export default function UiUxDesign() {
               via-gray-100
               to-gray-200
             "
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
-          {visibleDesigns.map((item, index) => (
-            <DesignCard
-              key={item._id ?? index}
-              item={item}
-              accent={ACCENTS[index % ACCENTS.length]}
-            />
-          ))}
-        </div>
-      )}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-3 md:gap-8">
+            {visibleDesigns.map((item, index) => (
+              <DesignCard
+                key={item._id ?? index}
+                item={item}
+                accent={ACCENTS[index % ACCENTS.length]}
+              />
+            ))}
+          </div>
+        )}
 
-      {/* View All */}
-      {!loading && designs.length > 6 && (
-        <div className="mt-10 flex justify-center">
-          <Link to="/all-design"
-            className="shine-btn relative overflow-hidden uppercase
+        {/* View All */}
+        {!loading && designs.length > 6 && (
+          <div className="mt-10 flex justify-center">
+            <Link to="/all-design"
+              className="shine-btn relative overflow-hidden uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
                 to-[#E6B33C]
@@ -264,10 +265,11 @@ export default function UiUxDesign() {
                 hover:-translate-y-0.5
                 hover:from-[#B57A0C]
                 hover:to-[#D69D20]"
-          >View All
-          </Link>
-        </div>
-      )}
+            >View All
+            </Link>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
