@@ -29,16 +29,6 @@ type ScrollColumnProps = {
   accent: string;
 };
 
-// ---------------------------------------------
-// Redesigned card:
-// - glass "View Project" pill fades in center-stage on hover
-//   (backdrop-blur, so it reads well over any photo)
-// - a colored glow + ring, tinted per-column via --accent
-// - a small rotated corner ribbon for a bit of personality
-// - subtle tilt + zoom on the photo itself on hover
-// Structure (<a>/<img>) and the data it renders from the API
-// are unchanged.
-// ---------------------------------------------
 const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
   return (
     <a
@@ -101,15 +91,6 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
 
 GalleryImage.displayName = "GalleryImage";
 
-// ---------------------------------------------
-// Auto-scrolling marquee column, restored — each column
-// scrolls continuously on its own (alternating direction
-// via `reverse`), images are duplicated so the loop reads
-// as seamless. Same mechanism as the original version
-// (webdev-column-track / webdev-track-reverse — the
-// keyframe animation driving this lives outside this file).
-// Accent color still flows through to every card.
-// ---------------------------------------------
 const ScrollColumn = memo(({ images, reverse, accent }: ScrollColumnProps) => {
   const doubled = [...images, ...images];
   const [isPaused, setIsPaused] = useState(false);
@@ -199,22 +180,12 @@ export default function WebDevelopment() {
     return cols;
   }, [items]);
 
-  // ---------------------------------------------
-  // Reused across all three states so the section always
-  // opens the same way. Solid heading colors (no gradient):
-  // heading #1c1d20, sub-heading #000000.
-  // ---------------------------------------------
   const Heading = () => (
     <div className="relative mb-12 text-center">
-      <span className="mb-3 inline-block rounded-full bg-[#FEF3C7] px-4 py-1 text-xs font-semibold uppercase tracking-wide text-[#B45309]">
-        Portfolio
-      </span>
 
       <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-[#1c1d20]">
         Web Development Projects
       </h2>
-
-      <span className="mx-auto mt-3 block h-1 w-16 rounded-full bg-gradient-to-r from-[#F4A62A] via-[#EC4899] to-[#2563EB]" />
 
       <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#000000]">
         Explore our recent website projects
