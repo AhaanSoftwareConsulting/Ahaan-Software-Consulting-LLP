@@ -239,9 +239,9 @@ export const BusinessCard = () => {
           viewport={{ once: false, amount: 0.6 }}
         >
           <h2
-            className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
+            className="text-2xl  lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
           >
-            Trusted by Businesses Worldwide
+            Trusted by Businesses <br className=" lg:hidden" /> Worldwide
           </h2>
           <p
             className=
@@ -288,8 +288,8 @@ export const BusinessCard = () => {
         relative
         left-1/2
 
-        w-full
-        max-w-[700px]
+        w-full max-w-[500px] 
+        lg:max-w-[700px]
         -translate-x-1/2
         translate-y-1/3
         px-4
