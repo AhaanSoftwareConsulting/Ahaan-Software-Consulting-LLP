@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   MagnifyingGlassPlus,
   ShieldCheck,
@@ -185,23 +185,8 @@ export const WhyChooseUs: React.FC = () => {
               <p className="text-[#A3A3A3] text-base md:text-lg leading-relaxed max-w-xl">
                 {activeReason.description}
               </p>
-
-              <div className="pt-4">
-                {/* <a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-[#CD912A] hover:text-[#E5A93B] group transition-colors duration-300"
-                >
-                  Explore partnership model
-                  <ArrowRight
-                    size={16}
-                    className="transform group-hover:translate-x-1.5 transition-transform duration-300"
-                  />
-                </a> */}
-              </div>
             </div>
           </motion.div>
-
-          {/* RIGHT VIEWPORT COLUMN: BRUSHED PHOTO SHUTTER */}
           <motion.div
             className="lg:col-span-6 relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden group/frame border border-white/5 bg-[#121212]"
             variants={panelVariants}
@@ -209,29 +194,62 @@ export const WhyChooseUs: React.FC = () => {
             whileInView="visible"
             viewport={{ once: false, amount: 0.35 }}
           >
-            {/* Embedded Static Clean Corporate Visual */}
-            <img
-              key={activeReason.id}
-              src={activeReason.image}
-              alt={activeReason.title}
-              className="h-full w-full object-cover grayscale opacity-40 mix-blend-luminosity scale-100 group-hover/frame:scale-105 transition-all duration-700 ease-out animate-[fadeImage_0.6s_ease]"
-            />
+            {/* Image Switcher with Slide-up Animation */}
+            <div className="absolute inset-0 w-full h-full overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeReason.id}
+                  src={activeReason.image}
+                  alt={activeReason.title}
+                  initial={{ opacity: 0, y: 50, scale: 1.05 }}
+                  animate={{
+                    opacity: 0.4,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -50,
+                    scale: 0.95,
+                    transition: { duration: 0.4, ease: "easeInOut" }
+                  }}
+                  className="absolute inset-0 h-full w-full object-cover grayscale mix-blend-luminosity group-hover/frame:scale-105 transition-transform duration-700 ease-out"
+                />
+              </AnimatePresence>
+            </div>
 
             {/* Dynamic Layout Tint Layer */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-transparent to-[#0A0A0A]/20" />
-            <div className="absolute inset-0 bg-[#CD912A]/5 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-transparent to-[#0A0A0A]/20 pointer-events-none z-10" />
+            <div className="absolute inset-0 bg-[#CD912A]/5 mix-blend-overlay pointer-events-none z-10" />
 
             {/* Float Geometric Watermark Matrix */}
-            <div className="absolute top-6 right-8 font-mono text-[9px] tracking-widest text-white/20 select-none uppercase pointer-events-none hidden sm:block">
+            <div className="absolute top-6 right-8 font-mono text-[9px] tracking-widest text-white/20 select-none uppercase pointer-events-none hidden sm:block z-20">
               System Matrix Status // Operational_
             </div>
 
             {/* Giant Architectural Letter Background Stamp */}
-            <div
-              key={`letter-${activeReason.id}`}
-              className="absolute -bottom-16 -left-8 font-['Fraunces'] font-bold text-[280px] leading-none text-white/[0.02] tracking-tighter pointer-events-none select-none animate-[scalePop_0.7s_cubic-bezier(0.16,_1,_0.3,_1)]"
-            >
-              {activeReason.title.charAt(0)}
+            <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden rounded-2xl">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`letter-${activeReason.id}`}
+                  initial={{ opacity: 0, y: 100, scale: 0.9 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: -50,
+                    transition: { duration: 0.4, ease: "easeInOut" }
+                  }}
+                  className="absolute -bottom-16 -left-8 font-['Fraunces'] font-bold text-[280px] leading-none text-white/[0.06] tracking-tighter select-none"
+                >
+                  {activeReason.title.charAt(0)}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
