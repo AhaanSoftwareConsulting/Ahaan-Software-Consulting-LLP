@@ -1,0 +1,68 @@
+.table-container {
+  background: #fff;
+  border-radius: 12px;
+  width: 100%;
+}
+
+/* table reset + custom */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse !important;
+  border: none !important;
+}
+
+/* Table Head */
+.custom-table th {
+  background-color: #212121 !important;
+  color: #eeb829 !important;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  line-height: 50px;
+  font-family: "Outfit", sans-serif;
+  padding-left: 20px;
+  letter-spacing: 2px;
+  border: none !important;
+  text-align: left;
+}
+
+/* Table Cells */
+.custom-table td {
+  font-family: "Outfit", sans-serif;
+  padding: 10px 20px !important;
+  height: 70px;
+  text-align: left;
+  border: none !important;
+}
+
+/* Fixed Stripe Rows (Working 100%) */
+.table-container .custom-table tbody tr:nth-child(odd) td {
+  background-color: #ffffff !important;
+}
+
+.table-container .custom-table tbody tr:nth-child(even) td {
+  background-color: #ededed !important;
+}
+
+/* Timestamp */
+.timestamp {
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+
+/* Loading */
+.loading-text {
+  text-align: center;
+  font-family: "Outfit", sans-serif;
+  font-size: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .custom-table th {
+    font-size: 0.7rem;
+  }
+  .custom-table td {
+    font-size: 0.75rem;
+    padding: 5px 10px !important;
+  }
+}

@@ -45,7 +45,7 @@ export const Connection: React.FC = () => {
 
       {/* Dark Background Strip */}
       <section className="bg-[#0f0f0f] text-white py-12 sm:py-16 lg:py-1">
-        <div className="max-w-[1350px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1350px] mx-auto px-4 lg:px-6 2xl:px-10">
           
           {/* Main Grid: Responsive column layout with vertical centering */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">

@@ -133,7 +133,7 @@ export const CaseStudyDetails = () => {
                 }}
             >
                 <div className="w-full py-16 md:py-24">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px]  px-4 lg:px-6 2xl:px-10">
                         <div className="flex sm:grid grid-cols-2 gap-4 lg:gap-6 items-center">
                             {/* Left Content */}
                             <div>

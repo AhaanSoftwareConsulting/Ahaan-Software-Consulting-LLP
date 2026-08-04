@@ -3,7 +3,7 @@
 export const AboutVideo = () => {
   return (
     <section className="w-full bg-white py-12 sm:py-16 md:py-20 font-['Outfit',sans-serif]">
-      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         <div className="flex justify-center">
           <div className="w-full max-w-5xl">
             {/* Video Card Container */}

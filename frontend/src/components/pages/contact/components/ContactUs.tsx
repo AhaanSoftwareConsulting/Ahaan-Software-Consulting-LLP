@@ -45,7 +45,7 @@ export const ContactUs: React.FC = () => {
 
   return (
     <>
-      <section className="bg-[#f2f2f2] px-4 py-[60px] sm:px-5 sm:py-[100px]">
+      <section className="bg-[#f2f2f2]  px-4 lg:px-6 2xl:px-10 py-[60px] sm:py-[100px]">
         <div className="mx-auto flex max-w-[1400px] flex-col items-stretch gap-[40px] lg:flex-row xl:gap-[60px]">
           {/* LEFT SIDE */}
           <div className="min-w-0 flex-1">

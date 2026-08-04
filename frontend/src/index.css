@@ -6,7 +6,7 @@
   overflow: hidden;
   display: inline-flex;
   isolation: isolate;
-  border-radius: 50px;
+  border-radius: 10px;
   text-transform: uppercase;
 }
 

@@ -113,7 +113,7 @@ export const SolutionDetails = () => {
 
     return (
     <>
-      <section className="py-20 px-4 sm:px-6 lg:px-8 xl:px-12 bg-white text-[#1c1d20]">
+      <section className="py-20  px-4 lg:px-6 2xl:px-10 bg-white text-[#1c1d20]">
         <div className="max-w-[1600px] mx-auto space-y-24">
 
           {/* HERO */}

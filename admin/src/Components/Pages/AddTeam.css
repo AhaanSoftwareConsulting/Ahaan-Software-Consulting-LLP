@@ -1,0 +1,64 @@
+.blog-form-wrapper {
+  background: #fcfcf5;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 650px;
+  margin: auto;
+  box-shadow: 0 0 1.5rem rgba(148, 121, 4, 0.25);
+  border: 1px solid #f5be0a23;
+}
+
+.form-title {
+  text-align: center;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 25px;
+  text-transform: capitalize;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.styled-input {
+  border-radius: 50px;
+  border: 1px solid #0000001f;
+  transition: 0.2s ease-in-out;
+  line-height: 30px;
+  margin-top: 10px;
+  background: none;
+}
+
+.styled-input:focus {
+  border-color: #efbc27;
+  box-shadow: 0 0 0 0.2rem rgba(255, 226, 99, 0.25);
+  background: none;
+}
+
+.submit-button {
+  background-color: #000 !important;
+  border: none !important;
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  width: 100%;
+  color: #ebb428;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background-color: #1b1b1b !important;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}

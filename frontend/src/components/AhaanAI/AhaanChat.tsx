@@ -5,7 +5,7 @@ const CHAT_URL =
   "https://chatgpt.com/g/g-698a6e0582548191a0c256858ffd92b9-ahaan-ai-your-web-app-advisor";
 
 const AhaanChat: React.FC = () => {
-  const fullText = "Hi! I\u2019m Ahaan AI \uD83D\uDC4B Need help exploring our services?";
+  const fullText = "Hi! I\u2019m Ahaan AI \uD83D\uDC4B How can I help?";
 
   const [displayText, setDisplayText] = useState<string>("");
   const [index, setIndex] = useState<number>(0);
@@ -67,7 +67,7 @@ const AhaanChat: React.FC = () => {
           right: 15px;
           width: 14px;
           height: 14px;
-          background: #f1f1f1;
+          background: #FEF9C3;
           transform: rotate(45deg);
           border-radius: 3px;
         }
@@ -142,7 +142,7 @@ const AhaanChat: React.FC = () => {
           {/* CLOSE BUTTON */}
           {!hidePreview && (
             <button
-              className="absolute -top-10 right-[5px] z-[9999] flex h-8 w-8 items-center justify-center rounded-full border-none bg-[#ff1e1e] text-xl font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-transform duration-300 ease-in-out hover:scale-110"
+              className="absolute -top-10 right-[5px] z-[9999] flex h-5 w-5 items-center justify-center rounded-full border-none bg-[#ff1e1e] text-sm font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-transform duration-300 ease-in-out hover:scale-110"
               onClick={() => setHidePreview(true)}
             >
               ×
@@ -151,7 +151,7 @@ const AhaanChat: React.FC = () => {
 
           {/* CHAT BUBBLE */}
           {!hidePreview && (
-            <div className="ahaan-chat-bubble absolute bottom-[120px] right-[100px] w-[260px] min-w-[220px] max-w-[280px] rounded-[14px] bg-[#f1f1f1] px-5 py-4 text-[15px] leading-[1.5] shadow-[0_6px_16px_rgba(0,0,0,0.5)]">
+            <div className="ahaan-chat-bubble absolute bottom-[120px] right-[40px] w-[100px] min-w-[120px] max-w-[180px] rounded-[14px] bg-[#FEF9C3] px-2 py-2 text-[12px] leading-[1.2] shadow-[0_6px_16px_rgba(0,0,0,0.5)]">
               <p className="m-0 whitespace-pre-line">{displayText}</p>
             </div>
           )}
@@ -162,13 +162,13 @@ const AhaanChat: React.FC = () => {
               <img
                 src={botImg}
                 alt="Ahaan Bot"
-                className="ahaan-bot-img mb-[-8px] w-[120px] cursor-pointer transition-transform duration-300 ease-in-out"
+                className="ahaan-bot-img mb-[-8px] w-[80px] cursor-pointer transition-transform duration-300 ease-in-out"
                 onClick={() => window.open(CHAT_URL, "_blank")}
               />
             )}
 
             <button
-              className="ahaan-chat-btn mt-0 rounded-[30px] border-none bg-gradient-to-br from-[#f4b24d] to-[#e5a53f] px-5 py-2.5 font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-in-out hover:-translate-y-0.5"
+              className="ahaan-chat-btn mt-0 rounded-[30px] border-none bg-gradient-to-br from-[#f4b24d] to-[#e5a53f] px-3 py-1.5 text-[11px] font-semibold shadow-[0_4px_10px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-in-out hover:-translate-y-0.5"
               onClick={() => window.open(CHAT_URL, "_blank")}
             >
               Ask Ahaan AI
