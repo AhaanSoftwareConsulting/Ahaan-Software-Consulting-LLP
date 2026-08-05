@@ -6,7 +6,7 @@ const WhatsAppChat: React.FC = () => {
   return (
     <a
       href={`https://wa.me/${phoneNumber}`}
-      className="fixed bottom-5 left-5 z-[1000]"
+      className="fixed bottom-5 lg:left-5 z-[1000]"
       target="_blank"
       rel="noopener noreferrer"
     >
