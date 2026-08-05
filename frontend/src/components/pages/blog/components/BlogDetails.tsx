@@ -163,7 +163,7 @@ export const BlogDetails: React.FC = () => {
     <>
       <BlogDetailsBanner />
 
-      <div className="mx-auto max-w-[1600px] px-4 lg:px-6 py-8">
+      <div className="mx-auto max-w-[1400px] px-4 lg:px-6 py-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Main Content Area */}
           <div className="lg:col-span-8">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const NotFoundComponent = () => {
   return (
-    <section className="nf-flicker relative min-h-[85vh] w-full overflow-hidden bg-[#07080B] text-slate-200">
+    <section className="nf-flicker relative min-h-screen w-full overflow-hidden bg-[#07080B] text-slate-200">
       <style>{`
         /* room flicker — irregular, like a dying bulb, not a strobe */
         @keyframes nf-room-flicker {
