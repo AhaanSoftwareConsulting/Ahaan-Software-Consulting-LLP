@@ -13,7 +13,7 @@ const WhatsAppChat: React.FC = () => {
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
         alt="WhatsApp Chat"
-        className="h-[60px] w-[60px] transition-transform duration-300 ease-in-out hover:scale-110"
+        className="h-[50px] w-[50px] md:h-[53px] md: w-[53px] lg:h-[60px] lg:w-[60px] transition-transform duration-300 ease-in-out hover:scale-110"
       />
     </a>
   );

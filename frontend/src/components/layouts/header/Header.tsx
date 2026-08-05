@@ -136,14 +136,14 @@ export const Header = () => {
               <div className="flex items-center gap-2">
                 <NavLink
                   to="https://calendly.com/leads-ahaansoftware/free-consultation"
-                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-2 py-2 rounded-full text-[8px] font-semibold text-black"
+                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-3 py-3 rounded-full text-[8px] sm:text-[12px] font-semibold text-black"
                 >
-                  Free Discover Call
+                  Discover Call
                 </NavLink>
 
                 <a
                   href="tel:+16465759575"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-black shadow-lg transition hover:scale-105"
+                  className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-black shadow-lg transition hover:scale-105"
                 >
                   <PhoneOutgoingIcon size={18} weight="light" />
                 </a>
