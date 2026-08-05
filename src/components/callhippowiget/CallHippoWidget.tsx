@@ -48,58 +48,33 @@ const CallHippoWidget: React.FC = () => {
         // offset as the container, since only real CSS selectors (with
         // !important) can target elements we don't control the JSX for.
         <style>{`
-             #callhippo-widget-container > *,
-             #callhippo-widget-container > iframe,
-             #callhippo-widget-container > div,
-             #callhippo-widget-container > button,
-             #callhippo-widget-container > img {
-               left: 28px !important;
-               right: auto !important;
-               bottom: 100px !important;
+         #callhippo-widget-container > *,
+         #callhippo-widget-container > iframe,
+         #callhippo-widget-container > div,
+         #callhippo-widget-container > button,
+         #callhippo-widget-container > img {
+         left: 28px !important;
+         right: auto !important;
+         bottom: 100px;
         }
 
-            #callhippo-widget-container > img,
-            #callhippo-widget-container > button {
-             width: 50px !important;
-             height: 50px !important;
+         #callhippo-widget-container > img,
+         #callhippo-widget-container > button {
+         width: 50px !important;
+        height: 50px !important;
         }
 
-            /* Mobile */
         @media (max-width: 768px) {
-           #callhippo-widget-container > *,
-           #callhippo-widget-container > iframe,
-           #callhippo-widget-container > div,
-           #callhippo-widget-container > button,
-           #callhippo-widget-container > img {
-            left: 5px !important;
-            right: auto !important;
+        #callhippo-widget-container > *,
+        #callhippo-widget-container > iframe,
+        #callhippo-widget-container > div,
+        #callhippo-widget-container > button,
+        #callhippo-widget-container > img {
+         left: 10px !important;
+         right: auto !important;
         }
-    }
-
-            /* Tablet */
-        @media (min-width: 769px) and (max-width: 1023px) {
-          #callhippo-widget-container > *,
-          #callhippo-widget-container > iframe,
-          #callhippo-widget-container > div,
-          #callhippo-widget-container > button,
-          #callhippo-widget-container > img {
-            left: 13px !important;
-            right: auto !important;
-        }
-    }
-
-          /* Desktop */
-        @media (min-width: 1024px) {
-          #callhippo-widget-container > *,
-          #callhippo-widget-container > iframe,
-          #callhippo-widget-container > div,
-          #callhippo-widget-container > button,
-          #callhippo-widget-container > img {
-            left: 28px !important;
-            right: auto !important;
-        }
-    }
-`}</style>
+      }
+    `}</style>
     );
 };
 
