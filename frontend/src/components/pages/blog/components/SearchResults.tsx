@@ -153,7 +153,7 @@ export const SearchResults: React.FC = () => {
   return (
     <>
       <BlogSearchBanner />
-      <div className="max-w-[1600px] mx-auto px-4 lg:px-6 mt-12 font-sans">
+      <div className="max-w-[1400px] mx-auto px-4 lg:px-6 mt-12 font-sans">
         <h2 className="text-2xl sm:text-3xl font-bold text-center text-black mb-8">
           Search Results for "{query}"
         </h2>
