@@ -1,7 +1,12 @@
+import  { CareerBanner } from "./components/CareerBanner"
+import { CareerList } from "./components/CareerList"
 
 
 export const CareerComponent = () => {
   return (
-    <div>CareerComponent</div>
+    <div>
+      <CareerBanner/>
+      <CareerList/>
+    </div>
   )
 }

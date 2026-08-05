@@ -11,11 +11,15 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "^4.3.2",
+    "axios": "^1.18.1",
+    "framer-motion": "^12.42.2",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.81.0",
     "react-router-dom": "^7.18.1",
+    "react-toastify": "^11.1.0",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
