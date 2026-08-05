@@ -41,12 +41,12 @@ export const Header = () => {
         <div className="mx-auto flex p-6 max-w-[1600px] items-center justify-between  2xl:px-10">
           {/* Logo */}
           <a href="/">
-          <img
-            src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
-            alt="Logo"
-            className="h-14 object-contain"
-            
-          />
+            <img
+              src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
+              alt="Logo"
+              className="h-14 object-contain"
+
+            />
           </a>
 
           {/* Right */}
@@ -59,7 +59,7 @@ export const Header = () => {
                 className="text-[#CE8827]"
               />
               <div>
-                <a href="tel:+16465759575" className="text-[17px] font-semibold">+1-646-575-9575</a> <br/>
+                <a href="tel:+16465759575" className="text-[17px] font-semibold">+1-646-575-9575</a> <br />
                 <a href="mailto:support@ahaansoftware.com" className="text-gray-500">support@ahaansoftware.com</a>
               </div>
             </div>
@@ -90,23 +90,32 @@ export const Header = () => {
 
             {/* Social */}
             <div className="ml-7 flex items-center gap-5">
-              <InstagramLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
-              
-              <FacebookLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
-              
-              <LinkedinLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
+
+              <a href="https://www.instagram.com/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <InstagramLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
+
+
+              <a href="https://www.facebook.com/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <FacebookLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
+
+
+              <a href="https://www.linkedin.com/company/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <LinkedinLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
             </div>
           </div>
         </div>
