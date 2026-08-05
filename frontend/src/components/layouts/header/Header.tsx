@@ -41,12 +41,12 @@ export const Header = () => {
         <div className="mx-auto flex p-6 max-w-[1600px] items-center justify-between  2xl:px-10">
           {/* Logo */}
           <a href="/">
-          <img
-            src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
-            alt="Logo"
-            className="h-14 object-contain"
-            
-          />
+            <img
+              src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
+              alt="Logo"
+              className="h-14 object-contain"
+
+            />
           </a>
 
           {/* Right */}
@@ -59,7 +59,7 @@ export const Header = () => {
                 className="text-[#CE8827]"
               />
               <div>
-                <a href="tel:+16465759575" className="text-[17px] font-semibold">+1-646-575-9575</a> <br/>
+                <a href="tel:+16465759575" className="text-[17px] font-semibold">+1-646-575-9575</a> <br />
                 <a href="mailto:support@ahaansoftware.com" className="text-gray-500">support@ahaansoftware.com</a>
               </div>
             </div>
@@ -90,23 +90,32 @@ export const Header = () => {
 
             {/* Social */}
             <div className="ml-7 flex items-center gap-5">
-              <InstagramLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
-              
-              <FacebookLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
-              
-              <LinkedinLogo
-                size={28}
-               weight="light"
-                className="cursor-pointer transition text-[#CE8827]"
-              />
+
+              <a href="https://www.instagram.com/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <InstagramLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
+
+
+              <a href="https://www.facebook.com/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <FacebookLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
+
+
+              <a href="https://www.linkedin.com/company/ahaansoftware"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer transition"
+              >
+                <LinkedinLogo size={28} weight="light" className="text-[#CE8827]" />
+              </a>
             </div>
           </div>
         </div>
@@ -121,22 +130,22 @@ export const Header = () => {
               <img
                 src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
                 alt="logo"
-                className="h-10"
+                className="h-10 w-28 object-contain"
               />
 
               <div className="flex items-center gap-2">
                 <NavLink
                   to="https://calendly.com/leads-ahaansoftware/free-consultation"
-                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-3 py-3 rounded-full text-[12px] font-semibold text-black"
+                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-2 py-2 rounded-full text-[8px] font-semibold text-black"
                 >
                   Free Discover Call
                 </NavLink>
 
                 <a
                   href="tel:+16465759575"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-black shadow-lg transition hover:scale-105"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-black shadow-lg transition hover:scale-105"
                 >
-                  <PhoneOutgoingIcon size={28} weight="light" />
+                  <PhoneOutgoingIcon size={18} weight="light" />
                 </a>
 
                 <button
