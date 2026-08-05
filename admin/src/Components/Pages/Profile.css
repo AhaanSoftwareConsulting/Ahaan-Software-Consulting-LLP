@@ -1,0 +1,190 @@
+/* ==========================
+   PROFILE PAGE
+========================== */
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 40px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #ececec;
+}
+
+.profile-image img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #ffbe31;
+  box-shadow: 0 10px 30px rgba(255, 190, 49, 0.25);
+}
+
+.profile-info h2 {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #161616;
+}
+
+.profile-info p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.approved {
+  background: #e8fff1;
+  color: #0f9d58;
+}
+
+.status-badge.pending {
+  background: #fff5db;
+  color: #ff9800;
+}
+
+.status-badge.rejected {
+  background: #ffe8e8;
+  color: #dc3545;
+}
+
+/* ==========================
+   INFO CARD
+========================== */
+
+.info-box {
+  background: #fafafa;
+  border-radius: 18px;
+  padding: 22px;
+  transition: all .3s ease;
+  border: 1px solid #ececec;
+  height: 100%;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+}
+
+.info-box label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #999;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.info-box label svg {
+  color: #ffbe31;
+}
+
+.info-box h6 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #161616;
+  margin: 0;
+  text-transform: capitalize;
+  word-break: break-word;
+}
+.info-box h5{
+    font-weight: 700;
+}
+
+/* ==========================
+   BUTTON
+========================== */
+
+.profile-btn {
+  margin-top: 40px;
+  background: linear-gradient(90deg,#ffbe31,#ff9900);
+  border: none;
+  color: #000;
+  font-weight: 700;
+  padding: 14px 35px;
+  border-radius: 12px;
+  transition: .3s;
+}
+
+.profile-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(255,190,49,.35);
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:991px){
+
+.profile-card{
+    padding:30px;
+}
+
+.profile-header{
+    justify-content:center;
+    text-align:center;
+}
+
+.profile-image img{
+    width:130px;
+    height:130px;
+}
+
+.profile-info h2{
+    font-size:28px;
+}
+
+}
+
+@media (max-width:576px){
+
+.profile-card{
+    padding:20px;
+}
+
+.profile-image img{
+    width:110px;
+    height:110px;
+}
+
+.profile-info h2{
+    font-size:24px;
+}
+
+.profile-info p{
+    font-size:16px;
+}
+
+.info-box{
+    padding:18px;
+}
+
+.info-box h6{
+    font-size:16px;
+}
+
+}

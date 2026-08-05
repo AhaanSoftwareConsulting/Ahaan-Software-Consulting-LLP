@@ -1,0 +1,133 @@
+.reminder-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,.08);
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.reminder-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #222;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding-bottom: 12px;
+  z-index: 10;
+  border-bottom: 1px solid #eee;
+}
+
+.reminder-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  transition: 0.3s;
+  background: #fff;
+}
+
+.reminder-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+.reminder-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 10%;
+  object-fit: cover;
+  border: 3px solid #f5f5f5;
+  flex-shrink: 0;
+}
+
+.reminder-content {
+  flex: 1;
+}
+
+.reminder-content h5 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #222;
+}
+
+.designation {
+  margin: 4px 0 8px;
+  color: #c78605;
+  font-size: 10px;
+}
+
+.completed-years {
+  margin: 8px 0;
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.badge.birthday {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.badge.anniversary {
+  background: #fff3cd;
+  color: #b45309;
+}
+
+.empty-text {
+  text-align: center;
+  color: #888;
+  margin-top: 80px;
+}
+
+/* Scrollbar */
+
+.reminder-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.reminder-box::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 20px;
+}
+
+.reminder-box::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 20px;
+}
+
+.reminder-box::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .reminder-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .reminder-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .reminder-title {
+    font-size: 18px;
+  }
+}

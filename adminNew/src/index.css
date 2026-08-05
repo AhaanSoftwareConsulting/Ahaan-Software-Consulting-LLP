@@ -1,0 +1,132 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+.shine-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  isolation: isolate;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.shine-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent);
+  transform: skewX(-25deg);
+  animation: shine 3s linear infinite;
+}
+@layer components{
+  .heading-primary{
+    font-size: var(--text-xl);
+     line-height: var(--text-2xl--line-height);
+    font-weight: var(--font-weight-extrabold);
+    /* sm */
+  @media (width >= 40rem) {
+    font-size: var(--text-2xl);
+    line-height: var(--text-2xl--line-height);
+  }
+
+  /* lg */
+  @media (width >= 64rem) {
+    font-size: var(--text-4xl);
+    line-height: var(--text-4xl--line-height);
+  }
+    
+  }
+  .section-banner {
+    position: relative;
+    display: flex;
+    min-height: 350px;
+    width: 100%;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media (width >= 48rem) {
+      min-height: 500px;
+    }
+  }
+
+}
+
+@keyframes shine {
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 160%;
+  }
+}
+
+/* ripple animation */
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: .7;
+  }
+
+  70% {
+    opacity: .15;
+  }
+
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-ripple {
+  animation: ripple 2.4s ease-out infinite;
+}
+
+.animation-delay-700 {
+  animation-delay: .7s;
+}
+
+.webdev-column-track {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Animation: scroll upward */
+  animation: webdev-scroll-up 18s linear infinite;
+  /* ✅ will-change tells GPU to pre-composite this layer */
+  will-change: transform;
+}
+
+/* ✅ Reverse direction for alternating columns */
+.webdev-track-reverse {
+  animation: webdev-scroll-down 18s linear infinite;
+}
+
+/* ✅ Pause on hover — no JS required */
+.webdev-column-track-wrapper:hover .webdev-column-track {
+  animation-play-state: paused;
+}
+@keyframes webdev-scroll-up {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); } /* -50% because items are doubled */
+}
+
+@keyframes webdev-scroll-down {
+  0%   { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+/* ✅ Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .webdev-column-track,
+  .webdev-track-reverse {
+    animation: none;
+  }
+}

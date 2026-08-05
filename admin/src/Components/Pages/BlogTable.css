@@ -1,0 +1,134 @@
+.table-container {
+  background: #fff;
+  border-radius: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+.table-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #000000;
+  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.table {
+  border: none;
+}
+
+.table th {
+  background-color: #212121;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: #eeb829;
+  line-height: 50px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.table td {
+  vertical-align: middle;
+  font-family: 'Outfit', sans-serif;
+  border-top: 1px solid #eaeaea;
+  height: 79px;
+}
+
+.blog-thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: transform 0.2s ease-in-out;
+}
+
+.blog-thumb:hover {
+  transform: scale(1.05);
+}
+
+.badge-author {
+  font-size: 0.85rem;
+  background-color: transparent;
+  color: #000000;
+  padding: 0.35em 0.6em;
+  border-radius: 0.5em;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+}
+
+.timestamp {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-family: 'Outfit', sans-serif;
+}
+
+td.action-buttons {
+  vertical-align: middle !important;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+}
+
+.action-buttons .btn {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  min-width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.action-buttons .btn svg {
+  pointer-events: none;
+}
+
+.modal-content {
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.modal-title {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.table td,
+.table th {
+  border-bottom: none !important;
+}
+
+@media (max-width: 576px) {
+  .blog-thumb {
+    width: 60px;
+    height: 45px;
+  }
+
+  .table-title {
+    font-size: 1.5rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .action-buttons .btn {
+    width: 32px;
+    height: 32px;
+    padding: 0.3rem;
+  }
+}
