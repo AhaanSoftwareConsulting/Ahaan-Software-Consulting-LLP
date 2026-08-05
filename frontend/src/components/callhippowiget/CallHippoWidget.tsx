@@ -70,7 +70,7 @@ const CallHippoWidget: React.FC = () => {
         #callhippo-widget-container > div,
         #callhippo-widget-container > button,
         #callhippo-widget-container > img {
-         left: 10px !important;
+         left: 5px !important;
          right: auto !important;
         }
       }
