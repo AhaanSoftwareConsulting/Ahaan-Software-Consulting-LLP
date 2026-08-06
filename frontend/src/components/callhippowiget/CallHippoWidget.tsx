@@ -55,7 +55,7 @@ const CallHippoWidget: React.FC = () => {
              #callhippo-widget-container > img {
                left: 28px !important;
                right: auto !important;
-               bottom: 100px !important;
+               
         }
 
             #callhippo-widget-container > img,
@@ -64,8 +64,9 @@ const CallHippoWidget: React.FC = () => {
              height: 50px !important;
         }
 
+
             /* Mobile */
-        @media (max-width: 768px) {
+        @media (max-width: 1023px) {
            #callhippo-widget-container > *,
            #callhippo-widget-container > iframe,
            #callhippo-widget-container > div,
@@ -73,20 +74,15 @@ const CallHippoWidget: React.FC = () => {
            #callhippo-widget-container > img {
             left: 5px !important;
             right: auto !important;
+            width: 40px !important;
+            height: 40px !important;
+            bottom: 88px !important;
+        }
+            .open-button svg {
+              width: 24px !important;
         }
     }
 
-            /* Tablet */
-        @media (min-width: 769px) and (max-width: 1023px) {
-          #callhippo-widget-container > *,
-          #callhippo-widget-container > iframe,
-          #callhippo-widget-container > div,
-          #callhippo-widget-container > button,
-          #callhippo-widget-container > img {
-            left: 13px !important;
-            right: auto !important;
-        }
-    }
 
           /* Desktop */
         @media (min-width: 1024px) {
@@ -95,8 +91,9 @@ const CallHippoWidget: React.FC = () => {
           #callhippo-widget-container > div,
           #callhippo-widget-container > button,
           #callhippo-widget-container > img {
-            left: 28px !important;
+            left: 25px !important;
             right: auto !important;
+            bottom: 100px !important;
         }
     }
 `}</style>
