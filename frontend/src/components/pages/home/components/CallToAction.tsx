@@ -12,7 +12,7 @@ export function CallToAction() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         {/* Heading */}
-        <h2 className="text-center text-[18px] md:text-5xl xl:text-5xl  font-extrabold text-[#fff] leading-tight">
+        <h2 className="text-center text-lg md:text-4xl xl:text-5xl  font-extrabold text-[#fff] leading-tight">
           Ready to Innovate Your Business?
         </h2>
 
@@ -20,13 +20,13 @@ export function CallToAction() {
         <div className="mt-5 lg:mt-14 flex items-center justify-center gap-6 md:gap-10">
           {/* USA */}
           <div className="text-center">
-            <h3 className="text-[16px] font-bold uppercase text-[#E6B33C] md:text-3xl">
+            <h3 className="text-base font-bold uppercase text-[#E6B33C] sm:text-2xl lg:text-3xl">
               USA
             </h3>
 
             <a
               href="tel:+16465759575"
-              className="mt-4 block text-base font-semibold text-white transition hover:text-[#E6B33C] sm:text-[14px] md:text-2xl"
+              className="mt-4 block text-sm font-semibold text-white transition hover:text-[#E6B33C] sm:text-base lg:text-2xl"
             >
               +1-646-575-9575
             </a>
@@ -37,13 +37,13 @@ export function CallToAction() {
 
           {/* INDIA */}
           <div className="text-center">
-            <h3 className="text-[16px] font-bold uppercase text-[#E6B33C] md:text-3xl">
+            <h3 className="text-base font-bold uppercase text-[#E6B33C] sm:text-2xl lg:text-3xl">
               INDIA
             </h3>
 
             <a
               href="tel:+919830371143"
-              className="mt-4 block text-base font-semibold text-white transition hover:text-[#E6B33C] sm:text-[14px] md:text-2xl"
+              className="mt-4 block text-sm font-semibold text-white transition hover:text-[#E6B33C] sm:text-base lg:text-2xl"
             >
               +91-983-037-1143
             </a>
