@@ -139,7 +139,7 @@ export const Header = () => {
                   className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-3 py-3 rounded-full text-[8px] sm:text-[12px] font-semibold text-black"
                 >
                   Discover Call
-                </NavLink>
+                </NavLink> 
 
                 <a
                   href="tel:+16465759575"
