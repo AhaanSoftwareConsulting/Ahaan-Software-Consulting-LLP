@@ -77,21 +77,35 @@ export const MobileSidebar = ({
                 <li key={menu.name || menu.path}>
                   {hasSubmenu ? (
                     <>
-                      <button
-                        onClick={() =>
-                          setOpenMenu(openMenu === menu.name ? null : menu.name)
-                        }
-                        className="flex w-full items-center justify-between border-b border-white/5 px-6 py-3 text-[15px] uppercase text-white transition hover:bg-[#222]"
-                      >
-                        {menu.name}
+                      {/* Row: label navigates, caret toggles submenu */}
+                      <div className="flex w-full items-center justify-between border-b border-white/5 text-[15px] uppercase text-white transition hover:bg-[#222]">
+                        <NavLink
+                          to={menu.path || "#"}
+                          onClick={() => setMenuOpen(false)}
+                          className={({ isActive }) =>
+                            `flex-1 px-6 py-3 ${
+                              isActive ? "text-[#CE8827]" : "text-white"
+                            }`
+                          }
+                        >
+                          {menu.name}
+                        </NavLink>
 
-                        <CaretDownIcon
-                          size={18}
-                          className={`transition duration-300 ${
-                            openMenu === menu.name ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
+                        <button
+                          onClick={() =>
+                            setOpenMenu(openMenu === menu.name ? null : menu.name)
+                          }
+                          aria-label={`Toggle ${menu.name} submenu`}
+                          className="px-6 py-3"
+                        >
+                          <CaretDownIcon
+                            size={18}
+                            className={`transition duration-300 ${
+                              openMenu === menu.name ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
 
                       <div
                         className={`overflow-hidden transition-all duration-300 ${
@@ -157,16 +171,16 @@ export const MobileSidebar = ({
 
           {/* Contact */}
           <div className="space-y-5 px-6 py-6">
-            <a
-              href="tel:+16465759575"
+            
+             <a href="tel:+16465759575"
               className="flex items-center gap-3 text-sm text-white hover:text-[#CE8827]"
             >
               <PhoneOutgoingIcon size={20} />
               <span>+1-646-575-9575</span>
             </a>
 
-            <a
-              href="mailto:support@ahaansoftware.com"
+            
+            <a href="mailto:support@ahaansoftware.com"
               className="flex items-center gap-3 text-sm text-white hover:text-[#CE8827]"
             >
               <EnvelopeSimple size={20} />
