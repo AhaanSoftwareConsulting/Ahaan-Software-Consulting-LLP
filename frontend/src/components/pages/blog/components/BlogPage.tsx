@@ -193,7 +193,7 @@ export const BlogPage = () => {
     }
 
     return (
-        <div className="container mx-auto lg:px-6 px-4 py-8 max-w-[1600px]">
+        <div className="container mx-auto lg:px-6 px-4 py-8 max-w-[1400px]">
             {/* Search Bar */}
             {/* <div className="mb-6 text-right">
         <input
