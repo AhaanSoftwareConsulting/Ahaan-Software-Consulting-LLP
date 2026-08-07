@@ -124,7 +124,7 @@ export const Header = () => {
       {/* ================= NAVBAR ================= */}
       <nav className="relative bg-[#161616] shadow-lg">
         <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
-          <div className="flex h-20 items-center justify-between">
+          <div className="flex h-17 md:h-20 items-center justify-between">
             {/* ================= MOBILE HEADER ================= */}
             <div className="flex w-full items-center justify-between xl:hidden">
               <img
@@ -136,14 +136,14 @@ export const Header = () => {
               <div className="flex items-center gap-2">
                 <NavLink
                   to="https://calendly.com/leads-ahaansoftware/free-consultation"
-                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-3 py-3 rounded-full text-[8px] sm:text-[12px] font-semibold text-black"
+                  className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-2.5 py-2.5 rounded-full text-[11px] sm:text-[12px] font-semibold text-[#FFFFFF]"
                 >
                   Discover Call
                 </NavLink>
 
                 <a
                   href="tel:+16465759575"
-                  className="flex h-8 w-8 sm:h-10 sm:w-10  items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-black shadow-lg transition hover:scale-105"
+                  className="flex h-9 w-9 sm:h-10 sm:w-10  items-center justify-center rounded-full bg-gradient-to-r from-[#C48A18] to-[#E6B33C] text-[#FFFFFF] shadow-lg transition hover:scale-105"
                 >
                   <PhoneOutgoingIcon size={18} weight="light" />
                 </a>
