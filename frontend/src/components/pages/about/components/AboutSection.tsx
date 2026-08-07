@@ -24,7 +24,7 @@ export const AboutSection: React.FC = () => {
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-md mb-0">
                 <img
-                  src="https://ahaanmedia.com/ahaanwebsite/All/team1.webp"
+                  src="https://ahaanmedia.com/ahaanwebsite/All/DevelopSupport.png"
                   alt="Team"
                   className="w-[60%] h-auto block rounded-tl-[85px] sm:rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-br-2xl shadow-[0_8px_20px_rgba(0,0,0,0.15)] mx-0"
                 />
@@ -33,7 +33,7 @@ export const AboutSection: React.FC = () => {
               {/* Overlapping Secondary Image */}
               <div className="absolute -bottom-8 -right-2  w-[50%] rounded-br-[85px]  mt-0 mx-auto mx-0 z-0 z-10 overflow-hidden rounded-md shadow-[0_5px_15px_rgba(0,0,0,0.2)]">
                 <img
-                  src="https://ahaanmedia.com/ahaanwebsite/All/team2.webp"
+                  src="https://ahaanmedia.com/ahaanwebsite/All/HighlyTailored.png"
                   alt="Team Working"
                   className="w-full h-auto  "
                 />
