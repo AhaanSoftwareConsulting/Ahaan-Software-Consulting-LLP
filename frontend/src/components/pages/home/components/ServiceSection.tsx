@@ -309,7 +309,7 @@ export const ServicesSection = () => {
                 <a 
                 href="https://calendly.com/leads-ahaansoftware/free-consultation"
                 target="_blank" 
-                className="
+               className="
       shine-btn
       flex w-full items-center justify-center
       whitespace-nowrap
@@ -331,7 +331,7 @@ export const ServicesSection = () => {
       xl:px-8
       xl:py-3.5
       xl:text-base
-    ">
+    " >
                     Schedule a Meeting
                 </a>
             </motion.div>
