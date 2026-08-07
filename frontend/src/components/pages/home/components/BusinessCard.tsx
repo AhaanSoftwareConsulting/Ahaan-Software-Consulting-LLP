@@ -287,7 +287,7 @@ export const BusinessCard = () => {
       className="
         relative
         left-1/2
-
+pt-5 sm:pt-0
         w-full max-w-[500px] 
         lg:max-w-[700px]
         -translate-x-1/2

@@ -270,7 +270,7 @@ export const ServicesSection = () => {
 
             {/* Bottom Action Footer Buttons */}
             <motion.div
-                className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 px-4"
+                className="mt-16 flex  items-center justify-center  gap-4 px-4"
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false, amount: 0.7 }}
@@ -278,31 +278,60 @@ export const ServicesSection = () => {
             >
                 <a 
                 href="/contact-us"
-                className="shine-btn relative overflow-hidden uppercase
-                bg-gradient-to-r
-                from-[#C48A18]
-                to-[#E6B33C]
-                px-5
-                xl:px-6
-                2xl:px-8
-                py-3
-                xl:py-3.5
-                text-sm
-                xl:text-base
-                font-semibold
-                text-black
-                shadow-xl
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:from-[#B57A0C]
-                hover:to-[#D69D20]">
+                className="
+      shine-btn
+      flex w-full items-center justify-center
+      whitespace-nowrap
+      rounded-lg
+      bg-gradient-to-r
+      from-[#C48A18]
+      to-[#E6B33C]
+      px-6
+      py-3
+      text-center
+      text-xs
+      sm:text-sm
+      font-semibold
+      uppercase
+      text-black
+      shadow-xl
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:from-[#B57A0C]
+      hover:to-[#D69D20]
+      sm:w-auto
+      xl:px-8
+      xl:py-3.5
+      xl:text-base">
                     Talk to a consultant
                 </a>
                 <a 
                 href="https://calendly.com/leads-ahaansoftware/free-consultation"
                 target="_blank" 
-                className="shine-btn  w-full sm:w-auto px-7 py-3.5 text-[14px] font-bold text-[#C48A18] bg-transparent  border border-[#C48A18]/30 hover:border-[#C48A18] hover:bg-[#C48A18]/05 transition-all">
+               className="
+      shine-btn
+      flex w-full items-center justify-center
+      whitespace-nowrap
+      rounded-lg
+      border border-[#C48A18]/30
+      bg-transparent
+      px-6
+      py-3
+      text-center
+      text-xs
+      sm:text-sm
+      font-semibold
+      uppercase
+      text-[#C48A18]
+      transition-all
+      hover:border-[#C48A18]
+      hover:bg-[#C48A18]/5
+      sm:w-auto
+      xl:px-8
+      xl:py-3.5
+      xl:text-base
+    " >
                     Schedule a Meeting
                 </a>
             </motion.div>

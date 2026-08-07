@@ -67,17 +67,63 @@ export const Connection: React.FC = () => {
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+                <div className="flex justify-center sm:justify-start items-center gap-3 sm:gap-4 pt-2">
                   <a
                     href="/service"
-                    className="shine-btn text-center px-6 py-3.5 bg-[#D4AF37] text-black font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-600 transition-colors shadow-md"
+                    className="
+      shine-btn
+      flex w-full items-center justify-center
+      whitespace-nowrap
+      rounded-lg
+      bg-gradient-to-r
+      from-[#C48A18]
+      to-[#E6B33C]
+      px-6
+      py-3
+      text-center
+      text-xs
+      sm:text-sm
+      font-semibold
+      uppercase
+      text-black
+      shadow-xl
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:from-[#B57A0C]
+      hover:to-[#D69D20]
+      sm:w-auto
+      xl:px-8
+      xl:py-3.5
+      xl:text-base"
                   >
                     Explore Services
                   </a>
                   <a
                     href="/contact-us"
-                    className="shine-btn text-center px-6 py-3.5 border border-[#D4AF37] text-[#D4AF37] font-bold text-xs tracking-wider uppercase rounded-md hover:bg-amber-500/10 transition-colors"
-                  >
+                    className="
+      shine-btn
+      flex w-full items-center justify-center
+      whitespace-nowrap
+      rounded-lg
+      border border-[#D4AF37]
+      bg-transparent
+      px-6
+      py-3
+      text-center
+      text-xs
+      sm:text-sm
+      font-semibold
+      uppercase
+      text-[#C48A18]
+      transition-all
+      hover:border-[#C48A18]
+      hover:bg-[#C48A18]/5
+      sm:w-auto
+      xl:px-8
+      xl:py-3.5
+      xl:text-base
+    ">
                     Schedule Call
                   </a>
                 </div>
