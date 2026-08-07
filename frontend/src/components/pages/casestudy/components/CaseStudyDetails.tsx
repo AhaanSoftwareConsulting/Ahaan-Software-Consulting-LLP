@@ -165,7 +165,7 @@ export const CaseStudyDetails = () => {
             {/* PROJECT OVERVIEW (Left: Content | Right: Image) */}
             {acf.project_overview && images.projectOverview && (
                 <section className="bg-white py-16 md:py-24">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 items-center">
                             <div>
                                 <h2 className="mb-6 text-2xl sm:text-3xl lg:text-4xl font-extrabold capitalize leading-tight text-black">
@@ -191,7 +191,7 @@ export const CaseStudyDetails = () => {
             {/* CHALLENGES (Left: Image | Right: Content) */}
             {acf.challenges && images.challenges && (
                 <section className="bg-white py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 items-center">
                             <div className="order-2 md:order-1 flex justify-center lg:justify-start">
                                 <img
@@ -221,7 +221,7 @@ export const CaseStudyDetails = () => {
             {/* KEY FEATURES & BENEFITS (Left: Content | Right: Image) */}
             {acf["key_features_&_benefits"] && images.featureImage && (
                 <section className="bg-[#f3f3f3] py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 items-center">
                             <div>
                                 <h2 className="mb-6 text-2xl sm:text-3xl lg:text-4xl font-extrabold capitalize text-black">
@@ -255,7 +255,7 @@ export const CaseStudyDetails = () => {
                 images.tech4 &&
                 images.tech5 && (
                     <section className="bg-[#161616] py-16 md:py-24 text-center">
-                        <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                        <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                             <h2 className="mb-10 lg:mb-12 text-2xl sm:text-3xl lg:text-4xl font-extrabold capitalize text-[#e1aa23]">
                                 Technologies &amp; Methodologies Used
                             </h2>
@@ -287,7 +287,7 @@ export const CaseStudyDetails = () => {
             {/* SOLUTIONS TIMELINE */}
             {solutions.length > 0 && (
                 <section className="bg-white py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <h2 className="mb-12 lg:mb-16 text-center text-2xl sm:text-3xl lg:text-4xl font-extrabold capitalize text-black">
                             The Solutions Provided
                         </h2>
@@ -336,7 +336,7 @@ export const CaseStudyDetails = () => {
             {/* BUSINESS IMPACT (Left: Image | Right: Content) */}
             {acf.business_impact && images.businessImpact && (
                 <section className="bg-white py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 items-center">
                             <div className="order-2 md:order-1 flex justify-center lg:justify-start">
                                 <img
@@ -366,7 +366,7 @@ export const CaseStudyDetails = () => {
             {/* DESIGN HIGHLIGHTS (Left: Content | Right: Image) */}
             {acf.design_highlights && images.designHighlights && (
                 <section className="bg-white py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 items-center">
                             <div>
                                 <h2 className="mb-6 text-2xl sm:text-3xl lg:text-4xl font-extrabold capitalize text-black">
@@ -396,7 +396,7 @@ export const CaseStudyDetails = () => {
             {/* WHY THIS PROJECT STANDS OUT */}
             {acf.why_this_project_stands_out && (
                 <section className="relative overflow-hidden bg-[#0b0f1f] py-8 md:py-16 before:absolute before:-left-[100px] before:-top-[100px] before:h-[350px] before:w-[350px] before:rounded-full before:bg-[rgba(255,193,7,0.08)] before:blur-[80px] after:absolute after:-bottom-[100px] after:-right-[100px] after:h-[300px] after:w-[300px] after:rounded-full after:bg-[rgba(255,193,7,0.06)] after:blur-[80px]">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6 relative z-10">
                         <div className="rounded-[24px] border border-[rgba(255,193,7,0.15)] bg-[rgba(255,255,255,0.04)] p-8 sm:p-12 lg:p-16 backdrop-blur-[10px] text-white">
                             <h2 className="relative mb-8 text-3xl sm:text-4xl lg:text-5xl font-bold text-white after:mt-4 after:block after:h-1 after:w-[90px] after:rounded-full after:bg-[#ffc107]">
                                 Why This Project Stands Out
@@ -416,7 +416,7 @@ export const CaseStudyDetails = () => {
             {/* PROJECT DETAILS (Left: Image | Right: Content) */}
             {acf.project_details && images.projectDetails && (
                 <section className="bg-white py-6 lg:py-16">
-                    <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
+                    <div className="mx-auto max-w-[1600px] px-4 sm:px-4 lg:px-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
                             <div className="order-2 md:order-1 flex justify-center lg:justify-start">
                                 <img
@@ -431,15 +431,15 @@ export const CaseStudyDetails = () => {
                                     Project Details
                                 </h2>
 
-                               <div
-  className="text-sm lg:text-lg  text-[#111]
+                                <div
+                                    className="text-sm lg:text-lg  text-[#111]
              [&_ul]:list-disc [&_ul]:list-outside [&_ul]:pl-5
              [&_ol]:list-decimal [&_ol]:list-outside [&_ol]:pl-5
              [&_li]:mb-3 "
-  dangerouslySetInnerHTML={{
-    __html: acf.project_details,
-  }}
-/>
+                                    dangerouslySetInnerHTML={{
+                                        __html: acf.project_details,
+                                    }}
+                                />
                             </div>
                         </div>
                     </div>
