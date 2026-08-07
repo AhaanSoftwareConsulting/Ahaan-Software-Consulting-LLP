@@ -211,7 +211,7 @@ export const ServicesSection = () => {
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
                     Our Core Services <br />
                 </h2>
-                <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+                <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
                     We are driven by a passion to deliver excellence through continuous
                     innovation and cutting-edge technology — creating intelligent,
                     scalable, and future-ready solutions that empower businesses,
@@ -258,7 +258,7 @@ export const ServicesSection = () => {
                                 {description}
                             </p>
                             <a
-                                href="#"
+                                href="/service"
                                 className="text-[14px] font-bold text-[#C48A18] inline-flex items-center gap-1 transition-all duration-200 group-hover:gap-2 hover:underline"
                             >
                                 Discover now <span className="text-[15px] font-normal">→</span>
