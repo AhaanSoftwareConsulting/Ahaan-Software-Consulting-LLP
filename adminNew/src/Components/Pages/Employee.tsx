@@ -48,7 +48,7 @@ const Employee = () => {
       </div>
 
       {/* Table */}
-      <div className="max-h-[445px] overflow-auto rounded-lg border border-gray-200">
+      <div className="max-h-[445px]  overflow-auto rounded-lg border border-gray-200">
 
         <table className="min-w-[850px] w-full border-collapse">
 

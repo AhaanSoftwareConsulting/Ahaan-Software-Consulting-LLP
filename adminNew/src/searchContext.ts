@@ -1,6 +1,16 @@
 import { createContext } from "react";
+import type {
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-export const SearchContext = createContext({
-  query: "",
-  setQuery: () => {},
-});
+interface SearchContextType {
+  query: string;
+  setQuery: Dispatch<SetStateAction<string>>;
+}
+
+export const SearchContext =
+  createContext<SearchContextType>({
+    query: "",
+    setQuery: () => {},
+  });

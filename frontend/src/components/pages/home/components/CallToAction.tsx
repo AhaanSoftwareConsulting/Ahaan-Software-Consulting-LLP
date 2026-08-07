@@ -12,7 +12,7 @@ export function CallToAction() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-8">
         {/* Heading */}
-        <h2 className="text-center text-lg md:text-4xl xl:text-5xl  font-extrabold text-[#fff] leading-tight">
+        <h2 className="text-center text-lg md:text-3xl xl:text-5xl  font-extrabold text-[#fff] leading-tight">
           Ready to Innovate Your Business?
         </h2>
 
