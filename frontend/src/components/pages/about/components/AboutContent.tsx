@@ -86,7 +86,7 @@ export const AboutContent = () => {
           {/* Vision Image */}
           <div className="flex justify-center lg:justify-end">
             <img
-              src="https://ahaanmedia.com/ahaanwebsite/All/group2.webp"
+              src="https://ahaanmedia.com/ahaanwebsite/All/OurMission.png"
               alt="Business Vision"
               className="h-auto w-full  rounded-md object-cover"
             />
