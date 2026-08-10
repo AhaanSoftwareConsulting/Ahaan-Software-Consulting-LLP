@@ -33,26 +33,26 @@ const imageColumn = "flex flex-col gap-2.5 min-[501px]:max-[991px]:gap-[5px]";
 
 // .first-column  -> hidden below 992px, opacity 80% between 992-1023px
 const firstColumn =
-  "relative bottom-[-100px] hidden min-[992px]:flex min-[992px]:max-[1023px]:opacity-80";
+  "relative bottom-[-100px] hidden lg:flex min-[992px]:max-[1023px]:opacity-80";
 
 // .second-column -> hidden below 992px, opacity 90% between 992-1023px
 const secondColumn =
   "relative top-[20px] hidden min-[992px]:flex min-[992px]:max-[1023px]:opacity-90";
 
 // .third-column -> always visible
-const thirdColumn = "relative top-[100px]";
+const thirdColumn = "relative top-[100px] hidden sm:block";
 
 // .fourth-column -> hidden 992-1023px and hidden below/at 500px
 const fourthColumn =
-  "relative top-[30px] block min-[992px]:max-[1023px]:hidden max-[500px]:hidden";
+  "relative top-[30px] ";
 
 // .final-column -> always visible, top offset changes per breakpoint
 const finalColumn =
-  "relative top-[80px] min-[992px]:max-[1023px]:top-[40px] min-[501px]:max-[991px]:top-[20px]";
+  "relative top-[16px]";
 
 // .third-column-mobile / .final-column-mobile -> only visible at <=500px
-const thirdColumnMobile = "relative top-[50px] min-[501px]:hidden";
-const finalColumnMobile = "relative top-[70px] min-[501px]:hidden";
+const thirdColumnMobile = "relative top-[50px] sm:hidden";
+const finalColumnMobile = "relative top-[70px] sm:hidden";
 
 // Each column drops in from a different vertical origin with a rotation,
 // creating a "gallery wall being hung" feel — columns further from center
@@ -98,10 +98,10 @@ export const BusinessCard = () => {
         {/* --- Main image layout row --- */}
         <motion.div
           className={
-            "flex items-start relative justify-center gap-2.5 min-h-[200px] " +
+            "flex items-start relative justify-center gap-1.5 md:gap-2 lg:gap-2.5 min-h-[200px] " +
             "min-[992px]:max-[1023px]:min-h-[150px] " +
             "min-[501px]:max-[991px]:gap-2 min-[501px]:max-[991px]:min-h-[150px] " +
-            "max-[500px]:gap-1.5 max-[500px]:min-h-[250px]"
+            " sm:min-h-[150px]"
           }
           variants={rowContainerVariants}
           initial="hidden"
@@ -228,10 +228,10 @@ export const BusinessCard = () => {
         {/* --- Central content --- */}
         <motion.div
           className={
-            "relative -top-5 text-center max-w-[60%] " +
-            "min-[992px]:max-[1023px]:top-0 min-[768px]:max-[1023px]:max-w-[50%] " +
+            "relative -top-5 text-center max-w-[100%] " +
+            "min-[992px]:max-[1024px]:top-[-100px] min-[768px]:max-[1023px]:max-w-[50%] " +
             "min-[501px]:max-[991px]:top-[40px] " +
-            "max-[500px]:top-[20px] max-[500px]:max-w-[80%]"
+            "max-[500px]:top-[20px] sm:max-w-[60%]"
           }
           variants={centerTextVariants}
           initial="hidden"
@@ -239,13 +239,13 @@ export const BusinessCard = () => {
           viewport={{ once: false, amount: 0.6 }}
         >
           <h2
-            className="text-2xl  lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
+            className="  text-2xl  lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
           >
             Trusted by Businesses <br className=" lg:hidden" /> Worldwide
           </h2>
           <p
             className=
-            "text-sm lg:text-base  px-4 sm:px-8 mt-3 text-[#000] leading-7  mx-auto"
+            "text-sm lg:text-base  px-4 sm:px-8 mt-3 text-[#000] leading-7 "
           >
             We aren't just another service provider. We act as a high-velocity extension of your core engine, combining modern workflows with precise tactical execution.
           </p>
@@ -253,7 +253,7 @@ export const BusinessCard = () => {
 
         {/* --- Mobile-only image row --- */}
         <motion.div
-          className="flex items-start relative justify-center gap-2.5 min-h-0"
+          className="flex items-start relative justify-center gap-1.5 md:gap-2 lg:gap-2.5 min-h-0"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.4 }}
