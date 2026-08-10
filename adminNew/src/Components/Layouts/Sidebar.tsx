@@ -262,11 +262,11 @@ export default function Sidebar() {
           to={item.path!}
           onClick={() => setOpen(false)}
           className={({ isActive }) =>
-            `group flex items-center gap-3 rounded-xl px-4 py-3
+            `group flex items-center gap-3 rounded-xl shine-btn px-4 py-3
             text-sm font-medium transition-all duration-300
             ${
               isActive
-                ? "bg-gradient-to-r from-[#ffbe31] to-[#ff9d00] text-black shadow-lg"
+                ? "bg-gradient-to-r from-[#fff] to-[#ff9d00] text-black shadow-lg "
                 : "text-white hover:bg-[#222] hover:text-[#ffbe31]"
             }`
           }

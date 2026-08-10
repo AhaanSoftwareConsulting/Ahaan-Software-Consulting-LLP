@@ -112,7 +112,11 @@ const ManageDevelopments: React.FC = () => {
                 filteredItems.map((item, index) => (
                   <tr
                     key={item._id}
-                    className="border-b hover:bg-yellow-50 transition"
+                   className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
+                    index % 2 === 0
+                      ? "bg-white"
+                      : "bg-gray-100"
+                  }`}
                   >
                     <td className="px-4 py-4">
                       {index + 1}
@@ -122,7 +126,7 @@ const ManageDevelopments: React.FC = () => {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="h-16 w-20 rounded-md border object-cover transition-transform hover:scale-105"
+                        className="h-16 w-20 rounded-md shadow-sm object-cover transition-transform hover:scale-105"
                       />
                     </td>
 
@@ -142,7 +146,7 @@ const ManageDevelopments: React.FC = () => {
                     </td>
 
                     <td className="px-4 py-4">
-                      <span className="rounded-full bg-gray-200 px-3 py-1 text-sm">
+                      <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm">
                         {item.developer || "Unknown"}
                       </span>
                     </td>

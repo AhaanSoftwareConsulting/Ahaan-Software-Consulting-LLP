@@ -54,25 +54,32 @@ export function CallToAction() {
         <div className="mt-5 lg:mt-16 flex justify-center">
           <a 
           href="/contact-us"
-          className="shine-btn relative overflow-hidden uppercase
-                bg-gradient-to-r
-                from-[#C48A18]
-                to-[#E6B33C]
-                px-5
-                xl:px-6
-                2xl:px-8
-                py-3
-                xl:py-3.5
-                text-sm
-                xl:text-base
-                font-semibold
-                text-black
-                shadow-xl
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:from-[#B57A0C]
-                hover:to-[#D69D20]">
+          className="
+      shine-btn
+      flex w-full items-center justify-center
+      whitespace-nowrap
+      rounded-lg
+      bg-gradient-to-r
+      from-[#C48A18]
+      to-[#E6B33C]
+      px-6
+      py-3
+      text-center
+      text-xs
+      sm:text-sm
+      font-semibold
+      uppercase
+      text-black
+      shadow-xl
+      transition-all
+      duration-300
+      hover:-translate-y-0.5
+      hover:from-[#B57A0C]
+      hover:to-[#D69D20]
+      sm:w-auto
+      xl:px-8
+      xl:py-3.5
+      xl:text-base">
             Talk to a Technology Consultant
           </a>
         </div>
