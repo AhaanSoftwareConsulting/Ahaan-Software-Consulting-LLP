@@ -48,9 +48,9 @@ const Employee = () => {
       </div>
 
       {/* Table */}
-      <div className="max-h-[445px]  overflow-auto rounded-lg border border-gray-200">
+      <div className="max-h-[445px]  overflow-y-auto rounded-lg border border-gray-200">
 
-        <table className="min-w-[850px] w-full border-collapse">
+        <table className="min-w-[650px] w-full border-collapse">
 
           <thead className="sticky top-0 z-10 bg-gray-100">
 
@@ -86,7 +86,7 @@ const Employee = () => {
 
               <tr
                 key={item._id}
-                className="border-b transition hover:bg-gray-50"
+                className="shadow-sm transition hover:bg-gray-50"
               >
 
                 <td className="px-5 py-4">
