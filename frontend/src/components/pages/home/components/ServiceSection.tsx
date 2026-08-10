@@ -288,8 +288,8 @@ export const ServicesSection = () => {
       to-[#E6B33C]
       px-6
       py-3
-      text-center
-      text-xs
+      text-center text-[10px]
+      min-[360px]:text-xs
       sm:text-sm
       font-semibold
       uppercase
@@ -318,8 +318,8 @@ export const ServicesSection = () => {
       bg-transparent
       px-6
       py-3
-      text-center
-      text-xs
+      text-center text-[10px]
+      min-[360px]:text-xs
       sm:text-sm
       font-semibold
       uppercase
