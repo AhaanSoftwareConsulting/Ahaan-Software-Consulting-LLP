@@ -46,6 +46,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/api/test", require("./routes/testRoutes"));
+app.use("/api/blogs", require("./routes/blogRoutes"));
+app.use("/api/designs", require("./routes/designRoutes"));
 
 app.get("/", (req, res) => {
   res.send("API Running...");
