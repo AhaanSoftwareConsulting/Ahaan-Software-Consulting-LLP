@@ -1,3 +1,4 @@
 require("./Test");
-require("./ContactFormSQL");
-require("./FormDataSQL");
+require("./BlogSQL");
+require("./DesignSQL");
+
