@@ -1,27 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../middleware/uploadMiddleware");
-const {
-  createDesign,
-  updateDesign,
-  deleteDesign,
-  getDesignById,
-  getAllDesigns,
-} = require("../controllers/designController");
+const DesignController = require("../controllers/DesignController");
 
-// Add new design
-router.post("/add", upload.single("image"), createDesign);
+// Cloudinary-র 'ahaan-designs' ফোল্ডারে 'image' ফাইলটি সেভ হবে
+const designUpload = upload("ahaan-designs").single("image");
 
-// Update design by id
-router.put("/edit/:id", upload.single("image"), updateDesign);
+// Create Design
+router.post("/", designUpload, DesignController.create);
 
-// Delete design by id
-router.delete("/delete/:id", deleteDesign);
+// Get All Designs
+router.get("/", DesignController.getAll);
 
-// Get single design by id
-router.get("/:id", getDesignById);
+// Get Single Design
+router.get("/:id", DesignController.getOne);
 
-// Get all designs
-router.get("/", getAllDesigns);
+// Update Design
+router.put("/:id", designUpload, DesignController.update);
+
+// Delete Design
+router.delete("/:id", DesignController.delete);
 
 module.exports = router;
