@@ -84,7 +84,7 @@ export const OurProcess = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fff] leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
             Our Proven Development Process
           </h2>
 

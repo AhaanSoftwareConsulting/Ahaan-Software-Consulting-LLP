@@ -195,7 +195,7 @@ export const TotalProject= () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#fff] leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
             Measured in years, hung on the wall
           </h2>
           <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#8A8A8A] leading-7  mx-auto">

@@ -152,7 +152,7 @@ export const AboutCompany = () => {
             </motion.h2>
 
             <motion.p
-              className="mt-3 text-xs sm:text-sm leading-7 text-gray-700 lg:text-base"
+              className="mt-3 text-xs sm:text-sm leading-relaxed text-gray-700 lg:text-base"
               variants={paraVariants}
               initial="hidden"
               whileInView="visible"
@@ -183,7 +183,7 @@ export const AboutCompany = () => {
                     <CheckCircleIcon size={16} weight="bold" />
                   </div>
 
-                  <span className="text-[15px] font-medium text-gray-800">
+                  <span className="text-[15px] md:text-[15px] lg:text-[12px] xl:text-[15px] font-medium text-gray-800">
                     {item}
                   </span>
                 </motion.div>
@@ -193,7 +193,9 @@ export const AboutCompany = () => {
             {/* Button */}
             <motion.a
               href="/about-us"
-              className="shine-btn group mt-10 inline-flex items-center gap-3  bg-black px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#D4AF37] hover:text-black"
+              className="shine-btn group mt-10 inline-flex items-center gap-3  bg-black px-7 py-3.5 text-[10px]
+                sm:text-sm
+                xl:text-base font-semibold text-white transition-all duration-300 hover:bg-[#D4AF37] hover:text-black"
               variants={buttonVariants}
               initial="hidden"
               whileInView="visible"

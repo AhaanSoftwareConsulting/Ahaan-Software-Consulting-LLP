@@ -136,7 +136,8 @@ export function HomeBanner() {
                 2xl:px-8
                 py-3
                 xl:py-3.5
-                text-sm
+                text-[10px]
+                sm:text-sm
                 xl:text-base
                 font-semibold
                 text-black
