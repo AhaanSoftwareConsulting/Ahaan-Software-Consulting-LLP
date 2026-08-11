@@ -139,7 +139,7 @@ export const WhyChooseUs: React.FC = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#fff] leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
             Engineered for
             <span className=""> Performance</span> & Trust.
           </h2>

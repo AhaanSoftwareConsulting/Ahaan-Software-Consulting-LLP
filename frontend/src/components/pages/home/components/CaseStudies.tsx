@@ -85,7 +85,7 @@ export const CaseStudies = () => {
         {/* Section Header */}
 <div className="max-w-6xl mx-auto text-center mb-16">
 
-  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+  <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#1c1d20] leading-tight">
     Our Success Stories
   </h2>
 
