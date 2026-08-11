@@ -144,7 +144,7 @@ export const WhyChooseUs: React.FC = () => {
             <span className=""> Performance</span> & Trust.
           </h2>
 
-          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] text-sm sm:text-base lg:text-lg leading-7 sm:leading-8">
+          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] text-sm sm:text-base lg:text-lg leading-relaxed">
             We aren't just another service provider. We act as a high-velocity
             extension of your core engine, combining modern workflows with
             precise tactical execution.
