@@ -69,7 +69,7 @@ export const AboutCompany = () => {
         <h1
           className="select-none text-center font-black uppercase tracking-[0.08em] text-[#000000]"
           style={{
-            fontSize: "clamp(55px, 8.9vw, 170px)",
+            fontSize: "clamp(52px, 8.9vw, 170px)",
             lineHeight: 0.9,
             WebkitMaskImage:
               "linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.08) 60%, rgba(0,0,0,0) 100%)",
@@ -142,7 +142,7 @@ export const AboutCompany = () => {
           {/* ================= Content ================= */}
           <div>
             <motion.h2
-              className="relative z-20 text-3xl font-extrabold leading-tight text-[#1c1d20] sm:text-4xl"
+              className="relative z-20 text-2xl lg:text-3xl xl:text-5xl font-extrabold leading-tight text-[#1c1d20]"
               variants={headingVariants}
               initial="hidden"
               whileInView="visible"
@@ -152,7 +152,7 @@ export const AboutCompany = () => {
             </motion.h2>
 
             <motion.p
-              className="mt-3 text-sm leading-7 text-gray-700 lg:text-base"
+              className="mt-3 text-xs sm:text-sm leading-7 text-gray-700 lg:text-base"
               variants={paraVariants}
               initial="hidden"
               whileInView="visible"
