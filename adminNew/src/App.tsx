@@ -35,12 +35,12 @@ import EditDevelopment from "./Components/Pages/EditDevelopment";
 
 import Profile from "./Components/Pages/Profile";
 
-import LoginView from "./Components/features/user/login/LoginView.jsx";
-import RegisterView from "./Components/features/user/register/RegisterView.jsx";
-import ProtectedRoute from "./Components/features/ProtectedRoute.jsx";
-import PendingUser from "./Components/Pages/PendingUser";
-import AcceptUser from "./Components/Pages/AcceptUser";
-import RejectUser from "./Components/Pages/RejectUser";
+// import LoginView from "./Components/features/user/login/LoginView";
+// import RegisterView from "./Components/features/user/register/RegisterView";
+// import ProtectedRoute from "./Components/features/ProtectedRoute";
+// import PendingUser from "./Components/Pages/PendingUser";
+// import AcceptUser from "./Components/Pages/AcceptUser";
+// import RejectUser from "./Components/Pages/RejectUser";
 
 import PageLoader from "./Components/Common/PageLoader";
 
@@ -119,9 +119,9 @@ function LayoutWrapper() {
               />
            
               {/* USER */}
-            <Route path="/pending-users" element={<PendingUser/>} />
+            {/* <Route path="/pending-users" element={<PendingUser/>} />
             <Route path= "/approved-users" element={<AcceptUser/>} />
-            <Route path= "/rejected-users" element={<RejectUser/>}/>
+            <Route path= "/rejected-users" element={<RejectUser/>}/> */}
 
               {/* Profile */}
               <Route path="/profile" element={<Profile />} />
@@ -156,20 +156,20 @@ export default function App() {
               {/* User Authentication */}
 
               {/* ===================== PUBLIC ROUTES ===================== */}
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/register" element={<RegisterView />} />
+          {/* <Route path="/login" element={<LoginView />} />
+          <Route path="/register" element={<RegisterView />} /> */}
 
           {/* ===================== PROTECTED ROUTES ===================== */}
-          <Route
+          {/* <Route
             path="/*"
             element={
               <ProtectedRoute>
                 <LayoutWrapper />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
-          {/* <Route path="/*" element={<LayoutWrapper />} /> */}
+          <Route path="/*" element={<LayoutWrapper />} />
         </Routes>
       </BrowserRouter>
     </SearchContext.Provider>
