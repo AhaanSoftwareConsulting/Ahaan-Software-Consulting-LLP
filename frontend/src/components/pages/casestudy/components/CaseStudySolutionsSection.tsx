@@ -1,6 +1,6 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { CheckCircle, Lightbulb } from "@phosphor-icons/react";
+
 import type { Solution } from "../../../../types/caseStudies";
 
 interface SolutionsSectionProps {
