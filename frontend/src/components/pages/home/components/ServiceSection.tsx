@@ -208,7 +208,7 @@ export const ServicesSection = () => {
                 viewport={{ once: false, amount: 0.5 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
             >
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+                <h2 className="text-2xl lg:text-3xl xl:text-5xl font-extrabold text-[#1c1d20] leading-tight">
                     Our Core Services <br />
                 </h2>
                 <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
@@ -270,7 +270,7 @@ export const ServicesSection = () => {
 
             {/* Bottom Action Footer Buttons */}
             <motion.div
-                className="mt-16 flex  items-center justify-center  gap-4 px-4"
+                className="mt-16 flex  items-center justify-center  gap-4 sm:px-4"
                 initial={{ opacity: 0, scale: 0.85 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: false, amount: 0.7 }}
