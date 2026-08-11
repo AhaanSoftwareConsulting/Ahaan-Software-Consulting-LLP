@@ -131,7 +131,7 @@ export const Connection: React.FC = () => {
             </div>
 
             {/* RIGHT SIDE: Floating Form Card */}
-            <div className="lg:col-span-5 my-0 lg:-my-28 bg-white text-zinc-900 p-6 sm:p-10 lg:p-12 rounded-3xl sm:rounded-[2.5rem] shadow-[0_0_25px_rgba(196,138,24,0.35),0_0_60px_rgba(230,179,60,0.25)] relative z-20">
+            <div className="lg:col-span-5 my-0 lg:-my-28 bg-white text-zinc-900 p-3 sm:p-10 lg:p-12 rounded-3xl sm:rounded-[2.5rem] shadow-[0_0_25px_rgba(196,138,24,0.35),0_0_60px_rgba(230,179,60,0.25)] relative z-20">
               
               {/* Form Title */}
               <div className="mb-6 sm:mb-8 text-center">
