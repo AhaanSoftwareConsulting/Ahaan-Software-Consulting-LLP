@@ -35,9 +35,9 @@ import EditDevelopment from "./Components/Pages/EditDevelopment";
 
 import Profile from "./Components/Pages/Profile";
 
-import LoginView from "./Components/features/user/login/LoginView.jsx";
-import RegisterView from "./Components/features/user/register/RegisterView.jsx";
-import ProtectedRoute from "./Components/features/ProtectedRoute.jsx";
+import {LoginView} from "./Components/features/user/login/LoginView";
+import {RegisterView} from "./Components/features/user/register/RegisterView";
+import {ProtectedRoute} from "./Components/features/ProtectedRoute";
 import PendingUser from "./Components/Pages/PendingUser";
 import AcceptUser from "./Components/Pages/AcceptUser";
 import RejectUser from "./Components/Pages/RejectUser";
