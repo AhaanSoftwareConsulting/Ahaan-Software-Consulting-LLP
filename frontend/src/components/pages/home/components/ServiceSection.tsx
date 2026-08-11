@@ -178,7 +178,7 @@ export const ServicesSection = () => {
     };
 
     return (
-        <section ref={sectionRef} className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-20 font-sans overflow-hidden">
+        <section ref={sectionRef} className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-12 font-sans overflow-hidden">
             <style>{`
         @keyframes drawStroke {
           to { stroke-dashoffset: 0; }
@@ -211,7 +211,7 @@ export const ServicesSection = () => {
                 <h2 className="text-2xl lg:text-3xl xl:text-5xl font-extrabold text-[#1c1d20] leading-tight">
                     Our Core Services <br />
                 </h2>
-                <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
+                <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2 leading-relaxed">
                     We are driven by a passion to deliver excellence through continuous
                     innovation and cutting-edge technology — creating intelligent,
                     scalable, and future-ready solutions that empower businesses,
