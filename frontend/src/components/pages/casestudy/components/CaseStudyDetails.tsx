@@ -694,7 +694,7 @@ export const CaseStudyDetails = () => {
             )}
           </div>
         </div>
-      </section>
+      </section> 
 
       {/* =================================================
       9. WHY THIS PROJECT STANDS OUT
