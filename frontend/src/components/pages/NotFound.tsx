@@ -101,7 +101,7 @@ export const NotFoundComponent = () => {
           <p className="mt-6 max-w-md text-base leading-relaxed text-slate-400">
             This page's pulse dropped to zero at{" "}
             <span className="text-red-400">03:04 AM</span>. IT has been
-            notified. IT has not responded.
+            notified.
           </p>
           <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-500">
             Something is still moving in the server room. It isn't this

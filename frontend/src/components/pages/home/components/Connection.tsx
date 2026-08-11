@@ -81,7 +81,7 @@ export const Connection: React.FC = () => {
       px-6
       py-3
       text-center
-      text-xs
+      text-[10px]
       sm:text-sm
       font-semibold
       uppercase
@@ -111,7 +111,7 @@ export const Connection: React.FC = () => {
       px-6
       py-3
       text-center
-      text-xs
+      text-[10px]
       sm:text-sm
       font-semibold
       uppercase
