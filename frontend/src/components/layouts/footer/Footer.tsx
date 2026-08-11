@@ -146,16 +146,16 @@ export const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: "Cookie Policy", url: "/cookie-policy" },
-    { name: "Environmental Policy", url: "/environmental-policy" },
-    { name: "Grievance Policy", url: "/grievance-policy" },
+    { name: "Cookie Policy", url: "/policy/cookie-policy" },
+    { name: "Environmental Policy", url: "/policy/environmental-policy" },
+    { name: "Grievance Policy", url: "/policy/grievance-policy" },
     {
       name: "Information Security Policy",
-      url: "/information-security-policy",
+      url: "/policy/information-security-policy",
     },
     {
       name: "Intellectual Property Policy",
-      url: "/intellectual-property-policy",
+      url: "/policy/intellectual-property-policy",
     },
   ];
 
@@ -564,7 +564,7 @@ export const Footer = () => {
                 href="/policy/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition hover:text-[#6c4cff]"
+                className="transition hover:text-[#E3B03A]"
               >
                 Privacy Policy
               </a>
@@ -572,10 +572,10 @@ export const Footer = () => {
               <span className="text-gray-700">|</span>
 
               <a
-                href="/terms-conditions"
+                href="/policy/terms-conditions"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition hover:text-[#6c4cff]"
+                className="transition hover:text-[#E3B03A]"
               >
                 Terms & Conditions
               </a>
