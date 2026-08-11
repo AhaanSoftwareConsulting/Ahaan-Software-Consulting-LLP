@@ -177,11 +177,11 @@ const ViewTeams = () => {
                   : ""
               }`}
             >
-              <div className="aspect-[4/3] overflow-hidden">
+              <div className="overflow-hidden">
                 <img
                   src={team.image}
                   alt={team.name}
-                  className="h-full w-full object-cover transition duration-300 hover:scale-105"
+                  className="h-full w-full object-cover object-top transition duration-300 hover:scale-105"
                 />
               </div>
 

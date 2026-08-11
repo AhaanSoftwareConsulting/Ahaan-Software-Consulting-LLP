@@ -99,7 +99,7 @@ const ConnectForm: React.FC = () => {
               filtered.map((item, index) => (
                 <tr
                   key={item._id}
-                  className={`transition hover:bg-yellow-50 ${
+                  className={`transition hover:bg-gradient-to-r from-[#fff] to-[#fd9c00cb] ${
                     index % 2 === 0
                       ? "bg-white"
                       : "bg-gray-100"

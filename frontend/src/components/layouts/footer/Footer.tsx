@@ -8,6 +8,7 @@ import {
   BehanceLogoIcon,
   DribbbleLogoIcon,
   CaretDown,
+  TelegramLogo,
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { CallToAction } from "../../pages/home/components/CallToAction";
@@ -165,7 +166,7 @@ export const Footer = () => {
       <footer className="relative overflow-hidden bg-[#000] text-white">
         <div className="mx-auto w-full max-w-[1600px] px-4 lg:px-6">
           {/* ================= Newsletter ================= */}
-          <div className="flex flex-col items-center justify-between gap-10 py-14 lg:flex-row">
+          <div className="flex flex-col items-center justify-between gap-10 py-14 md:flex-row">
             {/* Left */}
             <div className="flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:text-left">
               {/* Logo */}
@@ -180,7 +181,7 @@ export const Footer = () => {
 
               {/* Content */}
               <div>
-                <h2 className="text-2xl font-semibold leading-tight sm:text-2xl lg:text-3xl">
+                <h2 className="text-xl font-semibold leading-tight  lg:text-3xl">
                   News Subscription
                 </h2>
 
@@ -194,53 +195,36 @@ export const Footer = () => {
             <div className="flex w-full flex-col gap-2 lg:w-auto">
               <form
                 onSubmit={handleNewsletterSubmit}
-                className="flex w-full flex-col gap-4 md:flex-row lg:w-auto"
+                className="w-full lg:w-auto"
               >
-                <div className="relative">
+                <div className="relative w-full md:w-[418px]">
+
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email Address"
                     disabled={loading}
-                    className="h-14 w-full rounded-full border border-gray-700 bg-transparent px-6 pr-14 outline-none placeholder:text-gray-400 disabled:opacity-50 md:w-[380px]"
+                    className="h-14 w-full rounded-full border border-gray-700 bg-transparent pl-6 pr-36 outline-none placeholder:text-gray-400 disabled:opacity-50 md:w-[420px]"
                   />
 
-                  <EnvelopeSimple
-                    size={22}
-                    className="absolute right-5 top-1/2 -translate-y-1/2 text-[#E6B33C]"
-                  />
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="absolute right-1 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full  bg-gradient-to-r  from-[#C48A18] to-[#E6B33C] text-black  shadow-xl transition-all duration-300  hover:scale-105  hover:from-[#B57A0C] hover:to-[#D69D20] disabled:opacity-50">
+                    {loading ? (
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent" />
+                    ) : (
+                      <TelegramLogo size={22} weight="fill" />
+                    )}
+                  </button>
                 </div>
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="shine-btn relative overflow-hidden uppercase
-        bg-gradient-to-r
-        from-[#C48A18]
-        to-[#E6B33C]
-        px-5
-        py-3
-        text-sm
-        font-semibold
-        text-black
-        shadow-xl
-        transition-all
-        duration-300
-        hover:-translate-y-0.5
-        hover:from-[#B57A0C]
-        hover:to-[#D69D20]
-        disabled:opacity-50
-        xl:px-6
-        xl:py-3.5
-        xl:text-base
-        2xl:px-8"
-                >
-                  {loading ? "Subscribing..." : "Subscribe"}
-                </button>
               </form>
             </div>
           </div>
+
+           
 
           {/* Divider */}
           <div className="border-t border-gray-800"></div>
