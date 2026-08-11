@@ -40,7 +40,7 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
     >
       {/* Corner ribbon */}
       <span
-        className="absolute left-0 top-3 z-20 -translate-x-1 rotate-[-45deg] px-6 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-md sm:text-[10px]"
+        className="absolute left-0 top-3 z-20 -translate-x-4 rotate-[-45deg] px-6 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-md sm:text-[10px]"
         style={{ background: accent }}
       >
         Live
@@ -53,7 +53,7 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
         decoding="async"
         draggable={false}
         className="
-          h-40
+          h-60
           w-full
           object-cover
           transition-transform
@@ -62,10 +62,10 @@ const GalleryImage = memo(({ src, alt, href, accent }: GalleryImageProps) => {
           group-hover:scale-110
           group-hover:rotate-1
 
-          sm:h-52
-          md:h-64
+          sm:h-105
+          md:h-150
           lg:h-72
-          xl:h-[300px]
+          xl:h-[500px]
         "
       />
 

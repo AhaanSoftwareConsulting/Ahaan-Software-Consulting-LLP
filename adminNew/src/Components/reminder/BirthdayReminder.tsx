@@ -48,7 +48,7 @@ export default function BirthdayReminder() {
   };
     return (
   <div className="max-h-[520px] overflow-y-auto rounded-xl bg-white p-5 shadow-lg">
-    <h4 className="sticky top-0 z-10 border-b bg-white pb-3 text-base font-bold text-gray-800">
+    <h4 className="sticky top-0 z-10 border-b border-gray-200 bg-white pb-3 text-base font-bold text-gray-800">
       🎂 Upcoming Birthdays
     </h4>
 

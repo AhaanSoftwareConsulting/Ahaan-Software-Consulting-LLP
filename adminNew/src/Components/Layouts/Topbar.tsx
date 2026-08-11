@@ -216,12 +216,12 @@ useEffect(() => {
 }, []);
 
 return (
-  <div className="w-full rounded-2xl bg-white p-4 shadow-sm">
+  <div className="w-full rounded-2xl bg-white p-4 ">
     <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
       {/* LEFT */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center">
         {/* Weather */}
-        <div className="flex min-w-[210px] items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+        <div className="flex min-w-[210px] items-center gap-3 rounded-xl border border-gray-100 bg-gradient-to-r from-[#fff] to-[#fd9c00cb] px-4 py-3">
          {getWeatherIcon()}
 
           <div>
@@ -236,10 +236,10 @@ return (
         </div>
 
         {/* Date */}
-        <div className="flex min-w-[220px] items-center gap-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3">
+        <div className="flex min-w-[220px] items-center gap-3 rounded-xl border border-gray-100 bg-gradient-to-r from-[#fff] to-[#fd9c00cb] px-4 py-3">
           <FaRegCalendarAlt
             size={22}
-            className="text-amber-500"
+            
           />
 
           <div>
