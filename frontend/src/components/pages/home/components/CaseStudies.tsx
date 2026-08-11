@@ -89,7 +89,7 @@ export const CaseStudies = () => {
     Our Success Stories
   </h2>
 
-  <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#00000] leading-7  mx-auto">
+  <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#00000] leading-relaxed  mx-auto">
     Explore how we've helped businesses transform their digital presence
     through innovative web solutions, strategic design, and scalable
     development that deliver measurable results.
