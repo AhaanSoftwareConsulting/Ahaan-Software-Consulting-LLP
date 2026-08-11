@@ -9,6 +9,9 @@ import {
   DribbbleLogoIcon,
   CaretDown,
   TelegramLogo,
+  InstagramLogo,
+ 
+  
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { CallToAction } from "../../pages/home/components/CallToAction";
@@ -38,6 +41,15 @@ const socialLinks = [
     gradient: "hover:bg-gradient-to-r hover:from-[#0077b5] hover:to-[#00a0dc]",
     tooltipGradient: "bg-gradient-to-r from-[#0077b5] to-[#00a0dc]",
   },
+{
+  name: "Instagram",
+  url: "https://www.instagram.com/ahaansoftware",
+  Icon: InstagramLogo,
+  gradient:
+    "hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FCAF45]",
+  tooltipGradient:
+    "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
+},
   {
     name: "Github",
     url: "https://github.com/AhaanSoftwareConsulting",
