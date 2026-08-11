@@ -184,7 +184,7 @@ export default function Dashboard() {
           right-5
           top-5
           text-3xl
-          text-amber-400
+         
           transition-all
           duration-300
           group-hover:rotate-6
@@ -258,7 +258,7 @@ export default function Dashboard() {
             title="Blogs"
             subtitle="Latest Articles & Updates"
             value={blogCount}
-            icon={<FaChartArea />}
+            icon={<FaChartArea style={{ color: "#c7cef9" }}/>}
           />
 
           {/* Connect */}
@@ -266,7 +266,7 @@ export default function Dashboard() {
             title="Connect"
             subtitle="Client Meeting Requests"
             value={connectCount}
-            icon={<FaChartPie />}
+            icon={<FaChartPie   style={{ color: "#d4f9c7" }}/>}
           />
 
           {/* Contact */}
@@ -274,7 +274,7 @@ export default function Dashboard() {
             title="Contact"
             subtitle="Customer Enquiries & Support"
             value={contactCount}
-            icon={<FaChartBar />}
+            icon={<FaChartBar style={{ color: "#f9c7c7" }}/>}
           />
 
           {/* Visitors */}
@@ -282,7 +282,7 @@ export default function Dashboard() {
             title="Visitors"
             subtitle="Website Traffic Overview"
             value={<VisitorCounter />}
-            icon={<FaChartLine />}
+            icon={<FaChartLine style={{ color: "#f9ecc7" }}/>}
           />
         </div>
 

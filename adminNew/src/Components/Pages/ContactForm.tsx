@@ -58,7 +58,7 @@ const ContactForm: React.FC = () => {
   return (
     <div className="px-4 py-6">
       <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
-        <div className="overflow-x-auto">
+        <div className="overflow-3">
           <table className="min-w-full text-sm">
             <thead className="bg-black text-[#EBB428]">
               <tr>
@@ -76,34 +76,38 @@ const ContactForm: React.FC = () => {
               {filtered.length > 0 ? (
                 filtered.map((item, index) => (
                   <tr
-                    key={item._id}
-                    className="border-b transition hover:bg-yellow-50"
-                  >
-                    <td className="px-4 py-4">{index + 1}</td>
+                  key={item._id}
+                  className={`transition hover:bg-gradient-to-r from-[#fff] to-[#fd9c00cb] ${
+                    index % 2 === 0
+                      ? "bg-white"
+                      : "bg-gray-100"
+                  }`}
+                >
+                    <td className="px-3 py-3">{index + 1}</td>
 
-                    <td className="px-4 py-4 font-medium">
+                    <td className="px-3 py-3 font-medium">
                       {item.name}
                     </td>
 
-                    <td className="px-4 py-4">
+                    <td className="px-3 py-3">
                       {item.email}
                     </td>
 
-                    <td className="px-4 py-4">
+                    <td className="px-3 py-3">
                       {item.phone}
                     </td>
 
-                    <td className="px-4 py-4">
+                    <td className="px-3 py-3">
                       {item.website}
                     </td>
 
-                    <td className="max-w-xs px-4 py-4">
+                    <td className="max-w-xs px-3 py-3">
                       <p className="line-clamp-2">
                         {item.message}
                       </p>
                     </td>
 
-                    <td className="px-4 py-4 whitespace-nowrap text-gray-500">
+                    <td className="px-3 py-3 whitespace-nowrap text-gray-500">
                       {new Date(item.createdAt).toLocaleString()}
                     </td>
                   </tr>

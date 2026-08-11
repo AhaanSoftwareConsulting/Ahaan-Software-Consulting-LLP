@@ -106,8 +106,14 @@ const ManageDesigns: React.FC = () => {
                 filteredDesigns.map((item, index) => (
                   <tr
                     key={item._id}
-                    className="border-b hover:bg-yellow-50"
+                    className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
+                    index % 2 === 0
+                      ? "bg-white"
+                      : "bg-gray-100"
+                  }`}
                   >
+                    
+                    
                     <td className="px-4 py-4">
                       {index + 1}
                     </td>
@@ -116,7 +122,7 @@ const ManageDesigns: React.FC = () => {
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="h-16 w-20 rounded-md border object-cover"
+                        className="h-10 w-20 rounded-md shadow-sm object-cover"
                       />
                     </td>
 
@@ -136,7 +142,7 @@ const ManageDesigns: React.FC = () => {
                     </td>
 
                     <td className="px-4 py-4">
-                      <span className="rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-700">
+                      <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm font-medium text-yellow-700">
                         {item.category || "N/A"}
                       </span>
                     </td>
