@@ -3,48 +3,52 @@ import { Check, X, Clock, Image as ImageIcon } from "@phosphor-icons/react";
 import { toast } from "react-toastify";
 import { getPendingUsersAPI, approveUserAPI, rejectUserAPI } from "../Api/userapi";
 
-interface User {
-  _id: string;
-  name: string;
-  email: string;
-  role: string;
+// Matches the flat row shape returned by approval.repository.js -> getPendingRequests()
+interface PendingRequest {
+  request_id: string;
+  requested_at: string;
   status: string;
-  profilePicture?: string;
+  user_id: string;
+  email: string;
+  full_name: string;
+  role: string;
 }
 
 export const PendingUser = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [requests, setRequests] = useState<PendingRequest[]>([]);
 
   const fetchUsers = async () => {
-  try {
-    const res = await getPendingUsersAPI();
-    // Backend returns { data, count } — adjust here if your service
-    // nests the user under request.user instead of flat fields
-    setUsers(res.data.data);
-  } catch (err) {
-    console.error(err);
-  }
-};
+    try {
+      const res = await getPendingUsersAPI();
+      // controller wraps rows in { data, count }
+      setRequests(res.data.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-const approveUser = async (id: string) => {
-  try {
-    await approveUserAPI(id);
-    toast.success("User Approved Successfully");
-    fetchUsers();
-  } catch (err) {
-    console.error(err);
-  }
-};
+  const approveUser = async (requestId: string) => {
+    try {
+      await approveUserAPI(requestId);
+      toast.success("User Approved Successfully");
+      fetchUsers();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to approve user");
+    }
+  };
 
-const rejectUser = async (id: string) => {
-  try {
-    await rejectUserAPI(id);
-    toast.error("User Rejected Successfully");
-    fetchUsers();
-  } catch (err) {
-    console.error(err);
-  }
-};
+  const rejectUser = async (requestId: string) => {
+    try {
+      await rejectUserAPI(requestId);
+      toast.error("User Rejected Successfully");
+      fetchUsers();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to reject user");
+    }
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
@@ -67,7 +71,7 @@ const rejectUser = async (id: string) => {
             </thead>
 
             <tbody className="divide-y divide-gray-100">
-              {users.length === 0 ? (
+              {requests.length === 0 ? (
                 <tr>
                   <td colSpan={7} className="py-12 text-center text-gray-500">
                     <div className="flex flex-col items-center justify-center gap-2">
@@ -77,42 +81,35 @@ const rejectUser = async (id: string) => {
                   </td>
                 </tr>
               ) : (
-                users.map((user, index) => (
-                  <tr key={user._id} className="hover:bg-gray-50 transition-colors">
+                requests.map((req, index) => (
+                  <tr key={req.request_id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-medium text-gray-500">
                       {index + 1}
                     </td>
 
                     <td className="px-6 py-4">
-                      {user.profilePicture ? (
-                        <img
-                          src={user.profilePicture}
-                          alt={user.name}
-                          className="h-14 w-14 rounded-full object-cover border border-gray-200"
-                        />
-                      ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400 border border-gray-200">
-                          <ImageIcon size={24} />
-                        </div>
-                      )}
+                      {/* No profilePicture column exists on users table (per approval.repository.js) */}
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400 border border-gray-200">
+                        <ImageIcon size={24} />
+                      </div>
                     </td>
 
                     <td className="px-6 py-4 font-medium text-gray-900">
-                      {user.name}
+                      {req.full_name}
                     </td>
 
                     <td className="px-6 py-4 text-gray-600">
-                      {user.email}
+                      {req.email}
                     </td>
 
                     <td className="px-6 py-4 capitalize text-gray-600">
-                      {user.role?.replace("_", " ")}
+                      {req.role?.replace("_", " ")}
                     </td>
 
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 capitalize">
                         <Clock size={14} weight="bold" />
-                        {user.status}
+                        {req.status}
                       </span>
                     </td>
 
@@ -120,7 +117,7 @@ const rejectUser = async (id: string) => {
                       <div className="flex items-center justify-center gap-2">
                         <button
                           type="button"
-                          onClick={() => approveUser(user._id)}
+                          onClick={() => approveUser(req.request_id)}
                           className="inline-flex items-center gap-1 rounded-md bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors"
                         >
                           <Check size={14} weight="bold" />
@@ -129,7 +126,7 @@ const rejectUser = async (id: string) => {
 
                         <button
                           type="button"
-                          onClick={() => rejectUser(user._id)}
+                          onClick={() => rejectUser(req.request_id)}
                           className="inline-flex items-center gap-1 rounded-md bg-red-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 transition-colors"
                         >
                           <X size={14} weight="bold" />
