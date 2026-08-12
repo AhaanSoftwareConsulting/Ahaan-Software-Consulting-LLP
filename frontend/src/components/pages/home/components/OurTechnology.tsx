@@ -156,7 +156,7 @@ const InfiniteMarquee = ({
 
   return (
     <div
-      className="overflow-hidden w-full py-3 -my-3"
+      className="overflow-hidden w-full py-1 -my-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
