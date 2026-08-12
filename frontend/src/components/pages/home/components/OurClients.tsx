@@ -93,8 +93,8 @@ const logoVariants = {
 
 export const OurClients = () => {
   return (
-    <section className="bg-white py-16">
-      <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
+    <section className="bg-white py-12">
+      <div className="mx-auto max-w-[1600px] px-0 lg:px-6 2xl:px-10">
         {/* Simple Header */}
         <motion.div
           className="max-w-6xl mx-auto text-center px-4"
@@ -103,10 +103,10 @@ export const OurClients = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#1c1d20] leading-tight">
             Our Clients
           </h2>
-          <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#161616] leading-7  mx-auto mb-8">
+          <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#161616] leading-relaxed  mx-auto mb-8">
             From strategy and planning to development, testing, and deployment,
             we follow a structured process that ensures every project is
             delivered with quality, efficiency, and measurable business results.

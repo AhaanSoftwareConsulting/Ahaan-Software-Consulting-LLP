@@ -139,12 +139,12 @@ export const WhyChooseUs: React.FC = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#fff] leading-tight">
+          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
             Engineered for
             <span className=""> Performance</span> & Trust.
           </h2>
 
-          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] text-sm sm:text-base lg:text-lg leading-7 sm:leading-8">
+          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] text-sm sm:text-base lg:text-lg leading-relaxed">
             We aren't just another service provider. We act as a high-velocity
             extension of your core engine, combining modern workflows with
             precise tactical execution.

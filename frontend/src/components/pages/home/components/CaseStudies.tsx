@@ -85,11 +85,11 @@ export const CaseStudies = () => {
         {/* Section Header */}
 <div className="max-w-6xl mx-auto text-center mb-16">
 
-  <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+  <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#1c1d20] leading-tight">
     Our Success Stories
   </h2>
 
-  <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#00000] leading-7  mx-auto">
+  <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#00000] leading-relaxed  mx-auto">
     Explore how we've helped businesses transform their digital presence
     through innovative web solutions, strategic design, and scalable
     development that deliver measurable results.

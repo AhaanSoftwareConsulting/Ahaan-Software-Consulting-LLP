@@ -156,7 +156,7 @@ const InfiniteMarquee = ({
 
   return (
     <div
-      className="overflow-hidden w-full"
+      className="overflow-hidden w-full py-3 -my-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -195,7 +195,7 @@ const rowVariants = (reverse: boolean) => ({
 
 export const OurTechnology = () => {
   return (
-    <section className="py-20 bg-white overflow-hidden">
+    <section className="md:py-5 lg:py-15 bg-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
 
         {/* Header */}
@@ -210,7 +210,7 @@ export const OurTechnology = () => {
             Our Technology Use
           </h2>
 
-          <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#00000] leading-7  mx-auto">
+          <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#00000] leading-relaxed  mx-auto">
             We leverage modern technologies to build secure, scalable, and
             future-ready digital solutions that streamline business operations,
             enhance user experiences, and help businesses innovate, grow, and
@@ -219,7 +219,7 @@ export const OurTechnology = () => {
         </motion.div>
 
         {/* Technology Marquee */}
-        <div className="mt-16 space-y-5">
+        <div className="mt-16 mb-10 lg:mb-4 space-y-5">
 
           {/* First Row */}
           <motion.div

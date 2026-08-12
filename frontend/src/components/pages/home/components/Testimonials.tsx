@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import {CaretLeftIcon , CaretRightIcon } from "@phosphor-icons/react";
 
@@ -15,6 +16,10 @@ export default function Testimonials() {
   const [transition, setTransition] = useState(true);
   const [visibleCards, setVisibleCards] = useState(3);
 
+  /* =========================
+     FETCH TESTIMONIALS
+  ========================= */
+
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
@@ -22,20 +27,30 @@ export default function Testimonials() {
           "https://ahaan-admin.ahaanmedia.com/wp-json/wp/v2/testimonial"
         );
 
+        if (!response.ok) {
+          throw new Error("Failed to fetch testimonials");
+        }
+
         const data = await response.json();
 
         const formatted: Testimonial[] = await Promise.all(
           data.map(async (item: any) => {
             let image = "";
 
+            /* Fetch client image from WordPress media */
             if (item.acf?.client_image) {
-              const mediaRes = await fetch(
-                `https://ahaan-admin.ahaanmedia.com/wp-json/wp/v2/media/${item.acf.client_image}`
-              );
+              try {
+                const mediaRes = await fetch(
+                  `https://ahaan-admin.ahaanmedia.com/wp-json/wp/v2/media/${item.acf.client_image}`
+                );
 
-              const media = await mediaRes.json();
-
-              image = media.source_url;
+                if (mediaRes.ok) {
+                  const media = await mediaRes.json();
+                  image = media.source_url || "";
+                }
+              } catch (error) {
+                console.error("Image fetch error:", error);
+              }
             }
 
             return {
@@ -49,233 +64,348 @@ export default function Testimonials() {
         );
 
         setTestimonials(formatted);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        console.error("Testimonials error:", error);
       }
     };
 
     fetchTestimonials();
   }, []);
+
+  /* =========================
+     RESPONSIVE CARD COUNT
+  ========================= */
+
   useEffect(() => {
-  const resize = () => {
-    if (window.innerWidth >= 1024) {
-      setVisibleCards(3);
-    } else if (window.innerWidth >= 768) {
-      setVisibleCards(2);
+    const updateVisibleCards = () => {
+      if (window.innerWidth < 768) {
+        // Mobile
+        setVisibleCards(1);
+      } else if (window.innerWidth < 1024) {
+        // Tablet
+        setVisibleCards(2);
+      } else {
+        // Desktop
+        setVisibleCards(3);
+      }
+    };
+
+    updateVisibleCards();
+
+    window.addEventListener("resize", updateVisibleCards);
+
+    return () => {
+      window.removeEventListener("resize", updateVisibleCards);
+    };
+  }, []);
+
+  /* =========================
+     RESET INDEX WHEN SCREEN
+     SIZE CHANGES
+  ========================= */
+
+  useEffect(() => {
+    setIndex(0);
+    setTransition(false);
+
+    requestAnimationFrame(() => {
+      setTransition(true);
+    });
+  }, [visibleCards]);
+
+  /* =========================
+     SLIDER DATA
+  ========================= */
+
+  const sliderData =
+    testimonials.length > 0
+      ? [...testimonials, ...testimonials]
+      : [];
+
+  /* =========================
+     AUTO SLIDE
+  ========================= */
+
+  useEffect(() => {
+    if (!testimonials.length) return;
+
+    const timer = setInterval(() => {
+      setIndex((prev) => prev + 1);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, [testimonials]);
+
+  /* =========================
+     INFINITE LOOP RESET
+  ========================= */
+
+  useEffect(() => {
+    if (!testimonials.length) return;
+
+    /*
+      Once we reach the duplicated
+      testimonials, quietly jump back
+      to the beginning.
+    */
+
+    if (index >= testimonials.length) {
+      const timer = setTimeout(() => {
+        setTransition(false);
+        setIndex(0);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setTransition(true);
+          });
+        });
+      }, 700);
+
+      return () => clearTimeout(timer);
+    }
+  }, [index, testimonials]);
+
+  /* =========================
+     MANUAL SLIDER
+  ========================= */
+
+  const scroll = (direction: "left" | "right") => {
+    if (!testimonials.length) return;
+
+    const maxIndex = Math.max(
+      0,
+      testimonials.length - visibleCards
+    );
+
+    if (direction === "left") {
+      setIndex((prev) => {
+        if (prev <= 0) {
+          return maxIndex;
+        }
+
+        return prev - 1;
+      });
     } else {
-      setVisibleCards(1);
+      setIndex((prev) => {
+        if (prev >= maxIndex) {
+          return 0;
+        }
+
+        return prev + 1;
+      });
     }
   };
 
+  /* =========================
+     CARD WIDTH
+  ========================= */
 
-  resize();
+  const cardWidth =
+    visibleCards === 1
+      ? "100%"
+      : `calc(${100 / visibleCards}% - ${
+          ((visibleCards - 1) * 32) / visibleCards
+        }px)`;
 
-  window.addEventListener("resize", resize);
+  return (
+    <section className="relative mx-auto max-w-[1600px] overflow-hidden px-4 py-12 sm:px-6 lg:px-6 lg:py-20 2xl:px-10">
+      {/* =========================
+          HEADING
+      ========================= */}
 
-  return () => window.removeEventListener("resize", resize);
-}, []);
+      <div className="mx-auto mb-16 max-w-6xl text-center">
+        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold leading-tight text-[#1c1d20] ">
+          What Our Clients Say
+        </h2>
 
-const sliderData =
-  testimonials.length > 0
-    ? [...testimonials, ...testimonials]
-    : [];
+        <p className="mt-2 px-0 text-sm text-slate-600 sm:px-8 lg:text-base leading-relaxed">
+          Driven to be future-ready, and push beyond the building
+          blocks of technology, digital, and marketing.
+        </p>
+      </div>
 
-useEffect(() => {
-  if (!testimonials.length) return;
+      {/* =========================
+          SLIDER
+      ========================= */}
 
-  const timer = setInterval(() => {
-    setIndex((prev) => prev + 1);
-  }, 3000);
+      <div className="relative overflow-hidden">
+        {/* =========================
+            LEFT BUTTON
+        ========================= */}
 
-  return () => clearInterval(timer);
-}, [testimonials]);
+        <button
+          type="button"
+          onClick={() => scroll("left")}
+          aria-label="Previous testimonial"
+          className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition duration-300 hover:scale-110 lg:flex"
+        >
+          <CaretLeftIcon className="h-5 w-5" />
+        </button>
 
-useEffect(() => {
-  if (index >= testimonials.length && testimonials.length) {
-    const timer = setTimeout(() => {
-      setTransition(false);
-      setIndex(0);
+        {/* =========================
+            RIGHT BUTTON
+        ========================= */}
 
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setTransition(true);
-        });
-      });
-    }, 700);
+        <button
+          type="button"
+          onClick={() => scroll("right")}
+          aria-label="Next testimonial"
+          className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition duration-300 hover:scale-110 lg:flex"
+        >
+          <CaretRightIcon className="h-5 w-5" />
+          
+        </button>
 
-    return () => clearTimeout(timer);
-  }
-}, [index, testimonials]);
-const scroll = (direction: "left" | "right") => {
-  const max = Math.max(0, testimonials.length - visibleCards);
+        {/* =========================
+            RIGHT BUTTON
+        ========================= */}
 
-  if (direction === "left") {
-    setIndex((prev) => (prev <= 0 ? max : prev - 1));
-  } else {
-    setIndex((prev) => (prev >= max ? 0 : prev + 1));
-  }
-};
-return (
-  <section className="relative max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-12 lg:py-20">
+        <button
+          type="button"
+          onClick={() => scroll("right")}
+          aria-label="Next testimonial"
+          className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition duration-300 hover:scale-110 lg:flex"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className="h-5 w-5"
+          >
+            <path
+              d="M9 18l6-6-6-6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
 
-    {/* Heading */}
+        {/* =========================
+            TRACK
+        ========================= */}
 
-    <div className="max-w-6xl mx-auto  text-center mb-16">
+        <div
+          className="flex py-10"
+          style={{
+            gap: "32px",
+            transition: transition
+              ? "transform 0.7s ease"
+              : "none",
 
-      {/* <h6 className="flex items-center justify-center gap-3 uppercase tracking-[3px] text-[#C5A85A] font-semibold text-sm">
+            /*
+              The translation is based on
+              the exact card slot width.
+            */
+            transform: `translateX(calc(-${
+              index * (100 / visibleCards)
+            }% - ${
+              index * (32 / visibleCards)
+            }px))`,
+          }}
+        >
+          {sliderData.map((item, i) => (
+            <div
+              key={`${item.name}-${i}`}
+              className="relative box-border shrink-0 overflow-visible rounded-[28px] bg-neutral-100 p-6 pt-20 sm:p-8 sm:pt-20"
+              style={{
+                width: cardWidth,
+              }}
+            >
+              {/* =========================
+                  TOP QUOTE
+              ========================= */}
 
-        Testimonials
+              <div
+                className="absolute -top-8 left-5 text-6xl font-bold sm:left-6 sm:text-7xl"
+                style={{
+                  color: item.color,
+                }}
+              >
+                ❝
+              </div>
 
-        <span className="w-16 h-[2px] bg-[#C5A85A]" />
+              {/* =========================
+                  CLIENT
+              ========================= */}
 
-      </h6> */}
+              <div
+                className="absolute -top-7 right-3 flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full px-2 py-2 shadow-xl sm:right-5 sm:gap-3 sm:px-3"
+                style={{
+                  background: item.color,
+                }}
+              >
+                {item.image ? (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-10 w-10 shrink-0 rounded-full bg-white object-cover p-1 sm:h-12 sm:w-12"
+                  />
+                ) : (
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-sm font-bold text-slate-600 sm:h-12 sm:w-12">
+                    {item.name?.charAt(0)?.toUpperCase()}
+                  </div>
+                )}
 
-      <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+                <div className="min-w-0">
+                  <h4 className="truncate text-sm font-semibold text-white sm:text-base">
+                    {item.name}
+                  </h4>
+                </div>
+              </div>
 
-        What Our Clients Say
+              {/* =========================
+                  REVIEW
+              ========================= */}
 
-      </h2>
+              <p className="line-clamp-8 text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
+                {item.review}
+              </p>
 
-      <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+              {/* =========================
+                  DIVIDER
+              ========================= */}
 
-        Driven to be future-ready, and push beyond the building blocks
-        of technology, digital, and marketing.
+              <div className="my-6 h-[2px] w-24 bg-slate-300 sm:my-8 sm:w-28" />
 
-      </p>
+              {/* =========================
+                  RATING
+              ========================= */}
 
-    </div>
+              <div className="flex gap-1 text-xl sm:text-2xl">
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <span
+                    key={j}
+                    style={{
+                      color:
+                        j < item.rating
+                          ? item.color
+                          : "#ddd",
+                    }}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
 
+              {/* =========================
+                  BOTTOM QUOTE
+              ========================= */}
 
-
-    {/* Slider */}
-
-    <div className="relative  overflow-hidden">
-
-      {/* Left */}
-
-      <button
-        onClick={() => scroll("left")}
-        className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white shadow-lg items-center justify-center hover:scale-110 duration-300"
-      >
-        <CaretLeftIcon/>
-      </button>
-
-      {/* Right */}
-
-      <button
-        onClick={() => scroll("right")}
-        className="hidden lg:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white shadow-lg items-center justify-center hover:scale-110 duration-300"
-      >
-        <CaretRightIcon/>
-      </button>
-
-
-
-      {/* Track */}
-
-      <div
-        className="flex gap-8 py-10"
-        style={{
-          transition: transition
-            ? "transform .7s ease"
-            : "none",
-
-          transform: `translateX(-${
-            index * (100 / visibleCards)
-          }%)`,
-        }}
-      >
-        {sliderData.map((item, i) => (
-
-<div
-key={i}
-className="relative rounded-[28px] bg-neutral-100 overflow-visible p-8 pt-20 shrink-0"
-style={{
-flex:
-visibleCards===1
-?"0 0 100%"
-:`0 0 calc(${100/visibleCards}% - 22px)`
-}}
->
-    <div
-className="absolute -top-8 left-6 text-7xl font-bold"
-style={{
-color:item.color
-}}
->
-
-❝
-
-</div>
-<div
-className="absolute -top-7 right-5 rounded-full px-3 py-2 flex items-center gap-3 shadow-xl"
-style={{
-background:item.color
-}}
->
-
-<img
-src={item.image}
-alt={item.name}
-className="w-12 h-12 rounded-full object-cover bg-white p-1"
-/>
-
-<div>
-
-<h4 className="text-white font-semibold">
-
-{item.name}
-
-</h4>
-
-</div>
-
-</div>
-<p className="text-slate-600 leading-8 line-clamp-8">
-
-{item.review}
-
-</p>
-<div className="w-28 h-[2px] bg-slate-300 my-8"/>
-<div className="flex gap-1 text-2xl">
-
-{Array.from({length:5}).map((_,j)=>(
-
-<span
-key={j}
-style={{
-color:j<item.rating
-?item.color
-:"#ddd"
-}}
->
-
-★
-
-</span>
-
-))}
-
-</div>
-
-<div
-className="absolute -bottom-12 right-6 text-7xl font-bold"
-style={{
-color:item.color
-}}
->
-
-❞
-
-</div>
-</div>
-
-))}
-
-</div>
-
-</div>
-
-</section>
-);
+              <div
+                className="absolute -bottom-10 right-4 text-6xl font-bold sm:-bottom-12 sm:right-6 sm:text-7xl"
+                style={{
+                  color: item.color,
+                }}
+              >
+                ❞
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
+
