@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   FaEnvelope,
   FaUserTie,
@@ -9,20 +10,33 @@ import {
 import { useAppSelector } from "../app/hook";
 
 interface User {
-  name: string;
-  email: string;
-  profilePicture: string;
-  designation: string;
-  role: string;
-  status: string;
+  _id?: string;
+  id?: string;
+  name?: string;
+  fullName?: string;
+  full_name?: string;
+  email?: string;
+  profilePicture?: string;
+  designation?: string;
+  role?: string;
+  status?: string;
+  is_verified?: boolean;
+  is_active?: boolean;
   createdAt?: string;
+  created_at?: string;
   updatedAt?: string;
+  updated_at?: string;
 }
 
 export default function Profile() {
   const { user } = useAppSelector(
     (state: any) => state.user
   ) as { user: User | null };
+
+  // 🔍 CONSOLE LOG FOR DEBUGGING - Check your browser console (F12) to see what data is received!
+  useEffect(() => {
+    console.log("DEBUG: Current User object in Profile component:", user);
+  }, [user]);
 
   if (!user) {
     return (
@@ -33,6 +47,21 @@ export default function Profile() {
       </div>
     );
   }
+
+  // Safe field extractions matching your SQL schema and frontend properties
+  const displayName = user.name || user.fullName || user.full_name || "User";
+  const displayEmail = user.email || "-";
+  const displayDesignation = user.designation || "Not specified";
+  const displayRole = user.role || "Employee";
+  const displayStatus =
+    user.status ||
+    (user.is_verified ? "Approved" : "Pending Verification");
+  const avatarUrl =
+    user.profilePicture ||
+    `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}&background=ca8f2b&color=fff`;
+
+  const createdAtDate = user.createdAt || user.created_at;
+  const updatedAtDate = user.updatedAt || user.updated_at;
 
   const formatText = (text?: string) =>
     text
@@ -70,7 +99,7 @@ export default function Profile() {
         </span>
       </div>
 
-      <p className="break-words text-gray-800 font-semibold">
+      <p className="break-words font-semibold text-gray-800">
         {value}
       </p>
     </div>
@@ -87,7 +116,6 @@ export default function Profile() {
         "
       >
         {/* Header */}
-
         <div
           className="
             relative
@@ -109,7 +137,6 @@ export default function Profile() {
             "
           >
             {/* Avatar */}
-
             <div className="relative">
               <div
                 className="
@@ -129,8 +156,8 @@ export default function Profile() {
               </div>
 
               <img
-                src={user.profilePicture}
-                alt={user.name}
+                src={avatarUrl}
+                alt={displayName}
                 className="
                   relative
                   z-10
@@ -143,14 +170,13 @@ export default function Profile() {
             </div>
 
             {/* User Info */}
-
             <div className="text-center lg:text-left">
               <h1 className="text-4xl font-bold text-white">
-                {user.name}
+                {displayName}
               </h1>
 
               <p className="mt-2 text-lg text-amber-400">
-                {formatText(user.designation)}
+                {formatText(displayDesignation)}
               </p>
 
               <span
@@ -162,63 +188,58 @@ export default function Profile() {
                   py-2
                   text-sm
                   font-semibold
-
                   ${
-                    user.status === "approved"
+                    displayStatus.toLowerCase() === "approved" || user.is_verified
                       ? "bg-emerald-500 text-white"
                       : "bg-yellow-500 text-black"
                   }
                 `}
               >
-                {formatText(user.status)}
+                {formatText(displayStatus)}
               </span>
             </div>
           </div>
         </div>
 
         {/* Details */}
-
         <div
           className="
             grid
             gap-6
             p-8
-
             md:grid-cols-2
           "
         >
           <InfoCard
             icon={<FaEnvelope />}
             title="Email"
-            value={user.email}
+            value={displayEmail}
           />
 
           <InfoCard
             icon={<FaUserTie />}
             title="Designation"
-            value={formatText(user.designation)}
+            value={formatText(displayDesignation)}
           />
 
           <InfoCard
             icon={<FaUserShield />}
             title="Role"
-            value={formatText(user.role)}
+            value={formatText(displayRole)}
           />
 
           <InfoCard
             icon={<FaCheckCircle />}
             title="Status"
-            value={formatText(user.status)}
+            value={formatText(displayStatus)}
           />
 
           <InfoCard
             icon={<FaCalendarAlt />}
             title="Account Created"
             value={
-              user.createdAt
-                ? new Date(
-                    user.createdAt
-                  ).toLocaleDateString()
+              createdAtDate
+                ? new Date(createdAtDate).toLocaleDateString()
                 : "-"
             }
           />
@@ -227,10 +248,8 @@ export default function Profile() {
             icon={<FaCalendarAlt />}
             title="Last Updated"
             value={
-              user.updatedAt
-                ? new Date(
-                    user.updatedAt
-                  ).toLocaleDateString()
+              updatedAtDate
+                ? new Date(updatedAtDate).toLocaleDateString()
                 : "-"
             }
           />
