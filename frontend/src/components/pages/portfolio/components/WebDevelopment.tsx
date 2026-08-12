@@ -183,11 +183,11 @@ export default function WebDevelopment() {
   const Heading = () => (
     <div className="relative mb-12 text-center">
 
-      <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-[#1c1d20]">
+      <h2 className="heading-primary">
         Web Development Projects
       </h2>
 
-      <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#000000]">
+      <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#000000]">
         Explore our recent website projects
       </p>
     </div>

@@ -94,12 +94,12 @@ export default function AppDevelopment() {
         {/* Heading */}
         <div className="mb-10 text-center lg:mb-14">
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
 
           App Development Designs
         </h2>
 
-        <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+        <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
 
          
             Clean and modern designs for mobile and web applications
