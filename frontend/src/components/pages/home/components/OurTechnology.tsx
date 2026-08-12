@@ -206,7 +206,7 @@ export const OurTechnology = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
             Our Technology Use
           </h2>
 

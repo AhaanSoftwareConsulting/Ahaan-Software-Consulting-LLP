@@ -103,7 +103,7 @@ export const OurClients = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
             Our Clients
           </h2>
           <p className="lg:text-base text-sm px-4 sm:px-8 mt-3 text-[#161616] leading-relaxed  mx-auto mb-8">

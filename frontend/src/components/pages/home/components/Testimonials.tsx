@@ -214,7 +214,7 @@ export default function Testimonials() {
       ========================= */}
 
       <div className="mx-auto mb-16 max-w-6xl text-center">
-        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold leading-tight text-[#1c1d20] ">
+        <h2 className="heading-primary">
           What Our Clients Say
         </h2>
 
