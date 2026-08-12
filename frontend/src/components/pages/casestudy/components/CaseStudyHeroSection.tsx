@@ -31,7 +31,10 @@ export const CaseStudyHeroSection = ({
 
       <div className="relative z-10 mx-auto flex min-h-[500px] max-w-[1400px] items-center px-5 py-20 md:px-10 2xl:px-16">
         <div className="max-w-3xl xl:max-w-4xl">
-          <h1 className="mb-5 text-3xl font-bold uppercase tracking-tight text-[#DCA32C] md:text-4xl xl:text-6xl">
+          <h1 
+            className="mb-5 text-3xl font-bold uppercase tracking-tight md:text-4xl xl:text-6xl"
+            style={{ color: "var(--theme-color)" }}
+          >
             {caseStudy.title.rendered}
           </h1>
 
@@ -47,7 +50,10 @@ export const CaseStudyHeroSection = ({
           <div className="mt-8 max-w-xl overflow-hidden rounded-lg border border-white/40 bg-black/40 backdrop-blur-sm xl:max-w-2xl">
             <div className="grid grid-cols-2">
               <div className="border-b border-r border-white/30 p-5 xl:p-6">
-                <p className="mb-2 text-xs font-semibold text-[#DCA32C] xl:text-sm">
+                <p 
+                  className="mb-2 text-xs font-semibold xl:text-sm"
+                  style={{ color: "var(--theme-color)" }}
+                >
                   Industry
                 </p>
                 <p className="text-sm text-white xl:text-base">
@@ -56,7 +62,10 @@ export const CaseStudyHeroSection = ({
               </div>
 
               <div className="border-b border-white/30 p-5 xl:p-6">
-                <p className="mb-2 text-xs font-semibold text-[#DCA32C] xl:text-sm">
+                <p 
+                  className="mb-2 text-xs font-semibold xl:text-sm"
+                  style={{ color: "var(--theme-color)" }}
+                >
                   Platform
                 </p>
                 <p className="text-sm text-white xl:text-base">
@@ -65,7 +74,10 @@ export const CaseStudyHeroSection = ({
               </div>
 
               <div className="col-span-2 p-5 xl:p-6">
-                <p className="mb-2 text-xs font-semibold text-[#DCA32C] xl:text-sm">
+                <p 
+                  className="mb-2 text-xs font-semibold xl:text-sm"
+                  style={{ color: "var(--theme-color)" }}
+                >
                   Services Provided
                 </p>
                 <p className="text-sm leading-6 text-white xl:text-base">

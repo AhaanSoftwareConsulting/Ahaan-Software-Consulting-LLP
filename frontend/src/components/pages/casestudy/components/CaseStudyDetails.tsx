@@ -124,6 +124,9 @@ export const CaseStudyDetails = () => {
   // =====================================================
   const acf = caseStudy.acf || ({} as any);
 
+  // Dynamic Theme Color (WP ACF Field: theme_color)
+  const themeColor = acf.theme_color || "#0e7655";
+
   const heroImage =
     caseStudy._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
 
@@ -207,7 +210,10 @@ export const CaseStudyDetails = () => {
   const buttonText = acf.button_text || "Visit The Site";
 
   return (
-    <main className="overflow-hidden bg-white">
+    <main
+      className="overflow-hidden bg-white"
+      style={{ "--theme-color": themeColor } as React.CSSProperties}
+    >
       <CaseStudyHeroSection
         caseStudy={caseStudy}
         heroImage={heroImage}
