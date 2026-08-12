@@ -25,7 +25,7 @@ const middleRightImages: string[] = [
 
 // .side-image-card
 const cardBase =
-  "w-[100px] xl:w-full max-w-[130px] h-[150px] overflow-hidden rounded-md " +
+  "w-[100px] xl:w-full max-w-[125px] h-[150px] overflow-hidden rounded-md " +
   "shadow-[0_10px_20px_rgba(0,0,0,0.15),0_20px_40px_rgba(0,0,0,0.25),0_30px_60px_rgba(0,0,0,0.15)]";
 
 // .image-column
@@ -33,7 +33,7 @@ const imageColumn = "flex flex-col gap-2.5 min-[501px]:max-[991px]:gap-[5px]";
 
 // .first-column  -> hidden below 992px, opacity 80% between 992-1023px
 const firstColumn =
-  "relative bottom-[-100px] hidden lg:flex min-[992px]:max-[1023px]:opacity-80";
+  "relative bottom-[-100px] hidden min-[1024px]:flex min-[992px]:max-[1023px]:opacity-80";
 
 // .second-column -> hidden below 992px, opacity 90% between 992-1023px
 const secondColumn =
@@ -98,7 +98,7 @@ export const BusinessCard = () => {
         {/* --- Main image layout row --- */}
         <motion.div
           className={
-            "flex items-start relative justify-center gap-1.5 md:gap-2 lg:gap-2.5 min-h-[200px] " +
+            "flex items-start relative justify-center gap-1.5 md:gap-2 lg:gap-2 min-h-[200px] " +
             "min-[992px]:max-[1023px]:min-h-[150px] " +
             "min-[501px]:max-[991px]:gap-2 min-[501px]:max-[991px]:min-h-[150px] " +
             " sm:min-h-[150px]"
@@ -230,7 +230,7 @@ export const BusinessCard = () => {
           className={
             "relative -top-5 text-center max-w-[100%] " +
             "min-[992px]:max-[1024px]:top-[-100px] min-[768px]:max-[1023px]:max-w-[50%] " +
-            "min-[501px]:max-[991px]:top-[40px] " +
+            "min-[501px]:max-[992px]:top-[40px] " +
             "max-[500px]:top-[20px] sm:max-w-[60%]"
           }
           variants={centerTextVariants}
