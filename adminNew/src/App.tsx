@@ -119,9 +119,9 @@ function LayoutWrapper() {
               />
            
               {/* USER */}
-            {/* <Route path="/pending-users" element={<PendingUser/>} />
+            <Route path="/pending-users" element={<PendingUser/>} />
             <Route path= "/approved-users" element={<AcceptUser/>} />
-            <Route path= "/rejected-users" element={<RejectUser/>}/> */}
+            <Route path= "/rejected-users" element={<RejectUser/>}/>
 
               {/* Profile */}
               <Route path="/profile" element={<Profile />} />
@@ -156,18 +156,18 @@ export default function App() {
               {/* User Authentication */}
 
               {/* ===================== PUBLIC ROUTES ===================== */}
-          {/* <Route path="/login" element={<LoginView />} />
-          <Route path="/register" element={<RegisterView />} /> */}
+          <Route path="/login" element={<LoginView />} />
+          <Route path="/register" element={<RegisterView />} />
 
           {/* ===================== PROTECTED ROUTES ===================== */}
-          {/* <Route
+          <Route
             path="/*"
             element={
               <ProtectedRoute>
                 <LayoutWrapper />
               </ProtectedRoute>
             }
-          /> */}
+          />
 
           <Route path="/*" element={<LayoutWrapper />} />
         </Routes>

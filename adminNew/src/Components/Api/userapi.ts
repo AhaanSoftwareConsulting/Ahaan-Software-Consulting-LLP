@@ -9,7 +9,11 @@ const BASE_URL = "http://localhost:8000";
 
 const API: AxiosInstance = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true, // Required if sending refresh token in HTTP-Only cookies
+  withCredentials: true,
+  headers: {
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
+  },
 });
 
 // Avoid infinite loops if refresh requests fail
