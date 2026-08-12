@@ -25,7 +25,7 @@ export const CaseStudyProjectOverviewSection = ({
         </div>
 
         <div>
-          <h2 className="mb-4 text-2xl font-extrabold leading-tight text-[#1c1d20] lg:text-3xl xl:text-5xl">
+          <h2 className="mb-4 heading-primary">
             Project Overview
           </h2>
           <div

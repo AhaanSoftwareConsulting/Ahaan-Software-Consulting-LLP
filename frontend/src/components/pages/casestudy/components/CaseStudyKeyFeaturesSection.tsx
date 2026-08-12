@@ -14,7 +14,7 @@ export const CaseStudyKeyFeaturesSection = ({
   return (
     <section className="bg-[#FFFCF5] py-16 md:py-24">
       <div className="mx-auto max-w-[1400px] px-5 md:px-10 2xl:px-16">
-        <h2 className="mb-14 text-center text-2xl font-extrabold leading-tight text-[#1c1d20] lg:text-3xl xl:text-5xl">
+        <h2 className="mb-14 text-center heading-primary">
           Key Features & Benefits
         </h2>
 

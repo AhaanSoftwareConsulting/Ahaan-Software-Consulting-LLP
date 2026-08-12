@@ -31,7 +31,7 @@ export const CaseStudyHeroSection = ({
 
       <div className="relative z-10 mx-auto flex min-h-[500px] max-w-[1400px] items-center px-5 py-20 md:px-10 2xl:px-16">
         <div className="max-w-3xl xl:max-w-4xl">
-          <h1 className="mb-5 text-4xl font-bold uppercase tracking-tight text-[#DCA32C] md:text-6xl xl:text-7xl">
+          <h1 className="mb-5 text-3xl font-bold uppercase tracking-tight text-[#DCA32C] md:text-4xl xl:text-6xl">
             {caseStudy.title.rendered}
           </h1>
 
