@@ -271,7 +271,7 @@ export const Footer = () => {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="leading-8 text-gray-400">
+                  <p className="leading-relaxed text-gray-400">
                     Professionally redefine transparent ROI through low-risk
                     high-yield imperatives. Progressively create empowered users
                     via team driven solutions.
