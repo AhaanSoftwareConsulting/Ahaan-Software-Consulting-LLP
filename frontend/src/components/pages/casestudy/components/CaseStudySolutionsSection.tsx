@@ -23,38 +23,7 @@ export const CaseStudySolutionsSection = ({
     restDelta: 0.001,
   });
 
-  /*
-   * IMPORTANT:
-   * The SVG path is intentionally routed through the EMPTY SPACES
-   * between the content blocks.
-   *
-   * It should never cross the text/image content.
-   */
-  //  const snakePath = `
-  //   M 220,20
-
-  //   C 520,-40 820,-30 930,150
-  //   C 1010,280 1000,470 900,590
-
-  //   C 820,680 700,700 520,700
-  //   C 350,700 190,700 105,800
-
-  //   C 15,895 15,1110 135,1180
-  //   C 190,1220 300,1220 800,1220
-
-  //   C 900,1280 700,1220 900,1270
-  //   C 985,1390 985,1540 900,1640
-
-  //   C 820,1730 690,1760 510,1760
-  //   C 340,1760 190,1770 105,1870
-
-  //   C 35,1950 35,2120 110,2190
-  //   C 200,2295 460,2245 820,2255
-
-  //   C 680,2225 790,2240 850,2310
-  // `;
-
-const snakePath = `
+  const snakePath = `
     M 220,90
 
     C 520,-40 820,-30 930,150
@@ -84,7 +53,6 @@ const snakePath = `
       className="relative overflow-hidden bg-white py-20 md:py-32"
     >
       <div className="mx-auto max-w-[1280px] px-5 md:px-10 2xl:px-16">
-
         {/* ========================================================= */}
         {/* SECTION HEADER */}
         {/* ========================================================= */}
@@ -96,13 +64,10 @@ const snakePath = `
           transition={{ duration: 0.6 }}
           className="relative z-20 mb-20 text-center"
         >
-          <h2 className="text-3xl font-extrabold tracking-tight text-[#1c1d20] md:text-4xl xl:text-5xl">
-            The Solutions Provided
-          </h2>
+          <h2 className="heading-primary">The Solutions Provided</h2>
         </motion.div>
 
         <div className="relative">
-
           {/* ========================================================= */}
           {/* DECORATIVE SNAKE LINE */}
           {/* ========================================================= */}
@@ -130,7 +95,7 @@ const snakePath = `
 
               <path
                 d={snakePath}
-                stroke="#E2A52F"
+                stroke="var(--theme-color)"
                 strokeWidth="5"
                 strokeDasharray="10 10"
                 strokeOpacity="0.20"
@@ -144,7 +109,7 @@ const snakePath = `
 
               <motion.path
                 d={snakePath}
-                stroke="#DCA32C"
+                stroke="var(--theme-color)"
                 strokeWidth="5"
                 strokeDasharray="10 10"
                 strokeLinecap="round"
@@ -201,16 +166,16 @@ const snakePath = `
                     md:grid-cols-2
                   `}
                 >
-
                   {/* ================================================= */}
                   {/* IMAGE SECTION */}
                   {/* ================================================= */}
 
-                  <div className={`
+                  <div
+                    className={`
     relative z-20 justify-center items-center
     ${isOdd ? "md:col-start-2" : "md:col-start-1"}
-  `}>
-
+  `}
+                  >
                     {solution.title && (
                       <h3
                         className="
@@ -221,12 +186,12 @@ const snakePath = `
                           items-center
                           
                           gap-2
-                          text-xl
+                          text-lg
                           font-extrabold
                           tracking-tight
                           text-[#1c1d20]
-                          md:text-2xl
-                          xl:text-3xl
+                          md:text-xl
+                          xl:text-2xl
                         "
                       >
                         <span>{solution.title}</span>
@@ -255,7 +220,7 @@ const snakePath = `
                           shadow-[0_10px_30px_rgba(0,0,0,0.05)]
                           transition-all
                           duration-300
-                          hover:shadow-[0_20px_40px_rgba(220,163,44,0.15)]
+                          hover:shadow-xl
                         "
                       >
                         <img
@@ -295,15 +260,7 @@ const snakePath = `
                       <div
                         className="
                           relative
-                          z-30
-                          text-base lg:text-center
-                          leading-relaxed
-                          text-[#555555]
-                          md:text-lg
-                          md:leading-8
-                          xl:text-xl
-                          xl:leading-9
-                          [&_p]:mb-3
+                          lg:text-lg text-sm px-0 sm:px-8 mt-2
                         "
                         dangerouslySetInnerHTML={{
                           __html: solution.description,
