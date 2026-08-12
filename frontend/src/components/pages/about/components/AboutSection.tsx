@@ -72,7 +72,7 @@ export const AboutSection: React.FC = () => {
           {/* RIGHT COLUMN: TEXT CONTENT */}
           <div className="lg:col-span-6 flex flex-col text-left space-y-4 sm:space-y-5">
             {/* Main Title */}
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] font-extrabold text-black leading-tight sm:leading-snug">
+            <h2 className="heading-primary">
               Highly Tailored Technology, Develop & Support Services.
             </h2>
 

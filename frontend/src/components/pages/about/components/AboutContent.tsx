@@ -21,7 +21,7 @@ export const AboutContent = () => {
                 Who Are We?
               </h2>
 
-            <h3 className="text-xl font-bold text-black">
+            <h3 className="text-sm lg:text-base font-bold text-black">
               Your Tech, Development And Creative Transformation Partner!
             </h3>
 
@@ -62,7 +62,7 @@ export const AboutContent = () => {
               </h2>
 
 
-            <h4 className="text-xl font-bold text-black">Mission</h4>
+            <h4 className="text-sm lg:text-base font-bold text-black">Mission</h4>
             <p className="text-base leading-relaxed text-gray-600 text-left">
               Our mission is to deliver MORE—Growth, Revenue & Success! Aimed at
               driving your business forward, we optimize processes, people, and
@@ -71,7 +71,7 @@ export const AboutContent = () => {
               Because when you win, we win!
             </p>
 
-            <h4 className="text-xl font-bold text-black mt-2">Vision</h4>
+            <h4 className="text-sm lg:text-base font-bold text-black mt-2">Vision</h4>
             <p className="text-base leading-relaxed text-gray-600 text-left">
               We envision fostering a culture that shapes the way we create,
               collaborate, and innovate! Committed to delivering digital
