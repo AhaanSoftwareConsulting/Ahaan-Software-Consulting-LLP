@@ -1,66 +1,56 @@
-import { useState, type ChangeEvent } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
-  User,
+  User as UserIcon,
   EnvelopeSimple,
   LockKey,
-  Briefcase,
-  UploadSimple,
-  CheckCircle,
+  UserGear,
 } from "@phosphor-icons/react";
 import { useAppDispatch } from "../../../app/hook";
 import { registerUser } from "../userSlice";
 
+
 export interface IRegisterFormInput {
-  name: string;
+  fullName: string;
   email: string;
   password: string;
-  designation: string;
+  role: string;
 }
 
 export const RegisterView = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState<string>("");
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegisterFormInput>();
+  } = useForm<IRegisterFormInput>({
+    defaultValues: {
+      role: "employee", // Default role matching selfRegisterableRoles
+    },
+  });
 
   const onSubmit: SubmitHandler<IRegisterFormInput> = async (data) => {
-    const fd = new FormData();
-    fd.append("name", data.name);
-    fd.append("email", data.email);
-    fd.append("password", data.password);
-    fd.append("designation", data.designation);
+    // Send plain JSON payload matching backend: const { email, password, fullName, role } = req.body
+    const payload = {
+      fullName: data.fullName,
+      email: data.email,
+      password: data.password,
+      role: data.role,
+    };
 
-    if (file) {
-      fd.append("profilePicture", file);
-    }
-
-    const res = await dispatch(registerUser(fd));
+    const res = await dispatch(registerUser(payload));
 
     if (res.meta.requestStatus === "fulfilled") {
       toast.success(
-        (res.payload as { message?: string })?.message || "Registration successful!"
+        (res.payload as { message?: string })?.message ||
+          "Registered. Please verify your email, then wait for manager/CEO approval before logging in."
       );
       navigate("/login");
     } else {
       toast.error((res.payload as string) || "Registration failed");
-    }
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      const selectedFile = e.target.files[0];
-      setFile(selectedFile);
-      setFileName(selectedFile.name);
     }
   };
 
@@ -127,26 +117,25 @@ export const RegisterView = () => {
 
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                encType="multipart/form-data"
                 className="space-y-4"
               >
-                {/* NAME */}
+                {/* FULL NAME */}
                 <div>
                   <div className="relative flex items-center">
-                    <User
+                    <UserIcon
                       size={20}
                       className="absolute left-4 text-[#ca8f2b]"
                     />
                     <input
                       type="text"
-                      placeholder="Name"
+                      placeholder="Full Name"
                       className="w-full rounded-full border border-[#ffe2b0]/20 bg-[#ad8642]/[0.047] py-3.5 pl-12 pr-4 text-white placeholder-gray-300 transition-all focus:border-[#ffe2b0]/50 focus:bg-[#ad8642]/[0.047] focus:outline-none focus:ring-2 focus:ring-[#ca8f2b]/50"
-                      {...register("name", { required: "Name is required" })}
+                      {...register("fullName", { required: "Full name is required" })}
                     />
                   </div>
-                  {errors.name && (
+                  {errors.fullName && (
                     <p className="mt-1.5 text-xs text-[#ff6b6b]">
-                      {errors.name.message}
+                      {errors.fullName.message}
                     </p>
                   )}
                 </div>
@@ -205,57 +194,33 @@ export const RegisterView = () => {
                   )}
                 </div>
 
-                {/* DESIGNATION */}
+                {/* ROLE */}
                 <div>
                   <div className="relative flex items-center">
-                    <Briefcase
+                    <UserGear
                       size={20}
                       className="absolute left-4 text-[#ca8f2b]"
                     />
                     <select
                       className="w-full appearance-none rounded-full border border-[#ffe2b0]/20 bg-[#ad8642]/[0.047] py-3.5 pl-12 pr-4 text-white transition-all focus:border-[#ffe2b0]/50 focus:bg-[#ad8642]/[0.047] focus:outline-none focus:ring-2 focus:ring-[#ca8f2b]/50"
-                      {...register("designation", {
-                        required: "Select a designation",
+                      {...register("role", {
+                        required: "Select a role",
                       })}
                     >
-                      <option value="" className="bg-black text-white">
-                        Select Designation
+                      <option value="employee" className="bg-black text-white">
+                        Employee
                       </option>
-                      <option value="web_developer" className="bg-black text-white">
-                        Web Developer
-                      </option>
-                      <option value="designer" className="bg-black text-white">
-                        Designer
-                      </option>
-                      <option value="project_manager" className="bg-black text-white">
-                        Project Manager
+                      <option value="hr" className="bg-black text-white">
+                        HR
                       </option>
                     </select>
                   </div>
-                  {errors.designation && (
+                  {errors.role && (
                     <p className="mt-1.5 text-xs text-[#ff6b6b]">
-                      {errors.designation.message}
+                      {errors.role.message}
                     </p>
                   )}
                 </div>
-
-                {/* CUSTOM FILE UPLOAD */}
-                <label className="flex cursor-pointer flex-col items-center justify-center rounded-[50px] border border-dashed border-[#ca8f2b]/50 bg-[#ad8642]/10 py-6 text-[#ca8f2b] transition-all hover:bg-[#ca8f2b]/10 hover:shadow-[0_0_10px_rgba(202,143,43,0.3)]">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    className="hidden"
-                  />
-                  <UploadSimple size={24} className="mb-1" />
-                  <span className="font-medium">Upload Profile Picture</span>
-                </label>
-
-                {fileName && (
-                  <p className="flex items-center justify-center gap-1.5 text-xs text-sky-400">
-                    <CheckCircle size={16} /> Selected: {fileName}
-                  </p>
-                )}
 
                 {/* SUBMIT BUTTON */}
                 <button

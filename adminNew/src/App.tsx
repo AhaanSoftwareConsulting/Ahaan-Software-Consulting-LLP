@@ -38,9 +38,9 @@ import Profile from "./Components/Pages/Profile";
 import {LoginView} from "./Components/features/user/login/LoginView";
 import {RegisterView} from "./Components/features/user/register/RegisterView";
 import {ProtectedRoute} from "./Components/features/ProtectedRoute";
-import PendingUser from "./Components/Pages/PendingUser";
-import AcceptUser from "./Components/Pages/AcceptUser";
-import RejectUser from "./Components/Pages/RejectUser";
+import {PendingUser} from "./Components/Pages/PendingUser";
+import {AcceptUser} from "./Components/Pages/AcceptUser";
+import {RejectUser} from "./Components/Pages/RejectUser";
 
 import PageLoader from "./Components/Common/PageLoader";
 

@@ -5,12 +5,13 @@ import {
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { AxiosError } from "axios";
 
+// API imports updated to reference userapi
 import {
   loginAPI,
   registerAPI,
   profileAPI,
   logoutAPI,
-} from "../../Api/api";
+} from "../../Api/userapi";
 
 //
 // Types
@@ -18,10 +19,11 @@ import {
 
 export interface User {
   _id?: string;
-  token?: string;
-  name: string;
-  email: string;
-  role: string;
+  accessToken?: string;
+  refreshToken?: string;
+  name?: string;
+  email?: string;
+  role?: string;
   designation?: string;
   status?: string;
   profilePicture?: string;
@@ -34,16 +36,20 @@ interface LoginPayload {
   password: string;
 }
 
-type RegisterPayload = FormData;
-
-interface LoginResponse {
-  token: string;
-  user: User;
+export interface RegisterPayload {
+  fullName: string;
+  email: string;
+  password: string;
+  role: string;
 }
 
-interface ProfileResponse {
-  user: User;
+interface LoginApiResponse {
+  accessToken: string;
+  refreshToken?: string;
+  user?: User;
 }
+
+type ProfileApiResponse = User | { user: User };
 
 interface UserState {
   user: User | null;
@@ -54,9 +60,7 @@ interface UserState {
 const storedUser = localStorage.getItem("user");
 
 const initialState: UserState = {
-  user: storedUser
-    ? JSON.parse(storedUser)
-    : null,
+  user: storedUser ? JSON.parse(storedUser) : null,
   loading: false,
   error: null,
 };
@@ -66,28 +70,38 @@ const initialState: UserState = {
 //
 
 export const loginUser = createAsyncThunk<
-  LoginResponse,
+  LoginApiResponse,
   LoginPayload,
   { rejectValue: string }
 >(
   "user/login",
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await loginAPI(data);
-      return res.data;
-    } catch (error) {
-      const err = error as AxiosError<any>;
+  async (data, { dispatch, rejectWithValue }) => {
+  try {
+    const res = await loginAPI(data);
+    const tokens = res.data;
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        accessToken: tokens.accessToken,
+        refreshToken: tokens.refreshToken,
+      })
+    );
+
+    await dispatch(getProfile());
+    return tokens;
+  }  catch (error) {
+      const err = error as AxiosError<{ message?: string }>;
 
       return rejectWithValue(
-        err.response?.data?.message ??
-          "Login failed"
+        err.response?.data?.message ?? "Login failed"
       );
     }
   }
 );
 
 //
-// REGISTER
+// REGISTER (Now accepts JSON object)
 //
 
 export const registerUser = createAsyncThunk<
@@ -96,17 +110,16 @@ export const registerUser = createAsyncThunk<
   { rejectValue: string }
 >(
   "user/register",
-  async (formData, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
-      const res = await registerAPI(formData);
+      const res = await registerAPI(data);
 
       return res.data;
     } catch (error) {
-      const err = error as AxiosError<any>;
+      const err = error as AxiosError<{ message?: string }>;
 
       return rejectWithValue(
-        err.response?.data?.message ??
-          "Registration failed"
+        err.response?.data?.message ?? "Registration failed"
       );
     }
   }
@@ -117,7 +130,7 @@ export const registerUser = createAsyncThunk<
 //
 
 export const getProfile = createAsyncThunk<
-  ProfileResponse,
+  ProfileApiResponse,
   void,
   { rejectValue: string }
 >(
@@ -128,9 +141,7 @@ export const getProfile = createAsyncThunk<
 
       return res.data;
     } catch {
-      return rejectWithValue(
-        "Unauthorized"
-      );
+      return rejectWithValue("Unauthorized");
     }
   }
 );
@@ -139,15 +150,17 @@ export const getProfile = createAsyncThunk<
 // LOGOUT
 //
 
-export const logoutUser =
-  createAsyncThunk(
-    "user/logout",
-    async () => {
+export const logoutUser = createAsyncThunk(
+  "user/logout",
+  async () => {
+    try {
       await logoutAPI();
-
-      return null;
+    } catch {
+      // Proceed with clearing local state even if server logout fails
     }
-  );
+    return null;
+  }
+);
 
 //
 // Slice
@@ -158,105 +171,92 @@ const userSlice = createSlice({
 
   initialState,
 
-  reducers: {},
+  reducers: {
+    clearUser: (state) => {
+      state.user = null;
+      state.error = null;
+      localStorage.removeItem("user");
+    },
+  },
 
   extraReducers: (builder) => {
     builder
 
       // LOGIN
 
-      .addCase(
-        loginUser.pending,
-        (state) => {
-          state.loading = true;
-          state.error = null;
-        }
-      )
+      .addCase(loginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
 
-      .addCase(
-        loginUser.fulfilled,
-        (
-          state,
-          action: PayloadAction<LoginResponse>
-        ) => {
-          state.loading = false;
-          state.error = null;
+     .addCase(
+  loginUser.fulfilled,
+  (state, action: PayloadAction<LoginApiResponse>) => {
+    state.loading = false;
+    state.error = null;
+    const userObj = action.payload.user || {};
+    state.user = {
+      ...state.user,
+      accessToken: action.payload.accessToken,
+      refreshToken: action.payload.refreshToken,
+      ...userObj,
+    };
+    localStorage.setItem("user", JSON.stringify(state.user));
+  }
+)
 
-          state.user = {
-            token: action.payload.token,
-            ...action.payload.user,
-          };
-
-          localStorage.setItem(
-            "user",
-            JSON.stringify(state.user)
-          );
-        }
-      )
-
-      .addCase(
-        loginUser.rejected,
-        (state, action) => {
-          state.loading = false;
-          state.error =
-            action.payload ?? "Login failed";
-        }
-      )
+      .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload ?? "Login failed";
+      })
 
       // REGISTER
 
-      .addCase(
-        registerUser.pending,
-        (state) => {
-          state.loading = true;
-          state.error = null;
-        }
-      )
+      .addCase(registerUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
 
-      .addCase(
-        registerUser.fulfilled,
-        (state) => {
-          state.loading = false;
-          state.error = null;
-        }
-      )
+      .addCase(registerUser.fulfilled, (state) => {
+        state.loading = false;
+        state.error = null;
+      })
 
-      .addCase(
-        registerUser.rejected,
-        (state, action) => {
-          state.loading = false;
-          state.error =
-            action.payload ??
-            "Registration failed";
-        }
-      )
+      .addCase(registerUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload ?? "Registration failed";
+      })
 
       // PROFILE
 
       .addCase(
         getProfile.fulfilled,
-        (
-          state,
-          action: PayloadAction<ProfileResponse>
-        ) => {
-          state.user = action.payload.user;
+        (state, action: PayloadAction<ProfileApiResponse>) => {
+          const profileData =
+            "user" in action.payload && action.payload.user
+              ? action.payload.user
+              : (action.payload as User);
+
+          state.user = {
+            ...state.user,
+            ...profileData,
+          };
+
+          localStorage.setItem("user", JSON.stringify(state.user));
         }
       )
 
       // LOGOUT
 
-      .addCase(
-        logoutUser.fulfilled,
-        (state) => {
-          state.user = null;
-          state.error = null;
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null;
+        state.error = null;
 
-          localStorage.removeItem(
-            "user"
-          );
-        }
-      );
+        localStorage.removeItem("user");
+      });
   },
 });
+
+export const { clearUser } = userSlice.actions;
 
 export default userSlice.reducer;
