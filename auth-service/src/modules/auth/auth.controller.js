@@ -54,13 +54,18 @@ async function login(req, res, next) {
     const { email, password } = req.body;
     validateLoginInput({ email, password });
 
-    const { accessToken, refreshToken } = await authService.login(
+    const { accessToken, refreshToken, user } = await authService.login(
       email,
       password,
       getUserAgent(req),
       getClientIp(req)
     );
-    res.status(200).json({ access_token: accessToken, refresh_token: refreshToken, token_type: 'bearer' });
+
+    res.status(200).json({ 
+      accessToken, 
+      refreshToken, 
+      user: accountsService.toPublic(user) // Send user data
+    });
   } catch (err) {
     next(err);
   }

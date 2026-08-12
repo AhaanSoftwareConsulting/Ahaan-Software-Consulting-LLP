@@ -179,28 +179,14 @@ export default function Sidebar() {
     },
   ];
 
-  if (user?.role === "super_admin") {
-    menuItems.push(
-      {
-        section: "User Management",
-      },
-      {
-        label: "Pending Users",
-        icon: <MdPendingActions />,
-        path: "/pending-users",
-      },
-      {
-        label: "Approved Users",
-        icon: <HiClipboardCheck />,
-        path: "/approved-users",
-      },
-      {
-        label: "Rejected Users",
-        icon: <RiFileCloseFill />,
-        path: "/rejected-users",
-      }
-    );
-  }
+  if (["manager", "ceo"].includes(user?.role ?? "")) {
+  menuItems.push(
+    { section: "User Management" },
+    { label: "Pending Users", icon: <MdPendingActions />, path: "/pending-users" },
+    { label: "Approved Users", icon: <HiClipboardCheck />, path: "/approved-users" },
+    { label: "Rejected Users", icon: <RiFileCloseFill />, path: "/rejected-users" }
+  );
+}
       return (
   <>
     {/* Overlay */}
