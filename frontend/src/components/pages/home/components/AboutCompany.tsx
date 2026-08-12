@@ -142,7 +142,7 @@ export const AboutCompany = () => {
           {/* ================= Content ================= */}
           <div>
             <motion.h2
-              className="relative z-20 text-2xl lg:text-3xl xl:text-5xl font-extrabold leading-tight text-[#1c1d20]"
+              className="relative z-20 heading-primary"
               variants={headingVariants}
               initial="hidden"
               whileInView="visible"
