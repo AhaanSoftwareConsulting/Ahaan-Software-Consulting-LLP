@@ -40,7 +40,8 @@ export const CaseStudyProjectOverviewSection = ({
               href={buttonUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="shine-btn mt-6 inline-flex items-center gap-2 rounded-full bg-[#DCA32C] px-6 py-3 text-sm font-semibold text-black transition hover:bg-[#c38e21] xl:px-8 xl:py-4 xl:text-base"
+              className="shine-btn mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90 xl:px-8 xl:py-4 xl:text-base"
+              style={{ backgroundColor: "var(--theme-color)" }}
             >
               {buttonText}
             </a>

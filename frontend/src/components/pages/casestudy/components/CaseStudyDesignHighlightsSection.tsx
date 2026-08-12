@@ -1,4 +1,3 @@
-
 import { CheckCircle } from "@phosphor-icons/react"; // বা 'phosphor-react'
 
 interface DesignHighlightsSectionProps {
@@ -18,7 +17,7 @@ export const CaseStudyDesignHighlightsSection = ({
     const elements = Array.from(doc.body.childNodes);
 
     return elements.map((node, index) => {
-      // যদি <ul> বা <ol> ট্যাগ হয়
+      // যদি <ul> বা <ol> ট্যাগ হয়
       if (node.nodeName === "UL" || node.nodeName === "OL") {
         const listItems = Array.from((node as HTMLElement).querySelectorAll("li"));
         return (
@@ -27,7 +26,7 @@ export const CaseStudyDesignHighlightsSection = ({
               <li key={liIndex} className="flex items-start gap-3">
                 <CheckCircle
                   size={22}
-                  color="#E5A338"
+                  color="var(--theme-color)"
                   weight="bold"
                   className="mt-1 shrink-0"
                 />
@@ -61,7 +60,10 @@ export const CaseStudyDesignHighlightsSection = ({
   };
 
   return (
-    <section className="bg-[#F7F5F2] pb-16 md:pb-24">
+    <section 
+      className="pb-16 md:pb-24"
+      style={{ backgroundColor: "color-mix(in srgb, var(--theme-color) 6%, white)" }}
+    >
       <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-5 md:grid-cols-2 md:px-10 2xl:px-16">
         <div>
           <h2 className="mb-5 heading-primary">

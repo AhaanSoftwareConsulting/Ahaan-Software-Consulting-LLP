@@ -8,6 +8,10 @@ export interface WordPressFeaturedMedia {
 }
 
 export interface AcfFields {
+
+    // Theme
+  theme_color?: string;
+  
   // Hero
   case_study_description?: string;
   industry?: string;

@@ -19,9 +19,9 @@ export const CaseStudyWhyStandsOutSection = ({
           viewport={{ once: true, margin: "-60px" }}
           whileHover={{ scale: 1.01 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="relative rounded-2xl p-[6px] shadow-lg transition-shadow duration-300 hover:shadow-2xl overflow-hidden"
+          className="relative overflow-hidden rounded-2xl p-[6px] shadow-lg transition-shadow duration-300 hover:shadow-2xl"
         >
-          {/* Animated Moving Gradient Border */}
+          {/* Animated Moving Dynamic Gradient Border */}
           <motion.div
             animate={{
               rotate: [0, 360],
@@ -31,7 +31,16 @@ export const CaseStudyWhyStandsOutSection = ({
               repeat: Infinity,
               ease: "linear",
             }}
-            className="absolute -inset-[200%] z-0 bg-[conic-gradient(from_0deg,#DCA32C,#F3E0A3,#E2A52F,#DCA32C)]"
+            className="absolute -inset-[200%] z-0"
+            style={{
+              background: `conic-gradient(
+                from 0deg,
+                var(--theme-color),
+                color-mix(in srgb, var(--theme-color) 40%, white),
+                color-mix(in srgb, var(--theme-color) 70%, white),
+                var(--theme-color)
+              )`,
+            }}
           />
 
           {/* Card Inner Content */}
@@ -41,7 +50,8 @@ export const CaseStudyWhyStandsOutSection = ({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mb-5 heading-primary text-[#DCA32C]"
+              className="mb-5 heading-primary"
+              style={{ color: "var(--theme-color)" }}
             >
               Why This Project Stands Out
             </motion.h2>
