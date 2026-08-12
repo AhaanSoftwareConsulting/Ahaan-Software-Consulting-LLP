@@ -55,7 +55,7 @@ export const CaseStudySolutionsSection = ({
   // `;
 
 const snakePath = `
-    M 220,20
+    M 220,90
 
     C 520,-40 820,-30 930,150
     C 1010,280 1000,470 900,590
@@ -111,14 +111,14 @@ const snakePath = `
             className="
               pointer-events-none
               absolute
-              inset-0
+              inset-0 
               z-0
               hidden
               lg:block
             "
           >
             <svg
-              className="h-full w-full"
+              className="h-full w-full "
               viewBox="0 0 1000 2400"
               fill="none"
               preserveAspectRatio="none"
