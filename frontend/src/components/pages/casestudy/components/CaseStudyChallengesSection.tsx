@@ -1,4 +1,3 @@
-
 import { CheckCircle } from "@phosphor-icons/react"; // বা 'phosphor-react'
 
 interface ChallengesSectionProps {
@@ -10,7 +9,7 @@ export const CaseStudyChallengesSection = ({
   image,
   challengesHtml = "",
 }: ChallengesSectionProps) => {
-  // HTML-কে DOMParser দিয়ে Parse করে React Elements এ রূপান্তর করার ফাংশন
+  // HTML-কে DOMParser দিয়ে Parse করে React Elements এ রূপান্তর করার ফাংশন
   const parseHtmlContent = (html: string) => {
     if (typeof window === "undefined") return null;
 
@@ -19,7 +18,7 @@ export const CaseStudyChallengesSection = ({
     const elements = Array.from(doc.body.childNodes);
 
     return elements.map((node, index) => {
-      // যদি <ul> বা <ol> ট্যাগ হয়
+      // যদি <ul> বা <ol> ট্যাগ হয়
       if (node.nodeName === "UL" || node.nodeName === "OL") {
         const listItems = Array.from((node as HTMLElement).querySelectorAll("li"));
         return (
@@ -28,7 +27,7 @@ export const CaseStudyChallengesSection = ({
               <li key={liIndex} className="flex items-start gap-3">
                 <CheckCircle
                   size={22}
-                  color="#E5A338"
+                  color="var(--theme-color)"
                   weight="bold"
                   className="mt-1 shrink-0"
                 />
