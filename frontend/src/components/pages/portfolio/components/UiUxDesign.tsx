@@ -203,11 +203,11 @@ export default function UiUxDesign() {
       <div className="relative mx-auto max-w-[1440px] px-4">
         {/* Heading — colors unchanged */}
         <div className="mb-12 text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
             UI/UX Design Portfolio
           </h2>
 
-          <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+          <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
             Browse through our creative UI/UX layout designs
           </p>
         </div>

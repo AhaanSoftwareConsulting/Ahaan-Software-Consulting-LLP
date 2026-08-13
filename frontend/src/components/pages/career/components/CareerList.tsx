@@ -84,11 +84,11 @@ export const CareerList: React.FC = () => {
       <div className="max-w-[1300px] mx-auto">
         {/* Header Section */}
         <div className="text-center mb-16 max-w-4xl mx-auto space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
             Join our team of passionate professionals
           </h2>
           {/* Sub-heading size increased */}
-          <p className="text-base sm:text-lg lg:text-lg px-4 sm:px-8 mt-3 text-zinc-600 leading-relaxed">
+          <p className="text-base sm:text-lg lg:text-lg px-0 sm:px-8 mt-3 text-zinc-600 leading-relaxed">
             Explore exciting career opportunities, enhance your skills,
             collaborate with talented professionals, and make a meaningful
             impact while growing your career with us.

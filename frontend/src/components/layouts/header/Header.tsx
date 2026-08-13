@@ -127,11 +127,13 @@ export const Header = () => {
           <div className="flex h-17 md:h-20 items-center justify-between">
             {/* ================= MOBILE HEADER ================= */}
             <div className="flex w-full items-center justify-between xl:hidden">
-              <img
-                src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
-                alt="logo"
-                className="h-10 w-28 object-contain"
-              />
+              <NavLink to="/">
+                <img
+                  src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
+                  alt="logo"
+                  className="h-10 w-28 object-contain"
+                />
+              </NavLink>
 
               <div className="flex items-center gap-2">
                 <NavLink
