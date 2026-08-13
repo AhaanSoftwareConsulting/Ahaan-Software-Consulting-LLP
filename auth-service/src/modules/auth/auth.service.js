@@ -50,7 +50,7 @@ async function authenticate(email, password) {
 
 async function login(email, password, userAgent, ipAddress) {
   const user = await authenticate(email, password);
-  const { accessToken, refreshToken } = issueTokenPair(user.id);
+  const { accessToken, refreshToken } = issueTokenPair(user.id, user.role);   // ← add user.role
   await sessionsService.createSession(user.id, refreshToken, userAgent, ipAddress);
   return { user, accessToken, refreshToken };
 }
@@ -72,7 +72,11 @@ async function refresh(rawRefreshToken, userAgent, ipAddress) {
     throw new InvalidTokenError('Token subject mismatch');
   }
 
-  const { accessToken, refreshToken: newRefreshToken } = issueTokenPair(payload.sub);
+  // Look up current role — refresh tokens don't carry it themselves,
+  // and role can legitimately change between logins (promotion, etc).
+  const user = await accountsRepository.getById(payload.sub);
+
+  const { accessToken, refreshToken: newRefreshToken } = issueTokenPair(payload.sub, user.role);
   await sessionsService.rotate(oldSession, newRefreshToken, userAgent, ipAddress);
   return { accessToken, refreshToken: newRefreshToken };
 }
