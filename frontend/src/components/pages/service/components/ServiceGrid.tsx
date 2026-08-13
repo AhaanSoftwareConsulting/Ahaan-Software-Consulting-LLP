@@ -176,7 +176,7 @@ const Grid: React.FC = () => {
               <div className="w-full md:flex-1">
                 <div className="mt-4 px-3 md:mt-0">
                   <h1
-                    className="grid-animated-heading text-[1.5rem] font-black capitalize tracking-[2px] lg:text-[2.6rem]"
+                    className="grid-animated-heading text-2xl lg:text-3xl xl:text-4xl font-black capitalize tracking-[2px]"
                     style={{ "--main-color": brandColor } as React.CSSProperties}
                   >
                     {title}
@@ -193,7 +193,7 @@ const Grid: React.FC = () => {
                     ))}
                   </div>
 
-                  <p className="mb-5 text-[13px] leading-[1.7] text-[#666] lg:text-[15px]">
+                  <p className="mb-5 text-[13px] leading-relaxed text-[#666] lg:text-[15px]">
                     {description}
                   </p>
 
