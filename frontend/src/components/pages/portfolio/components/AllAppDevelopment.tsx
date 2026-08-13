@@ -90,7 +90,7 @@ export  function AllAppDevelopment() {
         {/* Heading */}
         <div className="mb-10 text-center lg:mb-14">
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
 
           App Development Designs
         </h2>

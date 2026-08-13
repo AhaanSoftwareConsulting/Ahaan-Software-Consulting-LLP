@@ -126,7 +126,7 @@ export const SolutionDetails = () => {
                 {solution.title.rendered}
               </span>
 
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight">
+              <h2 className="heading-primary">
                 {solution.acf.hero_section_title}
               </h2>
 
@@ -160,13 +160,13 @@ export const SolutionDetails = () => {
               <div className="relative z-10 max-w-5xl mx-auto">
 
                 {solution.acf.highlight_title && (
-                  <h3 className="text-3xl sm:text-4xl font-extrabold text-[#d29b38]">
+                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#d29b38]">
                     {solution.acf.highlight_title}
                   </h3>
                 )}
 
                 {solution.acf.highlight_description && (
-                  <p className="text-gray-300 mt-5 whitespace-pre-line">
+                  <p className="text-gray-300 mt-5 whitespace-pre-line leading-relaxed">
                     {solution.acf.highlight_description}
                   </p>
                 )}
@@ -180,7 +180,7 @@ export const SolutionDetails = () => {
 
           <div className="text-center">
 
-            <h3 className="text-3xl sm:text-4xl font-extrabold">
+            <h3 className="heading-primary">
 
               {solution.acf.key_features_heading}
 
@@ -226,13 +226,13 @@ export const SolutionDetails = () => {
 
                     </div>
 
-                    <h3 className="text-3xl font-extrabold">
+                    <h3 className="heading-primary">
 
                       {feature.title}
 
                     </h3>
 
-                    <p className="text-gray-600 whitespace-pre-line leading-8">
+                    <p className="text-gray-600 whitespace-pre-line leading-relaxed">
 
                       {feature.description}
 

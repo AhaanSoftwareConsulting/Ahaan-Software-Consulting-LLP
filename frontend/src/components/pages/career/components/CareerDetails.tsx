@@ -132,7 +132,7 @@ export const CareerDetails: React.FC = () => {
 
             {/* Job Header Info */}
             <div className="space-y-4 pb-6 border-b border-zinc-100">
-              <h1 className="text-2xl sm:text-3xl 2xl:text-4xl font-extrabold text-zinc-900 leading-snug">
+              <h1 className="heading-primary leading-snug">
                 {decodeHtml(job.designation)}
               </h1>
 
