@@ -147,10 +147,10 @@ export function AllSocialMediaMarketing() {
   return (
     <>
       <AllSocialBanner />
-      <section className="py-6 sm:py-10 lg:py-16">
+      <section className="px-4 py-6 sm:py-10 lg:py-16 overflow-x-hidden">
         {/* Heading */}
         <div className="mb-12 text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1c1d20] leading-tight">
+          <h2 className="heading-primary">
             Social Media Marketing
           </h2>
 
