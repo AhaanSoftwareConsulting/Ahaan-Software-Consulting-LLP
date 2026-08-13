@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import type { AxiosInstance } from "axios";
+import type { AcfFields } from "../types/caseStudies";
 // ==========================================
 // 1. Core WordPress TypeScript Interfaces
 // ==========================================
@@ -34,6 +35,7 @@ export interface WPCustomPost {
   content: WPRenderedText;
   excerpt: WPRenderedText;
   _embedded?: WPEmbedded;
+  acf?: AcfFields;
 }
 
 // Specific mapping for Media endpoints
