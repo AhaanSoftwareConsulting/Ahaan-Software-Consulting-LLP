@@ -312,7 +312,7 @@ export const ContactUs: React.FC = () => {
               {/* SUBMIT BUTTON */}
               <button
                 type="submit"
-                className="shine-btn w-full items-center justify-center rounded-[50px] text-center bg-[#cd9422] p-[20px] font-semibold tracking-[1px] text-white transition-all duration-300 hover:bg-[#222]"
+                className="shine-btn w-full items-center justify-center rounded-[50px] text-center bg-[#cd9422] p-[10px] lg:p-[16px] font-semibold tracking-[1px] text-white transition-all duration-300 hover:bg-[#222]"
               >
                 Drop your query
               </button>
