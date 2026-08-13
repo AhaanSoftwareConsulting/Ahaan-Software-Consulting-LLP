@@ -185,7 +185,7 @@ export const Footer = () => {
               <img
                 src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
                 alt="Logo"
-                className="h-14 w-auto object-contain sm:h-16"
+                className="h-12 w-auto object-contain"
               />
 
               {/* Divider */}
@@ -193,11 +193,11 @@ export const Footer = () => {
 
               {/* Content */}
               <div>
-                <h2 className="text-xl font-semibold leading-tight  lg:text-3xl">
+                <h2 className="text-base font-semibold leading-tight  lg:text-3xl">
                   News Subscription
                 </h2>
 
-                <p className="mt-2 text-sm text-white sm:text-base lg:mt-3">
+                <p className="mt-2 text-sm text-white lg:text-base lg:mt-3">
                   Get Latest Deals from Waker's Inbox & Subscribe Now
                 </p>
               </div>
