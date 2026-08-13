@@ -2,26 +2,32 @@ import { useEffect, useState } from "react";
 import { UserCheck, Image as ImageIcon } from "@phosphor-icons/react";
 import { getUsersByStatusAPI } from "../Api/userapi";
 
-interface User {
-  _id: string;
-  name: string;
+// Matches the flat row shape returned by approval.repository.js -> getAllRequests()
+interface ApprovalRequest {
+  request_id: string;
+  status: string;
+  requested_at: string;
+  reviewed_at?: string;
+  reject_reason?: string | null;
+  user_id: string;
   email: string;
+  full_name: string;
   role: string;
-  profilePicture?: string;
-  status?: string;
+  reviewed_by_email?: string;
+  reviewed_by_name?: string;
 }
 
 export const AcceptUser = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [requests, setRequests] = useState<ApprovalRequest[]>([]);
 
- const fetchUsers = async () => {
-  try {
-    const res = await getUsersByStatusAPI("approved");
-    setUsers(res.data.data);
-  } catch (err) {
-    console.error(err);
-  }
-};
+  const fetchUsers = async () => {
+    try {
+      const res = await getUsersByStatusAPI("approved");
+      setRequests(res.data.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -42,9 +48,8 @@ export const AcceptUser = () => {
                 <th scope="col" className="px-6 py-4">Status</th>
               </tr>
             </thead>
-
             <tbody className="divide-y divide-gray-100">
-              {users.length === 0 ? (
+              {requests.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="py-12 text-center text-gray-500">
                     <div className="flex flex-col items-center justify-center gap-2">
@@ -54,38 +59,25 @@ export const AcceptUser = () => {
                   </td>
                 </tr>
               ) : (
-                users.map((user, index) => (
-                  <tr key={user._id} className="hover:bg-gray-50 transition-colors">
+                requests.map((req, index) => (
+                  <tr key={req.request_id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4 font-medium text-gray-500">
                       {index + 1}
                     </td>
-
                     <td className="px-6 py-4">
-                      {user.profilePicture ? (
-                        <img
-                          src={user.profilePicture}
-                          alt={user.name}
-                          className="h-14 w-14 rounded-full object-cover border border-gray-200"
-                        />
-                      ) : (
-                        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400 border border-gray-200">
-                          <ImageIcon size={24} />
-                        </div>
-                      )}
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400 border border-gray-200">
+                        <ImageIcon size={24} />
+                      </div>
                     </td>
-
                     <td className="px-6 py-4 font-medium text-gray-900">
-                      {user.name}
+                      {req.full_name}
                     </td>
-
                     <td className="px-6 py-4 text-gray-600">
-                      {user.email}
+                      {req.email}
                     </td>
-
                     <td className="px-6 py-4 capitalize text-gray-600">
-                      {user.role?.replace("_", " ")}
+                      {req.role?.replace("_", " ")}
                     </td>
-
                     <td className="px-6 py-4">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
                         <UserCheck size={14} weight="bold" />

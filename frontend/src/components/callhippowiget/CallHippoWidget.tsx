@@ -1,10 +1,5 @@
 import { useEffect } from "react";
 
-// ---------------------------------------------
-// Extend the global Window type so TypeScript
-// knows about the CallHippo script's expected
-// global credentials.
-// ---------------------------------------------
 declare global {
     interface Window {
         USERID?: string;
@@ -14,22 +9,18 @@ declare global {
 
 const CallHippoWidget: React.FC = () => {
     useEffect(() => {
-        // Prevent duplicate loading
         if (document.getElementById("callhippo-script")) return;
 
-        // Create widget container
         const container = document.createElement("div");
         container.id = "callhippo-widget-container";
         container.className =
-            "!fixed !bottom-[120px] !left-5 !right-auto !z-[999999] max-[768px]:!bottom-[50px] max-[768px]:!left-[10px]";
+            "!fixed !bottom-[120px] !left-5 !right-auto !z-[999999] max-[1023px]:!bottom-[88px] max-[1023px]:!left-[5px]";
 
         document.body.appendChild(container);
 
-        // Set credentials
         window.USERID = "69d516558ff05364212453c9";
         window.NUMBERID = "69d521a28ff053642125b1cc";
 
-        // Load script
         const script = document.createElement("script");
         script.id = "callhippo-script";
         script.src =
@@ -40,38 +31,27 @@ const CallHippoWidget: React.FC = () => {
     }, []);
 
     return (
-        // The CallHippo script injects its own iframe/div/button/img elements
-        // *inside* #callhippo-widget-container at runtime — we don't author
-        // those elements ourselves, so Tailwind classNames can't reach them.
-        // This scoped <style> block replicates the original descendant + media
-        // query overrides that pin every injected child to the same left
-        // offset as the container, since only real CSS selectors (with
-        // !important) can target elements we don't control the JSX for.
         <style>{`
-             #callhippo-widget-container > *,
-             #callhippo-widget-container > iframe,
-             #callhippo-widget-container > div,
-             #callhippo-widget-container > button,
-             #callhippo-widget-container > img {
+             /* Position the container itself */
+             #callhippo-widget-container {
+               position: fixed !important;
+               z-index: 999999 !important;
+             }
+
+             /* Only reposition the LAUNCHER (first injected child) — 
+                do NOT touch position/size of later children, since the
+                popup panel is appended as a sibling when clicked, and
+                forcing left/width/height on it would break/hide it. */
+             #callhippo-widget-container > *:first-child {
                left: 28px !important;
                right: auto !important;
-               
-        }
+               width: 50px !important;
+               height: 50px !important;
+             }
 
-            #callhippo-widget-container > img,
-            #callhippo-widget-container > button {
-             width: 50px !important;
-             height: 50px !important;
-        }
-
-
-            /* Mobile */
+            /* Mobile / Tablet — launcher only */
         @media (max-width: 1023px) {
-           #callhippo-widget-container > *,
-           #callhippo-widget-container > iframe,
-           #callhippo-widget-container > div,
-           #callhippo-widget-container > button,
-           #callhippo-widget-container > img {
+           #callhippo-widget-container > *:first-child {
             left: 5px !important;
             right: auto !important;
             width: 40px !important;
@@ -83,14 +63,9 @@ const CallHippoWidget: React.FC = () => {
         }
     }
 
-
-          /* Desktop */
+          /* Desktop — launcher only */
         @media (min-width: 1024px) {
-          #callhippo-widget-container > *,
-          #callhippo-widget-container > iframe,
-          #callhippo-widget-container > div,
-          #callhippo-widget-container > button,
-          #callhippo-widget-container > img {
+          #callhippo-widget-container > *:first-child {
             left: 25px !important;
             right: auto !important;
             bottom: 100px !important;
