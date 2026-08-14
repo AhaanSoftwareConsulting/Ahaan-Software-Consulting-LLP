@@ -164,27 +164,41 @@ export const Connection: React.FC = () => {
                 </div>
 
                 {/* Email */}
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
-                      errors.email ? "border-red-500" : "border-zinc-200"
-                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^\S+@\S+$/i,
-                        message: "Invalid email format",
-                      },
-                    })}
-                  />
-                  {errors.email && (
-                    <span className="text-red-500 text-xs font-medium mt-1 block px-2">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </div>
+<div>
+  <input
+    type="email"
+    placeholder="Email Address"
+    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
+      errors.email ? "border-red-500" : "border-zinc-200"
+    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
+    {...register("email", {
+      required: "Email address is required",
+
+      pattern: {
+        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        message: "Please enter a valid email address",
+      },
+
+      validate: (value) => {
+        if (value.trim() !== value) {
+          return "Email cannot contain spaces";
+        }
+
+        if (/\s/.test(value)) {
+          return "Email cannot contain spaces";
+        }
+
+        return true;
+      },
+    })}
+  />
+
+  {errors.email && (
+    <span className="text-red-500 text-xs font-medium mt-1 block px-2">
+      {errors.email.message}
+    </span>
+  )}
+</div>
 
                 {/* Service Dropdown */}
                 <div>
