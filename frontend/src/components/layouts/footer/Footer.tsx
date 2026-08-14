@@ -277,7 +277,7 @@ export const Footer = () => {
                     via team driven solutions.
                   </p>
 
-                  <div className="mt-6 flex gap-2.5 pl-4 sm:mt-12 xl:gap-4">
+                  <div className="mt-6 flex gap-2  sm:mt-12 xl:gap-4">
                     {socialLinks.map(
                       ({ name, url, Icon, gradient, tooltipGradient }) => (
                         <a
@@ -285,7 +285,7 @@ export const Footer = () => {
                           href={url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`group relative flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-xl text-[#757575] transition-all duration-350 ease-in-out hover:-translate-y-1 hover:text-white ${gradient}`}
+                          className={`group relative flex h-[44px] w-[44px]  items-center justify-center rounded-full bg-white/10 text-xl text-[#757575] transition-all duration-350 ease-in-out hover:-translate-y-1 hover:text-white ${gradient}`}
                         >
                           {/* Tooltip */}
                           <span
@@ -297,7 +297,7 @@ export const Footer = () => {
                             />
                           </span>
 
-                          <Icon size={20} weight="fill" />
+                          <Icon size={24} weight="fill" />
                         </a>
                       ),
                     )}
