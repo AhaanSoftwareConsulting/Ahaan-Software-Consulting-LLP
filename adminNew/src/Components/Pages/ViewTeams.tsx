@@ -1,136 +1,93 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  FiTrash2,
-  FiEdit,
-  FiEye,
-  FiEyeOff,
-} from "react-icons/fi";
+import { FiTrash2, FiEdit } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-import {
-  getAllTeams,
-  deleteTeam,
-  updateTeam,
-} from "../Api/api";
-
+import { getUsersByStatusAPI } from "../Api/userapi";
+import { getAllProfilesAPI } from "../Api/Profileapi";
 import { SearchContext } from "../../searchContext";
-import ConfirmModal from "../ConfirmModal";
 
-interface Team {
-  _id: string;
+interface ApprovedUser {
+  request_id: string;
+  user_id: string;
+  email: string;
+  full_name: string;
+  role: string;
+}
+
+interface ProfileRow {
+  user_id: string;
+  avatar: string | null;
+  designation: string | null;
+  bio: string | null;
+}
+
+interface Employee {
+  user_id: string;
   name: string;
-  position: string;
-  description: string;
-  image: string;
-  dateOfBirth?: string;
-  dateOfJoining?: string;
-  isHidden?: boolean;
+  email: string;
+  position: string; // designation, falls back to account role
+  description: string; // bio, falls back to a generic line
+  image: string; // avatar, falls back to a placeholder
   showFull?: boolean;
 }
 
-const ViewTeams = () => {
-  const [teams, setTeams] = useState<Team[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(
-    null
-  );
+const FALLBACK_AVATAR =
+  "https://ui-avatars.com/api/?background=161616&color=ffbe31&name=";
+
+const ViewEmployees = () => {
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const { query } = useContext(SearchContext);
 
   useEffect(() => {
-    loadTeams();
+    loadEmployees();
   }, []);
 
-  const loadTeams = async (): Promise<void> => {
+  const loadEmployees = async (): Promise<void> => {
     try {
-      const res = await getAllTeams();
+      setLoading(true);
 
-      const data: Team[] = res.data.map((item: Team) => ({
-        ...item,
-        isHidden: item.isHidden ?? false,
-        showFull: false,
-      }));
+      const [usersRes, profilesRes] = await Promise.all([
+        getUsersByStatusAPI("approved"),
+        getAllProfilesAPI(),
+      ]);
 
-      setTeams(data);
+      const users: ApprovedUser[] = usersRes.data.data;
+      const profiles: ProfileRow[] = profilesRes.data.data;
+
+      const profileByUserId = new Map(profiles.map((p) => [p.user_id, p]));
+
+      const merged: Employee[] = users.map((u) => {
+        const profile = profileByUserId.get(u.user_id);
+        return {
+          user_id: u.user_id,
+          name: u.full_name,
+          email: u.email,
+          position: profile?.designation
+            ? profile.designation.charAt(0).toUpperCase() + profile.designation.slice(1)
+            : u.role?.replace("_", " ") ?? "Employee",
+          description: profile?.bio || "No bio added yet.",
+          image: profile?.avatar || `${FALLBACK_AVATAR}${encodeURIComponent(u.full_name)}`,
+          showFull: false,
+        };
+      });
+
+      setEmployees(merged);
     } catch (error: any) {
       toast.error(
-        error?.response?.data?.message ||
-          "Failed To Load Team Members"
-      );
-    }
-  };
-
-  const handleDelete = (id: string) => {
-    setSelectedId(id);
-    setShowModal(true);
-  };
-
-  const confirmDelete = async (): Promise<void> => {
-    if (!selectedId) return;
-
-    try {
-      const res = await deleteTeam(selectedId);
-
-      setTeams((prev) =>
-        prev.filter((team) => team._id !== selectedId)
-      );
-
-      toast.success(
-        res.data.message ||
-          "Team Member Deleted Successfully"
-      );
-    } catch (error: any) {
-      toast.error(
-        error?.response?.data?.message ||
-          "Failed To Delete Team Member"
+        error?.response?.data?.message || "Failed To Load Employees"
       );
     } finally {
-      setShowModal(false);
-      setSelectedId(null);
+      setLoading(false);
     }
   };
 
-  const toggleVisibility = async (
-    team: Team
-  ): Promise<void> => {
-    const updatedTeam = {
-      ...team,
-      isHidden: !team.isHidden,
-    };
-
-    try {
-      const res = await updateTeam(
-        team._id,
-        updatedTeam as any
-      );
-
-      setTeams((prev) =>
-        prev.map((item) =>
-          item._id === team._id ? updatedTeam : item
-        )
-      );
-
-      toast.success(
-        res.data.message ||
-          "Visibility Updated Successfully"
-      );
-    } catch (error: any) {
-      toast.error(
-        error?.response?.data?.message ||
-          "Failed To Update Visibility"
-      );
-    }
-  };
-
-  const toggleShowMore = (id: string) => {
-    setTeams((prev) =>
+  const toggleShowMore = (userId: string) => {
+    setEmployees((prev) =>
       prev.map((item) =>
-        item._id === id
-          ? {
-              ...item,
-              showFull: !item.showFull,
-            }
+        item.user_id === userId
+          ? { ...item, showFull: !item.showFull }
           : item
       )
     );
@@ -138,138 +95,95 @@ const ViewTeams = () => {
 
   const getShortDesc = (text: string): string => {
     const words = text.split(" ");
-
     if (words.length <= 10) return text;
-
     return words.slice(0, 10).join(" ") + "...";
   };
 
-  const filtered = teams.filter((team) => {
+  const filtered = employees.filter((emp) => {
     const q = query.toLowerCase();
-
     return (
-      team.name.toLowerCase().includes(q) ||
-      team.position.toLowerCase().includes(q) ||
-      team.description.toLowerCase().includes(q)
+      emp.name.toLowerCase().includes(q) ||
+      emp.position.toLowerCase().includes(q) ||
+      emp.description.toLowerCase().includes(q)
     );
   });
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
-
       <h2 className="mb-8 text-center text-3xl font-bold">
-        Our Team
+        Our Employees
       </h2>
 
-      {filtered.length === 0 ? (
+      {loading ? (
+        <p className="text-center text-gray-400">Loading employees...</p>
+      ) : filtered.length === 0 ? (
         <p className="text-center text-red-500">
-          No team members found
+          No employees found
         </p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-
-          {filtered.map((team) => (
+          {filtered.map((emp) => (
             <div
-              key={team._id}
-              className={`overflow-hidden rounded-2xl bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-                team.isHidden
-                  ? "opacity-50"
-                  : ""
-              }`}
+              key={emp.user_id}
+              className="overflow-hidden rounded-2xl bg-white shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="overflow-hidden">
                 <img
-                  src={team.image}
-                  alt={team.name}
+                  src={emp.image}
+                  alt={emp.name}
                   className="h-full w-full object-cover object-top transition duration-300 hover:scale-105"
                 />
               </div>
 
               <div className="space-y-3 p-5 text-center">
-
                 <div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    {team.name}
+                    {emp.name}
                   </h3>
 
-                  <p className="font-semibold text-yellow-500">
-                    {team.position}
+                  <p className="font-semibold capitalize text-yellow-500">
+                    {emp.position}
                   </p>
                 </div>
 
                 <p className="text-sm leading-6 text-gray-600">
-                  {team.showFull
-                    ? team.description
-                    : getShortDesc(team.description)}
+                  {emp.showFull ? emp.description : getShortDesc(emp.description)}
                 </p>
 
-                {team.description.split(" ").length >
-                  20 && (
+                {emp.description.split(" ").length > 20 && (
                   <button
-                    onClick={() =>
-                      toggleShowMore(team._id)
-                    }
+                    onClick={() => toggleShowMore(emp.user_id)}
                     className="rounded-full bg-black px-4 py-2 text-xs font-semibold text-yellow-400 transition hover:bg-gray-800 hover:text-white"
                   >
-                    {team.showFull
-                      ? "Show Less"
-                      : "Show More"}
+                    {emp.showFull ? "Show Less" : "Show More"}
                   </button>
                 )}
 
                 <div className="flex justify-center gap-3 pt-2">
-
-                  <Link
-                    to={`/edit-team/${team._id}`}
-                    className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
+                  {/* Edit and Delete are disabled for now — no handlers wired */}
+                  <button
+                    disabled
+                    title="Editing coming soon"
+                    className="cursor-not-allowed rounded-lg bg-green-600/40 p-2 text-white/60"
                   >
                     <FiEdit size={18} />
-                  </Link>
-
-                  <button
-                    onClick={() =>
-                      toggleVisibility(team)
-                    }
-                    className={`rounded-lg p-2 text-white transition ${
-                      team.isHidden
-                        ? "bg-yellow-500 hover:bg-yellow-600"
-                        : "bg-gray-700 hover:bg-gray-800"
-                    }`}
-                  >
-                    {team.isHidden ? (
-                      <FiEye size={18} />
-                    ) : (
-                      <FiEyeOff size={18} />
-                    )}
                   </button>
 
                   <button
-                    onClick={() =>
-                      handleDelete(team._id)
-                    }
-                    className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
+                    disabled
+                    title="Deletion coming soon"
+                    className="cursor-not-allowed rounded-lg bg-red-600/40 p-2 text-white/60"
                   >
                     <FiTrash2 size={18} />
                   </button>
-
                 </div>
               </div>
             </div>
           ))}
         </div>
       )}
-
-      <ConfirmModal
-        open={showModal}
-        title="Delete Team Member"
-        message="This action is permanent. Once deleted, it cannot be recovered."
-        confirmText="Delete"
-        cancelText="Cancel"
-        onCancel={() => setShowModal(false)}
-        onConfirm={confirmDelete}
-      />
     </div>
   );
 };
 
-export default ViewTeams;
+export default ViewEmployees;
