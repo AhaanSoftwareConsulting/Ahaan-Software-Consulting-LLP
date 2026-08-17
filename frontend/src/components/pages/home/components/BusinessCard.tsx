@@ -239,7 +239,7 @@ export const BusinessCard = () => {
           viewport={{ once: false, amount: 0.6 }}
         >
           <h2
-            className="  text-2xl  lg:text-3xl xl:text-4xl font-extrabold text-[#161616] leading-tight"
+            className="heading-primary"
           >
             Trusted by Businesses <br className=" lg:hidden" /> Worldwide
           </h2>

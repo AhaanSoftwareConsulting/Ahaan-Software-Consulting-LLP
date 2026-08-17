@@ -188,27 +188,27 @@ export const MobileSidebar = ({
             </a>
 
             <div className="flex gap-6 pt-3">
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://www.facebook.com/ahaansoftwareconsulting" className="text-[#f6b338]">
                 <FacebookLogo size={24} weight="fill" />
               </a>
 
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://www.instagram.com/ahaansoftware" className="text-[#f6b338]">
                 <InstagramLogo size={24} weight="fill" />
               </a>
 
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://www.linkedin.com/company/ahaansoftware" className="text-[#f6b338]">
                 <LinkedinLogo size={24} weight="fill" />
               </a>
 
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://www.behance.net/ahaansoftware01" className="text-[#f6b338]">
                 <BehanceLogoIcon size={24} weight="fill" />
               </a>
 
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://dribbble.com/ahaan-software" className="text-[#f6b338]">
                 <DribbbleLogoIcon size={24} weight="fill" />
               </a>
 
-              <a href="#" className="text-[#f6b338]">
+              <a href="https://github.com/AhaanSoftwareConsulting" className="text-[#f6b338]">
                 <GithubLogoIcon size={24} weight="fill" />
               </a>
             </div>

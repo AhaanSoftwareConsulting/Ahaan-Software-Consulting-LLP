@@ -53,7 +53,7 @@ export const ContactUs: React.FC = () => {
               GET IN TOUCH
             </p>
 
-            <h2 className="mb-[40px] text-[28px] font-bold leading-[38px] text-[#0f1c2e] sm:text-[34px] sm:leading-[46px] lg:text-[42px] lg:leading-[55px]">
+            <h2 className="mb-[40px] heading-primary">
               Seamless Communication, Global Impact.
             </h2>
 
@@ -197,7 +197,7 @@ export const ContactUs: React.FC = () => {
 
           {/* RIGHT SIDE FORM */}
           <div className="w-full min-w-0 flex-1 rounded-[20px] bg-white p-[30px] shadow-[0_25px_50px_rgba(0,0,0,0.08)] sm:p-[40px] xl:p-[60px]">
-            <h3 className="mb-[40px] text-[26px] font-semibold text-[#0f1c2e]">
+            <h3 className="mb-[40px] heading-primary">
               Send us a message
             </h3>
 
@@ -312,7 +312,7 @@ export const ContactUs: React.FC = () => {
               {/* SUBMIT BUTTON */}
               <button
                 type="submit"
-                className="shine-btn w-full items-center justify-center rounded-[50px] text-center bg-black p-[20px] font-semibold tracking-[1px] text-white transition-all duration-300 hover:bg-[#222]"
+                className="shine-btn w-full items-center justify-center rounded-[50px] text-center bg-[#cd9422] p-[10px] lg:p-[16px] font-semibold tracking-[1px] text-white transition-all duration-300 hover:bg-[#222]"
               >
                 Drop your query
               </button>

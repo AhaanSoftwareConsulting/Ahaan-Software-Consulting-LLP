@@ -268,10 +268,10 @@ export const ServicesSection = () => {
         viewport={{ once: false, amount: 0.5 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <h2 className="text-2xl lg:text-3xl xl:text-5xl font-extrabold text-[#1c1d20] leading-tight">
+        <h2 className="heading-primary">
           Our Core Services <br />
         </h2>
-        <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
+        <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2">
           We are driven by a passion to deliver excellence through continuous
           innovation and cutting-edge technology — creating intelligent,
           scalable, and future-ready solutions that empower businesses,

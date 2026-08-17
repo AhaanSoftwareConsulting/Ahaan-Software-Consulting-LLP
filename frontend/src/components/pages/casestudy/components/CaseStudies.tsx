@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAllCaseStudies } from "../../../../api/WordpressAPI";
+import {
+  getAllCaseStudies,
+  getMediaById,
+} from "../../../../api/WordpressAPI";
 
 export const CaseStudies = () => {
-  // Use the exact type returned by getAllCaseStudies()
   const [caseStudies, setCaseStudies] = useState<
     Awaited<ReturnType<typeof getAllCaseStudies>>
   >([]);
@@ -16,44 +18,123 @@ export const CaseStudies = () => {
     try {
       const data = await getAllCaseStudies();
 
-      if (Array.isArray(data)) {
-        setCaseStudies([...data].reverse());
-      }
+      if (!Array.isArray(data)) return;
+
+      // Project Overview Image URL fetch
+      const updatedData = await Promise.all(
+        [...data].reverse().map(async (item) => {
+          const projectOverviewImage =
+            item?.acf?.project_overview_image;
+
+          let projectOverviewImageUrl = "";
+
+          if (projectOverviewImage) {
+            try {
+              // If ACF returns Media ID
+              if (typeof projectOverviewImage === "number") {
+                const media = await getMediaById(projectOverviewImage);
+
+                projectOverviewImageUrl =
+                  media?.source_url || "";
+              }
+
+              // If ACF already returns URL
+              if (typeof projectOverviewImage === "string") {
+                projectOverviewImageUrl = projectOverviewImage;
+              }
+            } catch (error) {
+              console.error(
+                "Failed to fetch project overview image:",
+                error
+              );
+            }
+          }
+
+          return {
+            ...item,
+            projectOverviewImageUrl,
+          };
+        })
+      );
+
+      setCaseStudies(updatedData);
     } catch (error) {
       console.error("Failed to fetch case studies:", error);
     }
   };
 
-  const bgBanners = [
-    "bg-[#f0f4f8]",
-    "bg-[#f5ebe6]",
-    "bg-[#d6e7f7]",
-  ];
+  const getLightThemeColor = (
+    color?: string,
+    opacity = 0.14
+  ): string => {
+    if (!color) {
+      return "rgba(240, 244, 248, 1)";
+    }
+
+    // HEX color
+    if (color.startsWith("#")) {
+      let hex = color.replace("#", "");
+
+      if (hex.length === 3) {
+        hex = hex
+          .split("")
+          .map((char) => char + char)
+          .join("");
+      }
+
+      if (hex.length === 6) {
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+
+        // Mix theme color with white
+        const lightR = Math.round(r * opacity + 255 * (1 - opacity));
+        const lightG = Math.round(g * opacity + 255 * (1 - opacity));
+        const lightB = Math.round(b * opacity + 255 * (1 - opacity));
+
+        return `rgb(${lightR}, ${lightG}, ${lightB})`;
+      }
+    }
+
+    // Fallback for rgb/other formats
+    return color;
+  };
 
   return (
-    <section className="bg-[#fff] py-16 md:py-24 overflow-hidden">
+    <section className="bg-white py-16 md:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1400px] px-4 lg:px-6 2xl:px-10">
-        {/* 3-Column Responsive Grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((item, index) => {
-            const imageUrl =
-              item?._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+          {caseStudies.map((item) => {
+            const imageUrl = (
+              item as typeof item & {
+                projectOverviewImageUrl?: string;
+              }
+            ).projectOverviewImageUrl;
 
-            const bannerBg = bgBanners[index % bgBanners.length];
+            const themeColor = item?.acf?.theme_color;
+
+            const lightThemeColor =
+              getLightThemeColor(themeColor);
 
             return (
               <div key={item.id} className="flex">
-                {/* Card */}
                 <div className="group flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out">
+                  
                   {/* Image Section */}
                   <div
-                    className={`relative flex h-[220px] w-full items-center justify-center p-6 transition-colors duration-300 ${bannerBg}`}
+                    className="relative flex h-[220px] w-full items-center justify-center p-6 transition-colors duration-300"
+                    style={{
+                      backgroundColor: lightThemeColor,
+                    }}
                   >
                     {imageUrl && (
                       <img
                         src={imageUrl}
-                        alt={item.title?.rendered || "Case Study"}
-                        className="max-h-[140px] w-auto rounded object-contain shadow-[0_10px_25px_rgba(0,0,0,0.12)] transition-transform duration-300"
+                        alt={
+                          item.title?.rendered ||
+                          "Case Study"
+                        }
+                        className="max-h-[170px] w-auto rounded object-contain  transition-transform duration-300 group-hover:scale-[1.02]"
                         draggable="false"
                       />
                     )}
@@ -62,13 +143,15 @@ export const CaseStudies = () => {
                   {/* Content Section */}
                   <div className="flex flex-1 flex-col p-6 text-left sm:p-8">
                     <h3 className="mb-2 text-center text-2xl font-extrabold tracking-tight text-[#333333] capitalize transition-colors duration-200">
-                      {item.title?.rendered || "Untitled Case Study"}
+                      {item.title?.rendered ||
+                        "Untitled Case Study"}
                     </h3>
 
                     <div
                       className="mb-6 line-clamp-3 text-center text-[16px] leading-relaxed text-[#161616] [&_p]:m-0"
                       dangerouslySetInnerHTML={{
-                        __html: item.content?.rendered ?? "",
+                        __html:
+                          item.content?.rendered ?? "",
                       }}
                     />
                   </div>

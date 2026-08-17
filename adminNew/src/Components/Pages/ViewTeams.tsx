@@ -3,7 +3,7 @@ import { FiTrash2, FiEdit } from "react-icons/fi";
 import { toast } from "react-toastify";
 
 import { getUsersByStatusAPI } from "../Api/userapi";
-import { getAllProfilesAPI } from "../Api/ProfileApi";
+import { getAllProfilesAPI } from "../Api/Profileapi";
 import { SearchContext } from "../../searchContext";
 
 interface ApprovedUser {

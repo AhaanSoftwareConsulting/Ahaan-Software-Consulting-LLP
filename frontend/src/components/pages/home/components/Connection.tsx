@@ -57,9 +57,9 @@ export const Connection: React.FC = () => {
                   Planning your next big project?
                 </span>
                 
-                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight uppercase">
-                  Connect With Our <br className="hidden sm:block" />
-                  <span className="text-[#D4AF37]">Technology Experts</span>
+                <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight capitalise">
+                  Connect With Our Technology Experts <br className="hidden sm:block" />
+                  <span className="text-[#D4AF37]">and Transform Your Business</span>
                 </h2>
 
                 <p className="text-zinc-400 text-sm sm:text-base max-w-lg leading-relaxed">
