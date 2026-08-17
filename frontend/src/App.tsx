@@ -7,6 +7,7 @@ import WhatsAppChat from "./components/whatsapp/Whatsappchat";
 import CallHippoWidget from "./components/callhippowiget/CallHippoWidget";
 import AhaanChat from "./components/AhaanAI/AhaanChat";
 import { PageLoader } from "./components/loader/PageLoader";
+import { DisableInspect } from "./utils/DisableInspect";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -41,12 +42,10 @@ const RouteChangeLoader = () => {
 function App() {
   return (
     <>
+      <DisableInspect />
       <ScrollToTop />
-
       <RouteChangeLoader />
-
       <AllRoutes />
-
       <CallHippoWidget />
       <WhatsAppChat />
       <AhaanChat />
