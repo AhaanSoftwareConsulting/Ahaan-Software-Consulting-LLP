@@ -41,7 +41,7 @@ import {ProtectedRoute} from "./Components/features/ProtectedRoute";
 import {PendingUser} from "./Components/Pages/PendingUser";
 import {AcceptUser} from "./Components/Pages/AcceptUser";
 import {RejectUser} from "./Components/Pages/RejectUser";
-
+import { ManageEmployees } from "./Components/Pages/ManageEmployees";
 import PageLoader from "./Components/Common/PageLoader";
 
 import { SearchContext } from "./searchContext";
@@ -103,7 +103,7 @@ function LayoutWrapper() {
               <Route path="/add-design" element={<AddDesign />} />
               <Route path="/manage-design" element={<ManageDesigns />} />
               <Route path="/edit-design/:id" element={<EditDesign />} />
-
+                <Route path="/manage-employees" element={<ManageEmployees />} />
               {/* Development */}
               <Route
                 path="/add-development"

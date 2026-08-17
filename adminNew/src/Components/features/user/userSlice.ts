@@ -21,7 +21,7 @@ export interface User {
   _id?: string;
   accessToken?: string;
   refreshToken?: string;
-  name?: string;
+  full_name?: string;
   email?: string;
   role?: string;
   designation?: string;
