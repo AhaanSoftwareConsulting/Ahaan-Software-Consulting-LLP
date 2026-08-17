@@ -110,7 +110,7 @@ export const OurProcess = () => {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.45 }}
                 className={`
-                  group relative overflow-hidden border-b border-[#1e1800] p-[28px_28px_28px_0px]
+                  group relative overflow-hidden border-b border-[#1e1800] p-[16px_16px_16px_0px] md:p-[28px_28px_28px_0px]
                   flex items-start min-h-[130px] z-[1]
                   ${idx % 2 === 0 ? "sm:border-r sm:border-[#1e1800]" : "sm:border-r-0"}
                 `}
@@ -121,7 +121,7 @@ export const OurProcess = () => {
                 {/* Big Number Layer Container */}
                 <motion.div
                   variants={numberVariants}
-                  className="text-[72px] sm:text-[96px] font-bold leading-[0.85] tracking-[-0.02em] shrink-0 w-[82px] sm:w-[108px] text-right relative select-none font-serif"
+                  className="text-[60px] md:text-[72px] lg:text-[96px] w-[75px] sm:w-[90px] md:w-[100px] lg:w-[145px] font-bold leading-[0.96] tracking-[-0.02em] shrink-0  text-right relative select-none font-serif"
                 >
                   <span className="block text-[#352906] transition-colors duration-500 ease-out group-hover:text-[#d8c7a1]">
                     {step.num}
@@ -137,18 +137,18 @@ export const OurProcess = () => {
                 {/* Gold Separation Bar */}
                 <motion.div
                   variants={barVariants}
-                  className="w-[3px] shrink-0 self-stretch mx-[18px] origin-top bg-[#c8a030]"
+                  className="w-[3px] shrink-0 self-stretch mx-3 md:mx-[18px] origin-top bg-[#c8a030]"
                 />
 
                 {/* Content Segment */}
                 <motion.div
                   variants={textGroupVariants}
-                  className="pt-1 flex-1 font-['Outfit',sans-serif]"
+                  className="pt-1 flex-1 "
                 >
                   {/* Phase Subtitle */}
                   <motion.div
                     variants={textItemVariants}
-                    className="text-[9px] tracking-[0.22em] uppercase mb-1.5 text-[#c8a030]"
+                    className="text-xs md:text-sm font-semibold tracking-[0.02em] uppercase mb-1.5 text-[#c8a030]"
                   >
                     {step.phase}
                   </motion.div>
@@ -156,7 +156,7 @@ export const OurProcess = () => {
                   {/* Step Title */}
                   <motion.div
                     variants={textItemVariants}
-                    className="text-[15px] font-normal leading-[1.35] mb-1.5 tracking-[0.02em] text-[#f5edd8]"
+                    className="text-base md:text-lg font-normal leading-[1.35] mb-1.5 tracking-[0.02em] text-[#f5edd8]"
                   >
                     {step.title}
                   </motion.div>
@@ -164,7 +164,7 @@ export const OurProcess = () => {
                   {/* Description */}
                   <motion.div
                     variants={textItemVariants}
-                    className="text-[11px] leading-[1.6] text-[#6a5a38]"
+                    className="text-[11px] md:text-xs leading-[1.6] text-[#6a5a38]"
                   >
                     {step.desc}
                   </motion.div>

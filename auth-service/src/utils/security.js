@@ -17,8 +17,8 @@ async function verifyPassword(plainPassword, hashedPassword) {
 
 // ---------- JWT access / refresh tokens ----------
 
-function createAccessToken(subject) {
-  return jwt.sign({ sub: subject, type: 'access' }, config.jwt.secret, {
+function createAccessToken(subject, role) {
+  return jwt.sign({ sub: subject, type: 'access', role }, config.jwt.secret, {
     expiresIn: `${config.jwt.accessExpiresMinutes}m`,
   });
 }
@@ -34,9 +34,9 @@ function decodeToken(token) {
   return jwt.verify(token, config.jwt.secret);
 }
 
-function issueTokenPair(userId) {
+function issueTokenPair(userId, role) {
   const jti = uuidv4();
-  const accessToken = createAccessToken(userId);
+  const accessToken = createAccessToken(userId, role);
   const refreshToken = createRefreshToken(userId, jti);
   return { accessToken, refreshToken, jti };
 }
