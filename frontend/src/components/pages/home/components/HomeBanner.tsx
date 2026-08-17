@@ -82,7 +82,7 @@ export function HomeBanner() {
   const currentService = SERVICES_DATA[currentIndex];
 
   return (
-    <div className="relative w-full flex items-center justify-center bg-slate-50/70 ">
+    <div className="relative w-full flex items-center justify-center bg-gradient-to-br from-white via-[#fffbee] to-[#fff]">
 
 
       {/* Constrained to max-w-[1600px] & Fully Responsive */}
