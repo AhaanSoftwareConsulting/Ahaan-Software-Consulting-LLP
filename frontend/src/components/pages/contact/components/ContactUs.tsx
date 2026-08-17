@@ -210,8 +210,29 @@ export const ContactUs: React.FC = () => {
                     placeholder="Name"
                     className="w-full rounded-[50px] border border-[#ddd] p-[18px_24px] outline-none transition-all duration-300 focus:border-black"
                     {...register("name", {
-                      required: "Name is required",
-                    })}
+      required: "Name is required",
+
+      validate: (value) => {
+        const name = value.trim();
+
+        if (!name) {
+          return "Name is required";
+        }
+
+        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
+          return "Name can contain only letters and spaces";
+        }
+
+        return true;
+      },
+    })}
+    onInput={(e) => {
+      e.currentTarget.value = e.currentTarget.value
+        .replace(/[^A-Za-z ]/g, "")
+        .replace(/\s+/g, " ")
+        .replace(/^\s+/, "");
+    }}
+
                   />
                   {errors.name && (
                     <p className="mt-[5px] text-[14px] text-red-600">
@@ -227,8 +248,31 @@ export const ContactUs: React.FC = () => {
                     placeholder="Email ID"
                     className="w-full rounded-[50px] border border-[#ddd] p-[18px_24px] outline-none transition-all duration-300 focus:border-black"
                     {...register("email", {
-                      required: "Email is required",
-                    })}
+      required: "Email address is required",
+
+      validate: (value) => {
+        const email = value.trim();
+
+        if (!email) {
+          return "Email address is required";
+        }
+
+        if (
+          !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(
+            email
+          )
+        ) {
+          return "Please enter a valid email address";
+        }
+
+        return true;
+      },
+    })}
+    onKeyUp={(e) => {
+      e.currentTarget.value = e.currentTarget.value
+        .replace(/\s/g, "")
+        .replace(/[^A-Za-z0-9.!#$%&'*+/=?^_`{|}~@-]/g, "");
+    }}
                   />
                   {errors.email && (
                     <p className="mt-[5px] text-[14px] text-red-600">

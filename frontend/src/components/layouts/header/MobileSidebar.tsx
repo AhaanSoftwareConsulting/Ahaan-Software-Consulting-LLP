@@ -172,12 +172,30 @@ export const MobileSidebar = ({
           {/* Contact */}
           <div className="space-y-5 px-6 py-6">
             
-             <a href="tel:+16465759575"
-              className="flex items-center gap-3 text-sm text-white hover:text-[#CE8827]"
-            >
-              <PhoneOutgoingIcon size={20} />
-              <span>+1-646-575-9575</span>
-            </a>
+             <div className="flex items-start gap-3 text-sm text-white">
+    <PhoneOutgoingIcon
+      size={20}
+      className="mt-0.5 shrink-0"
+    />
+
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <a
+        href="tel:+16465759575"
+        className="transition-colors hover:text-[#CE8827]"
+      >
+        +1-646-575-9575
+      </a>
+
+      <span className="text-white/60">/</span>
+
+      <a
+        href="tel:+919830371143"
+        className="transition-colors hover:text-[#CE8827]"
+      >
+        +91-983-037-1143
+      </a>
+    </div>
+  </div>
 
             
             <a href="mailto:support@ahaansoftware.com"

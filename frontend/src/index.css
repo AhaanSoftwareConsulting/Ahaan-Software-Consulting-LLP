@@ -146,3 +146,28 @@
     animation: none;
   }
 }
+
+/* PayGlocal Button */
+[class*="PayGlocal-button-container-"] [class*="PayGlocal-button-"] {
+  border-radius: 50px !important;
+
+  width: 70% !important;
+  height: 50px !important;
+
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  color: #1c1d20 !important;
+
+  /* Shine background */
+  background: linear-gradient(
+    120deg,
+    #e3b602 0%,
+    #e3b602 35%,
+    #f3e58b 50%,
+    #e3b602 65%,
+    #e3b602 100%
+  ) !important;
+
+  background-size: 200% 100% !important;
+
+}

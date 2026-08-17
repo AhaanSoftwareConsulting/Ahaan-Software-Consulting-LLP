@@ -237,7 +237,7 @@ export const ServicesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-20 font-sans overflow-hidden"
+      className="bg-[#ffffff] max-w-[1600px] mx-auto px-4 lg:px-6 2xl:px-10 py-12 font-sans overflow-hidden"
     >
       <style>{`
         @keyframes drawStroke {

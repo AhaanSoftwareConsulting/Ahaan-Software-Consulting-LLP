@@ -131,7 +131,7 @@ export const Header = () => {
                 <img
                   src="https://ahaanmedia.com/ahaanwebsite/layouts/asc.webp"
                   alt="logo"
-                  className="h-10 w-28 object-contain"
+                  className="h-10 w-18 min-[375px]:w-28 object-contain"
                 />
               </NavLink>
 
@@ -140,7 +140,7 @@ export const Header = () => {
                   to="https://calendly.com/leads-ahaansoftware/free-consultation"
                   className="bg-gradient-to-r from-[#C48A18] to-[#E6B33C] px-2.5 py-2.5 rounded-full text-[11px] sm:text-[12px] font-semibold text-black"
                 >
-                  Discover Call
+                 Book a Discovery Call
                 </NavLink>
 
                 <a
