@@ -278,7 +278,7 @@ export const Footer = () => {
                     via team driven solutions.
                   </p>
 
-                  <div className="mt-6 flex gap-2  sm:mt-12 xl:gap-4">
+                  <div className="mt-6 flex gap-1 z-20  pl-3 sm:mt-12 xl:gap-4">
                     {socialLinks.map(
                       ({ name, url, Icon, gradient, tooltipGradient }) => (
                         <a
@@ -290,7 +290,7 @@ export const Footer = () => {
                         >
                           {/* Tooltip */}
                           <span
-                            className={`pointer-events-none absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 text-xs text-white opacity-0 transition-all duration-300 ease-in-out group-hover:top-[-40px] group-hover:opacity-100 ${tooltipGradient}`}
+                            className={`pointer-events-none absolute  -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-2.5 py-1 text-xs text-white opacity-0 transition-all duration-300 ease-in-out group-hover:top-[-40px] group-hover:opacity-100 ${tooltipGradient}`}
                           >
                             {name}
                             <span
