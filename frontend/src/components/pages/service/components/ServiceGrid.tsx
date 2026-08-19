@@ -182,7 +182,7 @@ const Grid: React.FC = () => {
                     {title}
                   </h1>
 
-                  <div className="mb-2 text-[13px] font-semibold text-black lg:text-[15px]">
+                  <div className="mb-2 lg:text-lg text-sm font-semibold text-black">
                     {features.map((item, i) => (
                       <span key={i}>
                         {item}
@@ -193,7 +193,7 @@ const Grid: React.FC = () => {
                     ))}
                   </div>
 
-                  <p className="mb-5 text-[13px] leading-relaxed text-[#666] lg:text-[15px]">
+                  <p className="mb-5 lg:text-lg text-sm leading-relaxed">
                     {description}
                   </p>
 
