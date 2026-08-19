@@ -8,24 +8,7 @@ import ecommerceLaptop from "../../../../assets/ecommerce.png";
 import wordpressLaptop from "../../../../assets/wordpress.png";
 
 const SERVICES_DATA = [
-  {
-    id: "web-dev",
-    titleMain: "Powerful & Scalable",
-    titleHighlight: "Web-App Development ",
-    subheading:
-      "We build fast, secure, scalable, and fully customized web applications tailored to your business goals.",
-    highlightColorClass: "text-sky-600",
-    image: webDevLaptop,
-    leftBadge: {
-      title: "Performance",
-      value: "99%",
-    },
-    rightBadge: {
-      title: "Server Uptime",
-      value: "99.99%",
-    },
-    techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/React.webp",
-  },
+ 
   {
     id: "web-design",
     titleMain: "Modern & Engaging",
@@ -43,6 +26,24 @@ const SERVICES_DATA = [
       value: "100%",
     },
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Figma.webp",
+  },
+   {
+    id: "web-dev",
+    titleMain: "Powerful & Scalable",
+    titleHighlight: "Web-App Development ",
+    subheading:
+      "We build fast, secure, scalable, and fully customized web applications tailored to your business goals.",
+    highlightColorClass: "text-sky-600",
+    image: webDevLaptop,
+    leftBadge: {
+      title: "Performance",
+      value: "99%",
+    },
+    rightBadge: {
+      title: "Server Uptime",
+      value: "99.99%",
+    },
+    techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/React.webp",
   },
   {
     id: "ecommerce",
