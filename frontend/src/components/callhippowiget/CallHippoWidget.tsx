@@ -38,22 +38,28 @@ const CallHippoWidget: React.FC = () => {
                z-index: 999999 !important;
              }
 
-             /* Only reposition the LAUNCHER (first injected child) — 
-                do NOT touch position/size of later children, since the
-                popup panel is appended as a sibling when clicked, and
-                forcing left/width/height on it would break/hide it. */
-             #callhippo-widget-container > *:first-child {
+             /* Force LEFT-side positioning on every injected element
+                (launcher AND popup), so the popup opens on the left
+                instead of CallHippo's right-side default. */
+             #callhippo-widget-container > * {
                left: 28px !important;
                right: auto !important;
+             }
+
+             /* Only resize the LAUNCHER (first child) — leave the
+                popup's own width/height untouched so it isn't squashed. */
+             #callhippo-widget-container > *:first-child {
                width: 50px !important;
                height: 50px !important;
              }
 
-            /* Mobile / Tablet — launcher only */
+            /* Mobile / Tablet */
         @media (max-width: 1023px) {
-           #callhippo-widget-container > *:first-child {
+           #callhippo-widget-container > * {
             left: 5px !important;
             right: auto !important;
+        }
+           #callhippo-widget-container > *:first-child {
             width: 40px !important;
             height: 40px !important;
             bottom: 88px !important;
@@ -63,15 +69,19 @@ const CallHippoWidget: React.FC = () => {
         }
     }
 
-          /* Desktop — launcher only */
+          /* Desktop */
         @media (min-width: 1024px) {
-          #callhippo-widget-container > *:first-child {
+          #callhippo-widget-container > * {
             left: 25px !important;
             right: auto !important;
+        }
+          #callhippo-widget-container > *:first-child {
             bottom: 100px !important;
         }
     }
-`}</style>
+`}
+        </style>
+
     );
 };
 

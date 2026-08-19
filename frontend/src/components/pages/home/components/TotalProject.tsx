@@ -55,15 +55,17 @@ interface Stat {
   suffix?: string;
   label: string;
   icon: React.ReactNode;
-  /** how far this plaque hangs below the rail, in px — the gallery-wall stagger */
+  /** how far this plaque hangs below the rail on desktop's single row, in px */
   drop: number;
+  /** how far this plaque hangs below its row's rail on the mobile 2x2 grid, in px */
+  dropMobile: number;
 }
 
 const stats: Stat[] = [
-  { value: 5, label: "International Awards", icon: <AwardIcon />, drop: 0 },
-  { value: 30, suffix: "+", label: "Our Teams", icon: <TeamIcon />, drop: 64 },
-  { value: 100, suffix: "+", label: "Completed Projects", icon: <CheckIcon />, drop: 24 },
-  { value: 125, suffix: "+", label: "Happy Clients", icon: <SmileIcon />, drop: 84 },
+  { value: 5, label: "International Awards", icon: <AwardIcon />, drop: 20, dropMobile: 15 },
+  { value: 30, suffix: "+", label: "Our Teams", icon: <TeamIcon />, drop: 64, dropMobile: 35 },
+  { value: 100, suffix: "+", label: "Completed Projects", icon: <CheckIcon />, drop: 34, dropMobile: 35 },
+  { value: 125, suffix: "+", label: "Happy Clients", icon: <SmileIcon />, drop: 84, dropMobile: 15 },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -101,30 +103,38 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 /* ------------------------------------------------------------------ */
 /*  Plaque — swings in on a "wire" like a hung frame, and swings back  */
 /*  up out of view when scrolled past going up                        */
+/*  `drop` is the px offset used for THIS render (desktop or mobile)   */
 /* ------------------------------------------------------------------ */
 
- const Plaque: React.FC<{ stat: Stat; index: number }> = ({ stat, index }) => {
+const Plaque: React.FC<{ stat: Stat; index: number; drop: number; compact?: boolean }> = ({
+  stat,
+  index,
+  drop,
+  compact,
+}) => {
   const ref = React.useRef(null);
   const visible = useInView(ref, { once: false, amount: 0.5 });
   const count = useCountUp(stat.value, visible, 1200 + index * 150);
 
   return (
-    <div ref={ref} className="relative flex justify-center" style={{ marginTop: stat.drop }}>
+    <div ref={ref} className="relative flex justify-center" style={{ marginTop: drop }}>
       {/* wire from rail down to the seal */}
       <span
         aria-hidden
         className="absolute left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-[#C9A227]/70 to-[#C9A227]/10"
-        style={{ top: -stat.drop, height: stat.drop + 28 }}
+        style={{ top: -drop-6, height: drop + (compact ? 20 : 28) }}
       />
       {/* nail on the rail */}
       <span
         aria-hidden
-        className="absolute left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#E8C766] shadow-[0_0_6px_2px_rgba(232,199,102,0.5)]"
-        style={{ top: -stat.drop - 4 }}
+        className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-[#E8C766] shadow-[0_0_6px_2px_rgba(232,199,102,0.5)] ${
+          compact ? "w-1.5 h-1.5" : "w-2 h-2"
+        }`}
+        style={{ top: -drop - (compact ? 10 : 12) }}
       />
 
       <motion.div
-        className="group relative w-full max-w-[240px] origin-top motion-reduce:transition-none"
+        className="group relative w-full max-w-[150px] sm:max-w-[200px] lg:max-w-[240px] origin-top motion-reduce:transition-none"
         initial={{ opacity: 0, y: -40, rotate: index % 2 === 0 ? -10 : 10 }}
         animate={
           visible
@@ -139,12 +149,20 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
         }}
       >
         {/* seal */}
-        <div className="relative z-10 mx-auto -mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#E8C766] to-[#9C7A17] text-[#1C1B19] shadow-[0_6px_14px_rgba(0,0,0,0.45)] ring-1 ring-[#F5E7B8]/60 transition-transform duration-500 motion-reduce:transition-none group-hover:-rotate-6">
+        <div
+          className={`relative z-10 mx-auto -mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-[#E8C766] to-[#9C7A17] text-[#1C1B19] shadow-[0_6px_14px_rgba(0,0,0,0.45)] ring-1 ring-[#F5E7B8]/60 transition-transform duration-500 motion-reduce:transition-none group-hover:-rotate-6 ${
+            compact ? "h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" : "h-12 w-12"
+          }`}
+        >
           {stat.icon}
         </div>
 
         {/* plaque body */}
-        <div className="relative overflow-hidden rounded-sm bg-[#2A2724] pt-9 pb-8 px-6 text-center shadow-[0_18px_35px_rgba(0,0,0,0.5)] ring-1 ring-[#C9A227]/25 transition-transform duration-500 motion-reduce:transition-none group-hover:-translate-y-1 group-hover:rotate-[0.5deg]">
+        <div
+          className={`relative overflow-hidden rounded-sm bg-[#2A2724] text-center shadow-[0_18px_35px_rgba(0,0,0,0.5)] ring-1 ring-[#C9A227]/25 transition-transform duration-500 motion-reduce:transition-none group-hover:-translate-y-1 group-hover:rotate-[0.5deg] ${
+            compact ? "pt-6 pb-5 px-3" : "pt-9 pb-8 px-6"
+          }`}
+        >
           {/* engraved inner border */}
           <span
             aria-hidden
@@ -157,11 +175,19 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
             className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 motion-reduce:transition-none group-hover:translate-x-[150%]"
           />
 
-          <div className="relative font-serif text-4xl font-semibold tracking-tight text-[#F0EAD9]">
+          <div
+            className={`relative font-serif font-semibold tracking-tight text-[#F0EAD9] ${
+              compact ? "text-2xl" : "text-4xl"
+            }`}
+          >
             {count}
             {stat.suffix}
           </div>
-          <div className="relative mt-2 font-mono text-[0.7rem] uppercase tracking-[0.2em] text-[#B9A98A]">
+          <div
+            className={`relative mt-2 font-mono uppercase tracking-[0.2em] text-[#B9A98A] ${
+              compact ? "text-[0.6rem]" : "text-[0.7rem]"
+            }`}
+          >
             {stat.label}
           </div>
         </div>
@@ -171,10 +197,27 @@ function useCountUp(target: number, active: boolean, duration = 1400) {
 };
 
 /* ------------------------------------------------------------------ */
+/*  Rail — the glowing gold connector line hung across a row           */
+/* ------------------------------------------------------------------ */
+
+const Rail: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <motion.div
+    aria-hidden
+    className={`absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A227]/80 to-transparent shadow-[0_0_10px_rgba(201,162,39,0.5)] origin-center ${className}`}
+    initial={{ scaleX: 0 }}
+    whileInView={{ scaleX: 1 }}
+    viewport={{ once: false, amount: 0.6 }}
+    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+  />
+);
+
+/* ------------------------------------------------------------------ */
 /*  Section                                                           */
 /* ------------------------------------------------------------------ */
 
-export const TotalProject= () => {
+export const TotalProject = () => {
+  const [row1, row2] = [stats.slice(0, 2), stats.slice(2, 4)];
+
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] px-4 lg:px-6 2xl:px-10 py-12">
       {/* subtle vignette / wall texture */}
@@ -189,7 +232,7 @@ export const TotalProject= () => {
 
       <div className="relative mx-auto max-w-6xl">
         <motion.div
-          className="mb-24 text-center"
+          className="mb-16 lg:mb-24 text-center"
           initial={{ opacity: 0, y: -24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.5 }}
@@ -205,21 +248,49 @@ export const TotalProject= () => {
           </p>
         </motion.div>
 
-        {/* rail */}
-        <div className="relative">
-          <motion.div
-            aria-hidden
-            className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-[#C9A227]/80 to-transparent shadow-[0_0_10px_rgba(201,162,39,0.5)] origin-center"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: false, amount: 0.6 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          />
-
-          <div className="grid grid-cols-1 gap-x-8 gap-y-24 pt-2 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ---------------------------------------------------------- */}
+        {/* Desktop / large screens: single rail, 4-across row          */}
+        {/* ---------------------------------------------------------- */}
+        <div className="hidden lg:block relative">
+          <Rail className="top-0" />
+          <div className="grid grid-cols-4 gap-x-8 gap-y-24 pt-2">
             {stats.map((stat, i) => (
-              <Plaque key={stat.label} stat={stat} index={i} />
+              <Plaque key={stat.label} stat={stat} index={i} drop={stat.drop} />
             ))}
+          </div>
+        </div>
+
+        {/* ---------------------------------------------------------- */}
+        {/* Mobile / tablet: 2x2 grid, each row hung on its own rail.   */}
+        {/* Row 1 — rail above only. Row 2 — rail above AND below.     */}
+        {/* ---------------------------------------------------------- */}
+        <div className="lg:hidden">
+          {/* row 1 */}
+          <div className="relative">
+            <Rail className="top-0" />
+            <div className="grid grid-cols-2 gap-x-4 gap-y-14 pt-2">
+              {row1.map((stat, i) => (
+                <Plaque key={stat.label} stat={stat} index={i} drop={stat.dropMobile} compact />
+              ))}
+            </div>
+          </div>
+
+          {/* row 2 */}
+          <div className="relative mt-14">
+            <Rail className="top-0" />
+            <div className="grid grid-cols-2 gap-x-4 gap-y-14 pt-2">
+              {row2.map((stat, i) => (
+                <Plaque
+                  key={stat.label}
+                  stat={stat}
+                  index={i + 2}
+                  drop={stat.dropMobile}
+                  compact
+                />
+              ))}
+            </div>
+            
+           
           </div>
         </div>
       </div>

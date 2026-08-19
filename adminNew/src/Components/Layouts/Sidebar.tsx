@@ -47,6 +47,7 @@ import {
 
 import { useAppDispatch, useAppSelector } from "../app/hook";
 import { logoutUser } from "../features/user/userSlice";
+import { UserCircle, Briefcase } from "@phosphor-icons/react";
 
 interface MenuItem {
   label?: string;
@@ -85,6 +86,11 @@ export default function Sidebar() {
       icon: <RxDashboard />,
       path: "/",
     },
+     {
+    label: "My Profile",
+    icon: <UserCircle />,
+    path: "/profile",
+  },
 
     {
       section: "Blog",
@@ -162,29 +168,22 @@ export default function Sidebar() {
       path: "/manage-development",
     },
 
-    {
-      section: "Teams",
-    },
+  
 
-    {
-      label: "Add Teams",
-      icon: <TiUserAdd />,
-      path: "/add-team",
-    },
+   
 
-    {
-      label: "View Teams",
-      icon: <FaUsers />,
-      path: "/view-team",
-    },
   ];
 
-  if (["manager", "ceo"].includes(user?.role ?? "")) {
+  if (["manager", "ceo", "hr"].includes(user?.role ?? "")) {
   menuItems.push(
+    
+   
     { section: "User Management" },
+     {label: "View Teams", icon: <FaUsers />, path: "/view-team"},
     { label: "Pending Users", icon: <MdPendingActions />, path: "/pending-users" },
     { label: "Approved Users", icon: <HiClipboardCheck />, path: "/approved-users" },
-    { label: "Rejected Users", icon: <RiFileCloseFill />, path: "/rejected-users" }
+    { label: "Rejected Users", icon: <RiFileCloseFill />, path: "/rejected-users" },
+    { label: "Manage Employees", icon: <Briefcase />, path: "/manage-employees" }
   );
 }
       return (
