@@ -207,7 +207,7 @@ export default function UiUxDesign() {
             UI/UX Design Portfolio
           </h2>
 
-          <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2">
             Browse through our creative UI/UX layout designs
           </p>
         </div>

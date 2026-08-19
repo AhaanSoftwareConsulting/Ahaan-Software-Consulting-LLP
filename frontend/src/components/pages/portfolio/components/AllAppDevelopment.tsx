@@ -95,7 +95,7 @@ export  function AllAppDevelopment() {
           App Development Designs
         </h2>
 
-        <p className="lg:text-base text-sm px-4 sm:px-8 mt-2">
+        <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
 
          
             Clean and modern designs for mobile and web applications
