@@ -29,7 +29,7 @@ export const CaseStudyProjectOverviewSection = ({
             Project Overview
           </h2>
           <div
-            className="text-[16px] font-normal leading-[26px] tracking-normal text-[#333333]"
+            className="lg:text-lg text-sm font-normal leading-relaxed tracking-normal"
             dangerouslySetInnerHTML={{
               __html: projectOverviewHtml || "",
             }}
