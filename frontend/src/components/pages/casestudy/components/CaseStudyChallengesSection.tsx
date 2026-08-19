@@ -68,7 +68,7 @@ export const CaseStudyChallengesSection = ({
             Challenges
           </h2>
 
-          <div className="text-[16px] font-normal leading-[26px] tracking-normal text-[#333333]">
+          <div className="lg:text-lg text-sm font-normal leading-relaxed tracking-normal">
             {parseHtmlContent(challengesHtml)}
           </div>
         </div>

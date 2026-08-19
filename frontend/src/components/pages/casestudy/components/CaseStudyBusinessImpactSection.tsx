@@ -79,7 +79,7 @@ export const CaseStudyBusinessImpactSection = ({
         <div>
           <h2 className="mb-5 heading-primary">Business Impact</h2>
 
-          <div className="text-sm leading-7 text-gray-900 xl:text-base xl:leading-8">
+          <div className="lg:text-lg text-sm leading-relaxed">
             {parseHtmlContent(businessImpactHtml)}
           </div>
         </div>

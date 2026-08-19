@@ -61,7 +61,7 @@ export const CaseStudyWhyStandsOutSection = ({
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="mx-auto max-w-5xl text-sm leading-7 text-gray-600 xl:text-base xl:leading-8"
+              className="mx-auto max-w-5xl lg:text-lg text-sm leading-relaxed"
               dangerouslySetInnerHTML={{
                 __html: whyStandsOutText,
               }}
