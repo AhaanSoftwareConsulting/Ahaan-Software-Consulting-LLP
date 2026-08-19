@@ -62,7 +62,7 @@ export const Connection: React.FC = () => {
                   <span className="text-[#D4AF37]">and Transform Your Business</span>
                 </h2>
 
-                <p className="text-zinc-400 text-sm sm:text-base max-w-lg leading-relaxed">
+                <p className="text-zinc-400 lg:text-lg text-sm max-w-lg leading-relaxed">
                   Explore exciting possibilities, discuss project goals, and start building software solutions designed to scale your business effortlessly.
                 </p>
 

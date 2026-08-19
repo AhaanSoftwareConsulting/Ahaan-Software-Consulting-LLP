@@ -152,7 +152,7 @@ export const AboutCompany = () => {
             </motion.h2>
 
             <motion.p
-              className="mt-3 text-xs sm:text-sm leading-relaxed text-gray-700 lg:text-base"
+              className="mt-3 lg:text-lg text-sm leading-relaxed"
               variants={paraVariants}
               initial="hidden"
               whileInView="visible"

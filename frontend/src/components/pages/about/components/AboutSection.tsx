@@ -77,7 +77,7 @@ export const AboutSection: React.FC = () => {
             </h2>
 
             {/* Description */}
-            <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+            <p className="lg:text-lg text-sm leading-relaxed">
               Accelerate innovation with world-class tech teams. We’ll match
               you to an entire remote team of incredible freelance talent for
               all your software development needs.

@@ -144,7 +144,7 @@ export const WhyChooseUs: React.FC = () => {
             <span className=""> Performance</span> & Trust.
           </h2>
 
-          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] text-sm sm:text-base lg:text-lg leading-relaxed">
+          <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] lg:text-lg text-sm leading-relaxed">
             We aren't just another service provider. We act as a high-velocity
             extension of your core engine, combining modern workflows with
             precise tactical execution.
@@ -360,7 +360,7 @@ export const WhyChooseUs: React.FC = () => {
               animate="center"
               exit="exit"
             >
-              <p className="text-[#A3A3A3] text-sm sm:text-base leading-relaxed max-w-2xl">
+              <p className="text-[#A3A3A3] lg:text-lg text-sm leading-relaxed max-w-7xl">
                 {activeReason.description}
               </p>
             </motion.div>
