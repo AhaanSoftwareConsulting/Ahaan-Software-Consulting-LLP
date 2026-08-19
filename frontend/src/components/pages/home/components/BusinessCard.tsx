@@ -245,7 +245,7 @@ export const BusinessCard = () => {
           </h2>
           <p
             className=
-            "text-sm lg:text-base  px-4 sm:px-8 mt-3 text-[#000] leading-relaxed"
+            "lg:text-lg text-sm  px-4 sm:px-8 mt-3 leading-relaxed"
           >
             We aren't just another service provider. We act as a high-velocity extension of your core engine, combining modern workflows with precise tactical execution.
           </p>

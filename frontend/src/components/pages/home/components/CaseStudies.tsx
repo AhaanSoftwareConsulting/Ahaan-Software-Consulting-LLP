@@ -255,7 +255,7 @@ export const CaseStudies = () => {
             Our Success Stories
           </h2>
 
-          <p className="mx-auto mt-3 px-0 text-sm leading-relaxed text-[#000] sm:px-8 lg:text-base">
+          <p className="mx-auto mt-3 px-0 leading-relaxed sm:px-8 lg:text-lg text-sm">
             Explore how we've helped businesses transform
             their digital presence through innovative web
             solutions, strategic design, and scalable

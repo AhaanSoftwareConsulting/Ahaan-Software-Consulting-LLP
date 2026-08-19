@@ -218,7 +218,7 @@ export default function Testimonials() {
           What Our Clients Say
         </h2>
 
-        <p className="mt-2 px-0 text-sm text-slate-600 sm:px-8 lg:text-base leading-relaxed">
+        <p className="mt-2 px-0 lg:text-lg text-sm sm:px-8 leading-relaxed">
           Driven to be future-ready, and push beyond the building
           blocks of technology, digital, and marketing.
         </p>

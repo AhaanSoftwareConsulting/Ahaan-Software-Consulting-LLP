@@ -25,7 +25,7 @@ export const AboutContent = () => {
               Your Tech, Development And Creative Transformation Partner!
             </h3>
 
-            <p className="text-base leading-relaxed text-gray-600 text-left">
+            <p className="lg:text-lg text-sm leading-relaxed text-left">
               Welcome to Ahaan Software Consulting! With a crew of 50+
               specialists, we’ve spent 6+ years crafting award-winning solutions
               for 200+ businesses worldwide. What defines us? We’re Tech
@@ -33,7 +33,7 @@ export const AboutContent = () => {
               Experts in execution, and Marketing Consultants at our core.
             </p>
 
-            <p className="text-base leading-relaxed text-gray-600 text-left">
+            <p className="lg:text-lg text-sm leading-relaxed text-left">
               Innovation runs deep in our DNA, driving us to create tangible
               impact for your business. Fuelled by a passion for delivering real
               value, we collaborate with industry leaders, in-house specialists,
@@ -63,7 +63,7 @@ export const AboutContent = () => {
 
 
             <h4 className="text-sm lg:text-base font-bold text-black">Mission</h4>
-            <p className="text-base leading-relaxed text-gray-600 text-left">
+            <p className="lg:text-lg text-sm leading-relaxed text-left">
               Our mission is to deliver MORE—Growth, Revenue & Success! Aimed at
               driving your business forward, we optimize processes, people, and
               technology to create client-aligned solutions that reimagine
@@ -72,7 +72,7 @@ export const AboutContent = () => {
             </p>
 
             <h4 className="text-sm lg:text-base font-bold text-black mt-2">Vision</h4>
-            <p className="text-base leading-relaxed text-gray-600 text-left">
+            <p className="lg:text-lg text-sm leading-relaxed text-left">
               We envision fostering a culture that shapes the way we create,
               collaborate, and innovate! Committed to delivering digital
               solutions with honesty, integrity, and accuracy, we uphold the

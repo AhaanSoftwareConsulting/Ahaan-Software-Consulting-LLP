@@ -79,7 +79,7 @@ export const Team: React.FC = () => {
         <h2 className="heading-primary">
           Meet Our Team
         </h2>
-        <p className="text-gray-600 text-sm sm:text-base max-w-4xl mx-auto leading-relaxed mb-10">
+        <p className="lg:text-lg text-sm max-w-6xl mx-auto leading-relaxed mb-10">
           Driven to be future-ready, and push beyond the building blocks of
           technology, digital, and marketing, Ahaan Software Consulting proudly
           participated in The Asia Business Show 2024 in Singapore—the powerhouse

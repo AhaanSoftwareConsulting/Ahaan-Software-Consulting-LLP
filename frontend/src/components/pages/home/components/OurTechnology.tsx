@@ -210,7 +210,7 @@ export const OurTechnology = () => {
             Our Technology Use
           </h2>
 
-          <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#00000] leading-relaxed  mx-auto">
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed  mx-auto">
             We leverage modern technologies to build secure, scalable, and
             future-ready digital solutions that streamline business operations,
             enhance user experiences, and help businesses innovate, grow, and

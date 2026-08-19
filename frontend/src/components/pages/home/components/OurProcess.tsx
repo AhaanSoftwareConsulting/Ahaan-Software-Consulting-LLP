@@ -88,7 +88,7 @@ export const OurProcess = () => {
             Our Proven Development Process
           </h2>
 
-          <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#8A8A8A] leading-relaxed  mx-auto">
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 text-[#8A8A8A] leading-relaxed mx-auto">
             From strategy and planning to development, testing, and deployment,
             we follow a structured process that ensures every project is
             delivered with quality, efficiency, and measurable business results.
