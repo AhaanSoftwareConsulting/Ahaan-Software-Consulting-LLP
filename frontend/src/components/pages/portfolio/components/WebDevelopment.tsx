@@ -187,7 +187,7 @@ export default function WebDevelopment() {
         Web Development Projects
       </h2>
 
-      <p className="lg:text-base text-sm px-0 sm:px-8 mt-3 text-[#000000]">
+      <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3">
         Explore our recent website projects
       </p>
     </div>

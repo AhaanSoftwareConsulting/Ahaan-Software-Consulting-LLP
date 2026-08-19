@@ -130,7 +130,7 @@ export const SolutionDetails = () => {
                 {solution.acf.hero_section_title}
               </h2>
 
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed whitespace-pre-line">
+              <p className="lg:text-lg text-sm leading-relaxed whitespace-pre-line">
                 {solution.acf.hero_section_description}
               </p>
 
@@ -166,7 +166,7 @@ export const SolutionDetails = () => {
                 )}
 
                 {solution.acf.highlight_description && (
-                  <p className="text-gray-300 mt-5 whitespace-pre-line leading-relaxed">
+                  <p className="lg:text-lg text-sm text-gray-300 mt-5 whitespace-pre-line leading-relaxed">
                     {solution.acf.highlight_description}
                   </p>
                 )}
@@ -232,7 +232,7 @@ export const SolutionDetails = () => {
 
                     </h3>
 
-                    <p className="text-gray-600 whitespace-pre-line leading-relaxed">
+                    <p className="lg:text-lg text-sm whitespace-pre-line leading-relaxed">
 
                       {feature.description}
 

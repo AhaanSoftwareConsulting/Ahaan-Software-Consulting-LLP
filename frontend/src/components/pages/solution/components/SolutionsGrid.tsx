@@ -59,7 +59,7 @@ const SolutionsGrid: React.FC = () => {
             Enterprise Software Development Services
           </h2>
 
-          <p className="lg:text-base 2xl:text-lg text-sm px-0 sm:px-8 mt-3 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3  max-w-4xl mx-auto leading-relaxed">
             Empower your business growth with enterprise-grade,
             industry-specific software solutions engineered to solve your unique
             operational challenges.
