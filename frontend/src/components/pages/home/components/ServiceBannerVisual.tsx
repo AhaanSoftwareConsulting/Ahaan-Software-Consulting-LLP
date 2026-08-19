@@ -1,17 +1,14 @@
-import React from "react";
-
-interface BadgeData {
+interface BadgeProps {
   title: string;
   value: string;
-  type?: "chart" | "bars";
 }
 
 interface ServiceBannerVisualProps {
   imageSrc: string;
   isTransitioning: boolean;
-  leftBadge?: BadgeData;
-  rightBadge?: BadgeData;
-  techIcon?: string;
+  leftBadge: BadgeProps;
+  rightBadge: BadgeProps;
+  techIcon: string;
 }
 
 export default function ServiceBannerVisual({
@@ -22,70 +19,60 @@ export default function ServiceBannerVisual({
   techIcon,
 }: ServiceBannerVisualProps) {
   return (
-    /* Increased container height for vertical breathing space */
-    <div className="relative flex items-center justify-center w-full h-[320px] sm:h-[400px] lg:h-[480px] select-none">
-      {/* Background glow scaled down */}
-      <div className="absolute w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] rounded-full bg-[#E6B33C]/10 blur-[80px] pointer-events-none" />
+    <div className="relative w-full flex justify-center items-center h-[300px] sm:h-[360px] lg:h-[400px] xl:h-[440px]">
+      {/* Visual Background Accent Glow */}
+      <div className="absolute w-72 h-72 bg-gradient-to-tr from-amber-200/40 via-sky-200/40 to-indigo-200/30 rounded-full blur-2xl z-0" />
 
-      {/* Compact Laptop scale max-w-[360px] lg:max-w-[420px] */}
+      {/* Laptop Image Container - Scaled to 600px Ratio */}
       <div
-        className={`relative z-10 w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] transition-all duration-500 ease-out transform ${
+        className={`relative z-10 w-full max-w-[420px] sm:max-w-[500px] lg:max-w-[560px] xl:max-w-[600px] transition-all duration-300 transform ${
           isTransitioning
-            ? "opacity-0 scale-95 translate-x-4 blur-sm"
-            : "opacity-100 scale-100 translate-x-0 blur-none"
+            ? "opacity-0 scale-95 blur-sm"
+            : "opacity-100 scale-100 blur-none"
         }`}
       >
-        {/* Compact Laptop Graphic */}
         <img
           src={imageSrc}
-          alt="Laptop Mockup"
-          className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.12)]"
-          draggable={false}
+          alt="Service Visual"
+          className="w-full h-auto object-contain drop-shadow-2xl relative z-10"
         />
 
-        {/* LEFT FLOATING BADGE */}
-        {leftBadge && (
-          <div className="absolute -left-4 sm:-left-8 top-[30%] -translate-y-1/2 bg-white/95 backdrop-blur-md px-2.5 py-2 sm:px-3 sm:py-2.5 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.08)] border border-slate-100 animate-bounce-slow z-20 min-w-[95px] sm:min-w-[120px]">
-            <p className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
-              {leftBadge.title}
-            </p>
-            <p className="text-sm sm:text-base font-black text-slate-800 mt-0.5">
-              {leftBadge.value}
-            </p>
-            <div className="w-full h-1 bg-slate-100 rounded-full mt-1 overflow-hidden">
-              <div className="h-full bg-sky-500 rounded-full w-[92%]" />
-            </div>
-          </div>
-        )}
+        {/* Tech Icon Badge (Top Right) */}
+        <div className="absolute -top-2 right-6 sm:right-10 z-20 w-9 h-9 sm:w-11 sm:h-11 bg-white/90 backdrop-blur-md rounded-full p-2 shadow-md border border-slate-100 flex items-center justify-center animate-bounce-slow">
+          <img
+            src={techIcon}
+            alt="Tech Icon"
+            className="w-full h-full object-contain"
+          />
+        </div>
 
-        {/* RIGHT FLOATING BADGE */}
-        {rightBadge && (
-          <div className="absolute -right-2 sm:-right-6 bottom-[8%] bg-white/95 backdrop-blur-md px-2.5 py-2 sm:px-3 sm:py-2.5 rounded-xl shadow-[0_10px_25px_rgba(0,0,0,0.08)] border border-slate-100 animate-float-delayed z-20 min-w-[95px] sm:min-w-[120px]">
-            <p className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
-              {rightBadge.title}
-            </p>
-            <p className="text-sm sm:text-base font-black text-emerald-600 mt-0.5">
-              {rightBadge.value}
-            </p>
-            <div className="flex items-end gap-1 h-2 mt-1">
-              <div className="w-1.5 h-[40%] bg-emerald-200 rounded-xs" />
-              <div className="w-1.5 h-[65%] bg-emerald-300 rounded-xs" />
-              <div className="w-1.5 h-[50%] bg-emerald-400 rounded-xs" />
-              <div className="w-1.5 h-[100%] bg-emerald-500 rounded-xs" />
-            </div>
+        {/* Left Performance Badge */}
+        <div className="absolute left-[-12px] sm:left-[-20px] top-[32%] z-20 bg-white/95 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-3 rounded-xl shadow-lg border border-slate-100/80 transform -translate-y-1/2">
+          <p className="text-[9px] sm:text-[11px] font-bold tracking-wider text-slate-400 uppercase">
+            {leftBadge.title}
+          </p>
+          <p className="text-sm sm:text-lg lg:text-xl font-black text-slate-800">
+            {leftBadge.value}
+          </p>
+          <div className="w-full bg-slate-100 rounded-full h-1 sm:h-1.5 mt-1 overflow-hidden">
+            <div className="bg-sky-500 h-full rounded-full w-[85%]" />
           </div>
-        )}
+        </div>
 
-        {/* TECH FLOATING BADGE */}
-        {techIcon && (
-          <div className="absolute right-[5%] -top-3 sm:-top-5 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/95 backdrop-blur-md shadow-md border border-slate-100 flex items-center justify-center p-1.5 z-20 animate-float">
-            <img
-              src={techIcon}
-              alt="Tech Icon"
-              className="w-full h-full object-contain"
-            />
+        {/* Right Uptime Badge */}
+        <div className="absolute right-[-12px] sm:right-[-20px] bottom-[18%] z-20 bg-white/95 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-3 rounded-xl shadow-lg border border-slate-100/80">
+          <p className="text-[9px] sm:text-[11px] font-bold tracking-wider text-slate-400 uppercase">
+            {rightBadge.title}
+          </p>
+          <p className="text-sm sm:text-lg lg:text-xl font-black text-emerald-600">
+            {rightBadge.value}
+          </p>
+          <div className="flex gap-1 mt-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span className="w-2.5 h-1.5 rounded-full bg-emerald-500"></span>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

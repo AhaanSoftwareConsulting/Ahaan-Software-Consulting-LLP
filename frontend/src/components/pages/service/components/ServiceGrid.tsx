@@ -176,7 +176,7 @@ const Grid: React.FC = () => {
               <div className="w-full md:flex-1">
                 <div className="mt-4 px-3 md:mt-0">
                   <h1
-                    className="grid-animated-heading text-2xl lg:text-3xl xl:text-4xl font-black capitalize tracking-[2px]"
+                    className="grid-animated-heading text-2xl lg:text-3xl xl:text-4xl font-black capitalize tracking-[2px] mb-2"
                     style={{ "--main-color": brandColor } as React.CSSProperties}
                   >
                     {title}
