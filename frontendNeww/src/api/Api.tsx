@@ -62,7 +62,28 @@ export const getAllUiUxDesignsAPI = async () => {
   }
 };
 
+// ➤ Get all SocialMedia Post
+export const getAllSocialMediaMarketingAPI = async () => {
+  try {
+    const response = await API.get("/social");
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching social media posts:", error);
+    return [];
+  }
+};
 
+
+// ➤ Get all AppDevelopment
+export const getAllAppDevelopmentsAPI = async () => {
+  try {
+    const response = await API.get("/appDev");
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching app development projects:", error);
+    return [];
+  }
+};
 
 // ➤ Post contact form details
 export const createContact = async (data: ContactPayload) => {
