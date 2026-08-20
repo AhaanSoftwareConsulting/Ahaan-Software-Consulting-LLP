@@ -99,7 +99,7 @@ export default function AppDevelopment() {
           App Development Designs
         </h2>
 
-        <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
+        <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2">
 
          
             Clean and modern designs for mobile and web applications

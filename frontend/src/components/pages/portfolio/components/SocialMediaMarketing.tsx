@@ -157,7 +157,7 @@ export default function SocialMediaMarketing() {
           Social Media Marketing
         </h2>
 
-        <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
+        <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2">
           A showcase of engaging and creative social media designs
         </p>
       </div>
