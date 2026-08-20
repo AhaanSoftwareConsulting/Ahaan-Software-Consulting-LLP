@@ -7,7 +7,7 @@ import {
   LinkedinLogo,
   WhatsappLogo,
 } from "@phosphor-icons/react";
-import {BlogSearchBanner} from "./BlogSearchBanner";
+import { BlogSearchBanner } from "./BlogSearchBanner";
 
 interface Reactions {
   "thumbs up": number;
@@ -22,7 +22,8 @@ interface Blog {
   image?: string;
   author?: string;
   author_image?: string;
-  created_at: string;
+  createdAt?: string;
+  created_at?: string;
   reactions?: Reactions;
   [key: string]: unknown;
 }
@@ -42,7 +43,7 @@ const reactions = [
 
 const stripHtml = (html: string): string => {
   const div = document.createElement("div");
-  div.innerHTML = html;
+  div.innerHTML = html || "";
   return div.textContent || div.innerText || "";
 };
 
@@ -54,7 +55,8 @@ const trimToWords = (htmlContent: string, wordLimit = 20): string => {
     : text;
 };
 
-const formatDateTime = (isoString: string): string => {
+const formatDateTime = (isoString?: string): string => {
+  if (!isoString) return "N/A";
   try {
     const date = new Date(isoString);
     return date.toLocaleString(undefined, {
@@ -72,9 +74,11 @@ const formatDateTime = (isoString: string): string => {
 
 const createSlug = (title: string): string =>
   title
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9\-]/g, "");
+    ? title
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9\-]/g, "")
+    : "";
 
 export const SearchResults: React.FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -87,15 +91,15 @@ export const SearchResults: React.FC = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await axios.get<Blog[]>("https://ahaansoftware.com/blog-db.json");
-      const filtered = res.data.filter((b) =>
-        b.title.toLowerCase().includes(query.toLowerCase())
-      );
+      // API call to Node.js backend search endpoint
+      const res = await axios.get(`http://localhost:5000/api/blogs?search=${encodeURIComponent(query)}`);
+      
+      const blogList: Blog[] = Array.isArray(res.data) ? res.data : res.data.data || [];
 
       const counts: ReactionState = {};
       const local: SelectedReactionState = {};
 
-      filtered.forEach((blog) => {
+      blogList.forEach((blog) => {
         counts[blog.id] = {
           "thumbs up": blog.reactions?.["thumbs up"] || 0,
           love: blog.reactions?.["love"] || 0,
@@ -104,11 +108,11 @@ export const SearchResults: React.FC = () => {
         if (localReaction) local[blog.id] = localReaction;
       });
 
-      setBlogs(filtered);
+      setBlogs(blogList);
       setReactionCounts(counts);
       setSelectedReactions(local);
     } catch (err) {
-      console.error("Error fetching blogs:", err);
+      console.error("Error fetching search results:", err);
     }
   };
 
@@ -135,15 +139,9 @@ export const SearchResults: React.FC = () => {
     });
 
     try {
-      const formData = new URLSearchParams();
-      formData.append("id", String(blogId));
-      formData.append("reaction", newReaction);
-      formData.append("prevReaction", prevReaction || "");
-
-      await fetch("https://ahaansoftware.com/update-json.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData,
+      await axios.post(`http://localhost:5000/api/blogs/${blogId}/reaction`, {
+        reaction: newReaction,
+        prevReaction: prevReaction || "",
       });
     } catch (err) {
       console.error("Failed to update reaction:", err);
@@ -164,6 +162,9 @@ export const SearchResults: React.FC = () => {
               const slug = createSlug(blog.title);
               const blogUrl = `${window.location.origin}/blog/${slug}`;
               const blogReactions = reactionCounts[blog.id] || { "thumbs up": 0, love: 0 };
+              const image = blog.image?.startsWith("http")
+                ? blog.image
+                : `http://localhost:5000/${blog.image}`;
 
               return (
                 <div
@@ -173,13 +174,9 @@ export const SearchResults: React.FC = () => {
                 >
                   {blog.image && (
                     <img
-                      src={
-                        blog.image.startsWith("http")
-                          ? blog.image
-                          : `https://ahaansoftware.com/${blog.image}`
-                      }
+                      src={image}
                       alt={blog.title}
-                      className="w-full h-48 object-content"
+                      className="w-full h-48 object-cover"
                     />
                   )}
 
@@ -204,7 +201,7 @@ export const SearchResults: React.FC = () => {
                           By {blog.author || "Unknown"}
                         </p>
                         <p className="text-xs text-gray-500 m-0">
-                          {formatDateTime(blog.created_at)}
+                          {formatDateTime(blog.createdAt || blog.created_at)}
                         </p>
                       </div>
                     </div>
