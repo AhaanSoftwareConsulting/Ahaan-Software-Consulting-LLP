@@ -33,7 +33,7 @@ const SERVICES_DATA = [
     titleHighlight: "Web-App Development ",
     subheading:
       "We build fast, secure, scalable, and fully customized web applications tailored to your business goals.",
-    highlightColorClass: "text-sky-600",
+    highlightColorClass: "text-[#036AF1]",
     image: webDevLaptop,
     leftBadge: {
       title: "Performance",
@@ -51,7 +51,7 @@ const SERVICES_DATA = [
     titleHighlight: "E-Commerce Development",
     subheading:
       "End-to-end eCommerce solutions with secure payments, inventory management, and conversion-focused online stores.",
-    highlightColorClass: "text-blue-400",
+    highlightColorClass: "text-[#6119D3]",
     image: ecommerceLaptop,
     leftBadge: {
       title: "Sales Growth",
@@ -69,7 +69,7 @@ const SERVICES_DATA = [
     titleHighlight: "Shopify Theme Development",
     subheading:
       "High-converting Shopify stores with custom design, seamless integrations, and optimized shopping experiences.",
-    highlightColorClass: "text-emerald-600",
+    highlightColorClass: "text-[#498220]",
     image: shopifyLaptop,
     leftBadge: {
       title: "Conversion",
