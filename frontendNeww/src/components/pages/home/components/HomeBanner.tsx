@@ -8,13 +8,12 @@ import ecommerceLaptop from "../../../../assets/ecommerce.png";
 import wordpressLaptop from "../../../../assets/wordpress.png";
 
 const SERVICES_DATA = [
- 
   {
     id: "web-design",
     titleMain: "Modern & Engaging",
     titleHighlight: "Web Design Experiences",
     subheading:
-      "Modern, responsive, and user-focused website designs that deliver exceptional user experiences across all devices.",
+      "Modern, responsive, and user-focused website designs with intuitive interfaces, engaging visuals, and seamless navigation that deliver exceptional user experiences across all devices.",
     highlightColorClass: "text-rose-400",
     image: webDesignLaptop,
     leftBadge: {
@@ -27,13 +26,13 @@ const SERVICES_DATA = [
     },
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Figma.webp",
   },
-   {
+  {
     id: "web-dev",
     titleMain: "Powerful & Scalable",
     titleHighlight: "Web-App Development ",
     subheading:
-      "We build fast, secure, scalable, and fully customized web applications tailored to your business goals.",
-    highlightColorClass: "text-sky-600",
+      "We build fast, secure, scalable, and fully customized web applications with seamless functionality and optimized performance, tailored to your unique business goals and designed to support long-term growth.",
+    highlightColorClass: "text-[#036AF1]",
     image: webDevLaptop,
     leftBadge: {
       title: "Performance",
@@ -50,8 +49,8 @@ const SERVICES_DATA = [
     titleMain: "Enterprise-Grade",
     titleHighlight: "E-Commerce Development",
     subheading:
-      "End-to-end eCommerce solutions with secure payments, inventory management, and conversion-focused online stores.",
-    highlightColorClass: "text-blue-400",
+      "End-to-end eCommerce solutions with secure payment integrations, efficient inventory management, and conversion-focused online stores designed to deliver seamless shopping experiences and support business growth.",
+    highlightColorClass: "text-[#6119D3]",
     image: ecommerceLaptop,
     leftBadge: {
       title: "Sales Growth",
@@ -68,8 +67,8 @@ const SERVICES_DATA = [
     titleMain: "Conversion-Focused",
     titleHighlight: "Shopify Theme Development",
     subheading:
-      "High-converting Shopify stores with custom design, seamless integrations, and optimized shopping experiences.",
-    highlightColorClass: "text-emerald-600",
+      "High-converting Shopify stores with custom designs, seamless integrations, and optimized performance, delivering smooth, engaging, and user-friendly shopping experiences that help businesses attract customers and drive more sales.",
+    highlightColorClass: "text-[#498220]",
     image: shopifyLaptop,
     leftBadge: {
       title: "Conversion",
@@ -86,7 +85,7 @@ const SERVICES_DATA = [
     titleMain: "High-Performance",
     titleHighlight: "WordPress Development ",
     subheading:
-      "Powerful WordPress websites with custom themes, plugins, optimized performance, and easy content management.",
+      "Powerful WordPress websites built with custom themes and plugins, optimized for speed, security, and performance, with a user-friendly content management experience that makes it easy to update, manage, and grow your website.",
     highlightColorClass: "text-cyan-600",
     image: wordpressLaptop,
     leftBadge: {
@@ -130,7 +129,8 @@ export function HomeBanner() {
   const currentService = SERVICES_DATA[currentIndex];
 
   return (
-    <div className="relative w-full overflow-hidden flex items-center justify-center bg-gradient-to-r from-[#FAF6ED] via-[#F3F4FD] to-[#FFF6F0] py-4 sm:py-6 lg:py-8 min-h-[360px] lg:min-h-[400px]">
+    /* min-h-[calc(100vh-140px)] ব্যবহার করা হয়েছে যাতে হেডারের পর পুরো বাকি স্ক্রিন জুড়িয়া ব্যানারটি থাকে */
+    <div className="relative w-full overflow-hidden flex items-center justify-center bg-gradient-to-r from-[#FAF6ED] via-[#F3F4FD] to-[#FFF6F0] py-8 lg:py-16 min-h-[calc(100vh-140px)]">
       {/* Background Floating Orbs & Vector Lines */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {/* Soft Background Radial Blurs */}
@@ -179,7 +179,7 @@ export function HomeBanner() {
       <div className="relative max-w-[1500px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center z-10 px-4 sm:px-6 lg:px-8">
         {/* Left Typography Column */}
         <div className="order-2 md:order-1 flex flex-col justify-center space-y-6 xl:space-y-8 text-left">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-slate-900 tracking-tight leading-[1.15] min-h-[85px] lg:min-h-[120px]">
+          <h1 className="text-[24px] sm:text-[30px] lg:text-[36px] xl:text-[50px] font-black text-slate-900 tracking-tight leading-[1.15] min-h-[85px] lg:min-h-[120px]">
             <span
               className={`block transition-all duration-300 transform ${
                 isTransitioning
@@ -197,7 +197,7 @@ export function HomeBanner() {
           </h1>
 
           <p
-            className={`text-slate-600 lg:text-base xl:text-lg text-sm max-w-xl transition-all duration-300 delay-70 ${
+            className={`text-slate-700 font-semibold lg:text-base xl:text-[17px] text-sm max-w-xl transition-all duration-300 delay-70 ${
               isTransitioning
                 ? "opacity-0 -translate-y-1"
                 : "opacity-100 translate-y-0"
@@ -206,7 +206,7 @@ export function HomeBanner() {
             {currentService.subheading}
           </p>
 
-          <p className="text-slate-400 font-medium text-xs sm:text-sm tracking-wide">
+          <p className="text-slate-600 font-medium text-xs sm:text-sm tracking-wide">
             Enterprise Solutions for{" "}
             <span className="text-slate-700 font-extrabold decoration-[#C5A85A] decoration-2 underline-offset-4">
               {currentService.titleHighlight}
