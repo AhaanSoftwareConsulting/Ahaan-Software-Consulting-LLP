@@ -172,10 +172,10 @@ export const CareerDetails: React.FC = () => {
             <div className="space-y-6 text-zinc-700">
               {job.summary && (
                 <div className="space-y-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-zinc-900">
+                  <h3 className="text-lg sm:text-xl font-bold">
                     Job Summary
                   </h3>
-                  <p className="text-sm sm:text-base 2xl:text-lg leading-relaxed text-zinc-800">
+                  <p className="lg:text-lg text-sm leading-relaxed">
                     {job.summary}
                   </p>
                 </div>
@@ -183,11 +183,11 @@ export const CareerDetails: React.FC = () => {
 
               {job.responsibilities && (
                 <div className="space-y-2">
-                  <h3 className="text-lg sm:text-xl font-bold text-zinc-900">
+                  <h3 className="text-lg sm:text-xl font-bold">
                     Key Responsibilities
                   </h3>
                   <div
-                    className="prose prose-zinc max-w-none text-sm sm:text-base 2xl:text-lg leading-relaxed text-zinc-800
+                    className="prose prose-zinc max-w-none lg:text-lg text-sm 2xl:text-lg leading-relaxed
                       prose-ul:list-disc prose-ul:pl-5 prose-li:my-1 prose-p:my-2"
                     dangerouslySetInnerHTML={{
                       __html: job.responsibilities,

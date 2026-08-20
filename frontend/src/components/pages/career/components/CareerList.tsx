@@ -88,7 +88,7 @@ export const CareerList: React.FC = () => {
             Join our team of passionate professionals
           </h2>
           {/* Sub-heading size increased */}
-          <p className="text-base sm:text-lg lg:text-lg px-0 sm:px-8 mt-3 text-zinc-600 leading-relaxed">
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed">
             Explore exciting career opportunities, enhance your skills,
             collaborate with talented professionals, and make a meaningful
             impact while growing your career with us.
