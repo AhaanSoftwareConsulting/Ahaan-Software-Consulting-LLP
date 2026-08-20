@@ -17,18 +17,23 @@ export const BlogSearch: React.FC = () => {
 
   const formatSlug = (title: string): string =>
     title
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^a-z0-9\-]/g, "");
+      ? title
+          .toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/[^a-z0-9\-]/g, "")
+      : "";
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("https://ahaansoftware.com/blog-db.json");
-        const data: Blog[] = await res.json();
+        const res = await fetch("http://localhost:5000/api/blogs");
+        const result = await res.json();
+        
+        // Express Backend Array or Object handling
+        const data: Blog[] = Array.isArray(result) ? result : result.data || [];
         setBlogs(data);
       } catch (err) {
-        console.error("Error fetching blogs:", err);
+        console.error("Error fetching blogs for search:", err);
       }
     };
     fetchBlogs();
@@ -41,7 +46,7 @@ export const BlogSearch: React.FC = () => {
     }
 
     const results = blogs.filter((b) =>
-      b.title.toLowerCase().includes(query.toLowerCase())
+      b.title?.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredBlogs(results.slice(0, 6));
   }, [query, blogs]);
@@ -90,15 +95,17 @@ export const BlogSearch: React.FC = () => {
               onClick={() => handleSelect(blog.title)}
               className="flex items-center gap-2.5 p-2 px-3 cursor-pointer text-black text-sm transition-colors duration-200 hover:bg-black/5"
             >
-              <img
-                src={
-                  blog.image?.startsWith("http")
-                    ? blog.image
-                    : `https://ahaansoftware.com/${blog.image}`
-                }
-                alt={blog.title}
-                className="w-[50px] h-[40px] object-cover rounded-md shrink-0"
-              />
+              {blog.image && (
+                <img
+                  src={
+                    blog.image.startsWith("http")
+                      ? blog.image
+                      : `http://localhost:5000/${blog.image}`
+                  }
+                  alt={blog.title}
+                  className="w-[50px] h-[40px] object-cover rounded-md shrink-0"
+                />
+              )}
               <span className="line-clamp-2">{blog.title}</span>
             </li>
           ))}
