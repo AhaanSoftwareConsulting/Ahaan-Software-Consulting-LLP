@@ -1,5 +1,5 @@
 import { memo, useState } from "react";
-import { Link } from "react-router-dom";
+import AllSocialBanner from "./AllSocialBanner";
 
 type CardItem = {
   id: number;
@@ -76,8 +76,7 @@ const cardsData: CardItem[] = [
 ];
 
 // ---------------------------------------------
-// Same "tilted backdrop" card design used on the
-// full listing page:
+// "Tilted backdrop" card design:
 // - a rotated colored panel sits behind the photo like a
 //   floating shadow-card, straightening out on hover
 // - the photo itself sits in a tilted, white-bordered frame
@@ -140,66 +139,38 @@ const Card = memo(({ title, img, color }: CardItem) => {
   );
 });
 
-export default function SocialMediaMarketing() {
-  const [visibleCount] = useState<number>(3);
-
-  // const handleLoadMore = () => {
-  //   setVisibleCount((prev) => Math.min(prev + 3, cardsData.length));
-  // };
+export function AllSocialMediaMarketing() {
+  const [visibleCount] = useState<number>(9);
 
   const visibleCards = cardsData.slice(0, visibleCount);
 
   return (
-    <section className="py-3">
-      {/* Heading */}
-      <div className="mb-12 text-center">
-        <h2 className="heading-primary">
-          Social Media Marketing
-        </h2>
+    <>
+      <AllSocialBanner />
+      <section className="px-4 py-6 sm:py-10 lg:py-16 overflow-x-hidden">
+        {/* Heading */}
+        <div className="mb-12 text-center">
+          <h2 className="heading-primary">
+            Social Media Marketing
+          </h2>
 
-        <p className="lg:text-base text-sm px-0 sm:px-8 mt-2">
-          A showcase of engaging and creative social media designs
-        </p>
-      </div>
-
-      {/* Grid */}
-      <div className="relative mx-auto grid max-w-[1400px] grid-cols-2 gap-x-1.5 gap-y-6 sm:gap-x-1.5 sm:gap-y-8 lg:grid-cols-3 lg:gap-x-2 lg:gap-y-15">
-        {visibleCards.map((card) => (
-          <div key={card.id} className="flex justify-center">
-            <Card {...card} />
-          </div>
-        ))}
-      </div>
-
-      {/* Load More */}
-      {visibleCount < cardsData.length && (
-        <div className="mt-8 flex justify-center">
-          <Link
-            to="/all-media-marketing"
-            className="shine-btn relative overflow-hidden uppercase
-                bg-gradient-to-r
-                from-[#C48A18]
-                to-[#E6B33C]
-                px-5
-                xl:px-6
-                2xl:px-8
-                py-3
-                xl:py-3.5
-                text-sm
-                xl:text-base
-                font-semibold
-                text-black
-                shadow-xl
-                transition-all
-                duration-300
-                hover:-translate-y-0.5
-                hover:from-[#B57A0C]
-                hover:to-[#D69D20]"
-          >
-            View All
-          </Link>
+          <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
+            A showcase of engaging and creative social media designs
+          </p>
         </div>
-      )}
-    </section>
+
+        {/* Grid — gap reduced and kept identical for rows and columns
+            at every breakpoint (a single `gap-*` utility sets both
+            row-gap and column-gap to the same value, so vertical and
+            horizontal spacing always match). */}
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-2 gap-x-1.5 gap-y-6 sm:gap-x-1.5 sm:gap-y-8 lg:grid-cols-3 lg:gap-x-2 lg:gap-y-15">
+          {visibleCards.map((card) => (
+            <div key={card.id} className="flex justify-center">
+              <Card {...card} />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
