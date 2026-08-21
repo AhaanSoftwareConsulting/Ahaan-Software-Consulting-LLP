@@ -144,6 +144,38 @@ export const updateDevelopmentAPI = (id: string, formData: FormData) =>
 export const deleteDevelopmentAPI = (id: string) =>
   API.delete(`/developments/delete/${id}`);
 
+
+// =======================
+// SocialMediaPost
+// =======================
+
+export const AddSocialMediaMarketingAPI = (formData: FormData) =>
+  API.post("/social/add", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+export const getAllSocialMediaMarketingAPI = () =>
+  API.get("/social");
+
+export const getSocialMediaMarketingByIdAPI = (id: string) =>
+  API.get(`/social/${id}`);
+
+export const updateSocialMediaMarketingAPI = (
+  id: string,
+  formData: FormData
+) =>
+  API.put(`/social/edit/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+export const deleteSocialMediaMarketingAPI = (id: string) =>
+  API.delete(`/social/delete/${id}`);
+
+
 // =======================
 // Users
 // =======================

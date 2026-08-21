@@ -33,6 +33,12 @@ import AddDevelopment from "./Components/Pages/AddDevelopment";
 import ManageDevelopments from "./Components/Pages/ManageDevelopments";
 import EditDevelopment from "./Components/Pages/EditDevelopment";
 
+import AddSocialMediaMarketing from "./Components/Pages/AddSocialMediaMarketingForm";
+import ManageSocialMediaMarketing from "./Components/Pages/ManageSocialMediaMarketing";
+import EditSocialMediaMarketing from "./Components/Pages/EditSocialMediaMarketingForm";
+
+
+
 import Profile from "./Components/Pages/Profile";
 
 import {LoginView} from "./Components/features/user/login/LoginView";
@@ -117,7 +123,12 @@ function LayoutWrapper() {
                 path="/edit-development/:id"
                 element={<EditDevelopment />}
               />
-           
+
+              {/* SocialMediaPost */}
+              <Route path="/add-social" element={<AddSocialMediaMarketing/>} />
+              <Route path="/manage-social" element={<ManageSocialMediaMarketing/>} />
+              <Route path="/edit-social/:id" element={<EditSocialMediaMarketing/>} />
+
               {/* USER */}
             <Route path="/pending-users" element={<PendingUser/>} />
             <Route path= "/approved-users" element={<AcceptUser/>} />
