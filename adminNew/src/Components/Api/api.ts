@@ -4,8 +4,8 @@ import type {
   AxiosInstance,
   InternalAxiosRequestConfig,
 } from "axios";
-// const BASE_URL = "http://localhost:5000/api";
-const BASE_URL = "https://ahaan-software-1.onrender.com/api";
+ const BASE_URL = "http://localhost:5000/api";
+//const BASE_URL = "https://ahaan-software-1.onrender.com/api";
 
 const API: AxiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -168,6 +168,38 @@ export const updateDevelopmentAPI = (
 export const deleteDevelopmentAPI = (
   id: string
 ) => API.delete(`/developments/delete/${id}`);
+
+
+// =======================
+// SocialMediaPost
+// =======================
+
+export const AddSocialMediaMarketingAPI = (formData: FormData) =>
+  API.post("/social/add", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+export const getAllSocialMediaMarketingAPI = () =>
+  API.get("/social");
+
+export const getSocialMediaMarketingByIdAPI = (id: string) =>
+  API.get(`/social/${id}`);
+
+export const updateSocialMediaMarketingAPI = (
+  id: string,
+  formData: FormData
+) =>
+  API.put(`/social/edit/${id}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+export const deleteSocialMediaMarketingAPI = (id: string) =>
+  API.delete(`/social/delete/${id}`);
+
 
 // =======================
 // Users
