@@ -176,7 +176,7 @@ export const SearchResults: React.FC = () => {
                     <img
                       src={image}
                       alt={blog.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-auto object-cover"
                     />
                   )}
 

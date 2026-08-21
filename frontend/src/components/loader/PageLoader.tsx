@@ -12,9 +12,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
   const CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Smooth Fluid Organic 3D Particle Mesh Wave (Optimized and Auto-plays on `isLoading` change)
   useEffect(() => {
-    // Only proceed if component is loading
     if (!isLoading) return;
 
     const canvas = canvasRef.current;
@@ -26,63 +24,58 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Track active rendering within useEffect lifecycle
     let isRendering = true;
+
+    // Device Pixel Ratio & Mesh Column Dynamic Adjustment for smooth mobile rendering
+    let cols = Math.min(width < 640 ? 60 : 100, Math.floor(width / 14));
+    let rows = width < 640 ? 22 : 30;
 
     const handleResize = () => {
       if (!canvas) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
+      cols = Math.min(width < 640 ? 60 : 100, Math.floor(width / 14));
+      rows = width < 640 ? 22 : 30;
     };
     window.addEventListener('resize', handleResize);
 
-    // Refined grid setup for safe 60fps across screen sizes
-    const cols = Math.min(100, Math.floor(width / 16));
-    const rows = 30;
     let count = 0;
 
     const render = () => {
-      // Check to prevent memory leaks and performance lag on component update
       if (!isRendering) return;
 
       ctx.clearRect(0, 0, width, height);
       count += 0.02;
 
-      const fov = 260;
-      const centerY = height * 0.65;
-      const xSpacing = width / (cols - 8); // Border-to-border coverage
+      const fov = width < 640 ? 180 : 260;
+      const centerY = height * (width < 640 ? 0.70 : 0.65);
+      const xSpacing = width / (cols - 4);
 
-      // Performance Optimization: Cache base color palette
       const yellowGlow = `rgba(254, 240, 138, `;
       const baseAmber = `rgba(245, 158, 11, `;
 
       for (let x = 0; x < cols; x++) {
         for (let y = 0; y < rows; y++) {
-          // Perspective coordinates calculated to flow naturally
           const xPos = (x - cols / 2) * xSpacing;
-          const zPos = y * 16 + 80;
+          const zPos = y * (width < 640 ? 12 : 16) + 80;
 
-          // Highly fluid, smooth natural wave motion
-          const wave1 = Math.sin(x * 0.12 + count) * 32;
-          const wave2 = Math.cos(y * 0.15 + count * 0.8) * 22;
+          const wave1 = Math.sin(x * 0.12 + count) * (width < 640 ? 20 : 32);
+          const wave2 = Math.cos(y * 0.15 + count * 0.8) * (width < 640 ? 14 : 22);
           const yPos = wave1 + wave2;
 
-          // 2D Projection with screen-based depth
           const scale = fov / (fov + zPos);
           const screenX = width / 2 + xPos * scale;
           const screenY = centerY + yPos * scale;
 
-          // Optimal blending and performance optimization: calculated alpha directly
           const alpha = (1 - zPos / 560) * scale * 0.85;
           if (alpha <= 0) continue;
 
-          const particleSize = Math.max(0.7, scale * 2.4);
+          const particleSize = Math.max(0.6, scale * (width < 640 ? 1.8 : 2.4));
 
           ctx.beginPath();
           ctx.arc(screenX, screenY, particleSize, 0, Math.PI * 2);
 
-          // Render with safe palette, avoiding shadows inside render loop
-          if (yPos < -10) {
+          if (yPos < -8) {
             ctx.fillStyle = `${yellowGlow}${Math.min(1, alpha * 1.2)})`;
           } else {
             ctx.fillStyle = `${baseAmber}${alpha * 0.65})`;
@@ -94,16 +87,14 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    // Begin Rendering
     render();
 
-    // Lifecycle clean-up ensures wave animation does not continue on page change
     return () => {
       isRendering = false;
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, [isLoading]); // Added isLoading to dependency array: fixes issue where hard refresh was needed
+  }, [isLoading]);
 
   return (
     <AnimatePresence>
@@ -115,7 +106,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
             scale: 1.05,
             transition: { duration: 0.8, ease: [0.43, 0.13, 0.23, 0.96] } 
           }}
-          className="fixed inset-0 w-screen h-screen z-[9999] flex flex-col items-center justify-center bg-[#030303] overflow-hidden select-none"
+          className="fixed inset-0 w-full h-full h-[100dvh] z-[9999] flex flex-col items-center justify-center bg-[#030303] overflow-hidden select-none px-4"
         >
           {/* ========================================== */}
           {/* FULL WIDTH SMOOTH 3D MESH WAVE            */}
@@ -124,14 +115,14 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
             <canvas ref={canvasRef} className="w-full h-full block" />
             
             {/* Safe Ambient Golden Illumination */}
-            <div className="absolute left-1/2 bottom-[12%] -translate-x-1/2 w-[90%] h-[300px] bg-amber-500/10 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute left-1/2 bottom-[10%] -translate-x-1/2 w-[95%] sm:w-[90%] h-[200px] sm:h-[300px] bg-amber-500/10 rounded-full blur-[90px] sm:blur-[140px] pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/10 to-[#030303] pointer-events-none" />
           </div>
 
           {/* ========================================== */}
           {/* MAIN CIRCULAR LOADER FRAME & LOGO          */}
           {/* ========================================== */}
-          <div className="relative flex items-center justify-center w-[360px] h-[360px] md:w-[400px] md:h-[400px] z-10">
+          <div className="relative flex items-center justify-center w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[400px] md:h-[400px] z-10 scale-90 sm:scale-100">
 
             {/* 1. Animated SVG Gold Circle Path */}
             <svg 
@@ -192,7 +183,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
               }}
               className="absolute inset-0 w-full h-full pointer-events-none z-10"
             >
-              <div className="absolute top-[20px] left-[50%] -translate-x-1/2 h-2.5 w-2.5 rounded-full bg-amber-200 shadow-[0_0_12px_2px_#f59e0b]" />
+              <div className="absolute top-[20px] left-[50%] -translate-x-1/2 h-2 sm:h-2.5 w-2 sm:w-2.5 rounded-full bg-amber-200 shadow-[0_0_12px_2px_#f59e0b]" />
             </motion.div>
 
             {/* 3. Main ASC Logo Reveal */}
@@ -204,12 +195,12 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
                 duration: 1.4,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="relative z-20 flex items-center justify-center p-6"
+              className="relative z-20 flex items-center justify-center p-4 sm:p-6"
             >
               <img 
                 src={LOGO_URL} 
                 alt="Ahaan Software Consulting" 
-                className="w-72 md:w-80 h-auto object-contain drop-shadow-[0_0_25px_rgba(245,158,11,0.3)]"
+                className="w-35 sm:w-52 md:w-60 max-w-[50vw] h-auto object-contain drop-shadow-[0_0_25px_rgba(245,158,11,0.3)]"
               />
             </motion.div>
 
@@ -218,7 +209,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.6 }}
-              className="absolute bottom-10 z-20 flex items-center gap-1 text-[11px] font-semibold tracking-[0.35em] text-amber-500/90 uppercase"
+              className="absolute bottom-6 sm:bottom-10 z-20 flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold tracking-[0.25em] sm:tracking-[0.35em] text-amber-500/90 uppercase"
             >
               <span>LOADING</span>
               <motion.span
