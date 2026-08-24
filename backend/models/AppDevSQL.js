@@ -10,11 +10,15 @@ const AppDev = sequelize.define(
       primaryKey: true,
     },
 
-    image: {
+    projectName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     
 
   },

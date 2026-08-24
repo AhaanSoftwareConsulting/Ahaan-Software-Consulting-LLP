@@ -38,6 +38,11 @@ import ManageSocialMediaMarketing from "./Components/Pages/ManageSocialMediaMark
 import EditSocialMediaMarketing from "./Components/Pages/EditSocialMediaMarketingForm";
 
 
+import AddAppDevelopment from "./Components/Pages/AddAppDevelopmentForm";
+import ManageAppDevelopment from "./Components/Pages/ManageAppDevelopment";
+import EditAppDevelopment from "./Components/Pages/EditAppDevelopmentForm";
+
+
 
 import Profile from "./Components/Pages/Profile";
 
@@ -128,6 +133,11 @@ function LayoutWrapper() {
               <Route path="/add-social" element={<AddSocialMediaMarketing/>} />
               <Route path="/manage-social" element={<ManageSocialMediaMarketing/>} />
               <Route path="/edit-social/:id" element={<EditSocialMediaMarketing/>} />
+
+              {/* App Development */}
+              <Route path="/add-app" element={<AddAppDevelopment/>} />
+              <Route path="/manage-app" element={<ManageAppDevelopment/>} />
+              <Route path="/edit-app/:id" element={<EditAppDevelopment/>} />
 
               {/* USER */}
             <Route path="/pending-users" element={<PendingUser/>} />

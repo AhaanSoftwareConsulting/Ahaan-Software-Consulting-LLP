@@ -5,7 +5,16 @@ class AppDevController {
   // Create App Development
   static async create(req, res) {
     try {
+
+       const { projectName } = req.body;
       const image = req.file?.path || null;
+
+      if (!projectName) {
+        return res.status(400).json({
+          success: false,
+          message: "Project name is required.",
+        });
+      }
 
       if (!image) {
         return res.status(400).json({
@@ -16,6 +25,7 @@ class AppDevController {
 
       const newAppDev = await AppDev.create({
         image,
+        projectName,
       });
 
       return res.status(201).json({
@@ -95,6 +105,13 @@ class AppDevController {
       }
 
       await data.update({
+        
+        projectName:
+          req.body.projectName !== undefined
+            ? req.body.projectName
+            : data.projectName,
+
+
         image: newImage || data.image,
       });
 
