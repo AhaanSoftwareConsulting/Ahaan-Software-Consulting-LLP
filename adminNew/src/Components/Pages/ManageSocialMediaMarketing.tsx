@@ -7,10 +7,10 @@ import { deleteSocialMediaMarketingAPI, getAllSocialMediaMarketingAPI } from "..
 import { SearchContext } from "../../searchContext";
 
 interface SocialMediaMarketing {
-  _id: string;
+  id: string;
   projectName: string;
-  
   image: string;
+ 
  
 }
 
@@ -99,7 +99,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
               ) : (
                 filteredSocialMediaMarketing.map((item, index) => (
                   <tr
-                    key={item._id}
+                    key={item.id}
                     className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
                     index % 2 === 0
                       ? "bg-white"
@@ -129,7 +129,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
                     <td className="px-4 py-4">
                       <div className="flex justify-center gap-3">
                         <Link
-                          to={`/edit-social/${item._id}`}
+                          to={`/edit-social/${item.id}`}
                           className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
                         >
                           <FiEdit size={18} />
@@ -137,7 +137,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
 
                         <button
                           onClick={() =>
-                            handleDeleteConfirm(item._id)
+                            handleDeleteConfirm(item.id)
                           }
                           className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
                         >

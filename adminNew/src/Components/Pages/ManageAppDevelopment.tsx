@@ -7,8 +7,8 @@ import { deleteAppDevelopmentAPI, getAllAppDevelopmentAPI } from "../Api/api";
 import { SearchContext } from "../../searchContext";
 
 interface AppDevelopment {
-  _id: string;
-   projectName: string;  
+  id: string;
+  projectName: string;
   image: string;
  
 }
@@ -100,7 +100,7 @@ const ManageAppDevelopment: React.FC = () => {
               ) : (
                 filteredAppDevelopment.map((item, index) => (
                   <tr
-                    key={item._id}
+                    key={item.id}
                     className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
                     index % 2 === 0
                       ? "bg-white"
@@ -130,16 +130,14 @@ const ManageAppDevelopment: React.FC = () => {
                     <td className="px-4 py-4">
                       <div className="flex justify-center gap-3">
                         <Link
-                          to={`/edit-app/${item._id}`}
+                          to={`/edit-app/${item.id}`}
                           className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
                         >
                           <FiEdit size={18} />
                         </Link>
 
                         <button
-                          onClick={() =>
-                            handleDeleteConfirm(item._id)
-                          }
+                          onClick={() => handleDeleteConfirm(item.id)}
                           className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
                         >
                           <FiTrash2 size={18} />

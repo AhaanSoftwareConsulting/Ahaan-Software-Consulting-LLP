@@ -61,7 +61,7 @@ const EditAppDevelopment: React.FC = () => {
       );
 
       setTimeout(() => {
-        navigate("/manage-social");
+        navigate("/manage-app");
       }, 1000);
     } catch (error: any) {
       toast.error(
