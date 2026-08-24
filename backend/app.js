@@ -72,8 +72,8 @@ const PORT = process.env.PORT || 5000;
     console.log("✅ MySQL Connected Successfully");
 
     // Sequelize Models Sync
-    await sequelize.sync();
-    console.log("✅ MySQL Tables Synced");
+    await sequelize.sync({ alter: true });
+console.log("✅ MySQL Tables Synced");
 
     server.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);

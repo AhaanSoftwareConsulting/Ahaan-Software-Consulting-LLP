@@ -3,16 +3,14 @@ import { Link } from "react-router-dom";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { toast } from "react-toastify";
 
-import { deleteDevelopmentAPI, getAllDevelopmentsAPI } from "../Api/api";
+import { deleteAppDevelopmentAPI, getAllAppDevelopmentAPI } from "../Api/api";
 import { SearchContext } from "../../searchContext";
 
 interface AppDevelopment {
   _id: string;
-  title: string;
-  link: string;
+   projectName: string;  
   image: string;
-  category?: string;
-  designer?: string;
+ 
 }
 
 const ManageAppDevelopment: React.FC = () => {
@@ -24,12 +22,12 @@ const ManageAppDevelopment: React.FC = () => {
 
   const loadData = async (): Promise<void> => {
     try {
-      const res = await getAllDevelopmentsAPI();
+      const res = await getAllAppDevelopmentAPI();
       setAppDevelopment(res.data.data);
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message ||
-          "Failed to load posts."
+          "Failed to load AppDev."
       );
     }
   };
@@ -42,9 +40,8 @@ const ManageAppDevelopment: React.FC = () => {
     const q = query.toLowerCase();
 
     return (
-      item.title.toLowerCase().includes(q) ||
-      item.link.toLowerCase().includes(q) ||
-      item.designer?.toLowerCase().includes(q)
+      item.projectName.toLowerCase().includes(q) 
+     
     );
   });
 
@@ -57,10 +54,10 @@ const ManageAppDevelopment: React.FC = () => {
     if (!selectedId) return;
 
     try {
-      const res = await deleteDevelopmentAPI(selectedId);
+      const res = await deleteAppDevelopmentAPI(selectedId);
 
       toast.success(
-        res.data.message || "Post deleted successfully!"
+        res.data.message || "Appdev deleted successfully!"
       );
 
       setShowModal(false);
@@ -70,7 +67,7 @@ const ManageAppDevelopment: React.FC = () => {
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message ||
-          "Failed to delete post!"
+          "Failed to delete appdev!"
       );
     }
   };
@@ -85,9 +82,7 @@ const ManageAppDevelopment: React.FC = () => {
                 <th className="px-4 py-4 text-left">#</th>
                 <th className="px-4 py-4 text-left">Image</th>
                 <th className="px-4 py-4 text-left">Title</th>
-                <th className="px-4 py-4 text-left">Link</th>
-                <th className="px-4 py-4 text-left">Category</th>
-                <th className="px-4 py-4 text-left">Designer</th>
+               
                 <th className="px-4 py-4 text-center">Actions</th>
               </tr>
             </thead>
@@ -99,7 +94,7 @@ const ManageAppDevelopment: React.FC = () => {
                     colSpan={7}
                     className="py-8 text-center text-gray-500"
                   >
-                    No posts found.
+                    No appdev found.
                   </td>
                 </tr>
               ) : (
@@ -121,42 +116,21 @@ const ManageAppDevelopment: React.FC = () => {
                     <td className="px-4 py-4">
                       <img
                         src={item.image}
-                        alt={item.title}
+                        alt={item.projectName}
                         className="h-10 w-20 rounded-md shadow-sm object-cover"
                       />
                     </td>
 
                     <td className="px-4 py-4 font-medium">
-                      {item.title}
+                      {item.projectName}
                     </td>
 
-                    <td className="max-w-xs px-4 py-4">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="block truncate text-blue-600 hover:underline"
-                      >
-                        {item.link}
-                      </a>
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm font-medium text-yellow-700">
-                        {item.category || "N/A"}
-                      </span>
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span className="rounded-full bg-gray-200 px-3 py-1 text-sm">
-                        {item.designer || "Unknown"}
-                      </span>
-                    </td>
+                    
 
                     <td className="px-4 py-4">
                       <div className="flex justify-center gap-3">
                         <Link
-                          to={`/edit-social/${item._id}`}
+                          to={`/edit-app/${item._id}`}
                           className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
                         >
                           <FiEdit size={18} />
@@ -186,12 +160,12 @@ const ManageAppDevelopment: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
             <h2 className="text-xl font-bold">
-              Delete Post
+              Delete appdev
             </h2>
 
             <p className="mt-3 text-gray-600">
               This action is permanent. Are you sure you
-              want to delete this post?
+              want to delete this appdev?
             </p>
 
             <div className="mt-6 flex justify-end gap-3">

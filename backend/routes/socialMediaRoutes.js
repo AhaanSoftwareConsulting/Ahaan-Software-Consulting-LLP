@@ -7,7 +7,7 @@ const SocialMediaController = require("../controllers/SocialMediaController");
 const mediaUpload = upload("ahaan-designs").single("image");
 
 // Create Social Media Image
-router.post("/", mediaUpload, SocialMediaController.create);
+router.post("/add", mediaUpload, SocialMediaController.create);
 
 // Get All Social Media Images
 router.get("/", SocialMediaController.getAll);

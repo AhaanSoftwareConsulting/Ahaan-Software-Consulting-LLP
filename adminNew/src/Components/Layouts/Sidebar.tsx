@@ -166,7 +166,11 @@ export default function Sidebar() {
       icon: <FaCodeCompare />,
       path: "/manage-development",
     },
-    
+
+    {
+      section: "Postfolio",
+    },
+
      {
       label: "Add Marketing",
       icon: <MdOutlineDesignServices />,
@@ -178,6 +182,11 @@ export default function Sidebar() {
       icon: <FaCodeCompare />,
       path: "/manage-social",
     },
+
+    {
+      section: "Appfolio",
+    },
+
   
 {
       label: "Add AppDevelopment",
