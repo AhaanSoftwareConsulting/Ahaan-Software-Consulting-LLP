@@ -166,9 +166,30 @@ export default function Sidebar() {
       icon: <FaCodeCompare />,
       path: "/manage-development",
     },
+    
+     {
+      label: "Add Marketing",
+      icon: <MdOutlineDesignServices />,
+      path: "/add-social",
+    },
 
+    {
+      label: "Manage Marketing",
+      icon: <FaCodeCompare />,
+      path: "/manage-social",
+    },
   
+{
+      label: "Add AppDevelopment",
+      icon: <MdOutlineDesignServices />,
+      path: "/add-app",
+    },
 
+    {
+      label: "Manage AppDevelopment",
+      icon: <FaCodeCompare />,
+      path: "/manage-app",
+    },
    
 
   ];
