@@ -21,22 +21,19 @@ const ScrollToTop = () => {
 
 const RouteChangeLoader = () => {
   const { pathname } = useLocation();
-
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
 
+  
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 500);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  if (!loading) return null;
-
-  return <PageLoader />;
+  return <PageLoader isLoading={loading} />;
 };
 
 function App() {

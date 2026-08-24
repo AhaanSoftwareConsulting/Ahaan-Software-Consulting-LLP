@@ -198,7 +198,7 @@ export const BlogPage = () => {
                                 <img
                                     src={blog.image}
                                     alt={blog.title}
-                                    className="w-full h-48 object-cover border-b border-gray-100"
+                                    className="w-full h-auto object-cover border-b border-gray-100"
                                 />
                             )}
 
