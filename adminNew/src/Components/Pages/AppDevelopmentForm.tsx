@@ -16,12 +16,13 @@ export interface AppDevelopmentFormProps {
 
 const AppDevelopmentForm: React.FC<AppDevelopmentFormProps> = ({
   formTitle,
+  projectName,
+  setProjectName,
   image,
   setImage,
   onSubmit,
-  previewImage,
-  projectName,
-  setProjectName,
+  previewImage
+  
 }) => {
   return (
     <div className="mx-auto w-full max-w-3xl rounded-3xl border border-yellow-100 bg-[#FCFCF5] p-6 shadow-xl sm:p-8 lg:p-10">

@@ -7,7 +7,7 @@ const AppDevController = require("../controllers/AppDevController");
 const appDevUpload = upload("ahaan-designs").single("image");
 
 // Create Social Media Image
-router.post("/", appDevUpload, AppDevController.create);
+router.post("/add", appDevUpload, AppDevController.create);
 
 // Get All Social Media Images
 router.get("/", AppDevController.getAll);

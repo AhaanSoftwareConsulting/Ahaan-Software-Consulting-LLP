@@ -33,10 +33,10 @@ const AddAppDevelopment: React.FC = () => {
       setProjectName("");
       setImage(null);
 
-      navigate("/manage-posts");
+      navigate("/manage-app");
     } catch (error: any) {
       toast.error(
-        error?.response?.data?.message || "Failed to add post!"
+        error?.response?.data?.message || "Failed to add app!"
       );
     }
   };

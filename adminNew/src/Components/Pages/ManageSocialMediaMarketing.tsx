@@ -7,12 +7,11 @@ import { deleteSocialMediaMarketingAPI, getAllSocialMediaMarketingAPI } from "..
 import { SearchContext } from "../../searchContext";
 
 interface SocialMediaMarketing {
-  _id: string;
-  title: string;
-  link: string;
+  id: string;
+  projectName: string;
   image: string;
-  category?: string;
-  designer?: string;
+ 
+ 
 }
 
 const ManageSocialMediaMarketing: React.FC = () => {
@@ -42,9 +41,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
     const q = query.toLowerCase();
 
     return (
-      item.title.toLowerCase().includes(q) ||
-      item.link.toLowerCase().includes(q) ||
-      item.designer?.toLowerCase().includes(q)
+      item.projectName.toLowerCase().includes(q)
     );
   });
 
@@ -85,9 +82,6 @@ const ManageSocialMediaMarketing: React.FC = () => {
                 <th className="px-4 py-4 text-left">#</th>
                 <th className="px-4 py-4 text-left">Image</th>
                 <th className="px-4 py-4 text-left">Title</th>
-                <th className="px-4 py-4 text-left">Link</th>
-                <th className="px-4 py-4 text-left">Category</th>
-                <th className="px-4 py-4 text-left">Designer</th>
                 <th className="px-4 py-4 text-center">Actions</th>
               </tr>
             </thead>
@@ -105,7 +99,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
               ) : (
                 filteredSocialMediaMarketing.map((item, index) => (
                   <tr
-                    key={item._id}
+                    key={item.id}
                     className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
                     index % 2 === 0
                       ? "bg-white"
@@ -121,42 +115,21 @@ const ManageSocialMediaMarketing: React.FC = () => {
                     <td className="px-4 py-4">
                       <img
                         src={item.image}
-                        alt={item.title}
+                        alt={item.projectName}
                         className="h-10 w-20 rounded-md shadow-sm object-cover"
                       />
                     </td>
 
                     <td className="px-4 py-4 font-medium">
-                      {item.title}
+                      {item.projectName}
                     </td>
 
-                    <td className="max-w-xs px-4 py-4">
-                      <a
-                        href={item.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="block truncate text-blue-600 hover:underline"
-                      >
-                        {item.link}
-                      </a>
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm font-medium text-yellow-700">
-                        {item.category || "N/A"}
-                      </span>
-                    </td>
-
-                    <td className="px-4 py-4">
-                      <span className="rounded-full bg-gray-200 px-3 py-1 text-sm">
-                        {item.designer || "Unknown"}
-                      </span>
-                    </td>
+                    
 
                     <td className="px-4 py-4">
                       <div className="flex justify-center gap-3">
                         <Link
-                          to={`/edit-social/${item._id}`}
+                          to={`/edit-social/${item.id}`}
                           className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
                         >
                           <FiEdit size={18} />
@@ -164,7 +137,7 @@ const ManageSocialMediaMarketing: React.FC = () => {
 
                         <button
                           onClick={() =>
-                            handleDeleteConfirm(item._id)
+                            handleDeleteConfirm(item.id)
                           }
                           className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
                         >

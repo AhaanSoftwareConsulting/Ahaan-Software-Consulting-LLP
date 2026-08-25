@@ -166,14 +166,14 @@ export const updateSocialMediaMarketingAPI = (
   id: string,
   formData: FormData
 ) =>
-  API.put(`/social/edit/${id}`, formData, {
+  API.put(`/social/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
 export const deleteSocialMediaMarketingAPI = (id: string) =>
-  API.delete(`/social/delete/${id}`);
+  API.delete(`/social/${id}`);
 
 
 // =======================
@@ -181,30 +181,30 @@ export const deleteSocialMediaMarketingAPI = (id: string) =>
 // =======================
 
 export const AddAppDevelopmentAPI = (formData: FormData) =>
-  API.post("/app/add", formData, {
+  API.post("/appDev/add", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
 export const getAllAppDevelopmentAPI = () =>
-  API.get("/app");
+  API.get("/appDev");
 
 export const getAppDevelopmentByIdAPI = (id: string) =>
-  API.get(`/app/${id}`);
+  API.get(`/appDev/${id}`);
 
 export const updateAppDevelopmentAPI = (
   id: string,
   formData: FormData
 ) =>
-  API.put(`/app/edit/${id}`, formData, {
+  API.put(`/appDev/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
 export const deleteAppDevelopmentAPI = (id: string) =>
-  API.delete(`/app/delete/${id}`);
+  API.delete(`/appDev/${id}`);
 
 
 

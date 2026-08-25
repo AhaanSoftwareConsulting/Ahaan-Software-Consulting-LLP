@@ -36,7 +36,7 @@ const AddSocialMediaMarketing: React.FC = () => {
       setBackgroundColor("");
       setImage(null);
 
-      navigate("/manage-posts");
+      navigate("/manage-social");
     } catch (error: any) {
       toast.error(
         error?.response?.data?.message || "Failed to add post!"
