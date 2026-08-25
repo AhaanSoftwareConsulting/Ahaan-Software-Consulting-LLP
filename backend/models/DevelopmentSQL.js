@@ -1,47 +1,35 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-const Test = sequelize.define(
-  "tests",
+const Development = sequelize.define(
+  "Development",
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
+      autoIncrement: true,
     },
-
-    name: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true,
-      },
-    },
-
-    phone: {
+    link: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-
-    address: {
-      type: DataTypes.TEXT,
+    image: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-
-    message: {
-      type: DataTypes.TEXT,
+    developer: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
-    tableName: "tests",
+    tableName: "developments",
     timestamps: true,
   }
 );
 
-module.exports = Test;
+module.exports = Development;

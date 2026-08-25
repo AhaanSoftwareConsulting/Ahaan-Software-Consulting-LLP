@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://ahaan-software-1.onrender.com/api";
+// const BASE_URL = "https://ahaan-software-1.onrender.com/api";
+const BASE_URL = "http://localhost:5000/api";
 
 const API = axios.create({ 
   baseURL: BASE_URL,
@@ -62,7 +63,28 @@ export const getAllUiUxDesignsAPI = async () => {
   }
 };
 
+// ➤ Get all SocialMedia Post
+export const getAllSocialMediaMarketingAPI = async () => {
+  try {
+    const response = await API.get("/social");
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching social media posts:", error);
+    return [];
+  }
+};
 
+
+// ➤ Get all AppDevelopment
+export const getAllAppDevelopmentsAPI = async () => {
+  try {
+    const response = await API.get("/appDev");
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching app development projects:", error);
+    return [];
+  }
+};
 
 // ➤ Post contact form details
 export const createContact = async (data: ContactPayload) => {
@@ -95,4 +117,39 @@ export const createForm = async (data: ConnectPayload) => {
   }
 };
 
+// ➤ Get all blogs
+export const getAllBlogsAPI = async () => {
+  try {
+    const response = await API.get("/blogs");
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching blogs:", error);
+    return { success: false, data: [] };
+  }
+};
+
+// ➤ Get single blog by ID
+export const getBlogByIdAPI = async (id: string | number) => {
+  try {
+    const response = await API.get(`/blogs/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching single blog:", error);
+    throw error;
+  }
+};
+
+// ➤ Update reaction (thumbs_up or love)
+export const updateBlogReactionAPI = async (
+  blogId: string | number,
+  updatedData: { thumbs_up?: number; love?: number }
+) => {
+  try {
+    const response = await API.put(`/blogs/${blogId}`, updatedData);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error updating reaction:", error);
+    throw error;
+  }
+};
 
