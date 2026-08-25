@@ -1,36 +1,34 @@
 import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
-import axios from "axios";
 import {
     ShareNetwork,
     FacebookLogo,
     LinkedinLogo,
     WhatsappLogo,
 } from "@phosphor-icons/react";
+import { getAllBlogsAPI, updateBlogReactionAPI } from "../../../../api/Api"; // আপনার API ফাইলের Path দিন
 
 interface Blog {
-    id: string | number;
+    id: number;
     title: string;
-    author?: string;
-    author_image?: string;
+    author: string;
+    author_image: string;
     content: string;
-    image?: string;
+    image: string;
+    thumbs_up: number;
+    love: number;
     created_at: string;
-    reactions?: {
-        "thumbs up"?: number;
-        love?: number;
-    };
 }
 
 interface ReactionCounts {
-    [blogId: string]: {
+    [blogId: number]: {
         "thumbs up": number;
         love: number;
     };
 }
 
 interface SelectedReactions {
-    [blogId: string]: string;
+    [blogId: number]: string;
 }
 
 const reactions = [
@@ -79,35 +77,36 @@ export const BlogPage = () => {
     const [blogs, setBlogs] = useState<Blog[]>([]);
     const [selectedReactions, setSelectedReactions] = useState<SelectedReactions>({});
     const [reactionCounts, setReactionCounts] = useState<ReactionCounts>({});
-    //   const [searchQuery, setSearchQuery] = useState<string>("");
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const [activeShare, setActiveShare] = useState<string | number | null>(null);
+    const [activeShare, setActiveShare] = useState<number | null>(null);
 
     const blogsPerPage = 9;
 
     const fetchAndUpdateBlogs = async (): Promise<void> => {
         try {
-            const res = await axios.get<Blog[]>("https://ahaansoftware.com/blog-db.json");
-            const fetchedBlogs = Array.isArray(res.data) ? res.data.reverse() : [];
-            setBlogs(fetchedBlogs);
+            const res = await getAllBlogsAPI();
+            if (res.success && Array.isArray(res.data)) {
+                const fetchedBlogs: Blog[] = res.data;
+                setBlogs(fetchedBlogs);
 
-            const counts: ReactionCounts = {};
-            const local: SelectedReactions = {};
+                const counts: ReactionCounts = {};
+                const local: SelectedReactions = {};
 
-            fetchedBlogs.forEach((blog) => {
-                counts[blog.id] = {
-                    "thumbs up": blog.reactions?.["thumbs up"] || 0,
-                    love: blog.reactions?.love || 0,
-                };
+                fetchedBlogs.forEach((blog) => {
+                    counts[blog.id] = {
+                        "thumbs up": blog.thumbs_up || 0,
+                        love: blog.love || 0,
+                    };
 
-                const localReaction = localStorage.getItem(`reacted_${blog.id}`);
-                if (localReaction) {
-                    local[blog.id] = localReaction;
-                }
-            });
+                    const localReaction = localStorage.getItem(`reacted_${blog.id}`);
+                    if (localReaction) {
+                        local[blog.id] = localReaction;
+                    }
+                });
 
-            setReactionCounts(counts);
-            setSelectedReactions(local);
+                setReactionCounts(counts);
+                setSelectedReactions(local);
+            }
         } catch (error) {
             console.error("Failed to fetch blogs:", error);
         }
@@ -117,12 +116,8 @@ export const BlogPage = () => {
         fetchAndUpdateBlogs();
     }, []);
 
-    //   useEffect(() => {
-    //     setCurrentPage(1);
-    //   }, [searchQuery]);
-
     const handleReaction = async (
-        blogId: string | number,
+        blogId: number,
         newReaction: string
     ): Promise<void> => {
         const prevReaction = selectedReactions[blogId];
@@ -131,55 +126,45 @@ export const BlogPage = () => {
         localStorage.setItem(`reacted_${blogId}`, newReaction);
         setSelectedReactions((prev) => ({ ...prev, [blogId]: newReaction }));
 
-        setReactionCounts((prev) => {
-            const updated = { ...prev };
-            if (!updated[blogId]) updated[blogId] = { "thumbs up": 0, love: 0 };
-            if (prevReaction && updated[blogId][prevReaction as "thumbs up" | "love"] > 0) {
-                updated[blogId][prevReaction as "thumbs up" | "love"] -= 1;
-            }
-            updated[blogId][newReaction as "thumbs up" | "love"] =
-                (updated[blogId][newReaction as "thumbs up" | "love"] || 0) + 1;
-            return updated;
-        });
+        let updatedThumbsUp = reactionCounts[blogId]?.["thumbs up"] || 0;
+        let updatedLove = reactionCounts[blogId]?.love || 0;
+
+        if (prevReaction === "thumbs up" && updatedThumbsUp > 0) updatedThumbsUp -= 1;
+        if (prevReaction === "love" && updatedLove > 0) updatedLove -= 1;
+
+        if (newReaction === "thumbs up") updatedThumbsUp += 1;
+        if (newReaction === "love") updatedLove += 1;
+
+        setReactionCounts((prev) => ({
+            ...prev,
+            [blogId]: {
+                "thumbs up": updatedThumbsUp,
+                love: updatedLove,
+            },
+        }));
 
         try {
-            const formData = new URLSearchParams();
-            formData.append("id", String(blogId));
-            formData.append("reaction", newReaction);
-            formData.append("prevReaction", prevReaction || "");
-
-            await fetch("https://ahaansoftware.com/update-json.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: formData,
+            await updateBlogReactionAPI(blogId, {
+                thumbs_up: updatedThumbsUp,
+                love: updatedLove,
             });
-            await fetchAndUpdateBlogs();
         } catch (err) {
             console.error("Failed to update reaction:", err);
         }
     };
 
-    //   const filteredBlogs = blogs.filter(
-    //     (blog) =>
-    //       blog.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    //       blog.author?.toLowerCase().includes(searchQuery.toLowerCase())
-    //   );
-
-    // After
     const totalPages = Math.ceil(blogs.length / blogsPerPage);
     const paginatedBlogs = blogs.slice(
         (currentPage - 1) * blogsPerPage,
         currentPage * blogsPerPage
     );
 
-    // Builds a compact page list like: 1 2 3 4 5  →  1 ... 4 5 6 ... 20
     function getPageList(current: number, total: number): (number | "...")[] {
         if (total <= 5) {
             return Array.from({ length: total }, (_, i) => i + 1);
         }
 
         const pages: (number | "...")[] = [1];
-
         const start = Math.max(2, current - 1);
         const end = Math.min(total - 1, current + 1);
 
@@ -188,23 +173,11 @@ export const BlogPage = () => {
         if (end < total - 1) pages.push("...");
 
         pages.push(total);
-
         return pages;
     }
 
     return (
         <div className="container mx-auto lg:px-6 px-4 py-8 max-w-[1400px]">
-            {/* Search Bar */}
-            {/* <div className="mb-6 text-right">
-        <input
-          type="text"
-          placeholder="Search blogs..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full max-w-md px-4 py-2 border border-[#c78a2b] rounded-md text-sm font-sans focus:outline-none focus:border-black transition-colors"
-        />
-      </div> */}
-
             {/* Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 mt-5">
                 {paginatedBlogs.map((blog) => {
@@ -223,13 +196,9 @@ export const BlogPage = () => {
                         >
                             {blog.image && (
                                 <img
-                                    src={
-                                        blog.image.startsWith("http")
-                                            ? blog.image
-                                            : `https://ahaansoftware.com/${blog.image}`
-                                    }
+                                    src={blog.image}
                                     alt={blog.title}
-                                    className="w-full h-48 object-content border-b border-gray-100"
+                                    className="w-full h-auto object-cover border-b border-gray-100"
                                 />
                             )}
 
@@ -247,12 +216,12 @@ export const BlogPage = () => {
                                         <img
                                             src={blog.author_image}
                                             alt={blog.author || "Author"}
-                                            className=" w-10 h-10 rounded-full object-cover bg-black p-1 shadow-md"
+                                            className="w-10 h-10 rounded-full object-cover bg-black p-1 shadow-md"
                                         />
                                     )}
                                     <div>
                                         <p className="font-sans text-sm font-semibold text-gray-800 m-0">
-                                            By {blog.author || "Unknown"}
+                                            By {blog.author || "Ahaan Software"}
                                         </p>
                                         <p className="font-sans text-xs text-gray-500 m-0">
                                             {formatDateTime(blog.created_at)}
@@ -272,8 +241,8 @@ export const BlogPage = () => {
                                                 key={label}
                                                 onClick={() => handleReaction(blog.id, label)}
                                                 className={`text-xs px-3 py-1.5 rounded-md border transition-all duration-300 flex items-center gap-1 font-sans ${isSelected
-                                                        ? "bg-gray-200 border-gray-400 font-bold"
-                                                        : "bg-gray-50 border-gray-200 hover:bg-gray-100 text-black"
+                                                    ? "bg-gray-200 border-gray-400 font-bold"
+                                                    : "bg-gray-50 border-gray-200 hover:bg-gray-100 text-black"
                                                     }`}
                                             >
                                                 <span>{emoji}</span>
@@ -309,7 +278,7 @@ export const BlogPage = () => {
                                         </button>
 
                                         {activeShare === blog.id && (
-                                            <div className="absolute right-45 top-1/2 -translate-y-1/2 translate-x-full ml-2 z-20 bg-white p-2 rounded-md shadow-lg border border-gray-100 ">
+                                            <div className="absolute right-45 top-1/2 -translate-y-1/2 translate-x-full ml-2 z-20 bg-white p-2 rounded-md shadow-lg border border-gray-100">
                                                 <div className="flex gap-2">
                                                     <button
                                                         onClick={() =>
@@ -346,7 +315,7 @@ export const BlogPage = () => {
                                                                 "_blank"
                                                             )
                                                         }
-                                                        className="shine-btn w-8 h-8 rounded-full bg-[#25d366] text-white flex items-center justify-center text-base transition-transform duration-200 hover:scale-110"
+                                                        className="shine-btn w-8 h-8 rounded-md bg-[#25d366] text-white flex items-center justify-center text-base transition-transform duration-200 hover:scale-110"
                                                     >
                                                         <WhatsappLogo weight="fill" />
                                                     </button>
@@ -389,8 +358,8 @@ export const BlogPage = () => {
                                         onClick={() => setCurrentPage(page as number)}
                                         aria-current={currentPage === page ? "page" : undefined}
                                         className={`relative min-w-8 h-8 px-2.5 flex items-center justify-center text-sm font-medium font-sans rounded-full transition-all duration-200 ${currentPage === page
-                                                ? "text-black bg-[#E3A926]"
-                                                : "text-neutral-400 hover:text-white"
+                                            ? "text-black bg-[#E3A926]"
+                                            : "text-neutral-400 hover:text-white"
                                             }`}
                                     >
                                         {page}

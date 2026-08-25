@@ -14,11 +14,11 @@ const server = http.createServer(app);
 const sequelize = require("./config/db");
 require("./models");
 
-
 // Allowed CORS Origins
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
+  "http://localhost:5175",
   "https://admin.ahaanmedia.com",
   "https://ahaan-software-admin.vercel.app",
   "https://stagging.ahaanmedia.com",
@@ -38,32 +38,29 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-app.use("/api/test", require("./routes/testRoutes"));
 app.use("/api/blogs", require("./routes/blogRoutes"));
 app.use("/api/designs", require("./routes/designRoutes"));
+app.use("/api/developments", require("./routes/developmentRoutes"));
 app.use("/api/social", require("./routes/socialMediaRoutes"));
 app.use("/api/appDev", require("./routes/appDevRoutes"));
-app.use("/profile", require('./routes/profileRoutes'))
+app.use("/api/connect", require("./routes/connectRoute"));
+app.use("/api/contact", require("./routes/contactRoutes"));
+app.use("/api/newsletter", require("./routes/newsletterRoutes"));
+app.use("/profile", require("./routes/profileRoutes"));
+
 app.get("/", (req, res) => {
   res.send("API Running...");
 });
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: allowedOrigins,
-    credentials: true,
-  },
-});
 
 const PORT = process.env.PORT || 5000;
-
 
 (async () => {
   try {
@@ -72,8 +69,8 @@ const PORT = process.env.PORT || 5000;
     console.log("✅ MySQL Connected Successfully");
 
     // Sequelize Models Sync
-    await sequelize.sync({ alter: true });
-console.log("✅ MySQL Tables Synced");
+    await sequelize.sync();
+    console.log("✅ MySQL Tables Synced");
 
     server.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);

@@ -4,7 +4,7 @@ const upload = require("../middleware/uploadMiddleware");
 const SocialMediaController = require("../controllers/SocialMediaController");
 
 // Cloudinary-র 'ahaan-designs' ফোল্ডারে 'image' ফাইলটি সেভ হবে
-const mediaUpload = upload("ahaan-designs").single("image");
+const mediaUpload = upload("ahaan-social").single("image");
 
 // Create Social Media Image
 router.post("/add", mediaUpload, SocialMediaController.create);
