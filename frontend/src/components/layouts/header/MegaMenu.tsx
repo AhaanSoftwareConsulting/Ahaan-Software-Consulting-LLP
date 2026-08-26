@@ -23,7 +23,7 @@ const servicePreviewMap: Record<
     description:
       "Leveraging cutting-edge technology, we build iOS, Android, and hybrid mobile solutions.",
   },
-  "E-commerce Development": {
+  "E-Commerce Development": {
     image: "https://ahaanmedia.com/ahaanwebsite/Service/card4.webp",
     description:
       "We craft secure, high-performing stores with robust strategies to expand your customer base.",
@@ -73,12 +73,12 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
 
   // Active States
   const [activeSolution, setActiveSolution] = useState<WPSolution | null>(
-    solutions[0] || null
+    solutions[0] || null,
   );
 
   const defaultService = menu.submenu?.[0];
   const [activeService, setActiveService] = useState<SubmenuItem | null>(
-    defaultService || null
+    defaultService || null,
   );
 
   const stripHtml = (html: string) => {
@@ -104,7 +104,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
     path: string,
     isActive: boolean,
     subtitle: string = "Enterprise Software Solution",
-    onHover?: () => void
+    onHover?: () => void,
   ) => {
     return (
       <NavLink
@@ -181,77 +181,81 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
       <div className="overflow-hidden border-b-4 border-[#DDA834] bg-[#121212] p-6 shadow-[0_20px_60px_rgba(0,0,0,.6)] text-white">
         {/* 1. SOLUTION MENU */}
         {/* 1. SOLUTION MENU */}
-{isSolutionMenu ? (
-  <div className="grid grid-cols-5 gap-5 items-stretch">
-    <div className="col-span-4 grid grid-cols-4 gap-x-4 gap-y-3 items-start content-start">
-      {solutions.map((item) => {
-        // 1. URL Path/Slug ঠিক রাখা
-        const navigationPath = `/solution/${item.slug}`;
+        {isSolutionMenu ? (
+          <div className="grid grid-cols-5 gap-5 items-stretch">
+            <div className="col-span-4 grid grid-cols-4 gap-x-4 gap-y-3 items-start content-start">
+              {solutions.map((item) => {
+                // 1. URL Path/Slug ঠিক রাখা
+                const navigationPath = `/solution/${item.slug}`;
 
-        // 2. menu.submenu থেকে মিলিয়ে সঠিক name খুঁজে নেওয়া
-        const matchedSubmenu = menu.submenu?.find(
-          (sub) => sub.path === navigationPath || sub.path?.endsWith(item.slug)
-        );
+                // 2. menu.submenu থেকে মিলিয়ে সঠিক name খুঁজে নেওয়া
+                const matchedSubmenu = menu.submenu?.find(
+                  (sub) =>
+                    sub.path === navigationPath ||
+                    sub.path?.endsWith(item.slug),
+                );
 
-        // 3. menu.submenu-তে পাওয়া name দেখাবে, না পেলে WordPress-এর title দেখাবে
-        const displayName = matchedSubmenu?.name || item.title?.rendered || "";
+                // 3. menu.submenu-তে পাওয়া name দেখাবে, না পেলে WordPress-এর title দেখাবে
+                const displayName =
+                  matchedSubmenu?.name || item.title?.rendered || "";
 
-        return renderMenuCard(
-          displayName,                            // UI-তে ডাইনামিক নাম শো করবে
-          navigationPath,                         // URL আগের মতোই /solution/${item.slug} থাকবে
-          currentActiveSolution?.id === item.id,
-          "Enterprise Software Solution",
-          () => setActiveSolution(item)
-        );
-      })}
-    </div>
+                return renderMenuCard(
+                  displayName, // UI-তে ডাইনামিক নাম শো করবে
+                  navigationPath, // URL আগের মতোই /solution/${item.slug} থাকবে
+                  currentActiveSolution?.id === item.id,
+                  "Enterprise Software Solution",
+                  () => setActiveSolution(item),
+                );
+              })}
+            </div>
 
-    {/* Right Preview Card */}
-    <div className="col-span-1 flex flex-col justify-between rounded-xl bg-[#1c1c1c] p-4 shadow-2xl">
-      {currentActiveSolution ? (
-        <div>
-          <h4 className="text-base font-bold text-white mb-3 line-clamp-1">
-            {/* প্রিভিউ কার্ডেও ডাইনামিক নাম শো করবে */}
-            {menu.submenu?.find((sub) => sub.path?.endsWith(currentActiveSolution.slug))?.name || 
-             currentActiveSolution.title?.rendered}
-          </h4>
+            {/* Right Preview Card */}
+            <div className="col-span-1 flex flex-col justify-between rounded-xl bg-[#1c1c1c] p-4 shadow-2xl">
+              {currentActiveSolution ? (
+                <div>
+                  <h4 className="text-base font-bold text-white mb-3 line-clamp-1">
+                    {/* প্রিভিউ কার্ডেও ডাইনামিক নাম শো করবে */}
+                    {menu.submenu?.find((sub) =>
+                      sub.path?.endsWith(currentActiveSolution.slug),
+                    )?.name || currentActiveSolution.title?.rendered}
+                  </h4>
 
-          <div className="relative h-36 w-full overflow-hidden rounded-lg bg-gray-900 mb-3 shadow-lg">
-            <img
-              src={getFeaturedImage(currentActiveSolution)}
-              alt={currentActiveSolution.title?.rendered || "Preview"}
-              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-            />
+                  <div className="relative h-36 w-full overflow-hidden rounded-lg bg-gray-900 mb-3 shadow-lg">
+                    <img
+                      src={getFeaturedImage(currentActiveSolution)}
+                      alt={currentActiveSolution.title?.rendered || "Preview"}
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  </div>
+
+                  {(() => {
+                    const text = stripHtml(
+                      currentActiveSolution.content?.rendered ||
+                        currentActiveSolution.excerpt?.rendered ||
+                        "Enterprise software solutions engineered to solve operational challenges.",
+                    );
+
+                    const words = text.split(" ");
+                    const truncatedText =
+                      words.length > 8
+                        ? words.slice(0, 8).join(" ") + "..."
+                        : text;
+
+                    return (
+                      <p className="text-[11px] text-gray-300 leading-relaxed">
+                        {truncatedText}
+                      </p>
+                    );
+                  })()}
+                </div>
+              ) : (
+                <div className="flex h-full items-center justify-center text-xs text-gray-500">
+                  Hover over a menu item to preview
+                </div>
+              )}
+            </div>
           </div>
-
-          {(() => {
-            const text = stripHtml(
-              currentActiveSolution.content?.rendered ||
-                currentActiveSolution.excerpt?.rendered ||
-                "Enterprise software solutions engineered to solve operational challenges."
-            );
-
-            const words = text.split(" ");
-            const truncatedText =
-              words.length > 8
-                ? words.slice(0, 8).join(" ") + "..."
-                : text;
-
-            return (
-              <p className="text-[11px] text-gray-300 leading-relaxed">
-                {truncatedText}
-              </p>
-            );
-          })()}
-        </div>
-      ) : (
-        <div className="flex h-full items-center justify-center text-xs text-gray-500">
-          Hover over a menu item to preview
-        </div>
-      )}
-    </div>
-  </div>
-) : isServicesMenu ? (
+        ) : isServicesMenu ? (
           /* 2. IT SERVICES MENU */
           <div className="grid grid-cols-5 gap-5 items-stretch">
             {/* content-start থাকার কারণে ২টি রো (Row) সবসময় ওপরের দিকে থাকবে, অতিরিক্ত গ্যাপ হবে না */}
@@ -262,8 +266,8 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
                   service.path || "#",
                   currentActiveService?.name === service.name,
                   "IT & Digital Services",
-                  () => setActiveService(service)
-                )
+                  () => setActiveService(service),
+                ),
               )}
             </div>
 
@@ -304,8 +308,8 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
                 item.name || item.title?.rendered || "",
                 item.path || "#",
                 false,
-                "General Submenu"
-              )
+                "General Submenu",
+              ),
             )}
           </div>
         )}

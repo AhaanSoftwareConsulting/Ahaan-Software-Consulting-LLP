@@ -49,7 +49,7 @@ const SERVICES_DATA = [
     titleMain: "Enterprise-Grade",
     titleHighlight: "E-Commerce Development",
     subheading:
-      "End-to-end eCommerce solutions with secure payment integrations, efficient inventory management, and conversion-focused online stores designed to deliver seamless shopping experiences and support business growth.",
+      "End-to-end E-Commerce solutions with secure payment integrations, efficient inventory management, and conversion-focused online stores designed to deliver seamless shopping experiences and support business growth.",
     highlightColorClass: "text-[#6119D3]",
     image: ecommerceLaptop,
     leftBadge: {
