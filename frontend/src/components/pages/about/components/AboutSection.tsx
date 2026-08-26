@@ -91,7 +91,7 @@ export const AboutSection: React.FC = () => {
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
                 <span>
-                  Remove or replace with a specific capability statement.
+                  Design and modernize IT systems to improve operational efficiency, scalability, and business value.
                 </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
