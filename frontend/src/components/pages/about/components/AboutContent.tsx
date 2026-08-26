@@ -1,9 +1,7 @@
-
-
 export const AboutContent = () => {
   return (
     <div>
-         <div className="mx-auto my-12 max-w-[1600px] px-4 lg:px-6 2xl:px-10">
+      <div className="mx-auto my-12 max-w-[1600px] px-4 lg:px-6 2xl:px-10">
         {/* WHO WE ARE SECTION */}
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 mb-16">
           {/* Desktop Image */}
@@ -17,12 +15,10 @@ export const AboutContent = () => {
 
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-              <h2 className="heading-primary">
-                Who Are We?
-              </h2>
+            <h2 className="heading-primary">Who Are We?</h2>
 
             <h3 className="text-sm lg:text-base font-bold text-black">
-              Your Tech, Development And Creative Transformation Partner!
+              Your Technology, Development, and Creative Transformation Partner
             </h3>
 
             <p className="lg:text-lg text-sm leading-relaxed text-left">
@@ -55,14 +51,11 @@ export const AboutContent = () => {
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-           
+            <h2 className="heading-primary">Our Mission & Vision</h2>
 
-              <h2 className="heading-primary">
-                Our Mission & Vision
-              </h2>
-
-
-            <h4 className="text-sm lg:text-base font-bold text-black">Mission</h4>
+            <h4 className="text-sm lg:text-base font-bold text-black">
+              Mission
+            </h4>
             <p className="lg:text-lg text-sm leading-relaxed text-left">
               Our mission is to deliver MORE—Growth, Revenue & Success! Aimed at
               driving your business forward, we optimize processes, people, and
@@ -71,7 +64,9 @@ export const AboutContent = () => {
               Because when you win, we win!
             </p>
 
-            <h4 className="text-sm lg:text-base font-bold text-black mt-2">Vision</h4>
+            <h4 className="text-sm lg:text-base font-bold text-black mt-2">
+              Vision
+            </h4>
             <p className="lg:text-lg text-sm leading-relaxed text-left">
               We envision fostering a culture that shapes the way we create,
               collaborate, and innovate! Committed to delivering digital
@@ -94,5 +89,5 @@ export const AboutContent = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

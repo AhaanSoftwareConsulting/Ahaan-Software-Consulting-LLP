@@ -67,7 +67,7 @@ interface MegaMenuProps {
 }
 
 export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
-  const isSolutionMenu = menu.name === "Solution";
+  const isSolutionMenu = menu.name === "Solutions";
   const isServicesMenu =
     menu.name === "IT Services" || menu.name === "Services";
 
@@ -180,65 +180,78 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ menu, solutions }) => {
     >
       <div className="overflow-hidden border-b-4 border-[#DDA834] bg-[#121212] p-6 shadow-[0_20px_60px_rgba(0,0,0,.6)] text-white">
         {/* 1. SOLUTION MENU */}
-        {isSolutionMenu ? (
-          <div className="grid grid-cols-5 gap-5 items-stretch">
-            {/* content-start এবং gap-x-4 gap-y-3 দিয়ে নির্দিষ্ট গ্যাপ দেওয়া হয়েছে */}
-            <div className="col-span-4 grid grid-cols-4 gap-x-4 gap-y-3 items-start content-start">
-              {solutions.map((item) =>
-                renderMenuCard(
-                  item.title?.rendered || "",
-                  `/solution/${item.slug}`,
-                  currentActiveSolution?.id === item.id,
-                  "Enterprise Software Solution",
-                  () => setActiveSolution(item)
-                )
-              )}
-            </div>
+        {/* 1. SOLUTION MENU */}
+{isSolutionMenu ? (
+  <div className="grid grid-cols-5 gap-5 items-stretch">
+    <div className="col-span-4 grid grid-cols-4 gap-x-4 gap-y-3 items-start content-start">
+      {solutions.map((item) => {
+        // 1. URL Path/Slug ঠিক রাখা
+        const navigationPath = `/solution/${item.slug}`;
 
-            {/* Right Preview Card */}
-            <div className="col-span-1 flex flex-col justify-between rounded-xl bg-[#1c1c1c] p-4 shadow-2xl">
-              {currentActiveSolution ? (
-                <div>
-                  <h4 className="text-base font-bold text-white mb-3 line-clamp-1">
-                    {currentActiveSolution.title?.rendered}
-                  </h4>
+        // 2. menu.submenu থেকে মিলিয়ে সঠিক name খুঁজে নেওয়া
+        const matchedSubmenu = menu.submenu?.find(
+          (sub) => sub.path === navigationPath || sub.path?.endsWith(item.slug)
+        );
 
-                  <div className="relative h-36 w-full overflow-hidden rounded-lg bg-gray-900 mb-3 shadow-lg">
-                    <img
-                      src={getFeaturedImage(currentActiveSolution)}
-                      alt={currentActiveSolution.title?.rendered || "Preview"}
-                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
-                  </div>
+        // 3. menu.submenu-তে পাওয়া name দেখাবে, না পেলে WordPress-এর title দেখাবে
+        const displayName = matchedSubmenu?.name || item.title?.rendered || "";
 
-                  {(() => {
-                    const text = stripHtml(
-                      currentActiveSolution.content?.rendered ||
-                        currentActiveSolution.excerpt?.rendered ||
-                        "Enterprise software solutions engineered to solve operational challenges."
-                    );
+        return renderMenuCard(
+          displayName,                            // UI-তে ডাইনামিক নাম শো করবে
+          navigationPath,                         // URL আগের মতোই /solution/${item.slug} থাকবে
+          currentActiveSolution?.id === item.id,
+          "Enterprise Software Solution",
+          () => setActiveSolution(item)
+        );
+      })}
+    </div>
 
-                    const words = text.split(" ");
-                    const truncatedText =
-                      words.length > 8
-                        ? words.slice(0, 8).join(" ") + "..."
-                        : text;
+    {/* Right Preview Card */}
+    <div className="col-span-1 flex flex-col justify-between rounded-xl bg-[#1c1c1c] p-4 shadow-2xl">
+      {currentActiveSolution ? (
+        <div>
+          <h4 className="text-base font-bold text-white mb-3 line-clamp-1">
+            {/* প্রিভিউ কার্ডেও ডাইনামিক নাম শো করবে */}
+            {menu.submenu?.find((sub) => sub.path?.endsWith(currentActiveSolution.slug))?.name || 
+             currentActiveSolution.title?.rendered}
+          </h4>
 
-                    return (
-                      <p className="text-[11px] text-gray-300 leading-relaxed">
-                        {truncatedText}
-                      </p>
-                    );
-                  })()}
-                </div>
-              ) : (
-                <div className="flex h-full items-center justify-center text-xs text-gray-500">
-                  Hover over a menu item to preview
-                </div>
-              )}
-            </div>
+          <div className="relative h-36 w-full overflow-hidden rounded-lg bg-gray-900 mb-3 shadow-lg">
+            <img
+              src={getFeaturedImage(currentActiveSolution)}
+              alt={currentActiveSolution.title?.rendered || "Preview"}
+              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+            />
           </div>
-        ) : isServicesMenu ? (
+
+          {(() => {
+            const text = stripHtml(
+              currentActiveSolution.content?.rendered ||
+                currentActiveSolution.excerpt?.rendered ||
+                "Enterprise software solutions engineered to solve operational challenges."
+            );
+
+            const words = text.split(" ");
+            const truncatedText =
+              words.length > 8
+                ? words.slice(0, 8).join(" ") + "..."
+                : text;
+
+            return (
+              <p className="text-[11px] text-gray-300 leading-relaxed">
+                {truncatedText}
+              </p>
+            );
+          })()}
+        </div>
+      ) : (
+        <div className="flex h-full items-center justify-center text-xs text-gray-500">
+          Hover over a menu item to preview
+        </div>
+      )}
+    </div>
+  </div>
+) : isServicesMenu ? (
           /* 2. IT SERVICES MENU */
           <div className="grid grid-cols-5 gap-5 items-stretch">
             {/* content-start থাকার কারণে ২টি রো (Row) সবসময় ওপরের দিকে থাকবে, অতিরিক্ত গ্যাপ হবে না */}

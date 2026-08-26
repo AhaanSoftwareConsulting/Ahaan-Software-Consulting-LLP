@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from "react";
-import {CaretLeftIcon , CaretRightIcon } from "@phosphor-icons/react";
+import { CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { getAllTestimonials, getMediaById } from "../../../../api/WordpressAPI"; // 👈 আপনার API ফাইলের সঠিক পাথ দিন
 
 interface Testimonial {
   name: string;
@@ -17,35 +17,25 @@ export default function Testimonials() {
   const [visibleCards, setVisibleCards] = useState(3);
 
   /* =========================
-     FETCH TESTIMONIALS
+      FETCH TESTIMONIALS (Updated)
   ========================= */
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await fetch(
-          "https://ahaan-admin.ahaanmedia.com/wp-json/wp/v2/testimonial"
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch testimonials");
-        }
-
-        const data = await response.json();
+        // 👈 কেন্দ্রীয় API মেথড কল করা হচ্ছে
+        const data = await getAllTestimonials();
 
         const formatted: Testimonial[] = await Promise.all(
-          data.map(async (item: any) => {
+          data.map(async (item) => {
             let image = "";
 
-            /* Fetch client image from WordPress media */
+            /* Fetch client image using getMediaById */
             if (item.acf?.client_image) {
               try {
-                const mediaRes = await fetch(
-                  `https://ahaan-admin.ahaanmedia.com/wp-json/wp/v2/media/${item.acf.client_image}`
-                );
-
-                if (mediaRes.ok) {
-                  const media = await mediaRes.json();
+                // 👈 মিডিয়া ইমেজের জন্যও কেন্দ্রীয় মেথড ব্যবহার
+                const media = await getMediaById(item.acf.client_image);
+                if (media) {
                   image = media.source_url || "";
                 }
               } catch (error) {
@@ -71,6 +61,8 @@ export default function Testimonials() {
 
     fetchTestimonials();
   }, []);
+
+  // ... বাকি slider, responsive logic এবং JSX অংশ একদম আগের মতোই থাকবে
 
   /* =========================
      RESPONSIVE CARD COUNT
@@ -118,9 +110,7 @@ export default function Testimonials() {
   ========================= */
 
   const sliderData =
-    testimonials.length > 0
-      ? [...testimonials, ...testimonials]
-      : [];
+    testimonials.length > 0 ? [...testimonials, ...testimonials] : [];
 
   /* =========================
      AUTO SLIDE
@@ -172,10 +162,7 @@ export default function Testimonials() {
   const scroll = (direction: "left" | "right") => {
     if (!testimonials.length) return;
 
-    const maxIndex = Math.max(
-      0,
-      testimonials.length - visibleCards
-    );
+    const maxIndex = Math.max(0, testimonials.length - visibleCards);
 
     if (direction === "left") {
       setIndex((prev) => {
@@ -214,12 +201,10 @@ export default function Testimonials() {
       ========================= */}
 
       <div className="mx-auto mb-16 max-w-6xl text-center">
-        <h2 className="heading-primary">
-          What Our Clients Say
-        </h2>
+        <h2 className="heading-primary">What Our Clients Say</h2>
 
         <p className="mt-2 px-0 lg:text-lg text-sm sm:px-8 leading-relaxed">
-          Driven to be future-ready, and push beyond the building
+          We help businesses become future-ready and move beyond the building
           blocks of technology, digital, and marketing.
         </p>
       </div>
@@ -253,7 +238,6 @@ export default function Testimonials() {
           className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition duration-300 hover:scale-110 lg:flex"
         >
           <CaretRightIcon className="h-5 w-5" />
-          
         </button>
 
         {/* =========================
@@ -290,17 +274,13 @@ export default function Testimonials() {
           className="flex py-10"
           style={{
             gap: "32px",
-            transition: transition
-              ? "transform 0.7s ease"
-              : "none",
+            transition: transition ? "transform 0.7s ease" : "none",
 
             /*
               The translation is based on
               the exact card slot width.
             */
-            transform: `translateX(calc(-${
-              index * (100 / visibleCards)
-            }% - ${
+            transform: `translateX(calc(-${index * (100 / visibleCards)}% - ${
               index * (32 / visibleCards)
             }px))`,
           }}
@@ -378,10 +358,7 @@ export default function Testimonials() {
                   <span
                     key={j}
                     style={{
-                      color:
-                        j < item.rating
-                          ? item.color
-                          : "#ddd",
+                      color: j < item.rating ? item.color : "#ddd",
                     }}
                   >
                     ★
@@ -408,4 +385,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

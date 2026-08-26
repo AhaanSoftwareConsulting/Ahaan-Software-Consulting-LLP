@@ -76,7 +76,7 @@ export const Header = () => {
                 <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">
                   Bengal Eco Intelligent Park
                 </h5>
-                <p className="text-[11px] lg:text-xs xl:text-sm text-gray-500">Sector-V, Kolkata</p>
+                <p className="text-[11px] lg:text-xs xl:text-sm text-gray-500">Sector V, Kolkata </p>
               </div>
             </div>
 
@@ -86,7 +86,7 @@ export const Header = () => {
             <div className="flex items-center gap-2 lg:gap-3 xl:gap-4 px-3 lg:px-4 xl:px-7">
               <AlarmIcon size={34} weight="light" className="text-[#CE8827] w-8 h-8 xl:w-9 xl:h-9 shrink-0" />
               <div className="whitespace-nowrap">
-                <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">10:00AM - 8:00PM</h5>
+                <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">10:00 AM to 8:00 PM</h5>
                 <p className="text-[11px] lg:text-xs xl:text-sm text-gray-500">Monday to Friday</p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export const Header = () => {
                     <NavLink
                       to={menu.path}
                       className={({ isActive }) =>
-                        `relative flex items-center gap-1.5 py-7 text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] font-medium uppercase tracking-wide whitespace-nowrap transition-all duration-300
+                        `relative flex items-center gap-1.5 py-7 text-[12px] lg:text-[13px] xl:text-[14px] 2xl:text-[16px] font-medium Capitalize tracking-wide whitespace-nowrap transition-all duration-300
 
                         ${isActive ? "text-[#CE8827]" : "text-white hover:text-[#CE8827]"}
 

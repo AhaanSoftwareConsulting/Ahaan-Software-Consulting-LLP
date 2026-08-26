@@ -100,7 +100,7 @@ const services: Service[] = [
     ),
   },
   {
-    title: "Infrastructure Plan",
+    title: "IT Infrastructure Planning",
     description:
       "We provide the most responsive and functional IT design for companies and businesses worldwide.",
     Icon: ({ className }) => (
@@ -322,7 +322,7 @@ export const ServicesSection = () => {
                 href="/service"
                 className="text-[14px] font-bold text-[#C48A18] inline-flex items-center gap-1 transition-all duration-200 group-hover:gap-2 hover:underline"
               >
-                Discover now <span className="text-[15px] font-normal">→</span>
+                Explore This Service <span className="text-[15px] font-normal">→</span>
               </a>
             </div>
           </motion.div>

@@ -15,7 +15,7 @@ export const menuData: MenuItem[] = [
     path: "/",
   },
   {
-    name: "About us",
+    name: "About Us",
     path: "/about-us",
   },
   {
@@ -53,7 +53,7 @@ export const menuData: MenuItem[] = [
     path: "/case-study",
   },
   {
-    name: "Solution",
+    name: "Solutions",
     path: "/solution",
     submenu: [
       {
@@ -103,7 +103,7 @@ export const menuData: MenuItem[] = [
     path: "/portfolio",
   },
   {
-    name: "Career",
+    name: "Careers",
     path: "/career",
   },
   {

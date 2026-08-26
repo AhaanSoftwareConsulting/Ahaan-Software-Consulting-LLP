@@ -252,4 +252,31 @@ export const getAllServices = async (): Promise<WPServiceItem[]> => {
   }
 };
 
+
+// ==========================================
+// 7. Testimonials API & Types
+// ==========================================
+
+export interface WPTestimonialACF {
+  client_name: string;
+  client_review: string;
+  rating: string | number;
+  color: string;
+  client_image: number | string;
+}
+
+export interface WPTestimonialItem extends WPCustomPost {
+  acf: WPTestimonialACF;
+}
+
+export const getAllTestimonials = async (): Promise<WPTestimonialItem[]> => {
+  try {
+    const response = await wpAPI.get<WPTestimonialItem[]>("/testimonial?_embed");
+    return response.data || [];
+  } catch (error) {
+    console.error("❌ Error fetching testimonials:", getErrorMessage(error));
+    return [];
+  }
+};
+
 export default WordpressAPI;
