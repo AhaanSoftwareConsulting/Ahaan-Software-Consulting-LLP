@@ -80,7 +80,7 @@ const services: Service[] = [
     ),
   },
   {
-    title: "UI & UX Design",
+    title: "UI/UX Design",
     description:
       "Crafting intuitive, engaging, and user-centered designs that enhance usability, improve user satisfaction, and elevate your brand's digital experience.",
     Icon: ({ className }) => (

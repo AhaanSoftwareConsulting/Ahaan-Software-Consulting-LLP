@@ -35,7 +35,7 @@ export const menuData: MenuItem[] = [
         path: "/all-app-development",
       },
       {
-        name: "E-commerce Development",
+        name: "E-Commerce Development",
         path: "/all-development",
       },
       {

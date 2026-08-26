@@ -6,7 +6,7 @@ const features = [
   "Business Web Applications",
   "Android & iOS App Development",
   "E-Commerce Solutions",
-  "UI / UX Design",
+  "UI/UX Design",
   "SEO & Performance Optimization",
 ];
 
