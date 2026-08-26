@@ -10,8 +10,6 @@ import {
   CaretDown,
   TelegramLogo,
   InstagramLogo,
- 
-  
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { CallToAction } from "../../pages/home/components/CallToAction";
@@ -42,17 +40,17 @@ const socialLinks = [
     gradient: "hover:bg-gradient-to-r hover:from-[#0077b5] hover:to-[#00a0dc]",
     tooltipGradient: "bg-gradient-to-r from-[#0077b5] to-[#00a0dc]",
   },
-{
-  name: "Instagram",
-  url: "https://www.instagram.com/ahaansoftware",
-  Icon: InstagramLogo,
-  gradient:
-    "hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FCAF45]",
-  tooltipGradient:
-    "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
-},
   {
-    name: "Github",
+    name: "Instagram",
+    url: "https://www.instagram.com/ahaansoftware",
+    Icon: InstagramLogo,
+    gradient:
+      "hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#FCAF45]",
+    tooltipGradient:
+      "bg-gradient-to-r from-[#833AB4] via-[#E1306C] to-[#FCAF45]",
+  },
+  {
+    name: "GitHub",
     url: "https://github.com/AhaanSoftwareConsulting",
     Icon: GithubLogoIcon,
     gradient: "hover:bg-gradient-to-r hover:from-[#333333] hover:to-[#666666]",
@@ -95,7 +93,7 @@ const globalLocations = [
     city: "Kolkata",
     icon: indiaIcon,
   },
-   {
+  {
     country: "Singapore",
     city: "Singapore",
     icon: singaporeIcon,
@@ -194,12 +192,13 @@ export const Footer = () => {
 
               {/* Content */}
               <div>
-                <h2 className="text-base font-semibold leading-tight  lg:text-3xl">
-                  News Subscription
+                <h2 className="text-base font-semibold leading-tight uppercase  lg:text-3xl">
+                  New Subscription
                 </h2>
 
                 <p className="mt-2 text-sm text-white lg:text-base lg:mt-3">
-                  Get Latest Deals from Waker's Inbox & Subscribe Now
+                  Get practical insights on software, design, AI, and digital
+                  growth.
                 </p>
               </div>
             </div>
@@ -211,7 +210,6 @@ export const Footer = () => {
                 className="w-full lg:w-auto"
               >
                 <div className="relative w-full md:w-[418px]">
-
                   <input
                     type="email"
                     value={email}
@@ -221,11 +219,11 @@ export const Footer = () => {
                     className="h-14 w-full rounded-full border border-gray-700 bg-transparent pl-6 pr-36 outline-none placeholder:text-gray-400 disabled:opacity-50 md:w-[420px]"
                   />
 
-
                   <button
                     type="submit"
                     disabled={loading}
-                    className="absolute right-1 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full  bg-gradient-to-r  from-[#C48A18] to-[#E6B33C] text-black  shadow-xl transition-all duration-300  hover:scale-105  hover:from-[#B57A0C] hover:to-[#D69D20] disabled:opacity-50">
+                    className="absolute right-1 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full  bg-gradient-to-r  from-[#C48A18] to-[#E6B33C] text-black  shadow-xl transition-all duration-300  hover:scale-105  hover:from-[#B57A0C] hover:to-[#D69D20] disabled:opacity-50"
+                  >
                     {loading ? (
                       <div className="h-5 w-5 animate-spin rounded-full border-2 border-black border-t-transparent" />
                     ) : (
@@ -236,8 +234,6 @@ export const Footer = () => {
               </form>
             </div>
           </div>
-
-           
 
           {/* Divider */}
           <div className="border-t border-gray-800"></div>
@@ -272,10 +268,10 @@ export const Footer = () => {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="leading-relaxed text-gray-400">
-                    Professionally redefine transparent ROI through low-risk
-                    high-yield imperatives. Progressively create empowered users
-                    via team driven solutions.
+                  <p className="leading-relaxed text-gray-100">
+                    Ahaan helps growing businesses design, build, and improve
+                    secure digital products that drive efficiency, enhance
+                    customer experiences, and support long-term business growth.
                   </p>
 
                   <div className="mt-6 flex gap-1 z-20  pl-3 sm:mt-12 xl:gap-4">
@@ -303,9 +299,8 @@ export const Footer = () => {
                       ),
                     )}
                   </div>
-                  <PayglocalButton/>
+                  {/* <PayglocalButton/> */}
                 </div>
-                
               </div>
             </div>
 
@@ -447,7 +442,7 @@ export const Footer = () => {
                       />
                     </div>
                     <div>
-                      <p className="mt-1 leading-7 text-gray-400">
+                      <p className="mt-1 leading-7 text-gray-100">
                         Bengal Eco Intelligent Park, EM <br />
                         Block, Sector V, Kolkata-700 091
                       </p>
@@ -466,13 +461,13 @@ export const Footer = () => {
                     <div>
                       <a
                         href="tel:+16465759575"
-                        className="mt-1 block text-gray-400 hover:text-[#E6B33C]"
+                        className="mt-1 block text-gray-100 hover:text-[#E6B33C]"
                       >
                         +1-646-575-9575
                       </a>
                       <a
                         href="tel:+919830371143"
-                        className="block text-gray-400 hover:text-[#E6B33C]"
+                        className="block text-gray-100 hover:text-[#E6B33C]"
                       >
                         +91-983-037-1143
                       </a>
@@ -491,13 +486,13 @@ export const Footer = () => {
                     <div>
                       <a
                         href="mailto:support@ahaansoftware.com"
-                        className="mt-1 block text-gray-400 hover:text-[#E6B33C]"
+                        className="mt-1 block text-gray-100 hover:text-[#E6B33C]"
                       >
                         support@ahaansoftware.com
                       </a>
                       <a
                         href="mailto:hr@ahaansoftware.com"
-                        className="mt-1 block text-gray-400 hover:text-[#E6B33C]"
+                        className="mt-1 block text-gray-100 hover:text-[#E6B33C]"
                       >
                         hr@ahaansoftware.com
                       </a>
@@ -512,36 +507,51 @@ export const Footer = () => {
           <div className="border-t border-gray-800"></div>
 
           {/* ================= Country Monument / Locations Section ================= */}
-          <div className="py-8 overflow-x-auto scrollbar-none">
-            <div className="flex items-center justify-between min-w-[768px] divide-x divide-gray-800/80">
-              {globalLocations.map((loc, idx) => (
-                <div
-                  key={idx}
-                  className="flex flex-1 flex-col items-center justify-center px-4 text-center group"
-                >
-                  {/* Monument Icon */}
-                  <div className="h-16 w-16 mb-4 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
-                    <img
-                      src={loc.icon}
-                      alt={loc.country}
-                      className="h-full w-auto object-contain filter invert opacity-80 group-hover:opacity-100"
-                    />
+          <div className="py-8">
+            {/* Global Markets Heading */}
+            <div className="text-center mb-6 px-4">
+              <h3 className="text-xl md:text-2xl font-semibold text-white uppercase ">
+                Global Markets We Serve
+              </h3>
+
+              <p className="mt-2 text-sm text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                We work with businesses across global markets, delivering
+                technology solutions from our India-based team.
+              </p>
+            </div>
+
+            {/* Global Markets */}
+            <div className="overflow-x-auto scrollbar-none">
+              <div className="flex items-center justify-between min-w-[768px] divide-x divide-gray-800/80">
+                {globalLocations.map((loc, idx) => (
+                  <div
+                    key={idx}
+                    className="flex flex-1 flex-col items-center justify-center px-4 text-center group"
+                  >
+                    {/* Monument Icon */}
+                    <div className="h-16 w-16 mb-4 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-1">
+                      <img
+                        src={loc.icon}
+                        alt={loc.country}
+                        className="h-full w-auto object-contain filter invert opacity-80 group-hover:opacity-100"
+                      />
+                    </div>
+
+                    {/* Country Name */}
+                    <h4 className="text-base font-semibold text-white tracking-wide">
+                      {loc.country}
+                    </h4>
+
+                    {/* Underline Indicator */}
+                    <div className="my-2 h-[2px] w-8 bg-[#E6B33C] transition-all duration-300 group-hover:w-12"></div>
+
+                    {/* City Name */}
+                    <p className="text-xs text-gray-400 tracking-wider">
+                      {loc.city}
+                    </p>
                   </div>
-
-                  {/* Country Name */}
-                  <h4 className="text-base font-semibold text-white tracking-wide">
-                    {loc.country}
-                  </h4>
-
-                  {/* Underline Indicator */}
-                  <div className="my-2 h-[2px] w-8 bg-[#E6B33C] transition-all duration-300 group-hover:w-12"></div>
-
-                  {/* City Name */}
-                  <p className="text-xs text-gray-400 tracking-wider">
-                    {loc.city}
-                  </p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 

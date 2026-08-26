@@ -62,10 +62,10 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 5, label: "International Awards", icon: <AwardIcon />, drop: 20, dropMobile: 15 },
-  { value: 30, suffix: "+", label: "Our Teams", icon: <TeamIcon />, drop: 64, dropMobile: 35 },
-  { value: 100, suffix: "+", label: "Completed Projects", icon: <CheckIcon />, drop: 34, dropMobile: 35 },
-  { value: 125, suffix: "+", label: "Happy Clients", icon: <SmileIcon />, drop: 84, dropMobile: 15 },
+  { value: 6, suffix: "+", label: "Years of Experience", icon: <AwardIcon />, drop: 20, dropMobile: 15 },
+  { value: 25, suffix: "+", label: "Team Members", icon: <TeamIcon />, drop: 64, dropMobile: 35 },
+  { value: 65, suffix: "+", label: "Completed Projects", icon: <CheckIcon />, drop: 34, dropMobile: 35 },
+  { value: 52, suffix: "+", label: "Happy Clients", icon: <SmileIcon />, drop: 84, dropMobile: 15 },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -239,7 +239,7 @@ export const TotalProject = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
-            Measured in years, hung on the wall
+            Proven Through Measurable Results
           </h2>
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 text-[#8A8A8A] leading-relaxed  mx-auto">
             From strategy and planning to development, testing, and deployment,

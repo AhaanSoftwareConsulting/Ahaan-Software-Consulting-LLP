@@ -207,7 +207,7 @@ export const OurTechnology = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="heading-primary">
-            Our Technology Use
+            Technologies We Use
           </h2>
 
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed  mx-auto">

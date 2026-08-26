@@ -16,11 +16,9 @@ export const AboutSection: React.FC = () => {
     <section className="w-full bg-[#f8f9fa] py-12 sm:py-16 md:py-20 overflow-hidden">
       <div className="mx-auto w-full max-w-[1350px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12">
-          
           {/* LEFT COLUMN: IMAGES & ROTATING PLAY BUTTON */}
           <div className="lg:col-span-6 w-full max-w-[580px] mx-auto lg:max-w-none">
             <div className="relative w-full flex items-center justify-start pb-6 pt-10 sm:pt-14">
-              
               {/* Main Image (Left) with White Border */}
               <div className="relative w-[58%] sm:w-[55%] rounded-tl-[65px] sm:rounded-tl-[85px] rounded-br-2xl rounded-tr-2xl rounded-bl-2xl shadow-xl z-10 border-4 sm:border-8 border-white bg-white">
                 <img
@@ -43,7 +41,7 @@ export const AboutSection: React.FC = () => {
                 >
                   {/* Outer Rotating Dashed Ring */}
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-2 border-dashed border-black bg-white shadow-lg animate-[spin_8s_linear_infinite]" />
-                  
+
                   {/* Inner Gold Play Button (Stays Upright) */}
                   <div className="absolute inset-0 m-auto w-10 h-10 sm:w-13 sm:h-13 rounded-full bg-[#c07f1e] flex items-center justify-center shadow-md transition-colors duration-300 group-hover:bg-black">
                     <svg
@@ -65,7 +63,6 @@ export const AboutSection: React.FC = () => {
                   className="w-full h-[220px] sm:h-[300px] md:h-[340px] object-cover block"
                 />
               </div>
-
             </div>
           </div>
 
@@ -73,29 +70,33 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col text-left space-y-4 sm:space-y-5">
             {/* Main Title */}
             <h2 className="heading-primary">
-              Highly Tailored Technology, Develop & Support Services.
+              Highly Tailored Technology Development and Support Services
             </h2>
 
             {/* Description */}
             <p className="lg:text-lg text-sm leading-relaxed">
-              Accelerate innovation with world-class tech teams. We’ll match
-              you to an entire remote team of incredible freelance talent for
-              all your software development needs.
+              Accelerate innovation with world-class tech teams. We’ll match you
+              to an entire remote team of incredible freelance talent for all
+              your software development needs.
             </p>
 
             {/* Bullet List */}
             <ul className="space-y-2.5 sm:space-y-3 pt-1 list-none text-left">
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>Website & Mobile application design & Development</span>
+                <span>
+                  Website and Mobile Application Design and Development
+                </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>Dramatically re-engineer value added IT systems via mission</span>
+                <span>
+                  Remove or replace with a specific capability statement.
+                </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>Professional User Experience & Interface researching</span>
+                <span>User Experience Research and Interface Design</span>
               </li>
             </ul>
 
@@ -125,11 +126,11 @@ export const AboutSection: React.FC = () => {
 
         {/* VIDEO MODAL */}
         {isModalOpen && (
-          <div 
+          <div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
             onClick={handleCloseModal}
           >
-            <div 
+            <div
               className="relative w-full max-w-[850px] bg-black rounded-2xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
