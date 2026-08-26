@@ -15,7 +15,7 @@ export default function AllSocialBanner() {
             Social Media Marketing
           </h1>
 
-          <p className="max-w-[700px] lg:text-lg text-sm leading-relaxed">
+          <p className="max-w-[700px] lg:text-lg text-sm leading-relaxed text-gray-100">
             A showcase of engaging and creative social media designs
           </p>
         </div>
