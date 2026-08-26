@@ -150,7 +150,7 @@ export const CareerList: React.FC = () => {
                     {job.open_positions && (
                       <div className="flex items-center gap-1.5">
                         <Users size={16} className="text-amber-500 shrink-0" />
-                        <span>{job.open_positions} Position</span>
+                        <span>{job.open_positions} Positions</span>
                       </div>
                     )}
                   </div>

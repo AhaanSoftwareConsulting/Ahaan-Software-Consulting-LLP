@@ -162,7 +162,7 @@ export const CareerDetails: React.FC = () => {
                 {job.open_positions && (
                   <div className="flex items-center gap-1.5 bg-amber-50 text-zinc-900 px-3.5 py-2 rounded-full border border-amber-200/60">
                     <Users size={18} className="text-amber-600 shrink-0" />
-                    <span>{job.open_positions} Position</span>
+                    <span>{job.open_positions} Positions</span>
                   </div>
                 )}
               </div>
