@@ -6,7 +6,10 @@ const {
   getSubscribers,
 } = require("../controllers/newsletterController");
 
-router.post("/", subscribeNewsletter);
-router.get("/", getSubscribers);
+// Subscribe to newsletter
+router.post("/add", subscribeNewsletter);
 
+// Get all subscribers
+router.get("/all", getSubscribers);
+  
 module.exports = router;

@@ -10,15 +10,10 @@ import {
   ThumbsUp,
   Heart,
 } from "@phosphor-icons/react";
-import {RelatedBlogs} from "./RelatedBlogs";
-import {FollowUs} from "./FollowUs";
-import {BlogSearch} from "./BlogSearch";
-import {BlogDetailsBanner} from "./BlogDetailsBanner";
-
-interface ReactionCounts {
-  "thumbs up": number;
-  love: number;
-}
+import { RelatedBlogs } from "./RelatedBlogs";
+import { FollowUs } from "./FollowUs";
+import { BlogSearch } from "./BlogSearch";
+import { BlogDetailsBanner } from "./BlogDetailsBanner";
 
 interface Blog {
   id: string | number;
@@ -27,12 +22,14 @@ interface Blog {
   author_image?: string;
   image?: string;
   content: string;
+  thumbs_up?: number;
+  love?: number;
+  createdAt?: string;
   created_at?: string;
-  reactions?: Partial<ReactionCounts>;
 }
 
 const reactions = [
-  { icon: ThumbsUp, label: "thumbs up", emoji: "👍" },
+  { icon: ThumbsUp, label: "thumbs_up", emoji: "👍" },
   { icon: Heart, label: "love", emoji: "❤️" },
 ];
 
@@ -40,8 +37,11 @@ export const BlogDetails: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [selectedReactions, setSelectedReactions] = useState<Record<string | number, string>>({});
-  const [reactionCounts, setReactionCounts] = useState<Record<string | number, ReactionCounts>>({});
+  const [selectedReaction, setSelectedReaction] = useState<string>("");
+  const [reactionCounts, setReactionCounts] = useState<{ thumbs_up: number; love: number }>({
+    thumbs_up: 0,
+    love: 0,
+  });
 
   const formatSlug = (title: string): string =>
     title ? title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9\-]/g, "") : "";
@@ -52,29 +52,30 @@ export const BlogDetails: React.FC = () => {
 
     const fetchBlog = async () => {
       try {
-        const res = await fetch("https://ahaansoftware.com/blog-db.json");
-        const blogs: Blog[] = await res.json();
-        const matchedBlog = blogs.find((b) => formatSlug(b.title) === slug);
+        // Express/Sequelize Backend API Endpoint
+        const res = await fetch("http://localhost:5000/api/blogs");
+        const result = await res.json();
+        
+        // Backend Response Handling (Data array mapping)
+        const blogs: Blog[] = result.data || result;
+        const matchedBlog = blogs.find((b) => formatSlug(b.title) === slug || String(b.id) === slug);
 
-        if (isMounted) {
-          setBlog(matchedBlog || null);
+        if (isMounted && matchedBlog) {
+          setBlog(matchedBlog);
 
-          if (matchedBlog) {
-            const localReaction = localStorage.getItem(`reacted_${matchedBlog.id}`);
-            if (localReaction) {
-              setSelectedReactions({ [matchedBlog.id]: localReaction });
-            }
-
-            setReactionCounts({
-              [matchedBlog.id]: {
-                "thumbs up": matchedBlog.reactions?.["thumbs up"] || 0,
-                love: matchedBlog.reactions?.["love"] || 0,
-              },
-            });
+          // LocalStorage check for reaction
+          const localReaction = localStorage.getItem(`reacted_${matchedBlog.id}`);
+          if (localReaction) {
+            setSelectedReaction(localReaction);
           }
+
+          setReactionCounts({
+            thumbs_up: matchedBlog.thumbs_up || 0,
+            love: matchedBlog.love || 0,
+          });
         }
       } catch (err) {
-        console.error("Error loading blog:", err);
+        console.error("Error loading blog details:", err);
       } finally {
         if (isMounted) setLoading(false);
       }
@@ -87,77 +88,65 @@ export const BlogDetails: React.FC = () => {
     };
   }, [slug]);
 
-  const handleReaction = async (blogId: string | number, newReaction: string) => {
-    const prevReaction = selectedReactions[blogId];
-    if (prevReaction === newReaction) return;
+  const handleReaction = async (newReaction: "thumbs_up" | "love") => {
+    if (!blog || selectedReaction === newReaction) return;
 
-    // Optimistic UI Update
+    const blogId = blog.id;
+    const prevReaction = selectedReaction;
+
+    // Optimistic Local State Update
     localStorage.setItem(`reacted_${blogId}`, newReaction);
-    setSelectedReactions((prev) => ({ ...prev, [blogId]: newReaction }));
+    setSelectedReaction(newReaction);
 
     setReactionCounts((prev) => {
-      const currentBlogReactions = prev[blogId] || { "thumbs up": 0, love: 0 };
-      const updatedCounts: ReactionCounts = { ...currentBlogReactions };
-
-      if (prevReaction && updatedCounts[prevReaction as keyof ReactionCounts] > 0) {
-        updatedCounts[prevReaction as keyof ReactionCounts] -= 1;
+      const updated = { ...prev };
+      if (prevReaction && prevReaction in updated) {
+        updated[prevReaction as keyof typeof updated] = Math.max(0, updated[prevReaction as keyof typeof updated] - 1);
       }
-      
-      updatedCounts[newReaction as keyof ReactionCounts] =
-        (updatedCounts[newReaction as keyof ReactionCounts] || 0) + 1;
-
-      return { ...prev, [blogId]: updatedCounts };
+      updated[newReaction] = (updated[newReaction] || 0) + 1;
+      return updated;
     });
 
     try {
-      const formData = new URLSearchParams();
-      formData.append("id", String(blogId));
-      formData.append("reaction", newReaction);
-      formData.append("prevReaction", prevReaction || "");
-
-      const res = await fetch("https://ahaansoftware.com/update-json.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: formData,
+      // Backend Integration for Reaction Increment (PUT API)
+      const newCount = (reactionCounts[newReaction] || 0) + 1;
+      await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [newReaction]: newCount }),
       });
-
-      if (!res.ok) throw new Error("Failed server update");
     } catch (err) {
       console.error("Failed to update reaction:", err);
-      // Revert local state on error
+      // Revert state if backend call fails
       if (prevReaction) {
         localStorage.setItem(`reacted_${blogId}`, prevReaction);
       } else {
         localStorage.removeItem(`reacted_${blogId}`);
       }
-      setSelectedReactions((prev) => ({ ...prev, [blogId]: prevReaction || "" }));
+      setSelectedReaction(prevReaction);
     }
   };
 
   if (loading) return <div className="mt-12 text-center text-lg font-medium text-gray-600">Loading blog details...</div>;
   if (!blog) return <div className="mt-12 text-center text-lg font-medium text-red-600">Blog not found.</div>;
 
-  const formattedDate = blog.created_at
-    ? new Date(blog.created_at).toLocaleDateString("en-GB", {
+  const dateSource = blog.createdAt || blog.created_at;
+  const formattedDate = dateSource
+    ? new Date(dateSource).toLocaleDateString("en-GB", {
         day: "2-digit",
         month: "short",
         year: "numeric",
       })
     : "Not Available";
 
-  const formattedTime = blog.created_at
-    ? new Date(blog.created_at).toLocaleTimeString("en-GB", {
+  const formattedTime = dateSource
+    ? new Date(dateSource).toLocaleTimeString("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
       })
     : "";
 
-  const metaImage = blog.image?.startsWith("http")
-    ? blog.image
-    : `https://ahaansoftware.com/${blog.image}`;
-
-  const pageUrl = `${window.location.origin}/blog/${slug}`;
-  const blogReactions = reactionCounts[blog.id] || { "thumbs up": 0, love: 0 };
+  const pageUrl = window.location.href;
 
   return (
     <>
@@ -173,7 +162,7 @@ export const BlogDetails: React.FC = () => {
                 {blog.author_image && (
                   <img
                     src={blog.author_image}
-                    alt={blog.author}
+                    alt={blog.author || "Author"}
                     className="h-8 w-8 rounded-full border-2 border-black object-cover p-0.5 shadow-sm transition-transform duration-200 hover:scale-105"
                   />
                 )}
@@ -200,9 +189,7 @@ export const BlogDetails: React.FC = () => {
             </div>
 
             {/* Title */}
-            <h1 className="heading-primary">
-              {blog.title || "Untitled Blog"}
-            </h1>
+            <h1 className="heading-primary">{blog.title || "Untitled Blog"}</h1>
 
             {/* Social Share & Reactions */}
             <div className="my-6 flex flex-wrap items-center justify-between gap-4">
@@ -254,11 +241,12 @@ export const BlogDetails: React.FC = () => {
               {/* Reaction Buttons */}
               <div className="flex items-center gap-2">
                 {reactions.map(({ label, emoji }) => {
-                  const isActive = selectedReactions[blog.id] === label;
+                  const isActive = selectedReaction === label;
+                  const countKey = label as keyof typeof reactionCounts;
                   return (
                     <button
                       key={label}
-                      onClick={() => handleReaction(blog.id, label)}
+                      onClick={() => handleReaction(label as "thumbs_up" | "love")}
                       className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-all hover:scale-105 ${
                         isActive
                           ? "border-[#c99400] bg-[#c99400] text-white"
@@ -266,7 +254,7 @@ export const BlogDetails: React.FC = () => {
                       }`}
                     >
                       <span>{emoji}</span>
-                      <span>{blogReactions[label as keyof ReactionCounts] || 0}</span>
+                      <span>{reactionCounts[countKey] || 0}</span>
                     </button>
                   );
                 })}
@@ -277,14 +265,14 @@ export const BlogDetails: React.FC = () => {
             {blog.image && (
               <div className="mb-6">
                 <img
-                  src={metaImage}
+                  src={blog.image}
                   alt={blog.title}
-                  className="w-full rounded-2xl object-cover shadow-lg"
+                  className="w-full rounded-2xl object-cover shadow-lg max-h-[500px]"
                 />
               </div>
             )}
 
-            {/* Dynamic Blog Content (using @tailwindcss/typography classes) */}
+            {/* Dynamic Blog Content */}
             <div
               className="prose prose-lg max-w-none text-justify text-black [&_h1]:mt-7 [&_h1]:mb-4 [&_h1]:font-bold [&_h2]:mt-7 [&_h2]:mb-4 [&_h2]:font-bold [&_h3]:mt-7 [&_h3]:mb-4 [&_h3]:font-bold [&_p]:text-justify [&_p]:leading-relaxed"
               dangerouslySetInnerHTML={{ __html: blog.content }}
@@ -304,4 +292,3 @@ export const BlogDetails: React.FC = () => {
     </>
   );
 };
-

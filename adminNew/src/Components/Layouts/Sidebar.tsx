@@ -162,7 +162,7 @@ if (["manager", "ceo", "hr"].includes(user?.role ?? "")) {
     )
   }
 
-  if(["manager", "ceo", "employee"].includes(user?.role?? "") && profile?.designation==='designer'){
+  if(["manager", "ceo", "employee"].includes(user?.role?? "") || profile?.designation==='designer'){
     menuItems.push(
 {
       section: "Designfolio",
@@ -182,7 +182,7 @@ if (["manager", "ceo", "hr"].includes(user?.role ?? "")) {
   )
   }
   
-  if(["manager", "ceo", "employee"].includes(user?.role?? "") && profile?.designation==='developer'){
+  if(["manager", "ceo", "employee"].includes(user?.role?? "") || profile?.designation==='developer'){
     menuItems.push(
       {
       section: "Devfolio",

@@ -6,7 +6,8 @@ interface Blog {
   id: string | number;
   title: string;
   image?: string;
-  created_at: string;
+  createdAt?: string;
+  created_at?: string;
   [key: string]: unknown;
 }
 
@@ -16,9 +17,11 @@ interface RelatedBlogsProps {
 
 const formatSlug = (title: string): string =>
   title
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9\-]/g, "");
+    ? title
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9\-]/g, "")
+    : "";
 
 export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
   const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([]);
@@ -26,15 +29,19 @@ export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("https://ahaansoftware.com/blog-db.json");
-        const blogs: Blog[] = await res.json();
+        const res = await fetch("http://localhost:5000/api/blogs");
+        const result = await res.json();
+
+        // Express Backend Response Structure Handling
+        const blogs: Blog[] = Array.isArray(result) ? result : result.data || [];
 
         const sorted = blogs
           .filter((b) => formatSlug(b.title) !== currentSlug)
-          .sort(
-            (a, b) =>
-              new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
-          );
+          .sort((a, b) => {
+            const dateA = new Date(a.createdAt || a.created_at || 0).getTime();
+            const dateB = new Date(b.createdAt || b.created_at || 0).getTime();
+            return dateB - dateA;
+          });
 
         setRelatedBlogs(sorted.slice(0, 70));
       } catch (err) {
@@ -58,9 +65,11 @@ export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
           const blogUrl = `/blog/${slug}`;
           const image = blog.image?.startsWith("http")
             ? blog.image
-            : `https://ahaansoftware.com/${blog.image}`;
+            : `http://localhost:5000/${blog.image}`;
 
-          const createdAt = new Date(blog.created_at);
+          const dateVal = blog.createdAt || blog.created_at;
+          const createdAt = dateVal ? new Date(dateVal) : new Date();
+
           const formattedDate = createdAt.toLocaleDateString("en-GB", {
             day: "2-digit",
             month: "short",
@@ -78,11 +87,13 @@ export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
               className="group block text-white bg-transparent no-underline transition-all duration-300 hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-4 mb-4">
-                <img
-                  src={image}
-                  alt={blog.title}
-                  className="w-[100px] h-[50px] object-cover rounded-lg shrink-0"
-                />
+                {blog.image && (
+                  <img
+                    src={image}
+                    alt={blog.title}
+                    className="w-[100px] h-[50px] object-cover rounded-lg shrink-0"
+                  />
+                )}
                 <div>
                   <h6 className="text-[0.86rem] font-light m-0 text-black group-hover:text-[#d4a701] transition-colors duration-300 line-clamp-2">
                     {blog.title}
