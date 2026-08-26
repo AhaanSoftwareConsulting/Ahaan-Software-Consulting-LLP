@@ -23,7 +23,6 @@ import italyIcon from "../../../assets/leaning-tower-of-pisa-.svg";
 import arabIcon from "../../../assets/burj-al-arab.svg";
 import franceIcon from "../../../assets/eiffel-tower.svg";
 import singaporeIcon from "../../../assets/merlion.svg";
-import PayglocalButton from "../../payglocal/PayglocalButton";
 
 const socialLinks = [
   {
