@@ -21,7 +21,7 @@ import {
   LockSimple,
 } from "@phosphor-icons/react";
 import { useAppSelector } from "../app/hook";
-import { getMyProfileAPI, updateMyProfileAPI } from "../Api/ProfileApi";
+import { getMyProfileAPI, updateMyProfileAPI } from "../Api/Profileapi";
 
 interface ProfileFormState {
   gender: string;
