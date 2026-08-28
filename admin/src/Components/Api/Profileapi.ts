@@ -6,6 +6,7 @@ import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 // access token already stored by auth-service's login flow — no separate
 // login step needed for profile-service itself.
 const BASE_URL = "http://localhost:5000";
+// const BASE_URL = "https://ahaan-software-consulting-llp-1.onrender.com";
 
 const ProfileAPI: AxiosInstance = axios.create({
   baseURL: BASE_URL,
