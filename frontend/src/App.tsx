@@ -37,24 +37,17 @@ const RouteChangeLoader = () => {
 };
 
 function App() {
-useEffect(() => {
-  const alreadyTracked = localStorage.getItem("vst_count");
+  useEffect(() => {
+    const alreadyTracked = localStorage.getItem("v-count");
 
-  if (!alreadyTracked) {
-    fetch("https://ahaan-software-consulting-llp.vercel.app/api/visitor/track", {
-      method: "POST",
-    })
-      .then((res) => {
-        if (res.ok) {
-          localStorage.setItem("vst_count", "true");
-        }
+    if (!alreadyTracked) {
+      fetch("https://ahaan-software-consulting-llp.vercel.app/api/visitor/track", {
+        method: "POST",
       })
-      .catch(() => {
-        // Silently ignore errors
-      });
-  }
-}, []);
-
+        .then(() => localStorage.setItem("v-count", "true"))
+        .catch((err) => console.error(err));
+    }
+  }, []);
   return (
     <>
       {/* <DisableInspect /> */}
