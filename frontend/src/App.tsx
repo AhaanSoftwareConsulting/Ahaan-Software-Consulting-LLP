@@ -37,6 +37,24 @@ const RouteChangeLoader = () => {
 };
 
 function App() {
+useEffect(() => {
+  const alreadyTracked = localStorage.getItem("vst_count");
+
+  if (!alreadyTracked) {
+    fetch("https://ahaan-software-consulting-llp.vercel.app/api/visitor/track", {
+      method: "POST",
+    })
+      .then((res) => {
+        if (res.ok) {
+          localStorage.setItem("vst_count", "true");
+        }
+      })
+      .catch(() => {
+        // Silently ignore errors
+      });
+  }
+}, []);
+
   return (
     <>
       {/* <DisableInspect /> */}
