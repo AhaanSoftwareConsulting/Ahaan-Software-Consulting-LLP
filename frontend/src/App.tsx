@@ -37,6 +37,17 @@ const RouteChangeLoader = () => {
 };
 
 function App() {
+  useEffect(() => {
+    const alreadyTracked = localStorage.getItem("visit_tracked");
+
+    if (!alreadyTracked) {
+      fetch("https://ahaan-software-consulting-llp.onrender.com/api/visitor/track", {
+        method: "POST",
+      })
+        .then(() => localStorage.setItem("visit_tracked", "true"))
+        .catch((err) => console.error(err));
+    }
+  }, []);
   return (
     <>
       {/* <DisableInspect /> */}
