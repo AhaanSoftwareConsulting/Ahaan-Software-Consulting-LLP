@@ -20,7 +20,7 @@ export default function VisitorStats() {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:5000/api/visitor/stats?range=${range}`
+          `https://ahaan-software-consulting-llp.onrender.com/api/visitor/stats?range=${range}`
         );
         const json = await res.json();
         setData(json.data || []);
