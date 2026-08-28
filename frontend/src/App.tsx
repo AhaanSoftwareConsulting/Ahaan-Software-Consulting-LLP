@@ -38,13 +38,13 @@ const RouteChangeLoader = () => {
 
 function App() {
   useEffect(() => {
-    const alreadyTracked = localStorage.getItem("v-count");
+    const alreadyTracked = localStorage.getItem("visit_tracked");
 
     if (!alreadyTracked) {
-      fetch("https://ahaan-software-consulting-llp.vercel.app/api/visitor/track", {
+      fetch("https://ahaan-software-consulting-llp.onrender.com/api/visitor/track", {
         method: "POST",
       })
-        .then(() => localStorage.setItem("v-count", "true"))
+        .then(() => localStorage.setItem("visit_tracked", "true"))
         .catch((err) => console.error(err));
     }
   }, []);
