@@ -26,6 +26,7 @@ const allowedOrigins = [
   "https://ahaansoftware.com",
   "https://portfolio-ahaanmedia.vercel.app",
   "https://ahaan-software-consulting-llp.vercel.app",
+  "https://admin-ahaan-software-consulting-llp-beta.vercel.app",
 ];
 
 app.use(
