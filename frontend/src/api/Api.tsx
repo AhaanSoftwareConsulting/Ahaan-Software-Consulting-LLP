@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const BASE_URL = "https://ahaan-software-1.onrender.com/api";
-const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
+// const BASE_URL = "http://localhost:5000/api";
 
 const API = axios.create({ 
   baseURL: BASE_URL,
