@@ -55,6 +55,7 @@ app.use("/api/connect", require("./routes/connectRoute"));
 app.use("/api/contact", require("./routes/contactRoutes"));
 app.use("/api/newsletter", require("./routes/newsletterRoutes"));
 app.use("/profile", require("./routes/profileRoutes"));
+app.use("/api/team", require("./routes/teamRoutes"));
 
 app.get("/", (req, res) => {
   res.send("API Running...");
