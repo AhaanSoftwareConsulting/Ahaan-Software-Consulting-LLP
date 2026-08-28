@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import type { ApexOptions } from "apexcharts";
-
+import { useNavigate } from "react-router-dom";
 import {
   FaChartArea,
   FaChartPie,
@@ -27,7 +27,7 @@ export default function Dashboard() {
   const [connectCount, setConnectCount] = useState<number>(0);
   const [blogCount, setBlogCount] = useState<number>(0);
   const [contactCount, setContactCount] = useState<number>(0);
-
+const navigate = useNavigate();
   // =============================
   // FETCH COUNTS
   // =============================
@@ -278,12 +278,14 @@ export default function Dashboard() {
           />
 
           {/* Visitors */}
-          <DashboardCard
-            title="Visitors"
-            subtitle="Website Traffic Overview"
-            value={<VisitorCounter />}
-            icon={<FaChartLine style={{ color: "#f9ecc7" }}/>}
-          />
+         <div onClick={() => navigate("/admin/visitors")} className="cursor-pointer">
+  <DashboardCard
+    title="Visitors"
+    subtitle="Website Traffic Overview"
+    value={<VisitorCounter />}
+    icon={<FaChartLine style={{ color: "#f9ecc7" }} />}
+  />
+</div>
         </div>
 
         {/* ========================= */}

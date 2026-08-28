@@ -1,10 +1,11 @@
+// components/Visitor/VisitorCounter.tsx
 import { useEffect, useState } from "react";
 
-export default function AdminTotalVisitors() {
+export default function VisitorCounter() {
   const [count, setCount] = useState<number | string | null>(null);
 
   useEffect(() => {
-    fetch("https://ahaan-software-1.onrender.com/api/visitor/total")
+    fetch("http://localhost:5000/api/visitor/total")
       .then((res) => res.json())
       .then((data: { totalVisitors: number }) => {
         setCount(data.totalVisitors);

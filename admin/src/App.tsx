@@ -58,6 +58,7 @@ import PageLoader from "./Components/Common/PageLoader";
 import { SearchContext } from "./searchContext";
 
 import "apexcharts/dist/apexcharts.css";
+import VisitorStats from "./Components/Visitor/VisitorStats";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -146,6 +147,7 @@ function LayoutWrapper() {
 
               {/* Profile */}
               <Route path="/profile" element={<Profile />} />
+              <Route path="/admin/visitors" element={<VisitorStats />} />
 
               {/* 404 */}
               <Route
