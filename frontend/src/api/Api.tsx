@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
-// const BASE_URL = "http://localhost:5000/api";
+ const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
+ //const BASE_URL = "http://localhost:5000/api";
 
 const API = axios.create({ 
   baseURL: BASE_URL,
@@ -67,7 +67,8 @@ export const getAllUiUxDesignsAPI = async () => {
 export const getAllSocialMediaMarketingAPI = async () => {
   try {
     const response = await API.get("/social");
-    return response.data;
+
+    return response.data.data || [];
   } catch (error) {
     console.error("❌ Error fetching social media posts:", error);
     return [];
@@ -75,16 +76,20 @@ export const getAllSocialMediaMarketingAPI = async () => {
 };
 
 
-// ➤ Get all AppDevelopment
+
+// ➤ Get all App Development projects
 export const getAllAppDevelopmentsAPI = async () => {
   try {
     const response = await API.get("/appDev");
-    return response.data;
+
+    return response.data.data || [];
   } catch (error) {
     console.error("❌ Error fetching app development projects:", error);
     return [];
   }
 };
+
+
 
 // ➤ Post contact form details
 export const createContact = async (data: ContactPayload) => {

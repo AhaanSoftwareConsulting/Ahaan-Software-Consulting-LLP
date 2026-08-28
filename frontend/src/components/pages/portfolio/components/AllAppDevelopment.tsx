@@ -1,27 +1,12 @@
-import { memo, useState } from "react";
+
+import { memo, useEffect, useState } from "react";
 import AllAppBanner from "./AllAppBanner";
-import finanzaly from  "../../../../assets/finanzally.webp";
-import johatngo from  "../../../../assets/johatngo.webp";
-import johatllc from  "../../../../assets/johatllc.webp";
-import psitpops from  "../../../../assets/psitpops.webp";
-import boss from "../../../../assets/boss.webp";
-import innovare from "../../../../assets/innovare.webp";
+import { getAllAppDevelopmentsAPI } from "../../../../api/Api";
 
-
-const imageLinks = [
-  finanzaly,
-  johatngo,
-  johatllc,
-  psitpops,
-  boss,
-  innovare,
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/2.webp",
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/3.webp",
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/4.webp",
-  "https://ahaanmedia.com/ahaanwebsite/AppDevelopment/5.webp",
-  
-];
-
+type AppDevelopmentItem = {
+  id: number;
+  image: string;
+};
 
 type AppCardProps = {
   src: string;
@@ -34,32 +19,32 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
   return (
     <div
       className="
-      group
-      relative
-      overflow-hidden
-      rounded-2xl
-      bg-white
-      p-4
-      shadow-xl
-      transition-all
-      duration-300
-      hover:-translate-y-3
-      hover:scale-105
-      hover:shadow-2xl
-    "
+        group
+        relative
+        overflow-hidden
+        rounded-2xl
+        bg-white
+        p-4
+        shadow-xl
+        transition-all
+        duration-300
+        hover:-translate-y-3
+        hover:scale-105
+        hover:shadow-2xl
+      "
     >
       {!loaded && (
         <div
           className="
-          absolute
-          inset-0
-          animate-pulse
-          rounded-2xl
-          bg-gradient-to-r
-          from-gray-200
-          via-gray-100
-          to-gray-200
-        "
+            absolute
+            inset-0
+            animate-pulse
+            rounded-2xl
+            bg-gradient-to-r
+            from-gray-200
+            via-gray-100
+            to-gray-200
+          "
         />
       )}
 
@@ -81,48 +66,94 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
   );
 });
 
-export  function AllAppDevelopment() {
+export function AllAppDevelopment() {
+  const [appDevelopments, setAppDevelopments] = useState<
+    AppDevelopmentItem[]
+  >([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAppDevelopments = async () => {
+      try {
+        setLoading(true);
+
+        const data = await getAllAppDevelopmentsAPI();
+
+        console.log("App Development API Data:", data);
+
+        setAppDevelopments(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error(
+          "❌ Failed to fetch app development projects:",
+          error
+        );
+        setAppDevelopments([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAppDevelopments();
+  }, []);
+
   return (
     <>
       <AllAppBanner />
-    <section className="py-12 sm:py-16 lg:py-20">
-      <div className="relative mx-auto max-w-[1600px] px-4">
-        {/* Heading */}
-        <div className="mb-10 text-center lg:mb-14">
 
-          <h2 className="heading-primary">
+      <section className="py-12 sm:py-16 lg:py-20">
+        <div className="relative mx-auto max-w-[1600px] px-4">
+          {/* Heading */}
+          <div className="mb-10 text-center lg:mb-14">
+            <h2 className="heading-primary">
+              App Development Designs
+            </h2>
 
-          App Development Designs
-        </h2>
+            <p className="mt-2 px-4 text-sm sm:px-8 lg:text-lg">
+              Clean and modern designs for mobile and web applications
+            </p>
+          </div>
 
-        <p className="lg:text-lg text-sm px-4 sm:px-8 mt-2">
+          {/* Loading */}
+          {loading && (
+            <div className="flex justify-center py-16">
+              <p className="text-sm text-gray-500">
+                Loading app development designs...
+              </p>
+            </div>
+          )}
 
-         
-            Clean and modern designs for mobile and web applications
-          </p>
+          {/* Empty State */}
+          {!loading && appDevelopments.length === 0 && (
+            <div className="flex justify-center py-16">
+              <p className="text-sm text-gray-500">
+                No app development designs found.
+              </p>
+            </div>
+          )}
+
+          {/* Gallery */}
+          {!loading && appDevelopments.length > 0 && (
+            <div
+              className="
+                grid
+                grid-cols-1
+                gap-6
+                sm:grid-cols-2
+                lg:grid-cols-4
+              "
+            >
+              {appDevelopments.map((item, index) => (
+                <AppCard
+                  key={item.id}
+                  src={item.image}
+                  index={index}
+                />
+              ))}
+            </div>
+          )}
         </div>
-
-        {/* Gallery */}
-        <div
-          className="
-            grid
-            grid-cols-1
-            gap-6
-            sm:grid-cols-2
-            lg:grid-cols-4
-           
-          "
-        >
-          {imageLinks.map((img, index) => (
-            <AppCard
-              key={img}
-              src={img}
-              index={index}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 }
+
