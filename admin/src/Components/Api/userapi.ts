@@ -4,8 +4,8 @@ import type {
   InternalAxiosRequestConfig,
 } from "axios";
 
-// const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com";
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://ahaan-software-consulting-llp-1.onrender.com";
+// const BASE_URL = "http://localhost:8000";
 
 const API: AxiosInstance = axios.create({
   baseURL: BASE_URL,

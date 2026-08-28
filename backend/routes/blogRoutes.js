@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const upload = require("../middleware/uploadMiddleware");
-const BlogController = require("../controllers/BlogController");
+const BlogController = require("../controllers/blogController");
 
 // Blog-এর জন্য নির্দিষ্ট Cloudinary ফোল্ডার 'ahaan-blogs' নির্ধারণ
 const blogUpload = upload("ahaan-blogs").fields([

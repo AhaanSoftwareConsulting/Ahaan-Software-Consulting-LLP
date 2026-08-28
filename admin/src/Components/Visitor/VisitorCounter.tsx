@@ -5,7 +5,7 @@ export default function VisitorCounter() {
   const [count, setCount] = useState<number | string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/visitor/total")
+    fetch("https://ahaan-software-consulting-llp.onrender.com/api/visitor/total")
       .then((res) => res.json())
       .then((data: { totalVisitors: number }) => {
         setCount(data.totalVisitors);

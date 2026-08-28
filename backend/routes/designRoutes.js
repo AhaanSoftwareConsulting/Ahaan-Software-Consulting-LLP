@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const upload = require("../middleware/uploadMiddleware");
-const DesignController = require("../controllers/DesignController");
+const DesignController = require("../controllers/designController");
 
 // Cloudinary-র 'ahaan-designs' ফোল্ডারে 'image' ফাইলটি সেভ হবে
 const designUpload = upload("ahaan-designs").single("image");
