@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require("multer");
-const ProfileController = require("../controllers/ProfileController");
+const ProfileController = require("../controllers/profileController");
 const { requireAuth } = require("../middleware/authMiddleware");
 
 const upload = multer({ storage: require("../config/multerCloudinaryStorage") });
