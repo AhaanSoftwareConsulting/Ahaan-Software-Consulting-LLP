@@ -15,6 +15,12 @@ import { FollowUs } from "./FollowUs";
 import { BlogSearch } from "./BlogSearch";
 import { BlogDetailsBanner } from "./BlogDetailsBanner";
 
+// 1. Centralized API Call Import
+import { getAllBlogsAPI, updateBlogReactionAPI } from "../../../../api/Api"; 
+
+// 2. SEO Component Import (আপনার প্রজেক্টের সঠিক পথ অনুযায়ী অ্যাডজাস্ট করুন)
+import { SEO } from "../../../seo/SEO";
+
 interface Blog {
   id: string | number;
   title: string;
@@ -52,18 +58,14 @@ export const BlogDetails: React.FC = () => {
 
     const fetchBlog = async () => {
       try {
-        // Express/Sequelize Backend API Endpoint
-        const res = await fetch("http://localhost:5000/api/blogs");
-        const result = await res.json();
+        const result = await getAllBlogsAPI();
         
-        // Backend Response Handling (Data array mapping)
         const blogs: Blog[] = result.data || result;
         const matchedBlog = blogs.find((b) => formatSlug(b.title) === slug || String(b.id) === slug);
 
         if (isMounted && matchedBlog) {
           setBlog(matchedBlog);
 
-          // LocalStorage check for reaction
           const localReaction = localStorage.getItem(`reacted_${matchedBlog.id}`);
           if (localReaction) {
             setSelectedReaction(localReaction);
@@ -94,7 +96,6 @@ export const BlogDetails: React.FC = () => {
     const blogId = blog.id;
     const prevReaction = selectedReaction;
 
-    // Optimistic Local State Update
     localStorage.setItem(`reacted_${blogId}`, newReaction);
     setSelectedReaction(newReaction);
 
@@ -108,16 +109,10 @@ export const BlogDetails: React.FC = () => {
     });
 
     try {
-      // Backend Integration for Reaction Increment (PUT API)
       const newCount = (reactionCounts[newReaction] || 0) + 1;
-      await fetch(`http://localhost:5000/api/blogs/${blogId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ [newReaction]: newCount }),
-      });
+      await updateBlogReactionAPI(blogId, { [newReaction]: newCount });
     } catch (err) {
       console.error("Failed to update reaction:", err);
-      // Revert state if backend call fails
       if (prevReaction) {
         localStorage.setItem(`reacted_${blogId}`, prevReaction);
       } else {
@@ -148,8 +143,20 @@ export const BlogDetails: React.FC = () => {
 
   const pageUrl = window.location.href;
 
+  // Clean HTML tags from content to make description for SEO
+  const cleanDescription = blog.content
+    ? blog.content.replace(/(<([^>]+)>)/gi, "").slice(0, 160).trim()
+    : "Read this insightful blog post by Ahaan Software Consulting.";
+
   return (
     <>
+      {/* Dynamic SEO Integration */}
+      <SEO
+        title={blog.title}
+        description={cleanDescription}
+        path={`/blog/${slug}`}
+      />
+
       <BlogDetailsBanner />
 
       <div className="mx-auto max-w-[1400px] px-4 lg:px-6 py-8">

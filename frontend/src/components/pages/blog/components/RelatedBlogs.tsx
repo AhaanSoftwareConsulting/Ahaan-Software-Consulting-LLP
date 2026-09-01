@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarBlank, Clock } from "@phosphor-icons/react";
+// 1. সেন্ট্রালাইজড API ফাংশন ইমপোর্ট করুন (আপনার ফাইল পাথ অনুযায়ী `./api` পরিবর্তন করুন)
+import { getAllBlogsAPI } from "../../../../api/Api";
 
 interface Blog {
   id: string | number;
@@ -29,8 +31,8 @@ export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/blogs");
-        const result = await res.json();
+        // 2. সরাসরি fetch-এর বদলে কেন্দ্রীয় API ফাংশন ব্যবহার করা হলো
+        const result = await getAllBlogsAPI();
 
         // Express Backend Response Structure Handling
         const blogs: Blog[] = Array.isArray(result) ? result : result.data || [];
@@ -63,9 +65,11 @@ export const RelatedBlogs: React.FC<RelatedBlogsProps> = ({ currentSlug }) => {
         {relatedBlogs.map((blog) => {
           const slug = formatSlug(blog.title);
           const blogUrl = `/blog/${slug}`;
+          
+          // 3. ডাইনামিক ইমেজ লিঙ্ক হ্যান্ডেল করা
           const image = blog.image?.startsWith("http")
             ? blog.image
-            : `http://localhost:5000/${blog.image}`;
+            : blog.image;
 
           const dateVal = blog.createdAt || blog.created_at;
           const createdAt = dateVal ? new Date(dateVal) : new Date();

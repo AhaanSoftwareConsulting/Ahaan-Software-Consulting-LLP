@@ -1,7 +1,7 @@
-
 import { memo, useEffect, useState } from "react";
 import AllAppBanner from "./AllAppBanner";
 import { getAllAppDevelopmentsAPI } from "../../../../api/Api";
+import { SEO } from "../../../seo/SEO";
 
 type AppDevelopmentItem = {
   id: number;
@@ -67,9 +67,9 @@ const AppCard = memo(({ src, index }: AppCardProps) => {
 });
 
 export function AllAppDevelopment() {
-  const [appDevelopments, setAppDevelopments] = useState<
-    AppDevelopmentItem[]
-  >([]);
+  const [appDevelopments, setAppDevelopments] = useState<AppDevelopmentItem[]>(
+    [],
+  );
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -83,10 +83,7 @@ export function AllAppDevelopment() {
 
         setAppDevelopments(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error(
-          "❌ Failed to fetch app development projects:",
-          error
-        );
+        console.error("❌ Failed to fetch app development projects:", error);
         setAppDevelopments([]);
       } finally {
         setLoading(false);
@@ -98,15 +95,18 @@ export function AllAppDevelopment() {
 
   return (
     <>
+      <SEO
+        title="Mobile App Development Portfolio"
+        description="Explore custom iOS and Android mobile app development solutions delivered by Ahaan."
+        path="/all-app-development"
+      />
       <AllAppBanner />
 
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="relative mx-auto max-w-[1600px] px-4">
           {/* Heading */}
           <div className="mb-10 text-center lg:mb-14">
-            <h2 className="heading-primary">
-              App Development Designs
-            </h2>
+            <h2 className="heading-primary">App Development Designs</h2>
 
             <p className="mt-2 px-4 text-sm sm:px-8 lg:text-lg">
               Clean and modern designs for mobile and web applications
@@ -143,11 +143,7 @@ export function AllAppDevelopment() {
               "
             >
               {appDevelopments.map((item, index) => (
-                <AppCard
-                  key={item.id}
-                  src={item.image}
-                  index={index}
-                />
+                <AppCard key={item.id} src={item.image} index={index} />
               ))}
             </div>
           )}
@@ -156,4 +152,3 @@ export function AllAppDevelopment() {
     </>
   );
 }
-

@@ -10,6 +10,7 @@ import {
 import { getCareerBySlug } from "../../../../api/WordpressAPI";
 import { CareerBanner } from "./CareerBanner";
 import { CareerApplyForm } from "./CareerApplyForm";
+import { SEO } from "../../../seo/SEO";
 
 // TypeScript Interface for Job Details
 interface Job {
@@ -97,7 +98,24 @@ export const CareerDetails: React.FC = () => {
     );
   }
 
+  const rawDescription =
+    job.summary ||
+    job.responsibilities.replace(/(<([^>]+)>)/gi, "") ||
+    `Apply for the ${decodeHtml(job.designation)} position.`;
+
+  const cleanDescription = rawDescription
+    .replace(/(<([^>]+)>)/gi, "")
+    .slice(0, 160)
+    .trim();
+
   return (
+    <>
+    <SEO
+        title={`${decodeHtml(job.designation)} - Career Opportunity`}
+        description={cleanDescription}
+        path={`/careers/${jobId}`}
+      />
+    
     <div className="bg-zinc-50 min-h-screen pb-16">
       <CareerBanner />
 
@@ -205,5 +223,6 @@ export const CareerDetails: React.FC = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };

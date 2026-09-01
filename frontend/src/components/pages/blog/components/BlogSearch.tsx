@@ -1,6 +1,8 @@
 import React, { useEffect, useState, type FormEvent, type ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { MagnifyingGlass } from "@phosphor-icons/react";
+// 1. সেন্ট্রালাইজড API ফাংশন ইমপোর্ট করুন (আপনার ফাইল পাথ অনুযায়ী `./api` পরিবর্তন করুন)
+import { getAllBlogsAPI } from "../../../../api/Api"; 
 
 interface Blog {
   id: string | number;
@@ -26,10 +28,9 @@ export const BlogSearch: React.FC = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/blogs");
-        const result = await res.json();
+        // 2. সরাসরি fetch-এর বদলে কেন্দ্রীয় API ফাংশন ব্যবহার করা হলো
+        const result = await getAllBlogsAPI();
         
-        // Express Backend Array or Object handling
         const data: Blog[] = Array.isArray(result) ? result : result.data || [];
         setBlogs(data);
       } catch (err) {
@@ -100,7 +101,7 @@ export const BlogSearch: React.FC = () => {
                   src={
                     blog.image.startsWith("http")
                       ? blog.image
-                      : `http://localhost:5000/${blog.image}`
+                      : blog.image // যদি ব্যাকএন্ড থেকে সঠিক রিলেটিভ বা অ্যাবসোলিউট URL আসে
                   }
                   alt={blog.title}
                   className="w-[50px] h-[40px] object-cover rounded-md shrink-0"

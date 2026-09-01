@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 import { getPolicyBySlug } from "../../../api/WordpressAPI";
 import type { WPCustomPost } from "../../../api/WordpressAPI";
 
+// 👈 ১. SEO Component Import (প্রজেক্টের সঠিক পাথ অনুযায়ী প্রয়োজন হলে পরিবর্তন করুন)
+import { SEO } from "../../seo/SEO";
+
 export function PolicyDetails() {
   const { slug } = useParams<{ slug: string }>();
 
@@ -43,8 +46,20 @@ export function PolicyDetails() {
   const banner =
     policy._embedded?.["wp:featuredmedia"]?.[0]?.source_url ?? "";
 
+  // 👈 ২. SEO Meta Description প্রসেসিং
+  const cleanDescription = policy.content?.rendered
+    ? policy.content.rendered.replace(/(<([^>]+)>)/gi, "").slice(0, 160).trim()
+    : "Read our official policy terms and conditions.";
+
   return (
     <>
+      {/* 👈 ৩. Dynamic SEO Integration */}
+      <SEO
+        title={policy.title.rendered}
+        description={cleanDescription}
+        path={`/policy/${slug}`}
+      />
+
       {/* Banner */}
       <section
         className="relative flex h-[420px] items-center bg-cover bg-center"
@@ -87,4 +102,4 @@ export function PolicyDetails() {
       </section>
     </>
   );
-};
+}

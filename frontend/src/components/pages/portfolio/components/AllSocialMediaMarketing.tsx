@@ -1,6 +1,7 @@
 import { memo, useEffect, useState } from "react";
 import AllSocialBanner from "./AllSocialBanner";
 import { getAllSocialMediaMarketingAPI } from "../../../../api/Api";
+import { SEO } from "../../../seo/SEO";
 
 type SocialMediaItem = {
   id: number;
@@ -97,14 +98,17 @@ export function AllSocialMediaMarketing() {
 
   return (
     <>
+      <SEO
+        title="Social Media Marketing Portfolio"
+        description="Strategic branding and social media marketing campaigns managed for clients."
+        path="/all-media-marketing"
+      />
       <AllSocialBanner />
 
       <section className="overflow-x-hidden px-4 py-6 sm:py-10 lg:py-16">
         {/* Heading */}
         <div className="mb-12 text-center">
-          <h2 className="heading-primary">
-            Social Media Marketing
-          </h2>
+          <h2 className="heading-primary">Social Media Marketing</h2>
 
           <p className="mt-2 px-4 text-sm sm:px-8 lg:text-lg">
             A showcase of engaging and creative social media designs
