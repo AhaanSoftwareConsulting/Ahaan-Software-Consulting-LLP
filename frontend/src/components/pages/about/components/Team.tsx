@@ -73,7 +73,7 @@ export const Team: React.FC = () => {
   const displayMembers = [...teamMembers, ...teamMembers];
 
   return (
-    <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 font-['Outfit',sans-serif]">
+    <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 ">
       {/* SECTION HEADER */}
       <div className="mb-8 text-center">
         <h2 className="heading-primary">

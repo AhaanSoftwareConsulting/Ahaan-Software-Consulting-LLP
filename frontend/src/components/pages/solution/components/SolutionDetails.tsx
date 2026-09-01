@@ -8,6 +8,9 @@ import {
   type WPSolution,
 } from "../../../../api/WordpressAPI";
 
+// 👈 ১. SEO Component Import (প্রজেক্টের সঠিক পাথ অনুযায়ী অ্যাডজাস্ট করুন)
+import { SEO } from "../../../seo/SEO";
+
 export const SolutionDetails = () => {
   const { slug } = useParams();
 
@@ -111,9 +114,27 @@ export const SolutionDetails = () => {
     },
   ].filter((item) => item.title);
 
-    return (
+  // 👈 ২. SEO-এর জন্য Description প্রসেস করা
+  const seoDescription =
+    solution.acf.hero_section_description ||
+    solution.acf.highlight_description ||
+    "Innovative solutions provided by Ahaan Software Consulting.";
+
+  const cleanDescription = seoDescription
+    .replace(/(<([^>]+)>)/gi, "")
+    .slice(0, 160)
+    .trim();
+
+  return (
     <>
-      <section className="py-20  px-4 lg:px-6 2xl:px-10 bg-white text-[#1c1d20]">
+      {/* 👈 ৩. Dynamic SEO Integration */}
+      <SEO
+        title={solution.title.rendered}
+        description={cleanDescription}
+        path={`/solution/${slug}`}
+      />
+
+      <section className="py-20 px-4 lg:px-6 2xl:px-10 bg-white text-[#1c1d20]">
         <div className="max-w-[1600px] mx-auto space-y-24">
 
           {/* HERO */}

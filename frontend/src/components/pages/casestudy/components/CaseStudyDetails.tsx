@@ -17,6 +17,7 @@ import { CaseStudySolutionsSection } from "./CaseStudySolutionsSection";
 import { CaseStudyBusinessImpactSection } from "./CaseStudyBusinessImpactSection";
 import { CaseStudyDesignHighlightsSection } from "./CaseStudyDesignHighlightsSection";
 import { CaseStudyWhyStandsOutSection } from "./CaseStudyWhyStandsOutSection";
+import { SEO } from "../../../seo/SEO";
 
 export const CaseStudyDetails = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -210,49 +211,66 @@ export const CaseStudyDetails = () => {
   const buttonText = acf.button_text || "Visit The Site";
 
   return (
-    <main
-      className="overflow-hidden bg-white"
-      style={{ "--theme-color": themeColor } as React.CSSProperties}
-    >
-      <CaseStudyHeroSection
-        caseStudy={caseStudy}
-        heroImage={heroImage}
-        mainDescription={mainDescription}
-        industry={industry}
-        platform={platform}
-        servicesProvided={servicesProvided}
+    <>
+      <SEO
+        title={
+          caseStudy.title?.rendered?.replace(/&#8211;/g, "-") ||
+          "Case Study Detail"
+        }
+        description={
+          mainDescription
+            .replace(/(<([^>]+)>)/gi, "")
+            .slice(0, 160)
+            .trim() ||
+          "Read this detailed case study on custom software development by Ahaan."
+        }
+        path={`/case-studies/${slug || ""}`}
       />
 
-      <CaseStudyProjectOverviewSection
-        image={images.projectOverview}
-        projectOverviewHtml={acf.project_overview}
-        buttonUrl={buttonUrl}
-        buttonText={buttonText}
-      />
-      <CaseStudyChallengesSection
-        image={images.challenges}
-        challengesHtml={acf.challenges}
-      />
-      <CaseStudyKeyFeaturesSection
-        logo={images.logo}
-        leftFeatures={leftFeatures}
-        rightFeatures={rightFeatures}
-        allFeatures={allFeatures}
-      />
-      <CaseStudyTechnologiesSection
-        technologyHtml={technologyHtml}
-        techLogos={techLogos}
-      />
-      <CaseStudySolutionsSection solutions={solutions} />
-      <CaseStudyBusinessImpactSection
-        image={images.businessImpact}
-        businessImpactHtml={acf.business_impact}
-      />
-      <CaseStudyDesignHighlightsSection
-        image={images.designHighlights}
-        designHighlightsHtml={acf.design_highlights}
-      />
-      <CaseStudyWhyStandsOutSection whyStandsOutText={whyStandsOutText} />
-    </main>
+      <main
+        className="overflow-hidden bg-white"
+        style={{ "--theme-color": themeColor } as React.CSSProperties}
+      >
+        <CaseStudyHeroSection
+          caseStudy={caseStudy}
+          heroImage={heroImage}
+          mainDescription={mainDescription}
+          industry={industry}
+          platform={platform}
+          servicesProvided={servicesProvided}
+        />
+
+        <CaseStudyProjectOverviewSection
+          image={images.projectOverview}
+          projectOverviewHtml={acf.project_overview}
+          buttonUrl={buttonUrl}
+          buttonText={buttonText}
+        />
+        <CaseStudyChallengesSection
+          image={images.challenges}
+          challengesHtml={acf.challenges}
+        />
+        <CaseStudyKeyFeaturesSection
+          logo={images.logo}
+          leftFeatures={leftFeatures}
+          rightFeatures={rightFeatures}
+          allFeatures={allFeatures}
+        />
+        <CaseStudyTechnologiesSection
+          technologyHtml={technologyHtml}
+          techLogos={techLogos}
+        />
+        <CaseStudySolutionsSection solutions={solutions} />
+        <CaseStudyBusinessImpactSection
+          image={images.businessImpact}
+          businessImpactHtml={acf.business_impact}
+        />
+        <CaseStudyDesignHighlightsSection
+          image={images.designHighlights}
+          designHighlightsHtml={acf.design_highlights}
+        />
+        <CaseStudyWhyStandsOutSection whyStandsOutText={whyStandsOutText} />
+      </main>
+    </>
   );
 };

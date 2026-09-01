@@ -2,16 +2,19 @@ import {
   createSlice,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 import type { AxiosError } from "axios";
-
+import { setAccessToken } from "../../app/tokenStore";
 // API imports updated to reference userapi
 import {
+  
   loginAPI,
   registerAPI,
   profileAPI,
   logoutAPI,
+  BASE_URL
 } from "../../Api/userapi";
+import { refreshAccessToken } from "../../Api/refreshClient";
 
 //
 // Types
@@ -19,8 +22,6 @@ import {
 
 export interface User {
   _id?: string;
-  accessToken?: string;
-  refreshToken?: string;
   full_name?: string;
   email?: string;
   role?: string;
@@ -29,6 +30,7 @@ export interface User {
   profilePicture?: string;
   createdAt?: string;
   updatedAt?: string;
+  // accessToken/refreshToken REMOVED from here
 }
 
 interface LoginPayload {
@@ -44,8 +46,7 @@ export interface RegisterPayload {
 }
 
 interface LoginApiResponse {
-  accessToken: string;
-  refreshToken?: string;
+  access_token: string; // matches your backend's snake_case
   user?: User;
 }
 
@@ -55,47 +56,46 @@ interface UserState {
   user: User | null;
   loading: boolean;
   error: string | null;
+  initialized: boolean; // NEW — tracks whether bootstrap check has finished
 }
 
-const storedUser = localStorage.getItem("user");
-
 const initialState: UserState = {
-  user: storedUser ? JSON.parse(storedUser) : null,
+  user: null,
   loading: false,
   error: null,
+  initialized: false,
 };
 
-//
-// LOGIN
-//
+// src/Components/features/user/userSlice.ts
 
-export const loginUser = createAsyncThunk<
-  LoginApiResponse,
-  LoginPayload,
-  { rejectValue: string }
->(
+export const loginUser = createAsyncThunk<LoginApiResponse, LoginPayload, { rejectValue: string }>(
   "user/login",
   async (data, { dispatch, rejectWithValue }) => {
-  try {
-    const res = await loginAPI(data);
-    const tokens = res.data;
-
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        accessToken: tokens.accessToken,
-        refreshToken: tokens.refreshToken,
-      })
-    );
-
-    await dispatch(getProfile());
-    return tokens;
-  }  catch (error) {
+    try {
+      const res = await loginAPI(data);
+      // Fix: Check both camelCase and snake_case
+      const token = res.data.accessToken || res.data.access_token;
+      setAccessToken(token); 
+      await dispatch(getProfile());
+      return res.data;
+    } catch (error) {
       const err = error as AxiosError<{ message?: string }>;
+      return rejectWithValue(err.response?.data?.message ?? "Login failed");
+    }
+  }
+);
 
-      return rejectWithValue(
-        err.response?.data?.message ?? "Login failed"
-      );
+
+export const bootstrapSession = createAsyncThunk(
+  "user/bootstrap",
+  async (_, { dispatch, rejectWithValue }) => {
+    try {
+      await refreshAccessToken();
+      await dispatch(getProfile()).unwrap();
+      return true;
+    } catch {
+      setAccessToken(null);
+      return rejectWithValue("No valid session");
     }
   }
 );
@@ -149,18 +149,13 @@ export const getProfile = createAsyncThunk<
 //
 // LOGOUT
 //
-
-export const logoutUser = createAsyncThunk(
-  "user/logout",
-  async () => {
-    try {
-      await logoutAPI();
-    } catch {
-      // Proceed with clearing local state even if server logout fails
-    }
-    return null;
-  }
-);
+export const logoutUser = createAsyncThunk("user/logout", async () => {
+  try {
+    await logoutAPI();
+  } catch {}
+  setAccessToken(null);
+  return null;
+});
 
 //
 // Slice
@@ -168,42 +163,34 @@ export const logoutUser = createAsyncThunk(
 
 const userSlice = createSlice({
   name: "user",
-
   initialState,
-
-  reducers: {
+ reducers: {
     clearUser: (state) => {
       state.user = null;
       state.error = null;
-      localStorage.removeItem("user");
+      setAccessToken(null);
     },
   },
 
   extraReducers: (builder) => {
     builder
 
-      // LOGIN
-
-      .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+     .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = { ...state.user, ...(action.payload.user || {}) };
+    
       })
-
-     .addCase(
-  loginUser.fulfilled,
-  (state, action: PayloadAction<LoginApiResponse>) => {
-    state.loading = false;
-    state.error = null;
-    const userObj = action.payload.user || {};
-    state.user = {
-      ...state.user,
-      accessToken: action.payload.accessToken,
-      refreshToken: action.payload.refreshToken,
-      ...userObj,
-    };
-    localStorage.setItem("user", JSON.stringify(state.user));
-  }
-)
+      .addCase(loginUser.pending, (state) => {
+  state.loading = true;
+  state.error = null;
+})
+       .addCase(bootstrapSession.fulfilled, (state) => {
+        state.initialized = true;
+      })
+      .addCase(bootstrapSession.rejected, (state) => {
+        state.user = null;
+        state.initialized = true;
+      })
 
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -229,30 +216,21 @@ const userSlice = createSlice({
 
       // PROFILE
 
-      .addCase(
-        getProfile.fulfilled,
-        (state, action: PayloadAction<ProfileApiResponse>) => {
-          const profileData =
-            "user" in action.payload && action.payload.user
-              ? action.payload.user
-              : (action.payload as User);
-
-          state.user = {
-            ...state.user,
-            ...profileData,
-          };
-
-          localStorage.setItem("user", JSON.stringify(state.user));
-        }
-      )
+      .addCase(getProfile.fulfilled, (state, action) => {
+        const profileData = "user" in action.payload && action.payload.user ? action.payload.user : action.payload;
+        state.user = { ...state.user, ...profileData };
+        // no localStorage.setItem
+      })
+      .addCase(getProfile.rejected, (state) => {
+        state.user = null;
+      })
 
       // LOGOUT
 
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.error = null;
-
-        localStorage.removeItem("user");
+      
       });
   },
 });

@@ -1,5 +1,7 @@
 import axios from "axios";
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
+import { getAccessToken } from "../app/tokenStore";
+import { refreshAccessToken } from "./refreshClient";
 
 // profile-service runs on its own port, separate from auth-service (8000).
 // Both services verify the SAME JWT (shared secret), so we reuse the
@@ -16,31 +18,36 @@ const ProfileAPI: AxiosInstance = axios.create({
   },
 });
 
-// Attach the same Bearer token used for auth-service requests
+// Attach the same Bearer token used for auth-service requests.
+// Read from the in-memory token store (tokenStore.ts) — this app no longer
+// persists the access token to localStorage.
 ProfileAPI.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      const parsed = JSON.parse(user);
-      if (parsed?.accessToken) {
-        config.headers.Authorization = `Bearer ${parsed.accessToken}`;
-      }
+    const token = getAccessToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// If the token is expired/invalid, bounce to login. Token *refresh* itself
-// is handled by auth-service's own interceptor (userapi.ts) whenever the
-// user hits an auth-service endpoint — this just guards profile-service
-// calls made with an already-stale token.
+// On 401, try the same single-flight refresh used by auth-service calls,
+// then retry once. No hard redirect here — ProtectedRoute already handles
+// sending the user to /login if the session is genuinely gone.
 ProfileAPI.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem("user");
-      window.location.href = "/login";
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const newAccessToken = await refreshAccessToken();
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return ProfileAPI(originalRequest);
+      } catch (refreshError) {
+        return Promise.reject(refreshError);
+      }
     }
     return Promise.reject(error);
   }

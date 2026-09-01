@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import {
   ShareNetwork,
   FacebookLogo,
@@ -8,11 +7,13 @@ import {
   WhatsappLogo,
 } from "@phosphor-icons/react";
 import { BlogSearchBanner } from "./BlogSearchBanner";
+import { getAllBlogsAPI, updateBlogReactionAPI } from "../../../../api/Api";
 
 interface Reactions {
-  "thumbs up": number;
-  love: number;
-  [key: string]: number;
+  "thumbs up"?: number;
+  love?: number;
+  thumbs_up?: number;
+  [key: string]: number | undefined;
 }
 
 interface Blog {
@@ -91,17 +92,23 @@ export const SearchResults: React.FC = () => {
 
   const fetchBlogs = async () => {
     try {
-      // API call to Node.js backend search endpoint
-      const res = await axios.get(`http://localhost:5000/api/blogs?search=${encodeURIComponent(query)}`);
+      const res = await getAllBlogsAPI();
       
-      const blogList: Blog[] = Array.isArray(res.data) ? res.data : res.data.data || [];
+      let blogList: Blog[] = Array.isArray(res) ? res : res.data || [];
+
+      if (query) {
+        blogList = blogList.filter((blog) =>
+          blog.title?.toLowerCase().includes(query.toLowerCase()) ||
+          blog.content?.toLowerCase().includes(query.toLowerCase())
+        );
+      }
 
       const counts: ReactionState = {};
       const local: SelectedReactionState = {};
 
       blogList.forEach((blog) => {
         counts[blog.id] = {
-          "thumbs up": blog.reactions?.["thumbs up"] || 0,
+          "thumbs up": blog.reactions?.["thumbs up"] || blog.reactions?.["thumbs_up"] || 0,
           love: blog.reactions?.["love"] || 0,
         };
         const localReaction = localStorage.getItem(`reacted_${blog.id}`);
@@ -117,7 +124,7 @@ export const SearchResults: React.FC = () => {
   };
 
   useEffect(() => {
-    if (query) fetchBlogs();
+    fetchBlogs();
   }, [query]);
 
   const handleReaction = async (blogId: string | number, newReaction: string) => {
@@ -131,17 +138,19 @@ export const SearchResults: React.FC = () => {
       const updated = { ...prev };
       if (!updated[blogId]) updated[blogId] = { "thumbs up": 0, love: 0 };
 
-      if (prevReaction && updated[blogId][prevReaction] > 0) {
-        updated[blogId][prevReaction] -= 1;
+      if (prevReaction && (updated[blogId][prevReaction] ?? 0) > 0) {
+        updated[blogId][prevReaction] = (updated[blogId][prevReaction] ?? 0) - 1;
       }
-      updated[blogId][newReaction] = (updated[blogId][newReaction] || 0) + 1;
+      updated[blogId][newReaction] = (updated[blogId][newReaction] ?? 0) + 1;
       return updated;
     });
 
     try {
-      await axios.post(`http://localhost:5000/api/blogs/${blogId}/reaction`, {
-        reaction: newReaction,
-        prevReaction: prevReaction || "",
+      // API টাইপ অনুযায়ী সঠিক কী (thumbs_up / love) পাঠানো হচ্ছে
+      const reactionKey = newReaction === "thumbs up" ? "thumbs_up" : newReaction;
+      
+      await updateBlogReactionAPI(blogId, {
+        [reactionKey]: 1,
       });
     } catch (err) {
       console.error("Failed to update reaction:", err);
@@ -162,9 +171,10 @@ export const SearchResults: React.FC = () => {
               const slug = createSlug(blog.title);
               const blogUrl = `${window.location.origin}/blog/${slug}`;
               const blogReactions = reactionCounts[blog.id] || { "thumbs up": 0, love: 0 };
+              
               const image = blog.image?.startsWith("http")
                 ? blog.image
-                : `http://localhost:5000/${blog.image}`;
+                : blog.image;
 
               return (
                 <div
