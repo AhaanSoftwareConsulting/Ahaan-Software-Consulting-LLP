@@ -3,7 +3,7 @@ const accountsService = require('../accounts/accounts.service');
 const { validateRegisterInput, validateLoginInput } = require('./auth.validators');
 const { getClientIp, getUserAgent } = require('./auth.utils');
 const emailVerificationService=require('../emailVerification/emailVerification.service')
-
+const { setRefreshCookie, clearRefreshCookie, REFRESH_COOKIE_NAME } = require('./auth.cookies');
 // async function register(req, res, next) {
 //   try {
 //     const { email, password, fullName } = req.body;
@@ -61,10 +61,11 @@ async function login(req, res, next) {
       getClientIp(req)
     );
 
-    res.status(200).json({ 
-      accessToken, 
-      refreshToken, 
-      user: accountsService.toPublic(user) // Send user data
+    setRefreshCookie(res, refreshToken); // NEW — refresh token goes in cookie now
+
+    res.status(200).json({
+      accessToken, // only access token in body now
+      user: accountsService.toPublic(user),
     });
   } catch (err) {
     next(err);
@@ -73,12 +74,15 @@ async function login(req, res, next) {
 
 async function refresh(req, res, next) {
   try {
-    const { refresh_token: refreshToken } = req.body;
+    const refreshToken = req.cookies[REFRESH_COOKIE_NAME]; // CHANGED — read from cookie, not body
     const result = await authService.refresh(refreshToken, getUserAgent(req), getClientIp(req));
+
+    setRefreshCookie(res, result.refreshToken); // NEW — rotate the cookie too
+
     res.status(200).json({
       access_token: result.accessToken,
-      refresh_token: result.refreshToken,
       token_type: 'bearer',
+      // no refresh_token in body anymore
     });
   } catch (err) {
     next(err);
@@ -87,14 +91,16 @@ async function refresh(req, res, next) {
 
 async function logout(req, res, next) {
   try {
-    const { refresh_token: refreshToken } = req.body;
-    await authService.logout(refreshToken);
+    const refreshToken = req.cookies[REFRESH_COOKIE_NAME]; // CHANGED — read from cookie
+    if (refreshToken) {
+      await authService.logout(refreshToken);
+    }
+    clearRefreshCookie(res); // NEW
     res.status(204).send();
   } catch (err) {
     next(err);
   }
 }
-
 async function logoutAll(req, res, next) {
   try {
     await authService.logoutAllDevices(req.user.id);
