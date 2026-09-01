@@ -59,6 +59,8 @@ import { SearchContext } from "./searchContext";
 
 import "apexcharts/dist/apexcharts.css";
 import VisitorStats from "./Components/Visitor/VisitorStats";
+import { bootstrapSession } from "./Components/features/user/userSlice";
+import { useAppDispatch } from "./Components/app/hook";
 
 function LayoutWrapper() {
   const location = useLocation();
@@ -73,6 +75,7 @@ function LayoutWrapper() {
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
+  
 
   return (
     <>
@@ -170,6 +173,10 @@ function LayoutWrapper() {
 
 export default function App() {
   const [query, setQuery] = useState("");
+  const dispatch=useAppDispatch();
+  useEffect(() => {
+  dispatch(bootstrapSession());
+}, [dispatch]);
 
   return (
     <SearchContext.Provider value={{ query, setQuery }}>
@@ -192,7 +199,7 @@ export default function App() {
             }
           />
 
-          <Route path="/*" element={<LayoutWrapper />} />
+          {/* <Route path="/*" element={<LayoutWrapper />} /> */}
         </Routes>
       </BrowserRouter>
     </SearchContext.Provider>
