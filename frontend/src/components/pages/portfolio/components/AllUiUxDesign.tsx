@@ -2,8 +2,28 @@ import { useEffect, useMemo, useState } from "react";
 import { getAllUiUxDesignsAPI } from "../../../../api/Api";
 import AllDesignBanner from "./AllDesignBanner";
 
-
-import {SelectionAllIcon, AirplaneTiltIcon,BrowserIcon, CarProfileIcon,DotsThreeIcon, HeartbeatIcon, CodeIcon, HouseIcon, IdentificationCardIcon,BriefcaseIcon, ShieldCheckIcon, ForkKnifeIcon, GraduationCapIcon, FilmReelIcon,TagIcon, UsersThreeIcon,  TShirtIcon, SoccerBallIcon ,LaptopIcon} from "@phosphor-icons/react";
+import {
+  SelectionAllIcon,
+  AirplaneTiltIcon,
+  BrowserIcon,
+  CarProfileIcon,
+  DotsThreeIcon,
+  HeartbeatIcon,
+  CodeIcon,
+  HouseIcon,
+  IdentificationCardIcon,
+  BriefcaseIcon,
+  ShieldCheckIcon,
+  ForkKnifeIcon,
+  GraduationCapIcon,
+  FilmReelIcon,
+  TagIcon,
+  UsersThreeIcon,
+  TShirtIcon,
+  SoccerBallIcon,
+  LaptopIcon,
+} from "@phosphor-icons/react";
+import { SEO } from "../../../seo/SEO";
 
 type DesignItem = {
   _id?: string;
@@ -115,13 +135,10 @@ const categoryConfig: Record<string, CategoryItem> = {
   },
 };
 
-export  function AllUiUxDesign() {
+export function AllUiUxDesign() {
   const [designs, setDesigns] = useState<DesignItem[]>([]);
   const [visibleCount, setVisibleCount] = useState(12);
-  const [selectedCategory, setSelectedCategory] =
-    useState<string>("all");
-
-  
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
   useEffect(() => {
     let cancelled = false;
@@ -149,7 +166,7 @@ export  function AllUiUxDesign() {
         if (!cancelled) {
           setDesigns([]);
         }
-      } 
+      }
     };
 
     loadDesigns();
@@ -164,33 +181,31 @@ export  function AllUiUxDesign() {
       return designs;
     }
 
-    return designs.filter(
-      (item) => item.category === selectedCategory
-    );
+    return designs.filter((item) => item.category === selectedCategory);
   }, [designs, selectedCategory]);
 
-  const visibleDesigns = filteredDesigns.slice(
-    0,
-    visibleCount
-  );
+  const visibleDesigns = filteredDesigns.slice(0, visibleCount);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 12);
   };
 
   return (
-  <>
-    <AllDesignBanner />
+    <>
+      <SEO
+        title="UI/UX Design Projects Showcase"
+        description="Discover our intuitive UI/UX design works, product interfaces, and web layouts."
+        path="/all-design"
+      />
+      <AllDesignBanner />
 
-    <section className="py-6 sm:py-10 lg:py-16">
-      <div className="relative mx-auto max-w-[1600px] px-4">
-
-        {/* Layout */}
-        <div className="flex flex-col gap-8 lg:flex-row">
-
-          {/* Sidebar */}
-          <aside
-            className="
+      <section className="py-6 sm:py-10 lg:py-16">
+        <div className="relative mx-auto max-w-[1600px] px-4">
+          {/* Layout */}
+          <div className="flex flex-col gap-8 lg:flex-row">
+            {/* Sidebar */}
+            <aside
+              className="
               lg:w-72
               lg:min-w-[280px]
               lg:sticky
@@ -204,23 +219,23 @@ export  function AllUiUxDesign() {
 
               scrollbar-none
             "
-          >
-            <div
-              className="
+            >
+              <div
+                className="
                 flex
                 gap-3
                 lg:flex-col
                 pb-2
               "
-            >
-              {Object.entries(categoryConfig).map(([slug, category]) => (
-                <button
-                  key={slug}
-                  onClick={() => {
-                    setSelectedCategory(slug);
-                    setVisibleCount(12);
-                  }}
-                  className={`
+              >
+                {Object.entries(categoryConfig).map(([slug, category]) => (
+                  <button
+                    key={slug}
+                    onClick={() => {
+                      setSelectedCategory(slug);
+                      setVisibleCount(12);
+                    }}
+                    className={`
                     flex
                     shrink-0
                     items-center
@@ -241,10 +256,10 @@ export  function AllUiUxDesign() {
                         : "border-gray-200 bg-white text-gray-900 hover:translate-x-1 hover:border-gray-300 hover:bg-gray-50"
                     }
                   `}
-                >
-                  {/* Icon */}
-                  <span
-                    className={`
+                  >
+                    {/* Icon */}
+                    <span
+                      className={`
                       flex
                       h-6
                       w-6
@@ -257,31 +272,24 @@ export  function AllUiUxDesign() {
                       to-[#E8B22B]
                       text-xs
 
-                      ${
-                        selectedCategory === slug
-                          ? "text-white"
-                          : "text-black"
-                      }
+                      ${selectedCategory === slug ? "text-white" : "text-black"}
                     `}
-                  >
-                    {category.icon}
-                  </span>
+                    >
+                      {category.icon}
+                    </span>
 
-                  <span className="whitespace-nowrap">
-                    {category.label}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </aside>
+                    <span className="whitespace-nowrap">{category.label}</span>
+                  </button>
+                ))}
+              </div>
+            </aside>
 
-          {/* Right Content */}
-         {/* ================= CONTENT ================= */}
-<div className="flex-1 min-w-0">
-
-  {/* Cards */}
-  <div
-    className="
+            {/* Right Content */}
+            {/* ================= CONTENT ================= */}
+            <div className="flex-1 min-w-0">
+              {/* Cards */}
+              <div
+                className="
       grid
       grid-cols-1
       sm:grid-cols-2
@@ -289,14 +297,14 @@ export  function AllUiUxDesign() {
       gap-5
       lg:gap-7
     "
-  >
-    {visibleDesigns.map((item, index) => (
-      <a
-        key={item._id ?? index}
-        href={item.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="
+              >
+                {visibleDesigns.map((item, index) => (
+                  <a
+                    key={item._id ?? index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
           group
           overflow-hidden
           rounded-2xl
@@ -307,14 +315,14 @@ export  function AllUiUxDesign() {
           hover:-translate-y-2
           hover:shadow-2xl
         "
-      >
-        {/* Image */}
-        <div className="overflow-hidden">
-          <img
-            src={item.image}
-            alt={item.title}
-            loading="lazy"
-            className="
+                  >
+                    {/* Image */}
+                    <div className="overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        loading="lazy"
+                        className="
               w-full
               aspect-video
               object-cover
@@ -322,33 +330,33 @@ export  function AllUiUxDesign() {
               duration-500
               group-hover:scale-105
             "
-          />
-        </div>
+                      />
+                    </div>
 
-        {/* Title */}
-        <div className="p-5">
-          <h3
-            className="
+                    {/* Title */}
+                    <div className="p-5">
+                      <h3
+                        className="
               text-center
               text-base
               sm:text-lg
               font-semibold
               text-gray-900
             "
-          >
-            {item.title}
-          </h3>
-        </div>
-      </a>
-    ))}
-  </div>
+                      >
+                        {item.title}
+                      </h3>
+                    </div>
+                  </a>
+                ))}
+              </div>
 
-  {/* Load More */}
-  {visibleCount < filteredDesigns.length && (
-    <div className="mt-10 flex justify-center">
-      <button
-        onClick={handleLoadMore}
-        className="
+              {/* Load More */}
+              {visibleCount < filteredDesigns.length && (
+                <div className="mt-10 flex justify-center">
+                  <button
+                    onClick={handleLoadMore}
+                    className="
           shine-btn relative overflow-hidden uppercase
                 bg-gradient-to-r
                 from-[#C48A18]
@@ -369,16 +377,15 @@ export  function AllUiUxDesign() {
                 hover:from-[#B57A0C]
                 hover:to-[#D69D20]
         "
-      >
-        Load More
-      </button>
-    </div>
-  )}
-
-</div>
-</div>
-</div>
-</section>
-  </>
+                  >
+                    Load More
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
