@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 interface SEOProps {
@@ -7,23 +7,32 @@ interface SEOProps {
   path: string;
 }
 
-export const SEO: React.FC<SEOProps> = ({ title, description, path }) => {
+export const SEO: React.FC<SEOProps> = ({
+  title,
+  description,
+  path,
+}) => {
   const siteUrl = "https://ahaan-software-consulting-llp.vercel.app";
+
   const fullUrl = `${siteUrl}${path}`;
 
-  // টাইটেল স্ট্রিং আগেই ফরম্যাট করে নিন
   const pageTitle = `${title} | Ahaan Software Consulting`;
+
+  useEffect(() => {
+    document.title = pageTitle;
+  }, [pageTitle]);
 
   return (
     <Helmet prioritizeSeoTags>
-      {/* Dynamic Title */}
-      <title>{pageTitle}</title>
+      <meta
+        name="description"
+        content={description}
+      />
 
-      {/* Meta Description */}
-      <meta name="description" content={description} />
-
-      {/* Canonical Link */}
-      <link rel="canonical" href={fullUrl} />
+      <link
+        rel="canonical"
+        href={fullUrl}
+      />
     </Helmet>
   );
 };
