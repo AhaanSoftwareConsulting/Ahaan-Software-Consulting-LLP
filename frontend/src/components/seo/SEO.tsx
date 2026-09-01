@@ -19,16 +19,22 @@ export const SEO: React.FC<SEOProps> = ({
   const pageTitle = `${title} | Ahaan Software Consulting`;
 
   useEffect(() => {
+    // Update existing title
     document.title = pageTitle;
-  }, [pageTitle]);
+
+    // Update existing meta description
+    let metaDescription = document.querySelector(
+      'meta[name="description"]'
+    ) as HTMLMetaElement | null;
+
+    if (metaDescription) {
+      metaDescription.setAttribute("content", description);
+    }
+  }, [pageTitle, description]);
 
   return (
     <Helmet prioritizeSeoTags>
-      <meta
-        name="description"
-        content={description}
-      />
-
+      {/* Canonical URL */}
       <link
         rel="canonical"
         href={fullUrl}
