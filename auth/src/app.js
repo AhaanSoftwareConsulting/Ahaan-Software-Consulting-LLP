@@ -12,10 +12,12 @@ const authRoutes = require('./modules/auth/auth.routes');
 const passwordResetRoutes = require('./modules/passwordReset/passwordReset.routes');
 const emailVerificationRoutes = require('./modules/emailVerification/emailVerification.routes');
 const approvalRoutes = require('./modules/approval/approval.routes');
+const cookieParser = require('cookie-parser');
 const app = express();
 
 app.use(helmet());
 app.use(corsMiddleware);
+app.use(cookieParser());
 app.use(express.json());
 app.use(requestId);
 app.use(requestLogger);
