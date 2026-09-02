@@ -154,13 +154,16 @@ export const Footer = () => {
     { name: "Services", url: "/service" },
     { name: "Solutions", url: "/solution" },
     { name: "Careers", url: "/career" },
+    { name: "Case Studies", url: "/case-study" },
+    { name: "Portfolio", url: "/portfolio" },
+    { name: "Contact Us", url: "/contact-us" },
   ];
 
   const quickLinks = [
+    { name: "Privacy Policy", url: "/policy/privacy-policy" },
     { name: "Cookie Policy", url: "/policy/cookie-policy" },
-    { name: "Environmental Policy", url: "/policy/environmental-policy" },
-    { name: "Grievance Policy", url: "/policy/grievance-policy" },
-    {
+    { name: "Terms & Conditions", url: "/policy/terms-conditions" },
+        {
       name: "Information Security Policy",
       url: "/policy/information-security-policy",
     },
@@ -168,6 +171,12 @@ export const Footer = () => {
       name: "Intellectual Property Policy",
       url: "/policy/intellectual-property-policy",
     },
+    { name: "Grievance Policy", url: "/policy/grievance-policy" },
+    { name: "Environmental Policy", url: "/policy/environmental-policy" },
+    
+    
+    
+
   ];
 
   return (
@@ -192,12 +201,11 @@ export const Footer = () => {
               {/* Content */}
               <div>
                 <h2 className="text-base font-semibold leading-tight uppercase  lg:text-3xl">
-                  New Subscription
+                  GET THE LATEST INSIGHTS
                 </h2>
 
                 <p className="mt-2 text-sm text-white lg:text-base lg:mt-3">
-                  Get practical insights on software, design, AI, and digital
-                  growth.
+                  Stay updated with insights on software, AI, UX, and digital growth.
                 </p>
               </div>
             </div>
@@ -247,7 +255,7 @@ export const Footer = () => {
               >
                 <div>
                   <h3 className="text-2xl font-semibold uppercase">
-                    About Company
+                    About Ahaan Software
                   </h3>
                   <div className="hidden sm:block mt-2 h-[2px] w-24 bg-[#E6B33C] sm:mt-5"></div>
                 </div>
@@ -268,9 +276,10 @@ export const Footer = () => {
               >
                 <div className="overflow-hidden">
                   <p className="leading-relaxed text-gray-100">
-                    Ahaan helps growing businesses design, build, and improve
-                    secure digital products that drive efficiency, enhance
-                    customer experiences, and support long-term business growth.
+                    Ahaan Software Consulting helps growing businesses design,
+                    build, and improve websites, applications, e-commerce
+                    platforms, and custom business software through an
+                    experienced offshore delivery team.
                   </p>
 
                   <div className="mt-6 flex gap-1 z-20  pl-3 sm:mt-12 xl:gap-4">
@@ -360,7 +369,7 @@ export const Footer = () => {
               >
                 <div>
                   <h3 className="text-2xl font-semibold uppercase">
-                    Quick Links
+                    LEGAL & POLICIES
                   </h3>
                   <div className="hidden sm:block mt-2 h-[2px] w-24 bg-[#E6B33C] sm:mt-5"></div>
                 </div>

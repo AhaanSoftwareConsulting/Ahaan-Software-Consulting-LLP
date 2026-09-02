@@ -16,34 +16,42 @@ const SERVICES_DATA = [
       "Modern, responsive, and user-focused website designs with intuitive interfaces, engaging visuals, and seamless navigation that deliver exceptional user experiences across all devices.",
     highlightColorClass: "text-rose-400",
     image: webDesignLaptop,
+
     leftBadge: {
-      title: "Engagement",
-      value: "+85%",
+      title: "User",
+      value: "Focused",
     },
+
     rightBadge: {
-      title: "Responsive",
-      value: "100%",
+      title: "Multi-Device",
+      value: "Ready",
     },
+
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Figma.webp",
   },
+
   {
     id: "web-dev",
     titleMain: "Powerful & Scalable",
-    titleHighlight: "Web-App Development ",
+    titleHighlight: "Web-App Development",
     subheading:
       "We build fast, secure, scalable, and fully customized web applications with seamless functionality and optimized performance, tailored to your unique business goals and designed to support long-term growth.",
     highlightColorClass: "text-[#036AF1]",
     image: webDevLaptop,
+
     leftBadge: {
-      title: "Performance",
-      value: "99%",
+      title: "High",
+      value: "Performance",
     },
+
     rightBadge: {
-      title: "Server Uptime",
-      value: "99.99%",
+      title: "Built to",
+      value: "Scale",
     },
+
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/React.webp",
   },
+
   {
     id: "ecommerce",
     titleMain: "Enterprise-Grade",
@@ -52,16 +60,20 @@ const SERVICES_DATA = [
       "End-to-end E-Commerce solutions with secure payment integrations, efficient inventory management, and conversion-focused online stores designed to deliver seamless shopping experiences and support business growth.",
     highlightColorClass: "text-[#6119D3]",
     image: ecommerceLaptop,
+
     leftBadge: {
-      title: "Sales Growth",
-      value: "3.2x",
+      title: "Secure",
+      value: "Payments",
     },
+
     rightBadge: {
-      title: "Checkout",
-      value: "< 1.2s",
+      title: "Seamless",
+      value: "Checkout",
     },
+
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Next.webp",
   },
+
   {
     id: "shopify",
     titleMain: "Conversion-Focused",
@@ -70,32 +82,39 @@ const SERVICES_DATA = [
       "High-converting Shopify stores with custom designs, seamless integrations, and optimized performance, delivering smooth, engaging, and user-friendly shopping experiences that help businesses attract customers and drive more sales.",
     highlightColorClass: "text-[#498220]",
     image: shopifyLaptop,
+
     leftBadge: {
       title: "Conversion",
-      value: "4.8%",
+      value: "Focused",
     },
+
     rightBadge: {
-      title: "Store Speed",
-      value: "98/100",
+      title: "Custom",
+      value: "Built",
     },
+
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Shopify.webp",
   },
+
   {
     id: "wordpress",
     titleMain: "High-Performance",
-    titleHighlight: "WordPress Development ",
+    titleHighlight: "WordPress Development",
     subheading:
       "Powerful WordPress websites built with custom themes and plugins, optimized for speed, security, and performance, with a user-friendly content management experience that makes it easy to update, manage, and grow your website.",
     highlightColorClass: "text-cyan-600",
     image: wordpressLaptop,
+
     leftBadge: {
-      title: "SEO Score",
-      value: "95+",
+      title: "SEO",
+      value: "Ready",
     },
+
     rightBadge: {
-      title: "Page Speed",
-      value: "0.8s",
+      title: "Performance",
+      value: "Focused",
     },
+
     techIcon: "https://ahaanmedia.com/ahaanwebsite/technology/Wordpress.webp",
   },
 ];
@@ -130,7 +149,7 @@ export function HomeBanner() {
 
   return (
     /* min-h-[calc(100vh-140px)] ব্যবহার করা হয়েছে যাতে হেডারের পর পুরো বাকি স্ক্রিন জুড়িয়া ব্যানারটি থাকে */
-    <div className="relative w-full overflow-hidden flex items-center justify-center bg-gradient-to-r from-[#FAF6ED] via-[#F3F4FD] to-[#FFF6F0] py-8 lg:py-16 min-h-[calc(100vh-140px)]">
+    <div className="relative w-full overflow-hidden flex items-center justify-center bg-gradient-to-r from-[#FAF6ED] via-[#F3F4FD] to-[#FFF6F0] py-8 lg:py-16 min-h-[calc(60vh-100px)]">
       {/* Background Floating Orbs & Vector Lines */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         {/* Soft Background Radial Blurs */}

@@ -11,7 +11,7 @@ import Testimonials from "./components/Testimonials";
 import { AboutCompany } from "./components/AboutCompany";
 import { Connection } from "./components/Connection";
 import { SEO } from "../../seo/SEO";
-
+ 
 export const HomeComponent = () => {
   return (
     <div>
