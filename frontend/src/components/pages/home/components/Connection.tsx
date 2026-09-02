@@ -46,10 +46,8 @@ export const Connection: React.FC = () => {
       {/* Dark Background Strip */}
       <section className="bg-[#0f0f0f] text-white py-12 sm:py-16 lg:py-1">
         <div className="max-w-[1350px] mx-auto px-4 lg:px-6 2xl:px-10">
-
           {/* Main Grid: Responsive column layout with vertical centering */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-
             {/* LEFT SIDE: Text Content */}
             <div className="lg:col-span-7 flex flex-col justify-center py-2 lg:py-4 pr-0 lg:pr-8">
               <div className="space-y-4 sm:space-y-6">
@@ -58,12 +56,17 @@ export const Connection: React.FC = () => {
                 </span>
 
                 <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight capitalise">
-                  Connect With Our Technology Experts <br className="hidden sm:block" />
-                  <span className="text-[#D4AF37]">and Transform Your Business</span>
+                  Connect With Our Technology Experts{" "}
+                  <br className="hidden sm:block" />
+                  <span className="text-[#D4AF37]">
+                    and Transform Your Business
+                  </span>
                 </h2>
 
                 <p className="text-zinc-400 lg:text-lg text-sm max-w-lg leading-relaxed">
-                  Explore exciting possibilities, discuss project goals, and start building software solutions designed to scale your business effortlessly.
+                  Explore exciting possibilities, discuss project goals, and
+                  start building software solutions designed to scale your
+                  business effortlessly.
                 </p>
 
                 {/* Action Buttons */}
@@ -123,7 +126,8 @@ export const Connection: React.FC = () => {
       xl:px-8
       xl:py-3.5
       xl:text-base
-    ">
+    "
+                  >
                     Schedule Call
                   </a>
                 </div>
@@ -132,7 +136,6 @@ export const Connection: React.FC = () => {
 
             {/* RIGHT SIDE: Floating Form Card */}
             <div className="lg:col-span-5 my-0 lg:-my-28 bg-white text-zinc-900 p-3 sm:p-10 lg:p-12 rounded-3xl sm:rounded-[2.5rem] shadow-[0_0_25px_rgba(196,138,24,0.35),0_0_60px_rgba(230,179,60,0.25)] relative z-20">
-
               {/* Form Title */}
               <div className="mb-6 sm:mb-8 text-center">
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 tracking-tight">
@@ -144,39 +147,41 @@ export const Connection: React.FC = () => {
               </div>
 
               {/* Form Inputs */}
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
-
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="space-y-4 sm:space-y-5"
+              >
                 {/* Name */}
                 <div>
                   <input
                     type="text"
                     placeholder="Full Name"
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${errors.name ? "border-red-500" : "border-zinc-200"
-                      } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
+                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
+                      errors.name ? "border-red-500" : "border-zinc-200"
+                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
                     {...register("name", {
-      required: "Name is required",
+                      required: "Name is required",
 
-      validate: (value) => {
-        const name = value.trim();
+                      validate: (value) => {
+                        const name = value.trim();
 
-        if (!name) {
-          return "Name is required";
-        }
+                        if (!name) {
+                          return "Name is required";
+                        }
 
-        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
-          return "Name can contain only letters and spaces";
-        }
+                        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
+                          return "Name can contain only letters and spaces";
+                        }
 
-        return true;
-      },
-    })}
-    onInput={(e) => {
-      e.currentTarget.value = e.currentTarget.value
-        .replace(/[^A-Za-z ]/g, "")
-        .replace(/\s+/g, " ")
-        .replace(/^\s+/, "");
-    }}
-
+                        return true;
+                      },
+                    })}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value
+                        .replace(/[^A-Za-z ]/g, "")
+                        .replace(/\s+/g, " ")
+                        .replace(/^\s+/, "");
+                    }}
                   />
 
                   {errors.name && (
@@ -191,34 +196,35 @@ export const Connection: React.FC = () => {
                   <input
                     type="email"
                     placeholder="Email Address"
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${errors.email ? "border-red-500" : "border-zinc-200"
-                      } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
+                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
+                      errors.email ? "border-red-500" : "border-zinc-200"
+                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all`}
                     {...register("email", {
-      required: "Email address is required",
+                      required: "Email address is required",
 
-      validate: (value) => {
-        const email = value.trim();
+                      validate: (value) => {
+                        const email = value.trim();
 
-        if (!email) {
-          return "Email address is required";
-        }
+                        if (!email) {
+                          return "Email address is required";
+                        }
 
-        if (
-          !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(
-            email
-          )
-        ) {
-          return "Please enter a valid email address";
-        }
+                        if (
+                          !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(
+                            email,
+                          )
+                        ) {
+                          return "Please enter a valid email address";
+                        }
 
-        return true;
-      },
-    })}
-    onInput={(e) => {
-      e.currentTarget.value = e.currentTarget.value
-        .replace(/\s/g, "")
-        .replace(/[^A-Za-z0-9.!#$%&'*+/=?^_`{|}~@-]/g, "");
-    }}
+                        return true;
+                      },
+                    })}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value
+                        .replace(/\s/g, "")
+                        .replace(/[^A-Za-z0-9.!#$%&'*+/=?^_`{|}~@-]/g, "");
+                    }}
                   />
 
                   {errors.email && (
@@ -231,8 +237,9 @@ export const Connection: React.FC = () => {
                 {/* Service Dropdown */}
                 <div>
                   <select
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${errors.service ? "border-red-500" : "border-zinc-200"
-                      } focus:outline-none focus:border-amber-500 focus:bg-white transition-all cursor-pointer`}
+                    className={`w-full bg-[#f8f9fa] text-zinc-800 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
+                      errors.service ? "border-red-500" : "border-zinc-200"
+                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all cursor-pointer`}
                     {...register("service", { required: "Select a service" })}
                   >
                     <option value="" className="text-zinc-400">
@@ -254,17 +261,21 @@ export const Connection: React.FC = () => {
                 {/* Budget Dropdown */}
                 <div>
                   <select
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${errors.budget ? "border-red-500" : "border-zinc-200"
-                      } focus:outline-none focus:border-amber-500 focus:bg-white transition-all cursor-pointer`}
+                    className={`w-full bg-[#f8f9fa] text-zinc-800 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-full border ${
+                      errors.budget ? "border-red-500" : "border-zinc-200"
+                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all cursor-pointer`}
                     {...register("budget", { required: "Select a budget" })}
                   >
                     <option value="" className="text-zinc-400">
-                      Select Budget
+                      Select Project Budget
                     </option>
-                    <option value="Below $1000">Below $1000</option>
-                    <option value="$1000 - $5000">$1000 - $5000</option>
-                    <option value="Above $5000">Above $5000</option>
+
+                    <option value="$1,000 - $2,500">$1,000 – $2,500</option>
+                    <option value="$2,500 - $5,000">$2,500 – $5,000</option>
+                    <option value="$5,000 - $10,000">$5,000 – $10,000</option>
+                    <option value="$10,000+">$10,000+</option>
                   </select>
+
                   {errors.budget && (
                     <span className="text-red-500 text-xs font-medium mt-1 block px-2">
                       {errors.budget.message}
@@ -277,8 +288,11 @@ export const Connection: React.FC = () => {
                   <textarea
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-2xl border ${errors.projectDetails ? "border-red-500" : "border-zinc-200"
-                      } focus:outline-none focus:border-amber-500 focus:bg-white transition-all resize-none`}
+                    className={`w-full bg-[#f8f9fa] text-zinc-800 placeholder-zinc-400 font-medium text-sm px-5 py-3.5 sm:py-4 rounded-2xl border ${
+                      errors.projectDetails
+                        ? "border-red-500"
+                        : "border-zinc-200"
+                    } focus:outline-none focus:border-amber-500 focus:bg-white transition-all resize-none`}
                     {...register("projectDetails", {
                       required: "Details are required",
                     })}
@@ -300,10 +314,8 @@ export const Connection: React.FC = () => {
                     {isSubmitting ? "SUBMITTING..." : "REQUEST NOW"}
                   </button>
                 </div>
-
               </form>
             </div>
-
           </div>
         </div>
       </section>
