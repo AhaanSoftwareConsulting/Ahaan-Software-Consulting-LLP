@@ -73,10 +73,10 @@ export const Team: React.FC = () => {
   const displayMembers = [...teamMembers, ...teamMembers];
 
   return (
-    <div className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 ">
+    <div aria-labelledby="team-heading" className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 ">
       {/* SECTION HEADER */}
       <div className="mb-8 text-center">
-        <h2 className="heading-primary">
+        <h2 id="team-heading" className="heading-primary">
           Meet Our Team
         </h2>
         <p className="lg:text-lg text-sm max-w-6xl mx-auto leading-relaxed mb-10">
@@ -102,9 +102,11 @@ export const Team: React.FC = () => {
             style={{ width: "max-content" }}
           >
             {displayMembers.map((member, idx) => (
-              <div
+              <button
+                type="button"
                 key={idx}
                 onClick={() => handleShow(member)}
+                aria-label={`View details for ${member.name}`}
                 className="group flex-shrink-0 max-w-[45vw] sm:w-[220px] md:w-[250px] lg:w-[270px] flex flex-col items-center justify-center bg-white p-4 sm:p-6 text-center cursor-pointer transition-all duration-300 hover:-translate-y-3"
               >
                 <img
@@ -118,7 +120,7 @@ export const Team: React.FC = () => {
                 <p className="text-[#ebb800] text-sm sm:text-base font-normal leading-normal truncate w-full">
                   {member.position}
                 </p>
-              </div>
+              </button>
             ))}
           </div>
         </div>

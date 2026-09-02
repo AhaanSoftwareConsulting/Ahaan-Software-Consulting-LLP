@@ -69,9 +69,9 @@ export const SolutionDetails = () => {
   if (loading) {
     return (
       <section className="py-32 text-center">
-        <h2 className="text-3xl font-bold">
+        <p className="text-3xl font-bold">
           Loading...
-        </h2>
+        </p>
       </section>
     );
   }
@@ -79,9 +79,9 @@ export const SolutionDetails = () => {
   if (!solution) {
     return (
       <section className="py-32 text-center">
-        <h2 className="text-3xl font-bold">
+        <p className="text-3xl font-bold">
           Solution Not Found
-        </h2>
+        </p>
       </section>
     );
   }
