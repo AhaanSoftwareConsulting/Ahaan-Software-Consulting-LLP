@@ -1,6 +1,7 @@
 import Grid from "./components/ServiceGrid";
 import ServiceBanner from "./components/ServiceBanner";
 import { SEO } from "../../seo/SEO";
+import { ServiceFaq } from "./components/ServiceFaq";
 
 export const ServiceComponent = () => {
   return (
@@ -12,6 +13,7 @@ export const ServiceComponent = () => {
       />
       <ServiceBanner />
       <Grid />
+      <ServiceFaq slug="service-faq" />
     </div>
   );
 };

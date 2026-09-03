@@ -1,6 +1,7 @@
 import { SEO } from "../../seo/SEO";
 import { AboutBanner } from "./components/AboutBanner";
 import { AboutContent } from "./components/AboutContent";
+import { AboutFaq } from "./components/AboutFaq";
 import { AboutSection } from "./components/AboutSection";
 import { AboutVideo } from "./components/AboutVideo";
 import { Showcase } from "./components/Showcase";
@@ -22,6 +23,7 @@ export const AboutComponent = () => {
       <AboutSection />
       <Showcase />
       <Team />
+      <AboutFaq slug="about-faq" />
     </div>
   );
 };

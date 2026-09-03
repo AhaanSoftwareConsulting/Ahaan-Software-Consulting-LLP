@@ -279,4 +279,61 @@ export const getAllTestimonials = async (): Promise<WPTestimonialItem[]> => {
   }
 };
 
+
+// ==========================================
+// 8. FAQs API & Types
+// ==========================================
+
+export interface WPFAQACF {
+  question_1?: string;
+  answer_1?: string;
+
+  question_2?: string;
+  answer_2?: string;
+
+  question_3?: string;
+  answer_3?: string;
+
+  question_4?: string;
+  answer_4?: string;
+
+  question_5?: string;
+  answer_5?: string;
+
+  question_6?: string;
+  answer_6?: string;
+
+  question_7?: string;
+  answer_7?: string;
+
+  question_8?: string;
+  answer_8?: string;
+
+  question_9?: string;
+  answer_9?: string;
+
+  question_10?: string;
+  answer_10?: string;
+}
+
+export interface WPFAQItem extends WPCustomPost {
+  acf: WPFAQACF;
+}
+
+// Get FAQ by page slug
+export const getFAQBySlug = async (
+  slug: string,
+): Promise<WPFAQItem | null> => {
+  try {
+    const response = await wpAPI.get<WPFAQItem[]>(
+      `/faq?slug=${slug}`,
+    );
+
+    return response.data?.[0] || null;
+  } catch (error) {
+    console.error("❌ Error fetching FAQ:", getErrorMessage(error));
+    return null;
+  }
+};
+
 export default WordpressAPI;
