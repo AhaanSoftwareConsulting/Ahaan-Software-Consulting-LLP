@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 /* ------------------------------------------------------------------ */
-/*  Custom icons — typed properly for React's SVG element             */
+/*  Custom Icons                                                       */
 /* ------------------------------------------------------------------ */
 
-// Typing this explicitly as React.SVGProps<SVGSVGElement> removes all TS complaints
 const iconProps: React.SVGProps<SVGSVGElement> = {
   className: "h-5 w-5",
   fill: "none",
@@ -47,7 +46,7 @@ const SmileIcon = () => (
 );
 
 /* ------------------------------------------------------------------ */
-/*  Data                                                              */
+/*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
 interface Stat {
@@ -55,91 +54,164 @@ interface Stat {
   suffix?: string;
   label: string;
   icon: React.ReactNode;
-  /** how far this plaque hangs below the rail on desktop's single row, in px */
   drop: number;
-  /** how far this plaque hangs below its row's rail on the mobile 2x2 grid, in px */
   dropMobile: number;
 }
 
 const stats: Stat[] = [
-  { value: 6, suffix: "+", label: "Years of Experience", icon: <AwardIcon />, drop: 20, dropMobile: 15 },
-  { value: 25, suffix: "+", label: "Team Members", icon: <TeamIcon />, drop: 64, dropMobile: 35 },
-  { value: 65, suffix: "+", label: "Completed Projects", icon: <CheckIcon />, drop: 34, dropMobile: 35 },
-  { value: 52, suffix: "+", label: "Happy Clients", icon: <SmileIcon />, drop: 84, dropMobile: 15 },
+  {
+    value: 6,
+    suffix: "+",
+    label: "Years of Experience",
+    icon: <AwardIcon />,
+    drop: 20,
+    dropMobile: 15,
+  },
+  {
+    value: 25,
+    suffix: "+",
+    label: "Team Members",
+    icon: <TeamIcon />,
+    drop: 64,
+    dropMobile: 35,
+  },
+  {
+    value: 65,
+    suffix: "+",
+    label: "Completed Projects",
+    icon: <CheckIcon />,
+    drop: 34,
+    dropMobile: 35,
+  },
+  {
+    value: 52,
+    suffix: "+",
+    label: "Clients Served",
+    icon: <SmileIcon />,
+    drop: 84,
+    dropMobile: 15,
+  },
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Count-up hook — plaques tally up once they enter view, and reset   */
-/*  back to zero once they scroll fully out of view again              */
+/*  Count Up Hook                                                      */
+/*  - Starts as hidden (null)                                         */
+/*  - Never displays 0                                                 */
+/*  - Starts counting when active                                      */
+/*  - Resets when out of view                                          */
 /* ------------------------------------------------------------------ */
 
 function useCountUp(target: number, active: boolean, duration = 1400) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState<number | null>(null);
 
   useEffect(() => {
     if (!active) {
-      setValue(0);
+      setValue(null);
       return;
     }
+
     let start: number | null = null;
-    let frame: number;
+    let frameId: number;
 
-    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
-
-    const step = (ts: number) => {
-      if (start === null) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      setValue(Math.round(ease(progress) * target));
-      if (progress < 1) frame = requestAnimationFrame(step);
+    const easeOutCubic = (t: number) => {
+      return 1 - Math.pow(1 - t, 3);
     };
 
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
+    const animate = (timestamp: number) => {
+      if (start === null) {
+        start = timestamp;
+      }
+
+      const progress = Math.min((timestamp - start) / duration, 1);
+
+      const easedProgress = easeOutCubic(progress);
+
+      const nextValue = Math.round(easedProgress * target);
+
+      // Never show 0
+      setValue(Math.max(1, nextValue));
+
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    frameId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+    };
   }, [active, target, duration]);
 
   return value;
 }
 
 /* ------------------------------------------------------------------ */
-/*  Plaque — swings in on a "wire" like a hung frame, and swings back  */
-/*  up out of view when scrolled past going up                        */
-/*  `drop` is the px offset used for THIS render (desktop or mobile)   */
+/*  Plaque                                                             */
 /* ------------------------------------------------------------------ */
 
-const Plaque: React.FC<{ stat: Stat; index: number; drop: number; compact?: boolean }> = ({
-  stat,
-  index,
-  drop,
-  compact,
-}) => {
-  const ref = React.useRef(null);
-  const visible = useInView(ref, { once: false, amount: 0.5 });
+const Plaque: React.FC<{
+  stat: Stat;
+  index: number;
+  drop: number;
+  compact?: boolean;
+}> = ({ stat, index, drop, compact }) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  const visible = useInView(ref, {
+    once: false,
+    amount: 0.5,
+  });
+
   const count = useCountUp(stat.value, visible, 1200 + index * 150);
 
   return (
-    <div ref={ref} className="relative flex justify-center" style={{ marginTop: drop }}>
-      {/* wire from rail down to the seal */}
+    <div
+      ref={ref}
+      className="relative flex justify-center"
+      style={{ marginTop: drop }}
+    >
+      {/* Wire */}
       <span
         aria-hidden
-        className="absolute left-1/2 -translate-x-1/2 w-px bg-gradient-to-b from-[#C9A227]/70 to-[#C9A227]/10"
-        style={{ top: -drop-6, height: drop + (compact ? 20 : 28) }}
-      />
-      {/* nail on the rail */}
-      <span
-        aria-hidden
-        className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-[#E8C766] shadow-[0_0_6px_2px_rgba(232,199,102,0.5)] ${
-          compact ? "w-1.5 h-1.5" : "w-2 h-2"
-        }`}
-        style={{ top: -drop - (compact ? 10 : 12) }}
+        className="absolute left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-[#C9A227]/70 to-[#C9A227]/10"
+        style={{
+          top: -drop - 6,
+          height: drop + (compact ? 20 : 28),
+        }}
       />
 
+      {/* Nail */}
+      <span
+        aria-hidden
+        className={`absolute left-1/2 -translate-x-1/2 rounded-full bg-[#E8C766]
+        shadow-[0_0_6px_2px_rgba(232,199,102,0.5)]
+        ${compact ? "h-1.5 w-1.5" : "h-2 w-2"}`}
+        style={{
+          top: -drop - (compact ? 10 : 12),
+        }}
+      />
+
+      {/* Plaque Animation */}
       <motion.div
-        className="group relative w-full max-w-[150px] sm:max-w-[200px] lg:max-w-[240px] origin-top motion-reduce:transition-none"
-        initial={{ opacity: 0, y: -40, rotate: index % 2 === 0 ? -10 : 10 }}
+        className="group relative w-full max-w-[150px] origin-top motion-reduce:transition-none sm:max-w-[200px] lg:max-w-[240px]"
+        initial={{
+          opacity: 0,
+          y: -40,
+          rotate: index % 2 === 0 ? -10 : 10,
+        }}
         animate={
           visible
-            ? { opacity: 1, y: 0, rotate: 0 }
-            : { opacity: 0, y: -40, rotate: index % 2 === 0 ? -10 : 10 }
+            ? {
+                opacity: 1,
+                y: 0,
+                rotate: 0,
+              }
+            : {
+                opacity: 0,
+                y: -40,
+                rotate: index % 2 === 0 ? -10 : 10,
+              }
         }
         transition={{
           type: "spring",
@@ -148,45 +220,67 @@ const Plaque: React.FC<{ stat: Stat; index: number; drop: number; compact?: bool
           delay: visible ? index * 0.12 : 0,
         }}
       >
-        {/* seal */}
+        {/* Seal */}
         <div
-          className={`relative z-10 mx-auto -mb-6 flex items-center justify-center rounded-full bg-gradient-to-br from-[#E8C766] to-[#9C7A17] text-[#1C1B19] shadow-[0_6px_14px_rgba(0,0,0,0.45)] ring-1 ring-[#F5E7B8]/60 transition-transform duration-500 motion-reduce:transition-none group-hover:-rotate-6 ${
-            compact ? "h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" : "h-12 w-12"
-          }`}
+          className={`relative z-10 mx-auto -mb-6 flex items-center justify-center rounded-full
+          bg-gradient-to-br from-[#E8C766] to-[#9C7A17]
+          text-[#1C1B19]
+          shadow-[0_6px_14px_rgba(0,0,0,0.45)]
+          ring-1 ring-[#F5E7B8]/60
+          transition-transform duration-500
+          motion-reduce:transition-none
+          group-hover:-rotate-6
+          ${compact ? "h-9 w-9 [&_svg]:h-4 [&_svg]:w-4" : "h-12 w-12"}`}
         >
           {stat.icon}
         </div>
 
-        {/* plaque body */}
+        {/* Plaque Body */}
         <div
-          className={`relative overflow-hidden rounded-sm bg-[#2A2724] text-center shadow-[0_18px_35px_rgba(0,0,0,0.5)] ring-1 ring-[#C9A227]/25 transition-transform duration-500 motion-reduce:transition-none group-hover:-translate-y-1 group-hover:rotate-[0.5deg] ${
-            compact ? "pt-6 pb-5 px-3" : "pt-9 pb-8 px-6"
-          }`}
+          className={`relative overflow-hidden rounded-sm
+          bg-[#2A2724]
+          text-center
+          shadow-[0_18px_35px_rgba(0,0,0,0.5)]
+          ring-1 ring-[#C9A227]/25
+          transition-transform duration-500
+          motion-reduce:transition-none
+          group-hover:-translate-y-1
+          group-hover:rotate-[0.5deg]
+          ${compact ? "px-3 pb-5 pt-6" : "px-6 pb-8 pt-9"}`}
         >
-          {/* engraved inner border */}
+          {/* Inner Border */}
           <span
             aria-hidden
             className="pointer-events-none absolute inset-[6px] rounded-[2px] border border-[#C9A227]/20"
           />
 
-          {/* brass sheen sweep on hover */}
+          {/* Shine */}
           <span
             aria-hidden
-            className="pointer-events-none absolute inset-0 -translate-x-[150%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 motion-reduce:transition-none group-hover:translate-x-[150%]"
+            className="pointer-events-none absolute inset-0 -translate-x-[150%]
+            bg-gradient-to-r from-transparent via-white/10 to-transparent
+            transition-transform duration-700
+            motion-reduce:transition-none
+            group-hover:translate-x-[150%]"
           />
 
+          {/* Counter */}
           <div
-            className={`relative font-serif font-semibold tracking-tight text-[#F0EAD9] ${
-              compact ? "text-2xl" : "text-4xl"
-            }`}
+            className={`relative font-serif font-semibold tracking-tight text-[#F0EAD9]
+            ${compact ? "text-2xl" : "text-4xl"}`}
           >
-            {count}
-            {stat.suffix}
+            {count !== null && (
+              <>
+                {count}
+                {stat.suffix}
+              </>
+            )}
           </div>
+
+          {/* Label */}
           <div
-            className={`relative mt-2 font-mono uppercase tracking-[0.2em] text-[#B9A98A] ${
-              compact ? "text-[0.6rem]" : "text-[0.7rem]"
-            }`}
+            className={`relative mt-2 font-mono uppercase tracking-[0.2em] text-[#B9A98A]
+            ${compact ? "text-[0.6rem]" : "text-[0.7rem]"}`}
           >
             {stat.label}
           </div>
@@ -197,30 +291,46 @@ const Plaque: React.FC<{ stat: Stat; index: number; drop: number; compact?: bool
 };
 
 /* ------------------------------------------------------------------ */
-/*  Rail — the glowing gold connector line hung across a row           */
+/*  Rail                                                               */
 /* ------------------------------------------------------------------ */
 
-const Rail: React.FC<{ className?: string }> = ({ className = "" }) => (
+const Rail: React.FC<{
+  className?: string;
+}> = ({ className = "" }) => (
   <motion.div
     aria-hidden
-    className={`absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#C9A227]/80 to-transparent shadow-[0_0_10px_rgba(201,162,39,0.5)] origin-center ${className}`}
+    className={`absolute left-0 right-0 h-px
+    origin-center
+    bg-gradient-to-r
+    from-transparent
+    via-[#C9A227]/80
+    to-transparent
+    shadow-[0_0_10px_rgba(201,162,39,0.5)]
+    ${className}`}
     initial={{ scaleX: 0 }}
     whileInView={{ scaleX: 1 }}
-    viewport={{ once: false, amount: 0.6 }}
-    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+    viewport={{
+      once: false,
+      amount: 0.6,
+    }}
+    transition={{
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+    }}
   />
 );
 
 /* ------------------------------------------------------------------ */
-/*  Section                                                           */
+/*  Main Section                                                       */
 /* ------------------------------------------------------------------ */
 
 export const TotalProject = () => {
-  const [row1, row2] = [stats.slice(0, 2), stats.slice(2, 4)];
+  const row1 = stats.slice(0, 2);
+  const row2 = stats.slice(2, 4);
 
   return (
-    <section className="relative overflow-hidden bg-[#0A0A0A] px-4 lg:px-6 2xl:px-10 py-12">
-      {/* subtle vignette / wall texture */}
+    <section className="relative overflow-hidden bg-[#0A0A0A] px-4 py-12 lg:px-6 2xl:px-10">
+      {/* Background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -231,66 +341,87 @@ export const TotalProject = () => {
       />
 
       <div className="relative mx-auto max-w-6xl">
+        {/* Heading */}
         <motion.div
-          className="mb-16 lg:mb-24 text-center"
-          initial={{ opacity: 0, y: -24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.5 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mb-16 text-center lg:mb-24"
+          initial={{
+            opacity: 0,
+            y: -24,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: false,
+            amount: 0.5,
+          }}
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
         >
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
+          <h2 className="text-2xl font-extrabold leading-tight text-white lg:text-3xl xl:text-4xl">
             Proven Through Measurable Results
           </h2>
-          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 text-[#8A8A8A] leading-relaxed  mx-auto">
+
+          <p className="mx-auto mt-3 px-0 text-sm leading-relaxed text-[#8A8A8A] sm:px-8 lg:text-lg">
             From strategy and planning to development, testing, and deployment,
             we follow a structured process that ensures every project is
             delivered with quality, efficiency, and measurable business results.
           </p>
         </motion.div>
 
-        {/* ---------------------------------------------------------- */}
-        {/* Desktop / large screens: single rail, 4-across row          */}
-        {/* ---------------------------------------------------------- */}
-        <div className="hidden lg:block relative">
+        {/* Desktop */}
+        <div className="relative hidden lg:block">
           <Rail className="top-0" />
+
           <div className="grid grid-cols-4 gap-x-8 gap-y-24 pt-2">
-            {stats.map((stat, i) => (
-              <Plaque key={stat.label} stat={stat} index={i} drop={stat.drop} />
+            {stats.map((stat, index) => (
+              <Plaque
+                key={stat.label}
+                stat={stat}
+                index={index}
+                drop={stat.drop}
+              />
             ))}
           </div>
         </div>
 
-        {/* ---------------------------------------------------------- */}
-        {/* Mobile / tablet: 2x2 grid, each row hung on its own rail.   */}
-        {/* Row 1 — rail above only. Row 2 — rail above AND below.     */}
-        {/* ---------------------------------------------------------- */}
+        {/* Mobile */}
         <div className="lg:hidden">
-          {/* row 1 */}
+          {/* Row 1 */}
           <div className="relative">
             <Rail className="top-0" />
-            <div className="grid grid-cols-2 gap-x-4 gap-y-14 pt-2">
-              {row1.map((stat, i) => (
-                <Plaque key={stat.label} stat={stat} index={i} drop={stat.dropMobile} compact />
-              ))}
-            </div>
-          </div>
 
-          {/* row 2 */}
-          <div className="relative mt-14">
-            <Rail className="top-0" />
             <div className="grid grid-cols-2 gap-x-4 gap-y-14 pt-2">
-              {row2.map((stat, i) => (
+              {row1.map((stat, index) => (
                 <Plaque
                   key={stat.label}
                   stat={stat}
-                  index={i + 2}
+                  index={index}
                   drop={stat.dropMobile}
                   compact
                 />
               ))}
             </div>
-            
-           
+          </div>
+
+          {/* Row 2 */}
+          <div className="relative mt-14">
+            <Rail className="top-0" />
+
+            <div className="grid grid-cols-2 gap-x-4 gap-y-14 pt-2">
+              {row2.map((stat, index) => (
+                <Plaque
+                  key={stat.label}
+                  stat={stat}
+                  index={index + 2}
+                  drop={stat.dropMobile}
+                  compact
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>

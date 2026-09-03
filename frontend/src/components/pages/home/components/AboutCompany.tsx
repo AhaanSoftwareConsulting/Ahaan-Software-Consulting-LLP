@@ -66,7 +66,7 @@ export const AboutCompany = () => {
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <h1
+        <h2
           className="select-none text-center font-black uppercase tracking-[0.08em] text-[#000000]"
           style={{
             fontSize: "clamp(52px, 8.9vw, 170px)",
@@ -78,7 +78,7 @@ export const AboutCompany = () => {
           }}
         >
           AHAAN SOFTWARE
-        </h1>
+        </h2>
       </motion.div>
 
       {/* Left Ring */}

@@ -123,7 +123,7 @@ const Grid: React.FC = () => {
           const title = service.title?.rendered || "";
           const description = stripHtml(service.content?.rendered || "");
           const brandColor = service.acf?.brand_color || "#ff4d4d";
-          const buttonText = service.acf?.button_text || "Explore More";
+          const buttonText = service.acf?.button_text || `Explore ${title}`;
           const buttonLink = service.acf?.button_link || "/portfolio";
 
           const features = parseTechStack(service.acf?.tech_stack);
@@ -144,7 +144,8 @@ const Grid: React.FC = () => {
           ));
 
           return (
-            <div
+          <section
+              aria-labelledby={`service-heading-${service.id || index}`}
               key={service.id || index}
               className={`my-5 flex flex-col items-center gap-x-8 lg:gap-x-12 md:flex-row ${
                 isReverse ? "md:flex-row-reverse" : ""
@@ -175,12 +176,12 @@ const Grid: React.FC = () => {
               {/* Content Column */}
               <div className="w-full md:flex-1">
                 <div className="mt-4 px-3 md:mt-0">
-                  <h1
+                  <h2
                     className="grid-animated-heading text-2xl lg:text-3xl xl:text-4xl font-black capitalize tracking-[2px] mb-2"
                     style={{ "--main-color": brandColor } as React.CSSProperties}
                   >
                     {title}
-                  </h1>
+                  </h2>
 
                   <div className="mb-2 lg:text-lg text-sm font-semibold text-black">
                     {features.map((item, i) => (
@@ -200,6 +201,7 @@ const Grid: React.FC = () => {
                   <div className="flex flex-col flex-wrap items-center justify-between gap-4 sm:flex-row">
                     <Link
                       to={buttonLink}
+                      
                       className="shine-btn grid-explore-btn flex h-[42px] min-w-[140px] items-center justify-center border border-solid px-[25px] py-[7px] font-semibold text-white transition-all duration-300 ease-in-out"
                       style={{
                         backgroundColor: brandColor,
@@ -215,7 +217,7 @@ const Grid: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           );
         })}
       </div>

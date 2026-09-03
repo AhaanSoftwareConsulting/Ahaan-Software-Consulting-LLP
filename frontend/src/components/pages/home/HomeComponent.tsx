@@ -11,7 +11,8 @@ import Testimonials from "./components/Testimonials";
 import { AboutCompany } from "./components/AboutCompany";
 import { Connection } from "./components/Connection";
 import { SEO } from "../../seo/SEO";
-
+import { HomeFaq } from "./components/HomeFaq";
+ 
 export const HomeComponent = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ export const HomeComponent = () => {
       <Testimonials />
       <TotalProject />
       <OurClients />
+      <HomeFaq slug="home-faq" />
     </div>
   );
 };

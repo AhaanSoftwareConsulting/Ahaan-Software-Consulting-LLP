@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap');
+
+
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@layer base {
+  
+
+  p {
+    font-family: "Jost", sans-serif;
+  }
+}
 
 .shine-btn {
   position: relative;

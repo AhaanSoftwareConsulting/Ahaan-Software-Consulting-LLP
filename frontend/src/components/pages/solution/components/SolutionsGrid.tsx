@@ -41,9 +41,9 @@ const SolutionsGrid: React.FC = () => {
     return (
       <section className="py-20">
         <div className="max-w-[1600px] mx-auto px-4">
-          <h2 className="text-center text-3xl font-bold">
+          <p className="text-center text-3xl font-bold">
             Loading Solutions...
-          </h2>
+          </p>
         </div>
       </section>
     );
