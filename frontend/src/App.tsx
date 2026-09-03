@@ -1,12 +1,14 @@
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import "./App.css";
 
 import { AllRoutes } from "./routes/AllRoutes";
-import WhatsAppChat from "./components/whatsapp/Whatsappchat";
-import CallHippoWidget from "./components/callhippowiget/CallHippoWidget";
-import AhaanChat from "./components/AhaanAI/AhaanChat";
 import { PageLoader } from "./components/loader/PageLoader";
+
+// 1. Heavy Non-Critical Widgets Lazy Load
+const CallHippoWidget = lazy(() => import("./components/callhippowiget/CallHippoWidget"));
+const WhatsAppChat = lazy(() => import("./components/whatsapp/Whatsappchat"));
+const AhaanChat = lazy(() => import("./components/AhaanAI/AhaanChat"));
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -18,30 +20,27 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Route Change-এর জন্য হালকা লোডার কম্পোনেন্ট
-const SimpleRouteSpinner = () => (
-  <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/60 backdrop-blur-sm">
-    <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
+// Route change minimal spinner
+const RouteSpinner = () => (
+  <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-black/50 backdrop-blur-xs pointer-events-none">
+    <div className="w-8 h-8 border-2 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
   </div>
 );
 
-// Initial / Hard Refresh Loader Wrapper
+// Initial Loader Wrapper
 const InitialPageLoader = () => {
   const [isInitialLoading, setIsInitialLoading] = useState(true);
 
   useEffect(() => {
-    // sessionStorage চেক করা হচ্ছে পেজ Refresh বা First Visit বোঝার জন্য
     const hasLoadedBefore = sessionStorage.getItem("has_loaded_session");
 
     if (hasLoadedBefore) {
-      // যদি একই সেশনে অন্য পেজে নেভিগেট করা হয়, Heavy 3D Loader দেখানো হবে না
       setIsInitialLoading(false);
     } else {
-      // ফার্স্ট টাইম ভিজিট বা Hard Refresh-এর ক্ষেত্রে Heavy Loader চলবে
       const timer = setTimeout(() => {
         setIsInitialLoading(false);
         sessionStorage.setItem("has_loaded_session", "true");
-      }, 3500); // Animation Complete হওয়ার সময়
+      }, 3000);
 
       return () => clearTimeout(timer);
     }
@@ -51,33 +50,58 @@ const InitialPageLoader = () => {
 };
 
 function App() {
+  const [showWidgets, setShowWidgets] = useState(false);
+
+  // 2. Non-blocking Visitor Tracking
   useEffect(() => {
     const alreadyTracked = localStorage.getItem("visit_tracked");
 
     if (!alreadyTracked) {
-      fetch("https://ahaan-software-consulting-llp.onrender.com/api/visitor/track", {
-        method: "POST",
-      })
-        .then(() => localStorage.setItem("visit_tracked", "true"))
-        .catch((err) => console.error(err));
+      const trackVisitor = () => {
+        fetch("https://ahaan-software-consulting-llp.onrender.com/api/visitor/track", {
+          method: "POST",
+        })
+          .then(() => localStorage.setItem("visit_tracked", "true"))
+          .catch((err) => console.error(err));
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(trackVisitor);
+      } else {
+        setTimeout(trackVisitor, 4000);
+      }
     }
+  }, []);
+
+  // 3. Delay Loading Third-Party Widgets to free Main Thread
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowWidgets(true);
+    }, 3500);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
       <ScrollToTop />
       
-      {/* 1. First Visit / Hard Refresh heavy loader */}
+      {/* First Visit / Hard Refresh Loader */}
       <InitialPageLoader />
 
-      {/* 2. Route Changes loader (Suspense Dynamic Data / Lazy Component Load-এর ওপর নির্ভর করবে) */}
-      <Suspense fallback={<SimpleRouteSpinner />}>
+      {/* Routes with Suspense */}
+      <Suspense fallback={<RouteSpinner />}>
         <AllRoutes />
       </Suspense>
 
-      <CallHippoWidget />
-      <WhatsAppChat />
-      <AhaanChat />
+      {/* Delayed Render for Third-Party Widgets */}
+      {showWidgets && (
+        <Suspense fallback={null}>
+          <CallHippoWidget />
+          <WhatsAppChat />
+          <AhaanChat />
+        </Suspense>
+      )}
     </>
   );
 }
