@@ -26,7 +26,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
 
     let isRendering = true;
 
-    // Device Pixel Ratio & Mesh Column Dynamic Adjustment for smooth mobile rendering
     let cols = Math.min(width < 640 ? 60 : 100, Math.floor(width / 14));
     let rows = width < 640 ? 22 : 30;
 
@@ -108,23 +107,13 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
           }}
           className="fixed inset-0 w-full h-full h-[100dvh] z-[9999] flex flex-col items-center justify-center bg-[#030303] overflow-hidden select-none px-4"
         >
-          {/* ========================================== */}
-          {/* FULL WIDTH SMOOTH 3D MESH WAVE            */}
-          {/* ========================================== */}
           <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
             <canvas ref={canvasRef} className="w-full h-full block" />
-            
-            {/* Safe Ambient Golden Illumination */}
             <div className="absolute left-1/2 bottom-[10%] -translate-x-1/2 w-[95%] sm:w-[90%] h-[200px] sm:h-[300px] bg-amber-500/10 rounded-full blur-[90px] sm:blur-[140px] pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/10 to-[#030303] pointer-events-none" />
           </div>
 
-          {/* ========================================== */}
-          {/* MAIN CIRCULAR LOADER FRAME & LOGO          */}
-          {/* ========================================== */}
           <div className="relative flex items-center justify-center w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] md:w-[400px] md:h-[400px] z-10 scale-90 sm:scale-100">
-
-            {/* 1. Animated SVG Gold Circle Path */}
             <svg 
               className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none overflow-visible z-0" 
               viewBox="0 0 320 320"
@@ -142,7 +131,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
                 </filter>
               </defs>
 
-              {/* Dim Base Circle Guide */}
               <circle
                 cx="160"
                 cy="160"
@@ -152,7 +140,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
                 strokeWidth="1"
               />
 
-              {/* Completing Circle Animation */}
               <motion.circle
                 cx="160"
                 cy="160"
@@ -173,7 +160,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
               />
             </svg>
 
-            {/* 2. Independent Yellow Glowing Dot Animation */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, rotate: 360 }}
@@ -186,7 +172,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
               <div className="absolute top-[20px] left-[50%] -translate-x-1/2 h-2 sm:h-2.5 w-2 sm:w-2.5 rounded-full bg-amber-200 shadow-[0_0_12px_2px_#f59e0b]" />
             </motion.div>
 
-            {/* 3. Main ASC Logo Reveal */}
             <motion.div
               initial={{ opacity: 0, scale: 0.85, filter: "blur(12px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -204,7 +189,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
               />
             </motion.div>
 
-            {/* 4. Animated LOADING Text & Animated Dots */}
             <motion.div
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
@@ -231,7 +215,6 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ isLoading = true }) => {
                 .
               </motion.span>
             </motion.div>
-
           </div>
         </motion.div>
       )}

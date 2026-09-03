@@ -1,5 +1,6 @@
 import { SEO } from "../../seo/SEO";
 import { ContactBanner } from "./components/ContactBanner";
+import { ContactFaq } from "./components/ContactFaq";
 import { ContactUs } from "./components/ContactUs";
 import WorldMap from "./components/WorldMap";
 
@@ -13,6 +14,7 @@ export const ContactComponent = () => {
       />
       <ContactBanner />
       <ContactUs />
+      <ContactFaq slug="contact-faq" />
       <WorldMap />
     </div>
   );
