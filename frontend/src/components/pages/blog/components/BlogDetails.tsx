@@ -196,7 +196,7 @@ export const BlogDetails: React.FC = () => {
             </div>
 
             {/* Title */}
-            <h1 className="heading-primary">{blog.title || "Untitled Blog"}</h1>
+            <h2 className="heading-primary">{blog.title || "Untitled Blog"}</h2>
 
             {/* Social Share & Reactions */}
             <div className="my-6 flex flex-wrap items-center justify-between gap-4">
