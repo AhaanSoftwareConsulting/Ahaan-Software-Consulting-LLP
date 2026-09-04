@@ -304,6 +304,7 @@ pt-5 sm:pt-0
       >
         <iframe
           className="block aspect-video w-full"
+          loading="lazy"
           src="https://www.youtube.com/embed/P_xj6hDe6ko?autoplay=1&mute=1&loop=1&playlist=P_xj6hDe6ko&rel=0"
           title="YouTube Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
