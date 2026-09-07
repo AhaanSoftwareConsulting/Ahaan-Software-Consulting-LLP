@@ -1,5 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./App.css";
 
 import { AllRoutes } from "./routes/AllRoutes";
@@ -102,6 +103,9 @@ function App() {
           <AhaanChat />
         </Suspense>
       )}
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </>
   );
 }
