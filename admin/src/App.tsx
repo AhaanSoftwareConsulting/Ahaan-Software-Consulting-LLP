@@ -4,7 +4,8 @@ import {
   Routes,
   Route,
   useLocation,
-} from "react-router-dom"; 
+} from "react-router-dom";
+import { SpeedInsights } from "@vercel/speed-insights/react"; 
 
 import Topbar from "./Components/Layouts/Topbar";
 import Sidebar from "./Components/Layouts/Sidebar";
@@ -201,6 +202,7 @@ export default function App() {
 
           {/* <Route path="/*" element={<LayoutWrapper />} /> */}
         </Routes>
+        <SpeedInsights />
       </BrowserRouter>
     </SearchContext.Provider>
   );
