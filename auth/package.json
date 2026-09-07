@@ -4,8 +4,8 @@
   "description": "Node.js + Express + MySQL authentication microservice",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node init && node server.js",
+    "dev": "node init && nodemon server.js",
     "seed:admin": "node src/scripts/seedAdmin.js"
   },
   "dependencies": {
