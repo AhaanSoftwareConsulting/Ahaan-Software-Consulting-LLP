@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 
 import { MainLayout } from "../components/layouts/MainLayout";
 import { PageLoader } from "../components/loader/PageLoader";
+import TeamTree from "../components/pages/teamheirarchy/TeamTree";
+import TeamDetails from "../components/pages/teamheirarchy/TeamDetails";
 
 // Lazy loaded pages
 const HomeComponent = lazy(() =>
@@ -180,6 +182,10 @@ export const AllRoutes = () => {
           <Route path="/blog/search" element={<SearchResults />} />
 
           <Route path="/careers/:jobId" element={<CareerDetails />} />
+
+          <Route path="/team" element={<TeamTree />} />
+
+          <Route path="/team/:id" element={<TeamDetails/>} />
 
           <Route path="*" element={<NotFoundComponent />} />
         </Route>

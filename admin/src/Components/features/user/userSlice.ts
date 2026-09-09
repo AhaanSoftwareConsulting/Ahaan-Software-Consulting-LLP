@@ -2,7 +2,6 @@ import {
   createSlice,
   createAsyncThunk,
 } from "@reduxjs/toolkit";
-import axios from "axios";
 import type { AxiosError } from "axios";
 import { setAccessToken } from "../../app/tokenStore";
 // API imports updated to reference userapi
@@ -12,7 +11,6 @@ import {
   registerAPI,
   profileAPI,
   logoutAPI,
-  BASE_URL
 } from "../../Api/userapi";
 import { refreshAccessToken } from "../../Api/refreshClient";
 

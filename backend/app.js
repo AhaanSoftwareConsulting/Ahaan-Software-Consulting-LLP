@@ -57,6 +57,8 @@ app.use("/api/newsletter", require("./routes/newsletterRoutes"));
 app.use("/profile", require("./routes/profileRoutes"));
 app.use("/api/team", require("./routes/teamRoutes"));
 app.use('/api/visitor',require('./routes/visitorRoutes'));
+app.use('/api/business-check', require("./routes/businessCheckRoutes"))
+
 app.get("/", (req, res) => {
   res.send("API Running...");
 });

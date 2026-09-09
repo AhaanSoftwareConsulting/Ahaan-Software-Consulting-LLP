@@ -1,4 +1,4 @@
-import ctaBg from "../../../../assets/call-to-action.png";
+import ctaBg from "../../../../assets/call-to-action.jpg";
 
 export function CallToAction() {
   return (

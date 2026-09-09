@@ -3,21 +3,13 @@ import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 import { getAccessToken, setAccessToken } from "../app/tokenStore";
 import { refreshAccessToken } from "./refreshClient";
 // export const BASE_URL = "http://localhost:8000";
-export const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com";
+export const BASE_URL = "https://ahaan-software-consulting-llp-1.onrender.com";
 const API: AxiosInstance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
   headers: { "Cache-Control": "no-cache", "Pragma": "no-cache" },
 });
-let isRefreshing = false;
-let failedQueue: Array<{
-  resolve: (token: string) => void;
-  reject: (err: unknown) => void;
-}> = [];
-const processQueue = (error: unknown, token: string | null = null) => {
-  failedQueue.forEach((p) => (error ? p.reject(error) : token && p.resolve(token)));
-  failedQueue = [];
-};
+
 API.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = getAccessToken();
   if (token) config.headers.Authorization = `Bearer ${token}`;
