@@ -22,9 +22,9 @@ export const AboutContent = () => {
             </h3>
 
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              Welcome to Ahaan Software Consulting! With a crew of 50+
+              Welcome to Ahaan Software Consulting! With a crew of 12+
               specialists, we’ve spent 6+ years crafting award-winning solutions
-              for 200+ businesses worldwide. What defines us? We’re Tech
+              for 100+ businesses worldwide. What defines us? We’re Tech
               Enthusiasts fuelled by passion, Brand Builders at heart, Creative
               Experts in execution, and Marketing Consultants at our core.
             </p>
