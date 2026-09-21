@@ -12,7 +12,7 @@ const services: Service[] = [
   {
     title: "Software Development",
     description:
-      "Custom software solutions tailored to business needs, ensuring scalability, performance, and innovation for seamless digital transformation and growth.",
+      "Expand your business reach with secure, scalable, and high-performance software solutions. We custom-build them to streamline your operations, boost efficiency, and support growth across every platform you run on.",
     Icon: ({ className }) => (
       <svg
         className={className}
