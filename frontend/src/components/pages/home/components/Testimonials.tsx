@@ -50,7 +50,7 @@ export default function Testimonials() {
               color: item.acf?.color || "#E6B33C",
               image,
             };
-          })
+          }),
         );
 
         setTestimonials(formatted);
@@ -204,8 +204,9 @@ export default function Testimonials() {
         <h2 className="heading-primary">What Our Clients Say</h2>
 
         <p className="mt-2 px-0 lg:text-lg text-sm sm:px-8 leading-relaxed">
-          We help businesses become future-ready and move beyond the building
-          blocks of technology, digital, and marketing.
+          We help businesses move beyond the building blocks of technology,
+          digital, and marketing and become future-ready. Here's how our clients
+          describe the difference.
         </p>
       </div>
 

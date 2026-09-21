@@ -13,7 +13,7 @@ const SERVICES_DATA = [
     titleMain: "Modern & Engaging",
     titleHighlight: "Web Design Experiences",
     subheading:
-      "Modern, responsive, and user-focused website designs with intuitive interfaces, engaging visuals, and seamless navigation that deliver exceptional user experiences across all devices.",
+      "As a responsive web design company, we turn U.S. SMB websites into lead engines. Establish a strong digital presence with mobile-ready layouts, clean interfaces, and clear paths to conversion, depending on how real users interact with your site.",
     highlightColorClass: "text-rose-400",
     image: webDesignLaptop,
 
@@ -35,7 +35,7 @@ const SERVICES_DATA = [
     titleMain: "Powerful & Scalable",
     titleHighlight: "Web-App Development",
     subheading:
-      "We build fast, secure, scalable, and fully customized web applications with seamless functionality and optimized performance, tailored to your unique business goals and designed to support long-term growth.",
+      "Here at Ahaan, we craft custom web applications for U.S. SMBs, part of our Custom Software Development work, helping you replace clunky tools, automate manual work, and scale without rebuilding.",
     highlightColorClass: "text-[#036AF1]",
     image: webDevLaptop,
 
@@ -57,7 +57,7 @@ const SERVICES_DATA = [
     titleMain: "Enterprise-Grade",
     titleHighlight: "E-Commerce Development",
     subheading:
-      "End-to-end E-Commerce solutions with secure payment integrations, efficient inventory management, and conversion-focused online stores designed to deliver seamless shopping experiences and support business growth.",
+      "Our E-commerce website development solutions are built for U.S. SMBs scouting for cleaner checkout, higher conversion, and inventory that stays in sync. Come, power your online store with mobile-first design, secure payments, and a platform that grows alongside your revenue",
     highlightColorClass: "text-[#6119D3]",
     image: ecommerceLaptop,
 
@@ -79,7 +79,7 @@ const SERVICES_DATA = [
     titleMain: "Conversion-Focused",
     titleHighlight: "Shopify Theme Development",
     subheading:
-      "High-converting Shopify stores with custom designs, seamless integrations, and optimized performance, delivering smooth, engaging, and user-friendly shopping experiences that help businesses attract customers and drive more sales.",
+      "Build a distinctive Shopify store with fully custom themes built for U.S. SMBs. Get intuitive UX, seamless integrations, faster load times, and a scalable storefront that makes daily store management easier than ever!",
     highlightColorClass: "text-[#498220]",
     image: shopifyLaptop,
 
@@ -98,10 +98,10 @@ const SERVICES_DATA = [
 
   {
     id: "wordpress",
-    titleMain: "High-Performance",
+    titleMain: "High-Performance ",
     titleHighlight: "WordPress Development",
     subheading:
-      "Powerful WordPress websites built with custom themes and plugins, optimized for speed, security, and performance, with a user-friendly content management experience that makes it easy to update, manage, and grow your website.",
+      "We build fast, secure, and SEO-optimized WordPress websites for both small and midsize businesses across the USA. Our broader custom website development practice includes clean code and a CMS that your team can operate without waiting on a developer.",
     highlightColorClass: "text-cyan-600",
     image: wordpressLaptop,
 

@@ -32,7 +32,7 @@ const services: Service[] = [
   {
     title: "Web Development",
     description:
-      "We build responsive, secure, and highly user-friendly websites tailored to your brand, enhancing online presence and driving sustainable business success.",
+      "As a leading web development company, we focus on delivering responsive, secure websites that load fast, rank well, and convert visitors into inquiries. Our stack choices are guided by what suits your business.",
     Icon: ({ className }) => (
       <svg
         className={className}
@@ -58,7 +58,7 @@ const services: Service[] = [
   {
     title: "IT Business Consultancy",
     description:
-      "Providing expert IT consulting to optimize operations, drive innovation, and align technology strategies with your business goals for maximum impact.",
+      "Get straight-talk IT consulting to help your SMB pick the right stack, avoid overbuild, and get more from every technology dollar spent. No vendor loyalty, zero jargon, and no upsell! ",
     Icon: ({ className }) => (
       <svg
         className={className}
@@ -82,7 +82,7 @@ const services: Service[] = [
   {
     title: "UI/UX Design",
     description:
-      "Crafting intuitive, engaging, and user-centered designs that enhance usability, improve user satisfaction, and elevate your brand's digital experience.",
+      "Our UI/UX design services move your prospects toward action. Clear layouts, considered flows, and design decisions grounded in how your consumers behave online.",
     Icon: ({ className }) => (
       <svg
         className={className}
@@ -102,7 +102,7 @@ const services: Service[] = [
   {
     title: "IT Infrastructure Planning",
     description:
-      "We provide the most responsive and functional IT design for companies and businesses worldwide.",
+      "Count on our experts to plan infrastructure that keeps your systems stable as your brand scales. Run your business on on-premise, cloud, or hybrid solutions built at a competitive rate",
     Icon: ({ className }) => (
       <svg
         className={className}
@@ -126,7 +126,7 @@ const services: Service[] = [
   {
     title: "IT Management",
     description:
-      "It's possible to simultaneously manage and transform information from one server to another.",
+      "We handle end-to-end IT management to keep your systems running, your data protected, and your team focused on the business",
     Icon: ({ className }) => (
       <svg
         className={className}
