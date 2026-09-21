@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { teamMembers, type TeamMember } from "./teamData";
+import { Timeline } from "../about/components/Timeline";
 
 const TeamTree = () => {
   const navigate = useNavigate();
@@ -239,6 +240,10 @@ const TeamTree = () => {
   ========================================================= */
 
   return (
+
+    <>
+
+    <Timeline/>
     <section
       className="
         min-h-screen
@@ -484,6 +489,8 @@ const TeamTree = () => {
         </div>
       </div>
     </section>
+
+    </>
   );
 };
 

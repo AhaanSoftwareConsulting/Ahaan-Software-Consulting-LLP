@@ -32,27 +32,45 @@ const imageScaleVariants = {
 
 const headingVariants = {
   hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut" }as const },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" } as const,
+  },
 };
 
 const paraVariants = {
   hidden: { opacity: 0, x: 60 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: "easeOut", delay: 0.12 }as const },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut", delay: 0.12 } as const,
+  },
 };
 
 const featureListVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 }as const },
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.3 } as const,
+  },
 };
 
 const featureItemVariants = {
   hidden: { opacity: 0, x: 24 },
-  visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 200, damping: 18 }as const },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { type: "spring", stiffness: 200, damping: 18 } as const,
+  },
 };
 
 const buttonVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.55, ease: "easeOut" }as const},
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: 0.55, ease: "easeOut" } as const,
+  },
 };
 
 export const AboutCompany = () => {
@@ -128,7 +146,13 @@ export const AboutCompany = () => {
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false, amount: 0.6 }}
-              transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 180, damping: 14 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.4,
+                type: "spring",
+                stiffness: 180,
+                damping: 14,
+              }}
             >
               {[...Array(36)].map((_, i) => (
                 <span
@@ -148,7 +172,7 @@ export const AboutCompany = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
             >
-              Your Trusted Partner In Software Development
+              Your Trusted Partner in Business Growth
             </motion.h2>
 
             <motion.p
@@ -158,15 +182,16 @@ export const AboutCompany = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.5 }}
             >
-              <span className="font-semibold text-black">Ahaan Software</span>{" "}
-              delivers innovative digital solutions that help businesses
-              establish a strong online presence and accelerate growth.
-              <br />
-              We specialize in custom websites, scalable web applications,
-              mobile apps, eCommerce platforms, UI/UX design, and business
-              software. Our team combines creativity with cutting-edge
-              technology to build secure, fast, and future-ready solutions
-              tailored to your business goals.
+              Here at Ahaan Software Consulting, we are your trusted strategic
+              <span className="font-semibold text-black">
+                {" "}
+                offshore technology
+              </span>
+              partner, helping businesses of all sizes scale profitably. Whether
+              you need mobile applications, web apps, custom software, or
+              eCommerce solutions, we deliver faster turnarounds and leaner
+              budgets, backed by experienced professionals and U.S. time-zone
+              overlap. Hire us to avail these –
             </motion.p>
 
             {/* Features */}
@@ -178,7 +203,11 @@ export const AboutCompany = () => {
               viewport={{ once: false, amount: 0.3 }}
             >
               {features.map((item) => (
-                <motion.div key={item} variants={featureItemVariants} className="flex items-center gap-3">
+                <motion.div
+                  key={item}
+                  variants={featureItemVariants}
+                  className="flex items-center gap-3"
+                >
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#D4AF37] text-white">
                     <CheckCircleIcon size={16} weight="bold" />
                   </div>

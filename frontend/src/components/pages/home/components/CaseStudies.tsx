@@ -1,10 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import type { TouchEvent } from "react";
 import { Link } from "react-router-dom";
-import {
-  getAllCaseStudies,
-  getMediaById,
-} from "../../../../api/WordpressAPI";
+import { getAllCaseStudies, getMediaById } from "../../../../api/WordpressAPI";
 
 interface WordPressRenderedText {
   rendered: string;
@@ -51,8 +48,7 @@ export const CaseStudies = () => {
 
       const updatedData: CaseStudyItem[] = await Promise.all(
         [...data].reverse().map(async (item) => {
-          const projectOverviewImage =
-            item?.acf?.project_overview_image;
+          const projectOverviewImage = item?.acf?.project_overview_image;
 
           let projectOverviewImageUrl = "";
 
@@ -61,27 +57,21 @@ export const CaseStudies = () => {
             // ACF Image ID
             // ==========================================
             if (typeof projectOverviewImage === "number") {
-              const media = await getMediaById(
-                projectOverviewImage
-              );
+              const media = await getMediaById(projectOverviewImage);
 
-              projectOverviewImageUrl =
-                media?.source_url || "";
+              projectOverviewImageUrl = media?.source_url || "";
             }
 
             // ==========================================
             // ACF Image URL
             // ==========================================
-            else if (
-              typeof projectOverviewImage === "string"
-            ) {
-              projectOverviewImageUrl =
-                projectOverviewImage;
+            else if (typeof projectOverviewImage === "string") {
+              projectOverviewImageUrl = projectOverviewImage;
             }
           } catch (error) {
             console.error(
               `Failed to load project overview image for ${item.slug}:`,
-              error
+              error,
             );
           }
 
@@ -89,15 +79,12 @@ export const CaseStudies = () => {
             ...item,
             projectOverviewImageUrl,
           };
-        })
+        }),
       );
 
       setCaseStudies(updatedData);
     } catch (error) {
-      console.error(
-        "Failed to fetch case studies:",
-        error
-      );
+      console.error("Failed to fetch case studies:", error);
     }
   };
 
@@ -121,10 +108,7 @@ export const CaseStudies = () => {
     return 1;
   };
 
-  const totalDots = Math.max(
-    1,
-    caseStudies.length - getVisibleCount() + 1
-  );
+  const totalDots = Math.max(1, caseStudies.length - getVisibleCount() + 1);
 
   // ==========================================
   // Pagination
@@ -139,38 +123,27 @@ export const CaseStudies = () => {
   // ==========================================
 
   const handleTouchStart = (e: TouchEvent) => {
-    touchStartX.current =
-      e.targetTouches[0].clientX;
+    touchStartX.current = e.targetTouches[0].clientX;
 
-    touchEndX.current =
-      e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchMove = (e: TouchEvent) => {
-    touchEndX.current =
-      e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchEnd = () => {
-    const diff =
-      touchStartX.current -
-      touchEndX.current;
+    const diff = touchStartX.current - touchEndX.current;
 
     const swipeThreshold = 50;
 
     // Swipe left
-    if (
-      diff > swipeThreshold &&
-      currentIndex < totalDots - 1
-    ) {
+    if (diff > swipeThreshold && currentIndex < totalDots - 1) {
       setCurrentIndex((prev) => prev + 1);
     }
 
     // Swipe right
-    else if (
-      diff < -swipeThreshold &&
-      currentIndex > 0
-    ) {
+    else if (diff < -swipeThreshold && currentIndex > 0) {
       setCurrentIndex((prev) => prev - 1);
     }
   };
@@ -179,10 +152,7 @@ export const CaseStudies = () => {
   // Convert Theme Color -> Light Background
   // ==========================================
 
-  const getLightThemeColor = (
-    color?: string,
-    opacity = 0.14
-  ): string => {
+  const getLightThemeColor = (color?: string, opacity = 0.14): string => {
     // Default background
     if (!color) {
       return "#f0f4f8";
@@ -202,33 +172,18 @@ export const CaseStudies = () => {
 
       // Valid 6 digit HEX
       if (hex.length === 6) {
-        const r = parseInt(
-          hex.substring(0, 2),
-          16
-        );
+        const r = parseInt(hex.substring(0, 2), 16);
 
-        const g = parseInt(
-          hex.substring(2, 4),
-          16
-        );
+        const g = parseInt(hex.substring(2, 4), 16);
 
-        const b = parseInt(
-          hex.substring(4, 6),
-          16
-        );
+        const b = parseInt(hex.substring(4, 6), 16);
 
         // Mix theme color with white
-        const lightR = Math.round(
-          r * opacity + 255 * (1 - opacity)
-        );
+        const lightR = Math.round(r * opacity + 255 * (1 - opacity));
 
-        const lightG = Math.round(
-          g * opacity + 255 * (1 - opacity)
-        );
+        const lightG = Math.round(g * opacity + 255 * (1 - opacity));
 
-        const lightB = Math.round(
-          b * opacity + 255 * (1 - opacity)
-        );
+        const lightB = Math.round(b * opacity + 255 * (1 - opacity));
 
         return `rgb(${lightR}, ${lightG}, ${lightB})`;
       }
@@ -245,21 +200,16 @@ export const CaseStudies = () => {
   return (
     <section className="overflow-hidden bg-[#fff] pt-24 pb-16 md:pt-40 md:pb-24">
       <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
-
         {/* ==========================================
             Section Header
         ========================================== */}
 
         <div className="mx-auto mb-16 max-w-6xl text-center">
-          <h2 className="heading-primary">
-            Our Success Stories
-          </h2>
+          <h2 className="heading-primary">Our Success Stories</h2>
 
           <p className="mx-auto mt-3 px-0 leading-relaxed sm:px-8 lg:text-lg text-sm">
-            Explore how we've helped businesses transform
-            their digital presence through innovative web
-            solutions, strategic design, and scalable
-            development that deliver measurable results.
+            Real projects. Real U.S. SMB clients. See how we combined design,
+            development, and strategy to champion specific business challenges.
           </p>
         </div>
 
@@ -282,8 +232,7 @@ export const CaseStudies = () => {
             className="flex transition-transform duration-500 ease-out"
             style={{
               transform: `translateX(-${
-                currentIndex *
-                (100 / getVisibleCount())
+                currentIndex * (100 / getVisibleCount())
               }%)`,
             }}
           >
@@ -292,17 +241,13 @@ export const CaseStudies = () => {
               // Project Overview Image
               // ==========================================
 
-              const imageUrl =
-                item.projectOverviewImageUrl;
+              const imageUrl = item.projectOverviewImageUrl;
 
               // ==========================================
               // Light Theme Background
               // ==========================================
 
-              const bannerBg =
-                getLightThemeColor(
-                  item.acf?.theme_color
-                );
+              const bannerBg = getLightThemeColor(item.acf?.theme_color);
 
               return (
                 <div
@@ -314,7 +259,6 @@ export const CaseStudies = () => {
                   ========================================== */}
 
                   <div className="group flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-all duration-300 ease-in-out">
-
                     {/* ==========================================
                         Project Overview Image Section
                     ========================================== */}
@@ -322,17 +266,13 @@ export const CaseStudies = () => {
                     <div
                       className="relative flex h-[220px] w-full items-center justify-center p-6 transition-colors duration-300"
                       style={{
-                        backgroundColor:
-                          bannerBg,
+                        backgroundColor: bannerBg,
                       }}
                     >
                       {imageUrl ? (
                         <img
                           src={imageUrl}
-                          alt={
-                            item.title?.rendered ||
-                            "Case Study"
-                          }
+                          alt={item.title?.rendered || "Case Study"}
                           className="max-h-[170px] w-auto rounded object-contain  transition-transform duration-300"
                           draggable="false"
                         />
@@ -349,16 +289,13 @@ export const CaseStudies = () => {
 
                     <div className="flex flex-1 flex-col p-6 text-left sm:p-8">
                       <h3 className="mb-2 text-center text-2xl font-extrabold capitalize tracking-tight text-[#333333] transition-colors duration-200">
-                        {item.title?.rendered ||
-                          "Untitled Case Study"}
+                        {item.title?.rendered || "Untitled Case Study"}
                       </h3>
 
                       <div
                         className="mb-6 line-clamp-3 text-center text-[16px] leading-relaxed text-[#161616] [&_p]:m-0"
                         dangerouslySetInnerHTML={{
-                          __html:
-                            item.content?.rendered ??
-                            "",
+                          __html: item.content?.rendered ?? "",
                         }}
                       />
                     </div>
@@ -387,9 +324,7 @@ export const CaseStudies = () => {
                           hover:before:scale-y-100
                         "
                       >
-                        <span className="relative z-10">
-                          View case study
-                        </span>
+                        <span className="relative z-10">View case study</span>
 
                         <span className="relative z-10 text-lg font-normal transition-transform duration-200 group-hover:translate-x-1">
                           &rarr;
@@ -414,17 +349,11 @@ export const CaseStudies = () => {
             }).map((_, idx) => (
               <button
                 key={idx}
-                onClick={() =>
-                  handleDotClick(idx)
-                }
+                onClick={() => handleDotClick(idx)}
                 className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
-                  currentIndex === idx
-                    ? "scale-110 bg-[#000]"
-                    : "bg-gray-300"
+                  currentIndex === idx ? "scale-110 bg-[#000]" : "bg-gray-300"
                 }`}
-                aria-label={`Go to slide page ${
-                  idx + 1
-                }`}
+                aria-label={`Go to slide page ${idx + 1}`}
               />
             ))}
           </div>
