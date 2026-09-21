@@ -204,9 +204,9 @@ export default function Testimonials() {
         <h2 className="heading-primary">What Our Clients Say</h2>
 
         <p className="mt-2 px-0 lg:text-lg text-sm sm:px-8 leading-relaxed">
-          We help businesses move beyond the building blocks of technology,
-          digital, and marketing and become future-ready. Here's how our clients
-          describe the difference.
+          We partner with U.S. SMBs across industries, helping them turn their
+          visions into reliable digital solutions that support their long-term
+          business goals.
         </p>
       </div>
 
