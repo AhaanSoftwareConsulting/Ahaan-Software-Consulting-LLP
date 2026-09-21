@@ -184,10 +184,10 @@ export const AboutCompany = () => {
             >
               Here at Ahaan Software Consulting, we are your trusted strategic
               <span className="font-semibold text-black">
-                {" "}
-                offshore technology
+                
+                {" "}offshore technology{" "}
               </span>
-              partner, helping businesses of all sizes scale profitably. Whether
+               partner, helping businesses of all sizes scale profitably. Whether
               you need mobile applications, web apps, custom software, or
               eCommerce solutions, we deliver faster turnarounds and leaner
               budgets, backed by experienced professionals and U.S. time-zone
