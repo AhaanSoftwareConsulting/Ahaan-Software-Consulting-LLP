@@ -166,10 +166,7 @@ const InfiniteMarquee = ({
         className="flex gap-4 w-max"
       >
         {[...items, ...items].map((item, index) => (
-          <TechnologyCard
-            key={index}
-            item={item}
-          />
+          <TechnologyCard key={index} item={item} />
         ))}
       </motion.div>
     </div>
@@ -189,7 +186,7 @@ const rowVariants = (reverse: boolean) => ({
     opacity: 1,
     x: 0,
     skewX: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }as const,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } as const,
   },
 });
 
@@ -197,7 +194,6 @@ export const OurTechnology = () => {
   return (
     <section className="md:py-5 lg:py-15 bg-white overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
-
         {/* Header */}
         <motion.div
           className="max-w-6xl mx-auto text-center px-4"
@@ -206,21 +202,17 @@ export const OurTechnology = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <h2 className="heading-primary">
-            Technologies We Use
-          </h2>
+          <h2 className="heading-primary">Technologies We Use</h2>
 
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed  mx-auto">
-            We leverage modern technologies to build secure, scalable, and
-            future-ready digital solutions that streamline business operations,
-            enhance user experiences, and help businesses innovate, grow, and
-            achieve long-term success.
+            The tech stack we choose depends on what your business needs – and,
+            not what the world is going gaga over! Each project we take on is
+            built on tools chosen for quality, longevity, and long-term support.
           </p>
         </motion.div>
 
         {/* Technology Marquee */}
         <div className="mt-16 mb-10 lg:mb-4 space-y-5">
-
           {/* First Row */}
           <motion.div
             variants={rowVariants(false)}
@@ -240,7 +232,6 @@ export const OurTechnology = () => {
           >
             <InfiniteMarquee items={secondRow} reverse />
           </motion.div>
-
         </div>
       </div>
     </section>
