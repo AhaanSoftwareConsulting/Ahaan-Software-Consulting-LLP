@@ -22,18 +22,24 @@ export const AboutContent = () => {
             </h3>
 
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              Welcome to Ahaan Software Consulting! With a crew of 12+
-              specialists, we’ve spent 6+ years crafting award-winning solutions
-              for 100+ businesses worldwide. What defines us? We’re Tech
-              Enthusiasts fuelled by passion, Brand Builders at heart, Creative
-              Experts in execution, and Marketing Consultants at our core.
+              13+ specialists. One conviction: that technology should only power
+              up businesses! That’s why we built Ahaan Software Consulting, an
+              offshore team of tech and digital experts, that delivers custom
+              solutions, without the usual cost or complexity.
+              <br /> 4+ years in, that conviction has taken us from a small crew
+              to an offshore development partner serving small and midsize
+              businesses across India, the U.S., and beyond.
             </p>
 
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              Innovation runs deep in our DNA, driving us to create tangible
-              impact for your business. Fuelled by a passion for delivering real
-              value, we collaborate with industry leaders, in-house specialists,
-              and tech pioneers to push the boundaries of digital evolution.
+              We have watched small U.S. businesses grow from side projects into
+              top players. From first websites into full-blown product suites.
+              Behind every project, we've worked alongside industry leaders,
+              tech pioneers, and in-house experts, pushing the work further than
+              any of us could alone.
+              <br />
+              At Ahaan, we don’t just build software, apps or websites. We build
+              the BRANDS behind them.
             </p>
           </div>
 
@@ -57,24 +63,23 @@ export const AboutContent = () => {
               Mission
             </h4>
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              Our mission is to deliver MORE—Growth, Revenue & Success! Aimed at
-              driving your business forward, we optimize processes, people, and
-              technology to create client-aligned solutions that reimagine
-              workflows, modernize businesses, and transform experiences.
-              Because when you win, we win!
+              One word drives everything we aim to do – empower! Our team,
+              through ownership of the work and the urge to do it well. Our U.S.
+              SMB clients, through custom development services that grow with
+              their business. Our partners, through collaboration that lets
+              small teams stay competitive. Our community, through work that
+              raises the bar for what offshore can mean. Because your success is
+              our ultimate satisfaction.
             </p>
 
             <h4 className="text-sm lg:text-base font-bold text-black mt-2">
               Vision
             </h4>
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              We envision fostering a culture that shapes the way we create,
-              collaborate, and innovate! Committed to delivering digital
-              solutions with honesty, integrity, and accuracy, we uphold the
-              highest standards of accountability, credibility, and ethical
-              business practices. With excellence as our pursuit, we honor the
-              dignity of labor, ensuring every effort creates meaningful impact
-              and lasting success.
+              Our vision is to become a trusted technology partner for growing
+              businesses across the globe. We focus on building long-term
+              relationships, creating solutions that grow with our clients, and
+              delivering work that reflects high quality and deep expertise.
             </p>
           </div>
 
