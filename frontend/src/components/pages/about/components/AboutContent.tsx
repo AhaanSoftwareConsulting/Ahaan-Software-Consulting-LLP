@@ -15,7 +15,7 @@ export const AboutContent = () => {
 
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-            <h2 className="heading-primary">Who Are We?</h2>
+            <h2 className="heading-primary">Who We Are?</h2>
 
             <h3 className="text-sm lg:text-base font-bold text-black">
               Your Technology, Development, and Creative Transformation Partner
