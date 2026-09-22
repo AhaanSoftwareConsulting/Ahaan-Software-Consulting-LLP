@@ -1,13 +1,13 @@
 import React from "react";
 
 export const AboutBanner: React.FC = () => {
- 
-
   return (
     <div className="w-full overflow-hidden bg-white">
       <section
         className="section-banner"
-        style={{ backgroundImage: `url(https://ahaanmedia.com/ahaanwebsite/Banner/About-Us.webp)`}}
+        style={{
+          backgroundImage: `url(https://ahaanmedia.com/ahaanwebsite/Banner/About-Us.webp)`,
+        }}
       >
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-black/20 z-1" />
@@ -19,16 +19,16 @@ export const AboutBanner: React.FC = () => {
               About Us
             </h1>
             <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-              Empowering businesses through innovation, creativity, and
-              technology-driven transformation that accelerates growth, enhances
-              efficiency, and builds long-term digital success.
+              Welcome to Ahaan Software Consulting! As a custom website design
+              and development company, we aim to work with U.S. SMBs, tired of
+              complicated processes, high agency fees, and feeling like just
+              another client!
             </p>
           </div>
         </div>
       </section>
 
       {/* ================= BELOW BANNER CONTENT ================= */}
-     
 
       {/* Tailwind Custom Keyframes for Text Gradient */}
       <style>{`

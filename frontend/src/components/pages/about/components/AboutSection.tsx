@@ -70,14 +70,16 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-6 flex flex-col text-left space-y-4 sm:space-y-5">
             {/* Main Title */}
             <h2 className="heading-primary">
-              Highly Tailored Technology Development and Support Services
+              End-to-End Technology Services for U.S. Small and Midsize
+              Businesses
             </h2>
 
             {/* Description */}
             <p className="lg:text-lg text-sm leading-relaxed">
-              Accelerate innovation with world-class tech teams. We’ll match you
-              to an entire remote team of incredible freelance talent for all
-              your software development needs.
+              We are built for the U.S. small and midsize businesses that need
+              senior-level expertise without the big-agency price tag. From our
+              collaboration, you can expect: <br />
+              Partner with us, and here's what you'll get:
             </p>
 
             {/* Bullet List */}
@@ -85,18 +87,22 @@ export const AboutSection: React.FC = () => {
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
                 <span>
-                  Website and Mobile Application Design and Development
+                  Chat directly to the senior specialists who scoped your project
                 </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
                 <span>
-                  Design and modernize IT systems to improve operational efficiency, scalability, and business value.
+                  A tight in-house team, backed by trusted partners we've worked with for years
                 </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>User Experience Research and Interface Design</span>
+                <span>No rotating cast, middle layers, or any unnecessary handoffs</span>
+              </li>
+              <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
+                <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
+                <span>A team that plugs into your business, works your hours, and follows your lead</span>
               </li>
             </ul>
 
