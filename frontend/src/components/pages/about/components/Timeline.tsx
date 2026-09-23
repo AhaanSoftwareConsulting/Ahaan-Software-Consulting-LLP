@@ -12,36 +12,36 @@ interface TimelineItem {
 const timelineData: TimelineItem[] = [
   {
     year: "2021",
-    title: "Beginning",
+    title: "Humble Beginning",
     description:
-      "Laid the foundation of our digital entrepreneurship journey. Started with small freelance projects, driven by passion and vision to create impactful digital solutions.",
+      "We began our journey with small freelance projects in web development and design, helping clients turn early requirements into working digital experiences while building a strong foundation in hands-on delivery",
     image: "https://ahaanmedia.com/ahaanwebsite/All/begining.webp",
     color: "#ff4b4b",
     waveClass: "border-[#ff4b4b]",
   },
   {
     year: "2022",
-    title: "Growth",
+    title: "Expanding the Scope",
     description:
-      "Expanded our expertise by taking on larger and more diverse projects. Built strong client relationships and enhanced our capabilities in web development, design, and digital solutions.",
+      "As project complexity increased, Ahaan Software Consulting took on broader assignments, solidified its capabilities across web development and design, and built stronger relationships with an increasing client base.",
     image: "https://ahaanmedia.com/ahaanwebsite/All/Growth.webp",
     color: "#f9b233",
     waveClass: "border-[#f9b233]",
   },
   {
     year: "2023",
-    title: "Founding",
+    title: "Building the Foundation",
     description:
-      "Officially established Ahaan Software Consulting as a company. Structured services, onboarded a growing team, and started catering to international clients with end-to-end digital solutions.",
+      "Ahaan was formally established with structured services, a growing team, and a wider delivery model. The organization also began serving international clients across web, software, and design projects.",
     image: "https://ahaanmedia.com/ahaanwebsite/All/Founding.webp",
     color: "#58c472",
     waveClass: "border-[#58c472]",
   },
   {
     year: "2024",
-    title: "Leading",
+    title: "Leading Offshore Delivery ",
     description:
-      "Evolved into a trusted technology partner for businesses. Delivering innovative, scalable, and customer-centric solutions in web development, mobile apps, and digital transformation.",
+      "Today, Ahaan Software Consulting supports small and midsize businesses with websites, web applications, mobile apps, custom software, UI/UX, and IT services, tailored to specific requirements, budgets, and project goals.",
     image: "https://ahaanmedia.com/ahaanwebsite/All/Leading.webp",
     color: "#0066d4",
     waveClass: "border-[#0066d4]",

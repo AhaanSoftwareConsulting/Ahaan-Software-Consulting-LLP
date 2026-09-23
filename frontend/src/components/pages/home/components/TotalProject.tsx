@@ -362,13 +362,11 @@ export const TotalProject = () => {
           }}
         >
           <h2 className="text-2xl font-extrabold leading-tight text-white lg:text-3xl xl:text-4xl">
-            Proven Through Measurable Results
+            Our Work Speaks in Results, Not Promises
           </h2>
 
           <p className="mx-auto mt-3 px-0 text-sm leading-relaxed text-[#8A8A8A] sm:px-8 lg:text-lg">
-            From strategy and planning to development, testing, and deployment,
-            we follow a structured process that ensures every project is
-            delivered with quality, efficiency, and measurable business results.
+            Proven experience and delivery capabilities built to support diverse business needs. Ahaan Software Consulting brings together skilled experts, structured execution, and hands-on project experience across software, web, design, digital marketing, and IT services.
           </p>
         </motion.div>
 

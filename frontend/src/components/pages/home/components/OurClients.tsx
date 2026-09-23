@@ -103,13 +103,11 @@ export const OurClients = () => {
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="heading-primary">
-            Our Clients
-          </h2>
+          <h2 className="heading-primary">Our Clients</h2>
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed mx-auto mb-8">
-            From strategy and planning to development, testing, and deployment,
-            we follow a structured process that ensures every project is
-            delivered with quality, efficiency, and measurable business results.
+            We partner with U.S. SMBs across industries, helping them turn their
+            visions into reliable digital solutions that support their long-term
+            business goals.
           </p>
         </motion.div>
 

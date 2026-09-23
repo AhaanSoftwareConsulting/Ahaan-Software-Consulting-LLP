@@ -204,9 +204,9 @@ export default function Testimonials() {
         <h2 className="heading-primary">What Our Clients Say</h2>
 
         <p className="mt-2 px-0 lg:text-lg text-sm sm:px-8 leading-relaxed">
-          We partner with U.S. SMBs across industries, helping them turn their
-          visions into reliable digital solutions that support their long-term
-          business goals.
+          Trusted by leading businesses across India, the USA, Singapore,
+          Canada, and Philippines, Ahaan Software Consulting has established
+          strong partnerships based on mutual success and shared visions.
         </p>
       </div>
 

@@ -77,8 +77,7 @@ export const AboutSection: React.FC = () => {
             {/* Description */}
             <p className="lg:text-lg text-sm leading-relaxed">
               We are built for the U.S. small and midsize businesses that need
-              senior-level expertise without the big-agency price tag. From our
-              collaboration, you can expect: <br />
+              senior-level expertise without the big-agency price tag. <br />
               Partner with us, and here's what you'll get:
             </p>
 
@@ -87,24 +86,38 @@ export const AboutSection: React.FC = () => {
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
                 <span>
-                  Chat directly to the senior specialists who scoped your project
+                  Chat directly to the senior specialists who scoped your
+                  project
                 </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
                 <span>
-                  A tight in-house team, backed by trusted partners we've worked with for years
+                  A tight in-house team, backed by trusted partners we've worked
+                  with for years
                 </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>No rotating cast, middle layers, or any unnecessary handoffs</span>
+                <span>
+                  No rotating cast, middle layers, or any unnecessary handoffs
+                </span>
               </li>
               <li className="flex items-start justify-start text-gray-800 text-sm sm:text-base">
                 <CheckCircleIcon className="text-[#c07f1e] text-xl mt-0.5 mr-3 shrink-0" />
-                <span>A team that plugs into your business, works your hours, and follows your lead</span>
+                <span>
+                  A team that plugs into your business, works your hours, and
+                  follows your lead
+                </span>
               </li>
             </ul>
+
+            <p className="lg:text-lg text-sm leading-relaxed">
+              <p className="lg:text-lg text-sm leading-relaxed">
+                That's the entire model. No middle layers, no handoffs, and zero
+                unexpected surprises.
+              </p>
+            </p>
 
             {/* Support Call Section */}
             <div className="pt-3 flex items-center justify-start">

@@ -38,7 +38,7 @@ export const Showcase: React.FC = () => {
       {/* Title Header */}
       <div className="z-20 mb-8 text-center space-y-2">
         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-amber-200 tracking-tight">
-          Innovative Solutions for Modern Businesses
+          Pick a Service. We'll Take It from There! 
         </h2>
         <div className="h-[2px] w-24 mx-auto bg-gradient-to-r from-transparent via-amber-500 to-transparent" />
       </div>
