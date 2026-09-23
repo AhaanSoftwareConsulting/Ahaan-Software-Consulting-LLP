@@ -56,17 +56,16 @@ export const Connection: React.FC = () => {
                 </span>
 
                 <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-white tracking-tight leading-tight capitalise">
-                  Connect With Our Technology Experts{" "}
-                  <br className="hidden sm:block" />
-                  <span className="text-[#D4AF37]">
-                    and Transform Your Business
-                  </span>
+                  Connect With Our Technology <br className="hidden sm:block" />
+                  <span className="text-[#D4AF37]">Experts</span>
                 </h2>
 
                 <p className="text-zinc-400 lg:text-lg text-sm max-w-lg leading-relaxed">
-                  Explore exciting possibilities, discuss project goals, and
-                  start building software solutions designed to scale your
-                  business effortlessly.
+                  Get in Touch With Our Technology Experts and Transform Your
+                  Business! Chat with our senior engineers about your
+                  requirements. We will walk through your goals, flag what's
+                  realistic, and map out a build that perfectly suits your
+                  budget and timeline.
                 </p>
 
                 {/* Action Buttons */}

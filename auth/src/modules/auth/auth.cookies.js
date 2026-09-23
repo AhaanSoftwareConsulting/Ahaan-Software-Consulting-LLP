@@ -4,10 +4,10 @@ const REFRESH_COOKIE_NAME = 'refreshToken';
 
 const cookieOptions = {
   httpOnly: true,
-  secure: isProd,          // must be true in production (HTTPS only)
-  sameSite: isProd ? 'strict' : 'lax', // 'lax' in dev so localhost works
-  path: '/auth',           // cookie only sent to /auth/* routes (refresh, logout)
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days, matches your refresh token expiry
+  secure: true,           // required when sameSite is 'none' — must always be true, not just in prod
+  sameSite: 'none',       // required for cross-site requests (Vercel <-> Render)
+  path: '/auth',
+  maxAge: 7 * 24 * 60 * 60 * 1000,
 };
 
 function setRefreshCookie(res, token) {

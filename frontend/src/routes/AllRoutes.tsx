@@ -185,7 +185,7 @@ export const AllRoutes = () => {
 
           <Route path="/team" element={<TeamTree />} />
 
-          <Route path="/team/:id" element={<TeamDetails/>} />
+          <Route path="/team/:uniqueId" element={<TeamDetails/>} />
 
           <Route path="*" element={<NotFoundComponent />} />
         </Route>

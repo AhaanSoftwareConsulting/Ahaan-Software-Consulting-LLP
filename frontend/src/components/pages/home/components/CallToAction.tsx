@@ -20,8 +20,7 @@ export function CallToAction() {
 
           {/* Supporting Text */}
           <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/80 md:text-base lg:text-lg">
-            Partner with our experienced technology team to build, improve,
-            and scale digital solutions designed around your business goals.
+            Bring us your project. We will bring the best experts, the custom solutions, and the pricing that works perfectly for your business
           </p>
         </div>
 

@@ -25,9 +25,8 @@ const REASONS: Reason[] = [
     title: "Our Values",
     tagline: "Our Values",
     description:
-      "We deliver our services with integrity, accuracy, and objectivity, maintaining the highest standards of ethics, accountability, and professionalism. By respecting the dignity of labor and fostering trust, transparency, and continuous improvement, we strive for excellence and create lasting value for our clients and partners.",
-    image:
-      "https://ahaanmedia.com/ahaanwebsite/All/Our-values.png",
+      "We work as one team, aim higher with each project, push boundaries to reimagine what's possible, lead with integrity, and own the outcomes we deliver for our clients and community.",
+    image: "https://ahaanmedia.com/ahaanwebsite/All/Our-values.png",
     Icon: MagnifyingGlassPlus,
   },
   {
@@ -36,9 +35,8 @@ const REASONS: Reason[] = [
     title: "Authenticity",
     tagline: "Authenticity",
     description:
-      "We partner with businesses we believe in, bringing passion, authenticity, and purpose to every collaboration. By building meaningful relationships based on trust and shared goals, we create lasting growth, sustainable value, and long-term success for our clients and partners.",
-    image:
-      "https://ahaanmedia.com/ahaanwebsite/All/Authenticity.png",
+      "We only take on work we believe in. This means clear timelines, genuine scoping, and no over-promising, so that you get a partner who tells you what's possible, not just what you want to hear.",
+    image: "https://ahaanmedia.com/ahaanwebsite/All/Authenticity.png",
     Icon: ShieldCheck,
   },
   {
@@ -47,9 +45,8 @@ const REASONS: Reason[] = [
     title: "Top Talent",
     tagline: "Top Talent",
     description:
-      "Our experts build strong partnerships with a win-win mindset, treating every client's success as our own achievement. Through trust, collaboration, and shared goals, we create meaningful solutions that deliver impactful results, foster mutual growth, and drive sustainable long-term success.",
-    image:
-      "https://ahaanmedia.com/ahaanwebsite/All/Top-Talent.png",
+      "We appoint highly experienced experts on each project – not junior developers learning on your budget. Your business goals guide each project, helping build long-term partnerships that extend just a single engagement.",
+    image: "https://ahaanmedia.com/ahaanwebsite/All/Top-Talent.png",
     Icon: UsersThree,
   },
   {
@@ -58,9 +55,8 @@ const REASONS: Reason[] = [
     title: "Quality",
     tagline: "Quality",
     description:
-      "We leverage cutting-edge technologies, tools, and platforms to deliver innovative solutions and breakthrough results. Going beyond industry best practices, our experts continuously explore new ideas, embrace emerging technologies, and push boundaries to drive excellence, efficiency, and sustainable business growth.",
-    image:
-      "https://ahaanmedia.com/ahaanwebsite/All/Quality.png",
+      "We build on modern stacks and ship code that holds up in production. Our senior engineers architect, review, and stress-test every build so you inherit software that's fully scalable, and ready for what's next.",
+    image: "https://ahaanmedia.com/ahaanwebsite/All/Quality.png",
     Icon: SealCheck,
   },
 ];
@@ -68,12 +64,18 @@ const REASONS: Reason[] = [
 // --- kept exactly as-is, still driving the tab rail's entrance ---
 const tabListVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } as const },
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.15 } as const,
+  },
 };
 
 const tabItemVariants = {
   hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 180, damping: 16 } as const },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 180, damping: 16 } as const,
+  },
 };
 
 // The image panel reveals by scaling open from the top-left corner
@@ -92,7 +94,11 @@ const panelVariants = {
 
 const contentVariants = {
   hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.1 } as const },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, ease: "easeOut", delay: 0.1 } as const,
+  },
 };
 
 // --- new variants for the icon/heading overlay and the sub-heading block below the image ---
@@ -102,7 +108,11 @@ const overlayVariants = {
     opacity: 1,
     x: 0,
     y: 0,
-    transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 },
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1] as const,
+      delay: 0.15,
+    },
   },
   exit: { opacity: 0, x: 16, transition: { duration: 0.25 } as const },
 };
@@ -121,7 +131,10 @@ const subheadingVariants = {
 // on top of the shared tabItemVariants entrance.
 const tabInnerVariants = {
   rest: { y: 0 },
-  active: { y: -2, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const } },
+  active: {
+    y: -2,
+    transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] as const },
+  },
 };
 
 export const WhyChooseUs: React.FC = () => {
@@ -140,8 +153,7 @@ export const WhyChooseUs: React.FC = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
-            Engineered for
-            <span className=""> Performance</span> & Trust.
+            We are Guided by Our Visions, Values and Our Purpose
           </h2>
 
           <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] lg:text-lg text-sm leading-relaxed">
@@ -161,99 +173,107 @@ export const WhyChooseUs: React.FC = () => {
             whileInView="visible"
             viewport={{ once: false, amount: 0.4 }}
           >
-           {REASONS.map((item) => {
-  const isSelected = item.id === activeId;
+            {REASONS.map((item) => {
+              const isSelected = item.id === activeId;
 
-  return (
-    <motion.button
-      key={item.id}
-      variants={tabItemVariants}
-      onClick={() => setActiveId(item.id)}
-      className="group relative flex flex-col justify-between text-left rounded-md px-1 py-1 sm:px-5 sm:py-5 h-full overflow-hidden outline-none border-0 md:border transition-colors duration-500"
-      style={{
-        borderColor: isSelected
-          ? "rgba(205,145,42,0.5)"
-          : "rgba(255,255,255,0.06)",
-      }}
-    >
-      {/* Shared-layout active background — desktop/tablet only */}
-      {isSelected && (
-        <motion.span
-          layoutId="activeTabBg"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="hidden md:block absolute inset-0 -z-10 bg-gradient-to-br from-[rgba(205,145,42,0.12)] to-[rgba(205,145,42,0.02)]"
-        />
-      )}
+              return (
+                <motion.button
+                  key={item.id}
+                  variants={tabItemVariants}
+                  onClick={() => setActiveId(item.id)}
+                  className="group relative flex flex-col justify-between text-left rounded-md px-1 py-1 sm:px-5 sm:py-5 h-full overflow-hidden outline-none border-0 md:border transition-colors duration-500"
+                  style={{
+                    borderColor: isSelected
+                      ? "rgba(205,145,42,0.5)"
+                      : "rgba(255,255,255,0.06)",
+                  }}
+                >
+                  {/* Shared-layout active background — desktop/tablet only */}
+                  {isSelected && (
+                    <motion.span
+                      layoutId="activeTabBg"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                      className="hidden md:block absolute inset-0 -z-10 bg-gradient-to-br from-[rgba(205,145,42,0.12)] to-[rgba(205,145,42,0.02)]"
+                    />
+                  )}
 
-      {/* Number watermark — desktop only */}
-      <span
-        className={`hidden md:block absolute -bottom-3 -right-1 font-['Fraunces'] font-bold text-[64px] sm:text-[76px] leading-none select-none transition-colors duration-500 ${
-          isSelected ? "text-[#CD912A]/10" : "text-white/[0.03]"
-        }`}
-      >
-        {item.index}
-      </span>
+                  {/* Number watermark — desktop only */}
+                  <span
+                    className={`hidden md:block absolute -bottom-3 -right-1 font-['Fraunces'] font-bold text-[64px] sm:text-[76px] leading-none select-none transition-colors duration-500 ${
+                      isSelected ? "text-[#CD912A]/10" : "text-white/[0.03]"
+                    }`}
+                  >
+                    {item.index}
+                  </span>
 
-      <motion.div
-        animate={isSelected ? "active" : "rest"}
-        variants={tabInnerVariants}
-        className="flex items-center justify-center md:justify-between"
-      >
-        {/* Rounded number/icon */}
-        <span
-          className={`flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-md border transition-colors duration-500 ${
-            isSelected
-              ? "bg-[#CD912A]/15 border-[#CD912A]/40 text-[#CD912A]"
-              : "bg-white/[0.03] border-white/10 text-white/30 group-hover:text-white/60"
-          }`}
-        >
-          <item.Icon
-            size={16}
-            weight={isSelected ? "duotone" : "regular"}
-            className="hidden md:block"
-          />
+                  <motion.div
+                    animate={isSelected ? "active" : "rest"}
+                    variants={tabInnerVariants}
+                    className="flex items-center justify-center md:justify-between"
+                  >
+                    {/* Rounded number/icon */}
+                    <span
+                      className={`flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-md border transition-colors duration-500 ${
+                        isSelected
+                          ? "bg-[#CD912A]/15 border-[#CD912A]/40 text-[#CD912A]"
+                          : "bg-white/[0.03] border-white/10 text-white/30 group-hover:text-white/60"
+                      }`}
+                    >
+                      <item.Icon
+                        size={16}
+                        weight={isSelected ? "duotone" : "regular"}
+                        className="hidden md:block"
+                      />
 
-          <span
-            className={`md:hidden text-[11px] font-mono tracking-widest ${
-              isSelected ? "text-[#CD912A]" : "text-white/40"
-            }`}
-          >
-            {item.index}
-          </span>
-        </span>
+                      <span
+                        className={`md:hidden text-[11px] font-mono tracking-widest ${
+                          isSelected ? "text-[#CD912A]" : "text-white/40"
+                        }`}
+                      >
+                        {item.index}
+                      </span>
+                    </span>
 
-        {/* Desktop index */}
-        <span
-          className={`hidden md:block text-[10px] font-mono tracking-widest transition-colors duration-500 ${
-            isSelected ? "text-[#CD912A]" : "text-white/25"
-          }`}
-        >
-          {item.index}
-        </span>
-      </motion.div>
+                    {/* Desktop index */}
+                    <span
+                      className={`hidden md:block text-[10px] font-mono tracking-widest transition-colors duration-500 ${
+                        isSelected ? "text-[#CD912A]" : "text-white/25"
+                      }`}
+                    >
+                      {item.index}
+                    </span>
+                  </motion.div>
 
-      {/* Title — desktop only */}
-      <span
-        className={`hidden md:block mt-4 sm:mt-6 text-sm sm:text-base font-medium transition-colors duration-500 ${
-          isSelected
-            ? "text-white"
-            : "text-white/40 group-hover:text-white/75"
-        }`}
-      >
-        {item.title}
-      </span>
+                  {/* Title — desktop only */}
+                  <span
+                    className={`hidden md:block mt-4 sm:mt-6 text-sm sm:text-base font-medium transition-colors duration-500 ${
+                      isSelected
+                        ? "text-white"
+                        : "text-white/40 group-hover:text-white/75"
+                    }`}
+                  >
+                    {item.title}
+                  </span>
 
-      {/* Bottom accent — desktop/tablet only */}
-      {isSelected && (
-        <motion.span
-          layoutId="activeTabBar"
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="hidden md:block absolute bottom-0 left-0 h-[2px] w-full bg-[#CD912A]"
-        />
-      )}
-    </motion.button>
-  );
-})}
+                  {/* Bottom accent — desktop/tablet only */}
+                  {isSelected && (
+                    <motion.span
+                      layoutId="activeTabBar"
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                      className="hidden md:block absolute bottom-0 left-0 h-[2px] w-full bg-[#CD912A]"
+                    />
+                  )}
+                </motion.button>
+              );
+            })}
           </motion.div>
 
           {/* RIGHT: IMAGE PANEL — flex flex-col + flex-1 image restores the height that the left column stretches to match */}
@@ -335,7 +355,11 @@ export const WhyChooseUs: React.FC = () => {
                       opacity: 1,
                       y: 0,
                       scale: 1,
-                      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 },
+                      transition: {
+                        duration: 0.8,
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: 0.2,
+                      },
                     }}
                     exit={{
                       opacity: 0,
@@ -347,30 +371,27 @@ export const WhyChooseUs: React.FC = () => {
                     {activeReason.title.charAt(0)}
                   </motion.div>
                 </AnimatePresence>
-                
               </div>
-              
             </motion.div>
-             <div className="pt-5 sm:pt-8 min-h-[80px] sm:min-h-[90px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`copy-${activeReason.id}`}
-              variants={subheadingVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-            >
-              <p className="text-[#A3A3A3] lg:text-lg text-sm leading-relaxed max-w-7xl">
-                {activeReason.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+            <div className="pt-5 sm:pt-8 min-h-[80px] sm:min-h-[90px]">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`copy-${activeReason.id}`}
+                  variants={subheadingVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                >
+                  <p className="text-[#A3A3A3] lg:text-lg text-sm leading-relaxed max-w-7xl">
+                    {activeReason.description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </motion.div>
         </div>
 
         {/* SUB-HEADING + DESCRIPTION BELOW IMAGE — full width, outside the height-matched row so it never affects tab/image sizing */}
-       
       </div>
 
       {/* Embedded Framework Animation System */}

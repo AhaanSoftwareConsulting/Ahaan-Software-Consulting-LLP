@@ -13,25 +13,25 @@ const steps: Step[] = [
     num: "01",
     phase: "phase 01",
     title: "Discovery & Planning",
-    desc: "Define goals, scope, audience & wireframe the full roadmap.",
+    desc: "We start by defining goals, scope, and audience. The next step is wireframing the full roadmap before a line of code is written.",
   },
   {
     num: "02",
     phase: "phase 02",
     title: "Design & Prototyping",
-    desc: "Craft UI/UX system & deliver interactive high-fidelity mockups.",
+    desc: "The next step is crafting a UI/UX system and delivering interactive, high-fidelity mock-ups for your review and sign-off.",
   },
   {
     num: "03",
     phase: "phase 03",
     title: "Development & Testing",
-    desc: "Full-stack build, API integration & rigorous QA across all devices.",
+    desc: "We handle full-stack build, API integration, and rigorous QA across devices and browsers your users touch.",
   },
   {
     num: "04",
     phase: "phase 04",
     title: "Launch & Growth",
-    desc: "Deploy to production, SEO setup & post-launch monitoring.",
+    desc: "We deploy to production, configure SEO, and monitor performance to catch post-launch issues early.",
   },
 ];
 
@@ -59,17 +59,27 @@ const numberVariants = {
 
 const barVariants = {
   hidden: { scaleY: 0, opacity: 0 },
-  visible: { scaleY: 1, opacity: 1, transition: { duration: 0.4, delay: 0.35 } as const },
+  visible: {
+    scaleY: 1,
+    opacity: 1,
+    transition: { duration: 0.4, delay: 0.35 } as const,
+  },
 };
 
 const textGroupVariants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.4 }as const },
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.4 } as const,
+  },
 };
 
 const textItemVariants = {
   hidden: { opacity: 0, x: -14 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: "easeOut" }as const },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease: "easeOut" } as const,
+  },
 };
 
 export const OurProcess = () => {
@@ -85,13 +95,13 @@ export const OurProcess = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
-            Our Proven Development Process
+            A Quick Glance at Our Proven Development Process
           </h2>
 
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 text-[#8A8A8A] leading-relaxed mx-auto">
-            From strategy and planning to development, testing, and deployment,
-            we follow a structured process that ensures every project is
-            delivered with quality, efficiency, and measurable business results.
+            From discovery to launch, our crew of developers follows these
+            processes on every project, aimed for clarity, on-time delivery, and
+            outcomes that hold up post-launch.
           </p>
         </motion.div>
 
@@ -127,9 +137,7 @@ export const OurProcess = () => {
                     {step.num}
                   </span>
 
-                  <span
-                    className="absolute inset-0 flex items-start justify-end text-transparent transition-all duration-[600ms] ease-out [webkit-text-stroke:2px_#beb9a5] group-hover:[webkit-text-stroke-color:#f5e8c8]"
-                  >
+                  <span className="absolute inset-0 flex items-start justify-end text-transparent transition-all duration-[600ms] ease-out [webkit-text-stroke:2px_#beb9a5] group-hover:[webkit-text-stroke-color:#f5e8c8]">
                     {step.num}
                   </span>
                 </motion.div>

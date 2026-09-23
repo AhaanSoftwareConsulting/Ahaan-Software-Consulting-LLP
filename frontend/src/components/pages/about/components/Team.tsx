@@ -73,23 +73,28 @@ export const Team: React.FC = () => {
   const displayMembers = [...teamMembers, ...teamMembers];
 
   return (
-    <div aria-labelledby="team-heading" className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 ">
+    <div
+      aria-labelledby="team-heading"
+      className="mx-auto w-full max-w-[1600px] px-4 py-12 sm:py-16 md:py-20 "
+    >
       {/* SECTION HEADER */}
       <div className="mb-8 text-center">
         <h2 id="team-heading" className="heading-primary">
-          Meet Our Team
+          Meet the Faces Behind Our Success Story
         </h2>
         <p className="lg:text-lg text-sm max-w-6xl mx-auto leading-relaxed mb-10">
-          Driven to be future-ready, and push beyond the building blocks of
-          technology, digital, and marketing, Ahaan Software Consulting proudly
-          participated in The Asia Business Show 2024 in Singapore—the powerhouse
-          of innovation and enterprise!
+          The reason behind our success is a high-octane team, always ready to
+          champion technology, digital, and marketing excellence. Being at The
+          Asia Business Show in Singapore each year is one of the milestones
+          we're proud of. Come, meet our team!
         </p>
       </div>
 
       {/* CUSTOM CAROUSEL TRACK */}
       {teamMembers.length === 0 ? (
-        <p className="text-center text-gray-500 py-10">Loading team members...</p>
+        <p className="text-center text-gray-500 py-10">
+          Loading team members...
+        </p>
       ) : (
         <div
           onMouseEnter={() => setIsPaused(true)}

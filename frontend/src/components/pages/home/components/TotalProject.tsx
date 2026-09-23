@@ -68,7 +68,7 @@ const stats: Stat[] = [
     dropMobile: 15,
   },
   {
-    value: 25,
+    value: 12,
     suffix: "+",
     label: "Team Members",
     icon: <TeamIcon />,
@@ -76,7 +76,7 @@ const stats: Stat[] = [
     dropMobile: 35,
   },
   {
-    value: 65,
+    value: 100,
     suffix: "+",
     label: "Completed Projects",
     icon: <CheckIcon />,
@@ -84,7 +84,7 @@ const stats: Stat[] = [
     dropMobile: 35,
   },
   {
-    value: 52,
+    value: 80,
     suffix: "+",
     label: "Clients Served",
     icon: <SmileIcon />,

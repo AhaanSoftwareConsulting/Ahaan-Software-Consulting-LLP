@@ -247,7 +247,7 @@ export const BusinessCard = () => {
             className=
             "lg:text-lg text-sm  px-4 sm:px-8 mt-3 leading-relaxed"
           >
-            We aren't just another service provider. We act as a high-velocity extension of your core engine, combining modern workflows with precise tactical execution.
+            We work with you, not for you! Every client is an equal partner, every engagement is built on shared success, and each decision is made keeping your business outcomes in mind. 
           </p>
         </motion.div>
 
