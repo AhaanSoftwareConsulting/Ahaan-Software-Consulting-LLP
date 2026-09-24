@@ -116,7 +116,7 @@ export const getCareerBySlug = async (
 
 export const getAllCaseStudies = async (): Promise<WPCustomPost[]> => {
   try {
-    const response = await wpAPI.get<WPCustomPost[]>("/case-studies?_embed");
+    const response = await wpAPI.get<WPCustomPost[]>("/case-studies?per_page=100&_embed");
     return response.data || [];
   } catch (error) {
     console.error("❌ Error fetching case studies:", getErrorMessage(error));
