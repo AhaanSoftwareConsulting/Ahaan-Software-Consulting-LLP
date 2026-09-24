@@ -90,6 +90,13 @@ export interface AcfFields {
   design_highlights?: string;
   design_highlights_image?: string | number;
 
+  // 👉 নতুন দুটি সেকশনের জন্য ACF ফিল্ড যোগ করা হলো
+  the_result?: string;
+  the_result_image?: string | number;
+
+  our_contribution?: string;
+  our_contribution_image?: string | number;
+
   // Why Project Stands Out
   why_project_stands_out?: string;
   why_this_project_stands_out?: string;
@@ -120,6 +127,8 @@ export interface ImagesState {
   solution5?: string;
   businessImpact?: string;
   designHighlights?: string;
+  theResult?: string;
+  ourContribution?: string;
   tech1?: string;
   tech2?: string;
   tech3?: string;
