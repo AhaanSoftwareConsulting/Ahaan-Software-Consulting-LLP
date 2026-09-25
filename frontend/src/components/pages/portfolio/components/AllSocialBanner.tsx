@@ -1,4 +1,4 @@
-export default function AllSocialBanner() { 
+export default function AllSocialBanner() {
   return (
     <section
       className=" section-banner"
@@ -16,10 +16,15 @@ export default function AllSocialBanner() {
           </h1>
 
           <p className="max-w-[700px] lg:text-lg text-sm leading-relaxed text-gray-100">
-            A showcase of engaging and creative social media designs
+            Under our social media marketing services, we cover content
+            planning, custom creatives, competitor tracking, personalized
+            targeting, brand reputation analysis, and active monitoring. We help
+            your brand stay consistent, reach out to the right audience, respond
+            effectively, and make informed decisions across social platforms
+            daily.
           </p>
         </div>
       </div>
     </section>
   );
-};
+}

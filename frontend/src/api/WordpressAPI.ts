@@ -244,7 +244,13 @@ export const getSolutionBySlug = async (
 
 export const getAllServices = async (): Promise<WPServiceItem[]> => {
   try {
-    const response = await wpAPI.get<WPServiceItem[]>("/services?_embed");
+    const response = await wpAPI.get<WPServiceItem[]>("/services", {
+      params: {
+        _embed: true,
+        orderby: "menu_order",
+        order: "asc",
+      },
+    });
     return response.data || [];
   } catch (error) {
     console.error("❌ Error fetching services:", getErrorMessage(error));
