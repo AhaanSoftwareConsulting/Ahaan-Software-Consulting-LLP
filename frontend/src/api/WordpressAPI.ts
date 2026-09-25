@@ -248,7 +248,8 @@ export const getAllServices = async (): Promise<WPServiceItem[]> => {
       params: {
         _embed: true,
         orderby: "menu_order",
-        order: "asc",
+        order: "asc", // 👈 asc dilen Admin list-er prothom theke shesh (1, 2, 3...) hisebe ashbe
+        _t: Date.now(), // Cache bypass korar jonno
       },
     });
     return response.data || [];
@@ -257,7 +258,7 @@ export const getAllServices = async (): Promise<WPServiceItem[]> => {
     return [];
   }
 };
-
+ 
 
 // ==========================================
 // 7. Testimonials API & Types
