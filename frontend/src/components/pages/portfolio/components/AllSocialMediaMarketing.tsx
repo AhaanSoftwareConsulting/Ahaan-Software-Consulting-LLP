@@ -111,7 +111,7 @@ export function AllSocialMediaMarketing() {
           <h2 className="heading-primary">Social Media Marketing</h2>
 
           <p className="mt-2 px-4 text-sm sm:px-8 lg:text-lg">
-            A showcase of engaging and creative social media designs
+            Build a stronger social presence with targeted content, creative, and higher engagement.
           </p>
         </div>
 

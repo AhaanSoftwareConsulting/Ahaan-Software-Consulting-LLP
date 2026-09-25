@@ -1,15 +1,10 @@
-
-
 export const CaseStudiesBanner = () => {
   const bannerStyle = {
     backgroundImage: `url("https://ahaanmedia.com/ahaanwebsite/Banner/CaseStydyDetails.jpg")`,
   };
 
   return (
-    <section
-      className="section-banner"
-      style={bannerStyle}
-    >
+    <section className="section-banner" style={bannerStyle}>
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/20 z-1" />
 
@@ -21,9 +16,9 @@ export const CaseStudiesBanner = () => {
           </h1>
 
           <p className=" max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            We deliver innovative digital solutions including web development,
-            UI/UX design, branding, and performance marketing to help your
-            business grow faster and smarter in the digital world.
+            Explore real-world projects that highlight our expertise,
+            problem-solving approach, and tangible business outcomes across
+            industries.
           </p>
         </div>
       </div>
