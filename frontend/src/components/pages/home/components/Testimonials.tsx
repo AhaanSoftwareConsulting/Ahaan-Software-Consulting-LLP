@@ -15,6 +15,9 @@ export default function Testimonials() {
   const [index, setIndex] = useState(0);
   const [transition, setTransition] = useState(true);
   const [visibleCards, setVisibleCards] = useState(3);
+  
+  // 🟢 ১. মাউস হবার ট্র্যাক করার জন্য নতুন স্টেট
+  const [isPaused, setIsPaused] = useState(false);
 
   /* =========================
       FETCH TESTIMONIALS (Updated)
@@ -23,17 +26,14 @@ export default function Testimonials() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        // 👈 কেন্দ্রীয় API মেথড কল করা হচ্ছে
         const data = await getAllTestimonials();
 
         const formatted: Testimonial[] = await Promise.all(
-          data.map(async (item) => {
+          data.map(async (item: any) => {
             let image = "";
 
-            /* Fetch client image using getMediaById */
             if (item.acf?.client_image) {
               try {
-                // 👈 মিডিয়া ইমেজের জন্যও কেন্দ্রীয় মেথড ব্যবহার
                 const media = await getMediaById(item.acf.client_image);
                 if (media) {
                   image = media.source_url || "";
@@ -62,22 +62,17 @@ export default function Testimonials() {
     fetchTestimonials();
   }, []);
 
-  // ... বাকি slider, responsive logic এবং JSX অংশ একদম আগের মতোই থাকবে
-
   /* =========================
-     RESPONSIVE CARD COUNT
+      RESPONSIVE CARD COUNT
   ========================= */
 
   useEffect(() => {
     const updateVisibleCards = () => {
       if (window.innerWidth < 768) {
-        // Mobile
         setVisibleCards(1);
       } else if (window.innerWidth < 1024) {
-        // Tablet
         setVisibleCards(2);
       } else {
-        // Desktop
         setVisibleCards(3);
       }
     };
@@ -92,8 +87,7 @@ export default function Testimonials() {
   }, []);
 
   /* =========================
-     RESET INDEX WHEN SCREEN
-     SIZE CHANGES
+      RESET INDEX WHEN SCREEN SIZE CHANGES
   ========================= */
 
   useEffect(() => {
@@ -106,38 +100,33 @@ export default function Testimonials() {
   }, [visibleCards]);
 
   /* =========================
-     SLIDER DATA
+      SLIDER DATA
   ========================= */
 
   const sliderData =
     testimonials.length > 0 ? [...testimonials, ...testimonials] : [];
 
   /* =========================
-     AUTO SLIDE
+      AUTO SLIDE (Pause support added)
   ========================= */
 
   useEffect(() => {
-    if (!testimonials.length) return;
+    // 🟢 ২. মাউস কার্সার ক্যারোসেলের উপর থাকলে (isPaused === true) টাইমার চলবে না
+    if (!testimonials.length || isPaused) return;
 
     const timer = setInterval(() => {
       setIndex((prev) => prev + 1);
     }, 3000);
 
     return () => clearInterval(timer);
-  }, [testimonials]);
+  }, [testimonials, isPaused]);
 
   /* =========================
-     INFINITE LOOP RESET
+      INFINITE LOOP RESET
   ========================= */
 
   useEffect(() => {
     if (!testimonials.length) return;
-
-    /*
-      Once we reach the duplicated
-      testimonials, quietly jump back
-      to the beginning.
-    */
 
     if (index >= testimonials.length) {
       const timer = setTimeout(() => {
@@ -156,7 +145,7 @@ export default function Testimonials() {
   }, [index, testimonials]);
 
   /* =========================
-     MANUAL SLIDER
+      MANUAL SLIDER
   ========================= */
 
   const scroll = (direction: "left" | "right") => {
@@ -169,7 +158,6 @@ export default function Testimonials() {
         if (prev <= 0) {
           return maxIndex;
         }
-
         return prev - 1;
       });
     } else {
@@ -177,14 +165,13 @@ export default function Testimonials() {
         if (prev >= maxIndex) {
           return 0;
         }
-
         return prev + 1;
       });
     }
   };
 
   /* =========================
-     CARD WIDTH
+      CARD WIDTH
   ========================= */
 
   const cardWidth =
@@ -214,11 +201,13 @@ export default function Testimonials() {
           SLIDER
       ========================= */}
 
-      <div className="relative overflow-hidden">
-        {/* =========================
-            LEFT BUTTON
-        ========================= */}
-
+      {/* 🟢 ৩. এখানে onMouseEnter এবং onMouseLeave যোগ করা হয়েছে */}
+      <div 
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* LEFT BUTTON */}
         <button
           type="button"
           onClick={() => scroll("left")}
@@ -228,10 +217,7 @@ export default function Testimonials() {
           <CaretLeftIcon className="h-5 w-5" />
         </button>
 
-        {/* =========================
-            RIGHT BUTTON
-        ========================= */}
-
+        {/* RIGHT BUTTON */}
         <button
           type="button"
           onClick={() => scroll("right")}
@@ -241,46 +227,12 @@ export default function Testimonials() {
           <CaretRightIcon className="h-5 w-5" />
         </button>
 
-        {/* =========================
-            RIGHT BUTTON
-        ========================= */}
-
-        <button
-          type="button"
-          onClick={() => scroll("right")}
-          aria-label="Next testimonial"
-          className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg transition duration-300 hover:scale-110 lg:flex"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="h-5 w-5"
-          >
-            <path
-              d="M9 18l6-6-6-6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
-        {/* =========================
-            TRACK
-        ========================= */}
-
+        {/* TRACK */}
         <div
           className="flex py-10"
           style={{
             gap: "32px",
             transition: transition ? "transform 0.7s ease" : "none",
-
-            /*
-              The translation is based on
-              the exact card slot width.
-            */
             transform: `translateX(calc(-${index * (100 / visibleCards)}% - ${
               index * (32 / visibleCards)
             }px))`,
@@ -294,10 +246,7 @@ export default function Testimonials() {
                 width: cardWidth,
               }}
             >
-              {/* =========================
-                  TOP QUOTE
-              ========================= */}
-
+              {/* TOP QUOTE */}
               <div
                 className="absolute -top-8 left-5 text-6xl font-bold sm:left-6 sm:text-7xl"
                 style={{
@@ -307,10 +256,7 @@ export default function Testimonials() {
                 ❝
               </div>
 
-              {/* =========================
-                  CLIENT
-              ========================= */}
-
+              {/* CLIENT */}
               <div
                 className="absolute -top-7 right-3 flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full px-2 py-2 shadow-xl sm:right-5 sm:gap-3 sm:px-3"
                 style={{
@@ -336,24 +282,15 @@ export default function Testimonials() {
                 </div>
               </div>
 
-              {/* =========================
-                  REVIEW
-              ========================= */}
-
+              {/* REVIEW */}
               <p className="line-clamp-8 text-sm leading-7 text-slate-600 sm:text-base sm:leading-8">
                 {item.review}
               </p>
 
-              {/* =========================
-                  DIVIDER
-              ========================= */}
-
+              {/* DIVIDER */}
               <div className="my-6 h-[2px] w-24 bg-slate-300 sm:my-8 sm:w-28" />
 
-              {/* =========================
-                  RATING
-              ========================= */}
-
+              {/* RATING */}
               <div className="flex gap-1 text-xl sm:text-2xl">
                 {Array.from({ length: 5 }).map((_, j) => (
                   <span
@@ -367,10 +304,7 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              {/* =========================
-                  BOTTOM QUOTE
-              ========================= */}
-
+              {/* BOTTOM QUOTE */}
               <div
                 className="absolute -bottom-10 right-4 text-6xl font-bold sm:-bottom-12 sm:right-6 sm:text-7xl"
                 style={{

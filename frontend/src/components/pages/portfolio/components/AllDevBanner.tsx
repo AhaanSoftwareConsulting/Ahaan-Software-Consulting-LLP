@@ -1,4 +1,4 @@
-export default function AllDevBanner() { 
+export default function AllDevBanner() {
   return (
     <section
       className=" section-banner"
@@ -12,16 +12,18 @@ export default function AllDevBanner() {
       <div className="relative z-10 mx-auto w-full px-4 lg:px-6 max-w-[1600px] flex justify-start">
         <div className="max-w-[900px]">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-           Web Development Projects
+            Web Development Projects
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            Discover our powerful web development solutions built with
-            performance, scalability, and modern technologies to help
-            businesses grow digitally with confidence.
+            Build responsive, secure, and high-performing digital solutions with
+            our custom web development services. From frontend and backend
+            development to CMS integrations, APIs, and cross-browser
+            compatibility, we build web applications, websites, portals, and
+            tailored platforms around your specific needs and workflows.
           </p>
         </div>
       </div>
     </section>
   );
-};
+}
