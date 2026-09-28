@@ -56,13 +56,11 @@ const SolutionsGrid: React.FC = () => {
 
         <div className="text-center mb-16">
           <h2 className="heading-primary">
-            Enterprise Software Development Services
+            Software That Works the Way Your Industry Does
           </h2>
 
           <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3  max-w-4xl mx-auto leading-relaxed">
-            Empower your business growth with enterprise-grade,
-            industry-specific software solutions engineered to solve your unique
-            operational challenges.
+            Every industry has its own bottlenecks. Ahaan Software Consulting builds fully custom software, web applications, mobile apps, and more that work around your unique and specific needs.
           </p>
         </div>
 
