@@ -116,7 +116,7 @@ export const getCareerBySlug = async (
 
 export const getAllCaseStudies = async (): Promise<WPCustomPost[]> => {
   try {
-    const response = await wpAPI.get<WPCustomPost[]>("/case-studies?_embed");
+    const response = await wpAPI.get<WPCustomPost[]>("/case-studies?per_page=100&_embed");
     return response.data || [];
   } catch (error) {
     console.error("❌ Error fetching case studies:", getErrorMessage(error));
@@ -244,14 +244,21 @@ export const getSolutionBySlug = async (
 
 export const getAllServices = async (): Promise<WPServiceItem[]> => {
   try {
-    const response = await wpAPI.get<WPServiceItem[]>("/services?_embed");
+    const response = await wpAPI.get<WPServiceItem[]>("/services", {
+      params: {
+        _embed: true,
+        orderby: "menu_order",
+        order: "asc", // 👈 asc dilen Admin list-er prothom theke shesh (1, 2, 3...) hisebe ashbe
+        _t: Date.now(), // Cache bypass korar jonno
+      },
+    });
     return response.data || [];
   } catch (error) {
     console.error("❌ Error fetching services:", getErrorMessage(error));
     return [];
   }
 };
-
+ 
 
 // ==========================================
 // 7. Testimonials API & Types

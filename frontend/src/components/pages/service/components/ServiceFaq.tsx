@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getFAQBySlug,
-  type WPFAQItem,
-} from "../../../../api/WordpressAPI";
+import { getFAQBySlug, type WPFAQItem } from "../../../../api/WordpressAPI";
 
 import faqImage from "../../../../assets/Faq.png";
 
@@ -33,11 +30,9 @@ export const ServiceFaq = ({ slug }: FAQSectionProps) => {
         const formattedFAQs: FAQ[] = [];
 
         for (let i = 1; i <= 10; i++) {
-          const question =
-            data.acf[`question_${i}` as keyof typeof data.acf];
+          const question = data.acf[`question_${i}` as keyof typeof data.acf];
 
-          const answer =
-            data.acf[`answer_${i}` as keyof typeof data.acf];
+          const answer = data.acf[`answer_${i}` as keyof typeof data.acf];
 
           if (
             typeof question === "string" &&
@@ -70,23 +65,19 @@ export const ServiceFaq = ({ slug }: FAQSectionProps) => {
   return (
     <section className="relative overflow-hidden bg-[#faf9f6] py-16 lg:py-24">
       <div className="mx-auto max-w-[1400px] px-6">
-
         {/* Heading */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <h2 className="heading-primary">
-            Frequently Asked Questions
-          </h2>
+          <h2 className="heading-primary">Frequently Asked Questions</h2>
 
           <p className="mt-4 text-sm leading-relaxed text-zinc-600 sm:text-base lg:text-lg">
-            Find answers to common questions about our services, technology
-            solutions, development process, project requirements, and how we
-            help businesses achieve their digital goals.
+            Do you still have questions about our services? Run a quick glance
+            at this section to learn more about our solutions, process, project
+            support, and what to expect while working with team Ahaan.
           </p>
         </div>
 
         {/* FAQ Content */}
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
-
           {/* Left FAQ */}
           <div className="space-y-3">
             {faqs.map((faq, index) => {
@@ -98,9 +89,7 @@ export const ServiceFaq = ({ slug }: FAQSectionProps) => {
                   className="overflow-hidden border-b border-zinc-300"
                 >
                   <button
-                    onClick={() =>
-                      setOpenIndex(isOpen ? null : index)
-                    }
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
                     className="flex w-full items-center justify-between gap-6 py-5 text-left transition-all"
                   >
                     <span className="text-sm font-bold text-zinc-800 sm:text-base lg:text-lg">
@@ -109,9 +98,7 @@ export const ServiceFaq = ({ slug }: FAQSectionProps) => {
 
                     <span
                       className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xl font-medium transition-all ${
-                        isOpen
-                          ? "bg-[#C48A18] text-white"
-                          : "text-[#C48A18]"
+                        isOpen ? "bg-[#C48A18] text-white" : "text-[#C48A18]"
                       }`}
                     >
                       {isOpen ? "−" : "+"}
@@ -138,7 +125,6 @@ export const ServiceFaq = ({ slug }: FAQSectionProps) => {
               className="w-full max-w-[800px] object-contain"
             />
           </div>
-
         </div>
       </div>
     </section>

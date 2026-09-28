@@ -15,7 +15,7 @@ export const AboutContent = () => {
 
           {/* Text Content */}
           <div className="flex flex-col gap-3">
-            <h2 className="heading-primary">Who We Are?</h2>
+            <h2 className="heading-primary">Who We Are</h2>
 
             <h3 className="text-sm lg:text-base font-bold text-black">
               Your Technology, Development, and Creative Transformation Partner
@@ -26,21 +26,56 @@ export const AboutContent = () => {
               up businesses! That’s why we built Ahaan Software Consulting, an
               offshore team of tech and digital experts, that delivers custom
               solutions, without the usual cost or complexity.
-              <br /> 4+ years in, that conviction has taken us from a small crew
-              to an offshore development partner serving small and midsize
-              businesses across India, the U.S., and beyond.
+              <br /> 6+ years in, that conviction has grown us from a small crew
+              into a trusted development partner for SMBs across India, the
+              U.S., Singapore, Philippines Canda, and beyond.
             </p>
 
             <p className="lg:text-lg text-sm leading-relaxed text-left">
-              We have watched small U.S. businesses grow from side projects into
-              top players. From first websites into full-blown product suites.
               Behind every project, we've worked alongside industry leaders,
               tech pioneers, and in-house experts, pushing the work further than
-              any of us could alone.
-              <br />
-              At Ahaan, we don’t just build software, apps or websites. We build
-              the BRANDS behind them.
+              any of us could alone. We don't just build software, apps, or
+              websites. We build the BRANDS behind them.
             </p>
+
+            <div className="mt-2 flex  lg:mt-1">
+          <a
+            href="/contact-us"
+            className="
+              shine-btn
+              flex
+              w-full
+              items-center
+              justify-center
+              whitespace-nowrap
+              rounded-full
+              bg-gradient-to-r
+              from-[#C48A18]
+              to-[#E6B33C]
+              px-7
+              py-3.5
+              text-center
+              text-sm
+              font-semibold
+              uppercase
+              tracking-wide
+              text-black
+              shadow-xl
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:from-[#B57A0C]
+              hover:to-[#D69D20]
+              sm:w-auto
+              sm:px-10
+              xl:px-12
+              xl:py-4
+              xl:text-base
+            "
+          >
+            Start Your Project →
+          </a>
+        </div>
           </div>
 
           {/* Mobile Image */}

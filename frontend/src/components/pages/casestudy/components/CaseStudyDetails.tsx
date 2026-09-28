@@ -17,6 +17,8 @@ import { CaseStudySolutionsSection } from "./CaseStudySolutionsSection";
 import { CaseStudyBusinessImpactSection } from "./CaseStudyBusinessImpactSection";
 import { CaseStudyDesignHighlightsSection } from "./CaseStudyDesignHighlightsSection";
 import { CaseStudyWhyStandsOutSection } from "./CaseStudyWhyStandsOutSection";
+import { CaseStudyTheResultSection } from "./CaseStudyTheResultSection";
+import { CaseStudyOurContributionSection } from "./CaseStudyOurContributionSection";
 import { SEO } from "../../../seo/SEO";
 
 export const CaseStudyDetails = () => {
@@ -85,6 +87,11 @@ export const CaseStudyDetails = () => {
         solution5: await resolveImageUrl(acf.solution_5_image),
         businessImpact: await resolveImageUrl(acf.business_impact_image),
         designHighlights: await resolveImageUrl(acf.design_highlights_image),
+        
+        // 👉 Ekhane new image field-gulo add kora holo (jodi ACF field-er nam alada hoy tobe sewi onujayi name change kore deben)
+        theResult: await resolveImageUrl(acf.the_result_image),
+        ourContribution: await resolveImageUrl(acf.our_contribution_image),
+
         tech1: await resolveImageUrl(acf.technology_1_logo),
         tech2: await resolveImageUrl(acf.technology_2_logo),
         tech3: await resolveImageUrl(acf.technology_3_logo),
@@ -269,6 +276,23 @@ export const CaseStudyDetails = () => {
           image={images.designHighlights}
           designHighlightsHtml={acf.design_highlights}
         />
+        
+        {/* The Result Section */}
+        {(acf.the_result || images.theResult) && (
+          <CaseStudyTheResultSection
+            image={images.theResult}
+            resultHtml={acf.the_result}
+          />
+        )}
+
+        {/* Our Contribution Section */}
+        {(acf.our_contribution || images.ourContribution) && (
+          <CaseStudyOurContributionSection
+            image={images.ourContribution}
+            contributionHtml={acf.our_contribution}
+          />
+        )}
+
         <CaseStudyWhyStandsOutSection whyStandsOutText={whyStandsOutText} />
       </main>
     </>

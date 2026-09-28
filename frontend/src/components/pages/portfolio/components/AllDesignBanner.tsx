@@ -1,4 +1,4 @@
-export default function AllDesignBanner() { 
+export default function AllDesignBanner() {
   return (
     <section
       className=" section-banner"
@@ -16,12 +16,14 @@ export default function AllDesignBanner() {
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            Explore our creative web design projects crafted with innovation,
-            strategy, and modern technology to deliver impactful digital
-            experiences that elevate brands and drive real business growth.
+            From the first wireframe to the final product UI/UX, Ahaan stays on
+            the design, not only the first screen. Our experts eliminate the
+            friction of handoff and rebuild by owning the full UI/UX design
+            services process, from Figma website prototype design through
+            mobile-first web interface design
           </p>
         </div>
       </div>
     </section>
   );
-};
+}

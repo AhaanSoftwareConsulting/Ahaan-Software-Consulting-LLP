@@ -18,9 +18,11 @@ const ServiceBanner: React.FC = () => {
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            We deliver innovative digital solutions including web development,
-            UI/UX design, branding, and performance marketing to help your
-            business grow faster and smarter in the digital world.
+            With a legacy spanning 6+ years, Ahaan Software Consulting stands as
+            a custom website design and development company. Our portfolio
+            boasts business-specific services, including web development, UI/UX
+            design, app development, social media marketing, Google marketing
+            and e-commerce marketing.
           </p>
         </div>
       </div>

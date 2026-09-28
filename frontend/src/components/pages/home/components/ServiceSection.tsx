@@ -272,11 +272,10 @@ export const ServicesSection = () => {
           Our Core Services <br />
         </h2>
         <p className="lg:text-lg text-sm px-0 sm:px-8 mt-2">
-          We are driven by a passion to deliver excellence through continuous
-          innovation and cutting-edge technology — creating intelligent,
-          scalable, and future-ready solutions that empower businesses,
-          transform industries, and inspire progress across the digital
-          landscape.
+          We build practical technology solutions around the challenges small to
+          medium-sized businesses face worldwide. As your trusted offshore tech
+          partners, we scope every project to your needs, goals and budget, so
+          you scale without the cost of hiring in-house.
         </p>
       </motion.div>
 
@@ -322,7 +321,8 @@ export const ServicesSection = () => {
                 href="/service"
                 className="text-[14px] font-bold text-[#C48A18] inline-flex items-center gap-1 transition-all duration-200 group-hover:gap-2 hover:underline"
               >
-                Explore This Service <span className="text-[15px] font-normal">→</span>
+                Explore This Service{" "}
+                <span className="text-[15px] font-normal">→</span>
               </a>
             </div>
           </motion.div>
