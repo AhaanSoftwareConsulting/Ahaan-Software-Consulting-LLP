@@ -6,7 +6,7 @@ import axios from "axios";
 const API = axios.create({ 
   baseURL: BASE_URL,
   timeout: 30000 // 30-second timeout to give Render cold starts time to respond
-});
+}); 
 
 // Interface for contact payload
 export interface ContactPayload {
