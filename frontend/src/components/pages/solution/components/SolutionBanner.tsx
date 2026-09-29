@@ -19,8 +19,7 @@ const SolutionBanner: React.FC = () => {
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            Delivering scalable enterprise software solutions tailored to your
-            industry needs, driving efficiency and sustainable growth.
+            Our solutions are designed to champion real business challenges! We build websites, mobile apps, custom software, and e-commerce platforms that fit your business goals, making everyday operations smoother, faster, and easier to scale.
           </p>
         </div>
       </div>

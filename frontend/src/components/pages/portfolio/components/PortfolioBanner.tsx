@@ -1,4 +1,4 @@
-export default function PortfolioBanner() { 
+export default function PortfolioBanner() {
   return (
     <section
       className=" section-banner"
@@ -12,11 +12,11 @@ export default function PortfolioBanner() {
       <div className="relative z-10 mx-auto w-full px-4 lg:px-6 max-w-[1600px] flex justify-start">
         <div className="max-w-[900px]">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-           Our Portfolio
+            Our Portfolio
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            We create innovative digital solutions through web development, UI/UX design, branding, eCommerce, and custom software development. Our portfolio reflects creativity, technical expertise, and a commitment to delivering exceptional user experiences.
+            Have a glance at how we have helped businesses ship websites, apps, software, and platforms that actually get used. Each project below shows the pain points, the build, and what changed for the client after launch.
           </p>
         </div>
       </div>
