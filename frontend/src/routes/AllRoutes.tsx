@@ -5,6 +5,7 @@ import { MainLayout } from "../components/layouts/MainLayout";
 import { PageLoader } from "../components/loader/PageLoader";
 import TeamTree from "../components/pages/teamheirarchy/TeamTree";
 import TeamDetails from "../components/pages/teamheirarchy/TeamDetails";
+import GoogleMarketing from "../components/pages/portfolio/components/GoogleMarketing";
 
 // Lazy loaded pages
 const HomeComponent = lazy(() =>
@@ -161,7 +162,9 @@ export const AllRoutes = () => {
 
           <Route path="/all-media-marketing" element={<AllSocialMediaMarketing />}/>
 
-          <Route path="/all-app-development" element={<AllAppDevelopment />} />
+          <Route path="/all-app-development" element={<AllAppDevelopment />} /> 
+
+          <Route path="/all-google-marketing" element={<GoogleMarketing />} />
 
           <Route path="/solution" element={<SolutionComponent />} />
 
