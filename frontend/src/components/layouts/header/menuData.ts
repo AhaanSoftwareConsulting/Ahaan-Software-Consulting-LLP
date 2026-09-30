@@ -44,7 +44,7 @@ export const menuData: MenuItem[] = [
       },
       {
         name: "Google Marketing",
-        path: "/all-media-marketing",
+        path: "/all-google-marketing",
       }
     ]
   },

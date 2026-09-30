@@ -1,12 +1,12 @@
 import axios from "axios";
 
- //const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
-const BASE_URL = "http://localhost:5000/api";
+ const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
+// const BASE_URL = "http://localhost:5000/api";
 
 const API = axios.create({ 
   baseURL: BASE_URL,
   timeout: 30000 // 30-second timeout to give Render cold starts time to respond
-});
+}); 
 
 // Interface for contact payload
 export interface ContactPayload {
