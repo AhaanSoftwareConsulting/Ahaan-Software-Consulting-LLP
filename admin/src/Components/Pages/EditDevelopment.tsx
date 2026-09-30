@@ -16,6 +16,7 @@ const EditDevelopment: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [link, setLink] = useState<string>("");
   const [developer, setDeveloper] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
 
   const [image, setImage] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
@@ -31,6 +32,7 @@ const EditDevelopment: React.FC = () => {
         setTitle(data.title ?? "");
         setLink(data.link ?? "");
         setDeveloper(data.developer ?? "");
+        setCategory(data.category ?? "others");
         setPreviewImage(data.image ?? null);
       } catch (error: any) {
         toast.error(
@@ -55,6 +57,7 @@ const EditDevelopment: React.FC = () => {
     formData.append("title", title);
     formData.append("link", link);
     formData.append("developer", developer);
+    formData.append("category", category);
 
     if (image) {
       formData.append("image", image);
@@ -90,6 +93,8 @@ const EditDevelopment: React.FC = () => {
           setLink={setLink}
           developer={developer}
           setDeveloper={setDeveloper}
+          category={category}
+          setCategory={setCategory}
           image={image}
           setImage={setImage}
           previewImage={previewImage}
