@@ -128,7 +128,7 @@ export const CaseStudySolutionsSection = ({
           <div
             className="
               relative
-              z-10
+              z-20
               grid grid-cols-1
               gap-32
               md:gap-40
@@ -172,15 +172,16 @@ export const CaseStudySolutionsSection = ({
 
                   <div
                     className={`
-    relative z-20 justify-center items-center
+    relative z-30 justify-center items-center
     ${isOdd ? "md:col-start-2" : "md:col-start-1"}
   `}
                   >
+                  <div className="relative z-40 bg-white p-1">
                     {solution.title && (
                       <h3
                         className="
                           relative
-                          z-30
+                          z-50
                           mb-4
                           flex
                           items-center
@@ -209,7 +210,7 @@ export const CaseStudySolutionsSection = ({
                         }}
                         className="
                           relative
-                          z-20
+                          z-40
                           inline-block w-fit lg:w-md
                           overflow-hidden
                           rounded-2xl
@@ -239,7 +240,7 @@ export const CaseStudySolutionsSection = ({
                       </motion.div>
                     )}
                   </div>
-
+                  </div>
                   {/* ================================================= */}
                   {/* TEXT SECTION */}
                   {/* ================================================= */}
@@ -247,12 +248,12 @@ export const CaseStudySolutionsSection = ({
                   <div
                     className={`
                       relative
-                      z-30
+                      z-40
                       w-full
                       rounded-2xl
                       bg-white
                       p-4                      
-                      md:p-6
+                      
                       ${isOdd ? "md:col-start-1 md:row-start-1" : "md:col-start-2"}
                     `}
                   >
@@ -260,7 +261,7 @@ export const CaseStudySolutionsSection = ({
                       <div
                         className="
                           relative
-                          lg:text-lg text-sm px-0 sm:px-8 mt-2
+                          lg:text-lg text-sm px-0 sm:px-5 mt-2
                         "
                         dangerouslySetInnerHTML={{
                           __html: solution.description,
