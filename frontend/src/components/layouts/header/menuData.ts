@@ -36,7 +36,7 @@ export const menuData: MenuItem[] = [
       },
       {
         name: "E-Commerce Development",
-        path: "/all-development",
+        path: "/all-ecommerce",
       },
       {
         name: "Social Media Management",

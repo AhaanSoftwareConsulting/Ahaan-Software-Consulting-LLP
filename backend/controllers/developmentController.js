@@ -5,19 +5,19 @@ const Development = require("../models/DevelopmentSQL");
 // ======================================================
 exports.createDevelopment = async (req, res) => {
   try {
-    const { title, link, developer } = req.body;
+    const { title, link, developer, category } = req.body;
 
-    if (!title || !link || !developer) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Title, Link & Developer Name are required" 
+    if (!title || !link || !developer || !category) {
+      return res.status(400).json({
+        success: false,
+        message: "Title, Link, Developer Name & Category are required",
       });
     }
 
     if (!req.file) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Image is required" 
+      return res.status(400).json({
+        success: false,
+        message: "Image is required",
       });
     }
 
@@ -25,13 +25,21 @@ exports.createDevelopment = async (req, res) => {
       title,
       link,
       developer,
-      image: req.file.path, // Cloudinary URL
+      category,
+      image: req.file.path,
     });
 
-    res.status(201).json({ success: true, data: newDev });
+    res.status(201).json({
+      success: true,
+      data: newDev,
+    });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ success: false, message: err.message });
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
@@ -43,9 +51,16 @@ exports.getAllDevelopments = async (req, res) => {
     const items = await Development.findAll({
       order: [["createdAt", "DESC"]],
     });
-    res.json({ success: true, data: items });
+
+    res.json({
+      success: true,
+      data: items,
+    });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
@@ -55,12 +70,23 @@ exports.getAllDevelopments = async (req, res) => {
 exports.getDevelopmentById = async (req, res) => {
   try {
     const item = await Development.findByPk(req.params.id);
+
     if (!item) {
-      return res.status(404).json({ success: false, message: "Not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Not found",
+      });
     }
-    res.json({ success: true, data: item });
+
+    res.json({
+      success: true,
+      data: item,
+    });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
@@ -69,28 +95,41 @@ exports.getDevelopmentById = async (req, res) => {
 // ======================================================
 exports.updateDevelopment = async (req, res) => {
   try {
-    const { title, link, developer } = req.body;
+    const { title, link, developer, category } = req.body;
 
     const item = await Development.findByPk(req.params.id);
+
     if (!item) {
-      return res.status(404).json({ success: false, message: "Not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Not found",
+      });
     }
 
     const updateData = {
       title: title || item.title,
       link: link || item.link,
       developer: developer || item.developer,
+      category: category || item.category,
     };
 
     if (req.file) {
-      updateData.image = req.file.path; // Updated Cloudinary image URL
+      updateData.image = req.file.path;
     }
 
     await item.update(updateData);
 
-    res.json({ success: true, data: item });
+    res.json({
+      success: true,
+      data: item,
+    });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
@@ -100,14 +139,26 @@ exports.updateDevelopment = async (req, res) => {
 exports.deleteDevelopment = async (req, res) => {
   try {
     const item = await Development.findByPk(req.params.id);
+
     if (!item) {
-      return res.status(404).json({ success: false, message: "Not found" });
+      return res.status(404).json({
+        success: false,
+        message: "Not found",
+      });
     }
 
     await item.destroy();
 
-    res.json({ success: true, message: "Deleted successfully" });
+    res.json({
+      success: true,
+      message: "Deleted successfully",
+    });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
+    console.error(err);
+
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };

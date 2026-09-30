@@ -73,7 +73,7 @@ export const AboutContent = () => {
               xl:text-base
             "
           >
-            Start Your Project →
+            Start Your Project
           </a>
         </div>
           </div>

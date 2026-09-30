@@ -10,11 +10,12 @@ import {
 import { SearchContext } from "../../searchContext";
 
 interface Development {
-  _id: string;
+  id: string;
   title: string;
   link: string;
   image: string;
   developer?: string;
+  category?: string;
 }
 
 const ManageDevelopments: React.FC = () => {
@@ -46,7 +47,8 @@ const ManageDevelopments: React.FC = () => {
     return (
       item.title.toLowerCase().includes(q) ||
       item.link.toLowerCase().includes(q) ||
-      item.developer?.toLowerCase().includes(q)
+      item.developer?.toLowerCase().includes(q) ||
+      item.category?.toLowerCase().includes(q)
     );
   });
 
@@ -86,12 +88,27 @@ const ManageDevelopments: React.FC = () => {
             <thead className="bg-black text-[#EBB428]">
               <tr>
                 <th className="px-4 py-4 text-left">#</th>
-                <th className="px-4 py-4 text-left">Image</th>
-                <th className="px-4 py-4 text-left">Title</th>
-                <th className="px-4 py-4 text-left">Link</th>
+
+                <th className="px-4 py-4 text-left">
+                  Image
+                </th>
+
+                <th className="px-4 py-4 text-left">
+                  Title
+                </th>
+
+                <th className="px-4 py-4 text-left">
+                  Link
+                </th>
+
                 <th className="px-4 py-4 text-left">
                   Developer
                 </th>
+
+                <th className="px-4 py-4 text-left">
+                  Category
+                </th>
+
                 <th className="px-4 py-4 text-center">
                   Actions
                 </th>
@@ -102,7 +119,7 @@ const ManageDevelopments: React.FC = () => {
               {filteredItems.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={7}
                     className="py-8 text-center text-gray-500"
                   >
                     No developments found.
@@ -111,29 +128,33 @@ const ManageDevelopments: React.FC = () => {
               ) : (
                 filteredItems.map((item, index) => (
                   <tr
-                    key={item._id}
-                   className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
-                    index % 2 === 0
-                      ? "bg-white"
-                      : "bg-gray-100"
-                  }`}
+                    key={item.id}
+                    className={`transition hover:bg-gradient-to-r from-[#fff] to-[#00000042] ${
+                      index % 2 === 0
+                        ? "bg-white"
+                        : "bg-gray-100"
+                    }`}
                   >
+                    {/* # */}
                     <td className="px-4 py-4">
                       {index + 1}
                     </td>
 
+                    {/* Image */}
                     <td className="px-4 py-4">
                       <img
                         src={item.image}
                         alt={item.title}
-                        className="h-16 w-20 rounded-md shadow-sm object-cover transition-transform hover:scale-105"
+                        className="h-16 w-20 rounded-md object-cover shadow-sm transition-transform hover:scale-105"
                       />
                     </td>
 
+                    {/* Title */}
                     <td className="px-4 py-4 font-medium">
                       {item.title}
                     </td>
 
+                    {/* Link */}
                     <td className="max-w-xs px-4 py-4">
                       <a
                         href={item.link}
@@ -145,16 +166,25 @@ const ManageDevelopments: React.FC = () => {
                       </a>
                     </td>
 
+                    {/* Developer */}
                     <td className="px-4 py-4">
                       <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm">
                         {item.developer || "Unknown"}
                       </span>
                     </td>
 
+                    {/* Category */}
+                    <td className="px-4 py-4">
+                      <span className="rounded-full bg-gradient-to-r from-[#fff] to-[#ff9d00] px-3 py-1 text-sm capitalize">
+                        {item.category || "Others"}
+                      </span>
+                    </td>
+
+                    {/* Actions */}
                     <td className="px-4 py-4">
                       <div className="flex justify-center gap-3">
                         <Link
-                          to={`/edit-development/${item._id}`}
+                          to={`/edit-development/${item.id}`}
                           className="rounded-lg bg-green-600 p-2 text-white transition hover:bg-green-700"
                         >
                           <FiEdit size={18} />
@@ -162,7 +192,7 @@ const ManageDevelopments: React.FC = () => {
 
                         <button
                           onClick={() =>
-                            handleDeleteConfirm(item._id)
+                            handleDeleteConfirm(item.id)
                           }
                           className="rounded-lg bg-red-600 p-2 text-white transition hover:bg-red-700"
                         >

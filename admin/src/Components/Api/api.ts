@@ -1,8 +1,8 @@
 import axios from "axios";
 import type { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
- const BASE_URL = "http://localhost:5000/api";
-//const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api";
+//  const BASE_URL = "http://localhost:5000/api";
+const BASE_URL = "https://ahaan-software-consulting-llp.onrender.com/api"; 
 
 const API: AxiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -98,26 +98,32 @@ export const getSingleTeam = (id: string) => API.get(`/team/${id}`);
 // =======================
 // Design
 // =======================
+// =======================
+// Design
+// =======================
+
 export const addDesignAPI = (formData: FormData) =>
-  API.post("/designs/add", formData, {
+  API.post("/designs", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
-export const getAllDesignsAPI = () => API.get("/designs");
+export const getAllDesignsAPI = () =>
+  API.get("/designs");
 
-export const getDesignByIdAPI = (id: string) => API.get(`/designs/${id}`);
+export const getDesignByIdAPI = (id: string) =>
+  API.get(`/designs/${id}`);
 
 export const updateDesignAPI = (id: string, formData: FormData) =>
-  API.put(`/designs/edit/${id}`, formData, {
+  API.put(`/designs/${id}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
 export const deleteDesignAPI = (id: string) =>
-  API.delete(`/designs/delete/${id}`);
+  API.delete(`/designs/${id}`);
 
 // =======================
 // Development

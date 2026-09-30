@@ -12,6 +12,7 @@ const Design = sequelize.define(
     category: {
       type: DataTypes.ENUM(
         "electronics",
+        "e-commerce",
         "education-books",
         "business-services",
         "cars-motorcycles",

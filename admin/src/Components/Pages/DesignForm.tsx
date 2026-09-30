@@ -112,7 +112,13 @@ const DesignForm: React.FC<DesignFormProps> = ({
               Select Category
             </option>
 
-            <option value="electronics">Electronics</option>
+            <option value="electronics">
+              Electronics
+              </option>
+
+            <option value="e-commerce">
+              E-Commerce
+              </option>
 
             <option value="education-books">
               Education & Books

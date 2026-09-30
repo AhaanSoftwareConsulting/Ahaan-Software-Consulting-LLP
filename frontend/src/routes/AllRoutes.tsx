@@ -6,6 +6,7 @@ import { PageLoader } from "../components/loader/PageLoader";
 import TeamTree from "../components/pages/teamheirarchy/TeamTree";
 import TeamDetails from "../components/pages/teamheirarchy/TeamDetails";
 import GoogleMarketing from "../components/pages/portfolio/components/GoogleMarketing";
+import AllEcommerce from "../components/pages/portfolio/components/AllEcommerce";
 
 // Lazy loaded pages
 const HomeComponent = lazy(() =>
@@ -162,9 +163,11 @@ export const AllRoutes = () => {
 
           <Route path="/all-media-marketing" element={<AllSocialMediaMarketing />}/>
 
-          <Route path="/all-app-development" element={<AllAppDevelopment />} /> 
+          <Route path="/all-app-development" element={<AllAppDevelopment />} />
 
           <Route path="/all-google-marketing" element={<GoogleMarketing />} />
+
+          <Route path="/all-ecommerce" element={<AllEcommerce/>} />
 
           <Route path="/solution" element={<SolutionComponent />} />
 
@@ -188,7 +191,7 @@ export const AllRoutes = () => {
 
           <Route path="/team" element={<TeamTree />} />
 
-          <Route path="/team/:uniqueId" element={<TeamDetails/>} />
+          <Route path="/team/:uniqueId" element={<TeamDetails />} />
 
           <Route path="*" element={<NotFoundComponent />} />
         </Route>
