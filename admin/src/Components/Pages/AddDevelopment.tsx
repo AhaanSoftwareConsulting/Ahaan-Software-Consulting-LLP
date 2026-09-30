@@ -12,12 +12,33 @@ const AddDevelopment: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [link, setLink] = useState<string>("");
   const [developer, setDeveloper] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
   const [image, setImage] = useState<File | null>(null);
 
   const handleSubmit = async (
     e: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
+
+    if (!title.trim()) {
+      toast.error("Please enter project title.");
+      return;
+    }
+
+    if (!link.trim()) {
+      toast.error("Please enter project link.");
+      return;
+    }
+
+    if (!developer.trim()) {
+      toast.error("Please enter developer name.");
+      return;
+    }
+
+    if (!category) {
+      toast.error("Please select a category.");
+      return;
+    }
 
     if (!image) {
       toast.error("Please select an image.");
@@ -29,23 +50,30 @@ const AddDevelopment: React.FC = () => {
     formData.append("title", title);
     formData.append("link", link);
     formData.append("developer", developer);
+    formData.append("category", category);
     formData.append("image", image);
 
     try {
       const res = await addDevelopmentAPI(formData);
 
       toast.success(
-        res.data.message || "Development Added Successfully!"
+        res?.data?.message ||
+          "Development Added Successfully!"
       );
 
-      // Reset Form
       setTitle("");
       setLink("");
       setDeveloper("");
+      setCategory("");
       setImage(null);
 
       navigate("/manage-development");
     } catch (error: any) {
+      console.error(
+        "Add Development Error:",
+        error
+      );
+
       toast.error(
         error?.response?.data?.message ||
           "Failed to add development!"
@@ -64,6 +92,8 @@ const AddDevelopment: React.FC = () => {
           setLink={setLink}
           developer={developer}
           setDeveloper={setDeveloper}
+          category={category}
+          setCategory={setCategory}
           image={image}
           setImage={setImage}
           previewImage={null}
