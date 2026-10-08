@@ -153,7 +153,7 @@ export const WhyChooseUs: React.FC = () => {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="text-2xl lg:text-3xl xl:text-4xl font-extrabold text-[#fff] leading-tight">
-            We are Guided by Our Visions, Values and Our Purpose
+            More than a service provider, we operate as a high-velocity extension of your core business—combining agile workflows with seamless, tactical execution.
           </h2>
 
           <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] lg:text-lg text-sm leading-relaxed">

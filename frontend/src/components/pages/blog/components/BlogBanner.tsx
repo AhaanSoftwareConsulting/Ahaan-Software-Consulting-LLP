@@ -18,7 +18,7 @@ export const BlogBanner = () => {
           </h1>
 
           <p className=" max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            Insights, trends, and expert perspectives designed to help you stay ahead in the fast-evolving digital landscape, empowering your business with knowledge-driven strategies and informed decision-making.
+            Practical perspectives, industry trends, and strategic guidance to navigate the evolving digital landscape and drive informed, confident business growth.
           </p>
         </div>
       </div>
