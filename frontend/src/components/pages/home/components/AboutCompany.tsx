@@ -128,13 +128,13 @@ export const AboutCompany = () => {
               />
 
               {/* Curtain overlay — covers the image, then slides out to reveal it */}
-              <motion.div
+              {/* <motion.div
                 className="absolute inset-0 bg-[#1c1d20] origin-right"
                 variants={curtainVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.3 }}
-              />
+              /> */}
             </div>
 
             {/* Glow */}
