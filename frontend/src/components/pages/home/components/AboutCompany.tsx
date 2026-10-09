@@ -14,21 +14,21 @@ const features = [
 // animated clip-path, which conflicts with overflow-hidden + rounded
 // corners on the same element in some browsers and can get stuck fully
 // clipped). The curtain re-covers the image on scroll-up.
-const curtainVariants = {
-  hidden: { scaleX: 1 },
-  visible: {
-    scaleX: 0,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
+// const curtainVariants = {
+//   hidden: { scaleX: 1 },
+//   visible: {
+//     scaleX: 0,
+//     transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
+//   },
+// };
 
-const imageScaleVariants = {
-  hidden: { scale: 1.15 },
-  visible: {
-    scale: 1,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
-  },
-};
+// const imageScaleVariants = {
+//   hidden: { scale: 1.15 },
+//   visible: {
+//     scale: 1,
+//     transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
+//   },
+// };
 
 const headingVariants = {
   hidden: { opacity: 0, x: 60 },
@@ -120,11 +120,11 @@ export const AboutCompany = () => {
                 src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80"
                 alt="Ahaan Software"
                 className="h-[420px] w-full object-cover hover:scale-105 lg:h-[520px]"
-                variants={imageScaleVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.7 }}
+                // variants={imageScaleVariants}
+                // initial="hidden"
+                // whileInView="visible"
+                // viewport={{ once: false, amount: 0.3 }}
+                // transition={{ duration: 0.7 }}
               />
 
               {/* Curtain overlay — covers the image, then slides out to reveal it */}
