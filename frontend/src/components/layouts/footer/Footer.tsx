@@ -163,7 +163,7 @@ export const Footer = () => {
     { name: "Privacy Policy", url: "/policy/privacy-policy" },
     { name: "Cookie Policy", url: "/policy/cookie-policy" },
     { name: "Terms & Conditions", url: "/policy/terms-conditions" },
-        {
+    {
       name: "Information Security Policy",
       url: "/policy/information-security-policy",
     },
@@ -173,10 +173,6 @@ export const Footer = () => {
     },
     { name: "Grievance Policy", url: "/policy/grievance-policy" },
     { name: "Environmental Policy", url: "/policy/environmental-policy" },
-    
-    
-    
-
   ];
 
   return (
@@ -205,7 +201,8 @@ export const Footer = () => {
                 </h2>
 
                 <p className="mt-2 text-sm text-white lg:text-base lg:mt-3">
-                  Stay updated with insights on software, AI, UX, and digital growth.
+                  Stay updated with insights on software, AI, UX, and digital
+                  growth.
                 </p>
               </div>
             </div>
@@ -441,7 +438,9 @@ export const Footer = () => {
               >
                 <div className="overflow-hidden space-y-6 sm:space-y-8">
                   {/* Address */}
+
                   <div className="flex items-start gap-4">
+                    {/* Address Icon */}
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
                       <MapPin
                         size={22}
@@ -449,11 +448,32 @@ export const Footer = () => {
                         className="text-[#E6B33C]"
                       />
                     </div>
+
+                    {/* Address Content */}
                     <div>
-                      <p className="mt-1 leading-7 text-gray-100">
-                        Bengal Eco Intelligent Park, EM <br />
-                        Block, Sector V, Kolkata-700 091
-                      </p>
+                      {/* India Address */}
+                      <div>
+                        <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
+                          India Office
+                        </h4>
+
+                        <p className="mt-0 leading-7 text-gray-100">
+                          Bengal Eco Intelligent Park, EM
+                          <br />
+                          Block, Sector V, Kolkata-700 091
+                        </p>
+                      </div>
+
+                      {/* Singapore Address */}
+                      <div className="mt-4">
+                        <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
+                          Singapore Office
+                        </h4>
+
+                        <p className="mt-0 leading-7 text-gray-100">
+                          36 Carpenter St, Singapore 059915
+                        </p>
+                      </div>
                     </div>
                   </div>
 

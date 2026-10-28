@@ -107,22 +107,50 @@ export const ContactUs: React.FC = () => {
 
             {/* ADDRESS ITEM */}
             <div className="mb-[30px] flex items-start gap-[18px]">
+              {" "}
+              {/* Address Icon */}{" "}
               <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-black text-white">
-                <MapPin size={20} weight="bold" />
-              </div>
+                {" "}
+                <MapPin size={20} weight="bold" />{" "}
+              </div>{" "}
+              {/* Address Content */}{" "}
               <div>
-                <strong className="text-[#0f1c2e]">Address</strong>
-                <p className="m-0 text-[#4b5d73]">
-                  <a
-                    href="https://www.google.com/maps/dir//Ahaan+Software+Consulting,+Bengal+Eco+Intelligent+Park,+EM+Block,+Sector+V,+Bidhannagar,+Kolkata,+West+Bengal+700091/@22.577152,88.4309163,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a0275d239b8d5d3:0x3fca68895852d152!2m2!1d88.4274345!2d22.5752084?entry=ttu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#0f1c2e] no-underline hover:underline"
-                  >
-                    Bengal Eco Intelligent Park, Sector V, Bidhannagar, Kolkata
-                  </a>
-                </p>
-              </div>
+                {" "}
+                <strong className="text-[#0f1c2e]">Address</strong>{" "}
+                {/* India Address */}{" "}
+                <div className="mt-3">
+                  {" "}
+                  <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
+                    {" "}
+                    India Office{" "}
+                  </h4>{" "}
+                  <p className="m-0 text-[#4b5d73]">
+                    {" "}
+                    <a
+                      href="https://www.google.com/maps/dir//Ahaan+Software+Consulting,+Bengal+Eco+Intelligent+Park,+EM+Block,+Sector+V,+Bidhannagar,+Kolkata,+West+Bengal+700091/@22.577152,88.4309163,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a0275d239b8d5d3:0x3fca68895852d152!2m2!1d88.4274345!2d22.5752084?entry=ttu"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#000] no-underline hover:text-[#0f1c2e] hover:underline"
+                    >
+                      {" "}
+                      Bengal Eco Intelligent Park, Sector V, Bidhannagar,
+                      Kolkata-700091{" "}
+                    </a>{" "}
+                  </p>{" "}
+                </div>{" "}
+                {/* Singapore Address */}{" "}
+                <div className="mt-4">
+                  {" "}
+                  <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
+                    {" "}
+                    Singapore Office{" "}
+                  </h4>{" "}
+                  <p className="m-0 text-[#000]">
+                    {" "}
+                    36 Carpenter St, Singapore 059915{" "}
+                  </p>{" "}
+                </div>{" "}
+              </div>{" "}
             </div>
 
             {/* SOCIAL LINKS */}
@@ -135,7 +163,11 @@ export const ContactUs: React.FC = () => {
                 className="group relative flex h-[45px] w-[45px] items-center justify-center overflow-hidden rounded-full bg-black text-white transition-all duration-300"
               >
                 <span className="absolute bottom-0 h-0 w-full rounded-full bg-gradient-to-br from-[#0077b5] to-[#00a0dc] transition-all duration-300 ease-in-out group-hover:h-full"></span>
-                <LinkedinLogo size={20} weight="bold" className="relative z-10" />
+                <LinkedinLogo
+                  size={20}
+                  weight="bold"
+                  className="relative z-10"
+                />
               </a>
 
               {/* Facebook */}
@@ -146,7 +178,11 @@ export const ContactUs: React.FC = () => {
                 className="group relative flex h-[45px] w-[45px] items-center justify-center overflow-hidden rounded-full bg-black text-white transition-all duration-300"
               >
                 <span className="absolute bottom-0 h-0 w-full rounded-full bg-gradient-to-br from-[#1877f2] to-[#4a8df8] transition-all duration-300 ease-in-out group-hover:h-full"></span>
-                <FacebookLogo size={20} weight="bold" className="relative z-10" />
+                <FacebookLogo
+                  size={20}
+                  weight="bold"
+                  className="relative z-10"
+                />
               </a>
 
               {/* Instagram */}
@@ -157,7 +193,11 @@ export const ContactUs: React.FC = () => {
                 className="group relative flex h-[45px] w-[45px] items-center justify-center overflow-hidden rounded-full bg-black text-white transition-all duration-300"
               >
                 <span className="absolute bottom-0 h-0 w-full rounded-full bg-gradient-to-br from-[#f58529] to-[#dd2a7b] transition-all duration-300 ease-in-out group-hover:h-full"></span>
-                <InstagramLogo size={20} weight="bold" className="relative z-10" />
+                <InstagramLogo
+                  size={20}
+                  weight="bold"
+                  className="relative z-10"
+                />
               </a>
 
               {/* GitHub */}
@@ -179,7 +219,11 @@ export const ContactUs: React.FC = () => {
                 className="group relative flex h-[45px] w-[45px] items-center justify-center overflow-hidden rounded-full bg-black text-white transition-all duration-300"
               >
                 <span className="absolute bottom-0 h-0 w-full rounded-full bg-gradient-to-br from-[#0124e8] to-[#758aff] transition-all duration-300 ease-in-out group-hover:h-full"></span>
-                <BehanceLogo size={20} weight="bold" className="relative z-10" />
+                <BehanceLogo
+                  size={20}
+                  weight="bold"
+                  className="relative z-10"
+                />
               </a>
 
               {/* Dribbble */}
@@ -190,13 +234,18 @@ export const ContactUs: React.FC = () => {
                 className="group relative flex h-[45px] w-[45px] items-center justify-center overflow-hidden rounded-full bg-black text-white transition-all duration-300"
               >
                 <span className="absolute bottom-0 h-0 w-full rounded-full bg-gradient-to-br from-[#9f0175] to-[#e992d2] transition-all duration-300 ease-in-out group-hover:h-full"></span>
-                <DribbbleLogo size={20} weight="bold" className="relative z-10" />
+                <DribbbleLogo
+                  size={20}
+                  weight="bold"
+                  className="relative z-10"
+                />
               </a>
             </div>
           </div>
 
           {/* RIGHT SIDE FORM */}
           <div className="w-full min-w-0 flex-1 rounded-[20px] bg-white p-[30px] shadow-[0_25px_50px_rgba(0,0,0,0.08)] sm:p-[40px] xl:p-[60px]">
+            <h3 className="mb-[40px] heading-primary">Send us a message</h3>
             <h3 className="mb-[40px] heading-primary">
               Tell Us About Your Project
             </h3>
@@ -210,29 +259,28 @@ export const ContactUs: React.FC = () => {
                     placeholder="Name"
                     className="w-full rounded-[50px] border border-[#ddd] p-[18px_24px] outline-none transition-all duration-300 focus:border-black"
                     {...register("name", {
-      required: "Name is required",
+                      required: "Name is required",
 
-      validate: (value) => {
-        const name = value.trim();
+                      validate: (value) => {
+                        const name = value.trim();
 
-        if (!name) {
-          return "Name is required";
-        }
+                        if (!name) {
+                          return "Name is required";
+                        }
 
-        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
-          return "Name can contain only letters and spaces";
-        }
+                        if (!/^[A-Za-z]+(?: [A-Za-z]+)*$/.test(name)) {
+                          return "Name can contain only letters and spaces";
+                        }
 
-        return true;
-      },
-    })}
-    onInput={(e) => {
-      e.currentTarget.value = e.currentTarget.value
-        .replace(/[^A-Za-z ]/g, "")
-        .replace(/\s+/g, " ")
-        .replace(/^\s+/, "");
-    }}
-
+                        return true;
+                      },
+                    })}
+                    onInput={(e) => {
+                      e.currentTarget.value = e.currentTarget.value
+                        .replace(/[^A-Za-z ]/g, "")
+                        .replace(/\s+/g, " ")
+                        .replace(/^\s+/, "");
+                    }}
                   />
                   {errors.name && (
                     <p className="mt-[5px] text-[14px] text-red-600">
@@ -248,31 +296,31 @@ export const ContactUs: React.FC = () => {
                     placeholder="Email ID"
                     className="w-full rounded-[50px] border border-[#ddd] p-[18px_24px] outline-none transition-all duration-300 focus:border-black"
                     {...register("email", {
-      required: "Email address is required",
+                      required: "Email address is required",
 
-      validate: (value) => {
-        const email = value.trim();
+                      validate: (value) => {
+                        const email = value.trim();
 
-        if (!email) {
-          return "Email address is required";
-        }
+                        if (!email) {
+                          return "Email address is required";
+                        }
 
-        if (
-          !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(
-            email
-          )
-        ) {
-          return "Please enter a valid email address";
-        }
+                        if (
+                          !/^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(
+                            email,
+                          )
+                        ) {
+                          return "Please enter a valid email address";
+                        }
 
-        return true;
-      },
-    })}
-    onKeyUp={(e) => {
-      e.currentTarget.value = e.currentTarget.value
-        .replace(/\s/g, "")
-        .replace(/[^A-Za-z0-9.!#$%&'*+/=?^_`{|}~@-]/g, "");
-    }}
+                        return true;
+                      },
+                    })}
+                    onKeyUp={(e) => {
+                      e.currentTarget.value = e.currentTarget.value
+                        .replace(/\s/g, "")
+                        .replace(/[^A-Za-z0-9.!#$%&'*+/=?^_`{|}~@-]/g, "");
+                    }}
                   />
                   {errors.email && (
                     <p className="mt-[5px] text-[14px] text-red-600">
@@ -291,7 +339,7 @@ export const ContactUs: React.FC = () => {
                     onInput={(e: React.FormEvent<HTMLInputElement>) => {
                       e.currentTarget.value = e.currentTarget.value.replace(
                         /[^0-9+\s()-]/g,
-                        ""
+                        "",
                       );
                     }}
                     className="w-full rounded-[50px] border border-[#ddd] p-[18px_24px] outline-none transition-all duration-300 focus:border-black"
@@ -370,8 +418,7 @@ export const ContactUs: React.FC = () => {
         </div>
       </section>
 
-      <ToastContainer position="top-right" autoClose={3000}  />
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };
-
