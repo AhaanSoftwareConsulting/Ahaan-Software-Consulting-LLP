@@ -31,8 +31,9 @@ export const HomeComponent = () => {
       <CaseStudies />
       <OurProcess />
       <Testimonials />
-      <TotalProject />
       <OurClients />
+      <TotalProject />
+      
       <HomeFaq slug="home-faq" />
     </div>
   );
