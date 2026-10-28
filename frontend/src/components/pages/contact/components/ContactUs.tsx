@@ -246,6 +246,9 @@ export const ContactUs: React.FC = () => {
           {/* RIGHT SIDE FORM */}
           <div className="w-full min-w-0 flex-1 rounded-[20px] bg-white p-[30px] shadow-[0_25px_50px_rgba(0,0,0,0.08)] sm:p-[40px] xl:p-[60px]">
             <h3 className="mb-[40px] heading-primary">Send us a message</h3>
+            <h3 className="mb-[40px] heading-primary">
+              Tell Us About Your Project
+            </h3>
 
             <form onSubmit={handleSubmit(onSubmit)} className="w-full">
               <div className="flex flex-col gap-0 lg:flex-row lg:gap-[20px]">
@@ -403,8 +406,13 @@ export const ContactUs: React.FC = () => {
                 type="submit"
                 className="shine-btn w-full items-center justify-center rounded-[50px] text-center bg-[#cd9422] p-[10px] lg:p-[16px] font-semibold tracking-[1px] text-white transition-all duration-300 hover:bg-[#222]"
               >
-                Drop your query
+                Send Project Details
               </button>
+              <p className="mt-[5px] text-[14px] text-gray-600">We will use your information only to respond to this inquiry. See our: 
+                <a href="/privacy-policy" className="text-blue-500 hover:underline">
+                  Privacy Policy
+                </a>
+              </p>
             </form>
           </div>
         </div>

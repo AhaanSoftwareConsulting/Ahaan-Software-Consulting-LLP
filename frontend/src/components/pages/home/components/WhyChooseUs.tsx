@@ -157,9 +157,7 @@ export const WhyChooseUs: React.FC = () => {
           </h2>
 
           <p className="mt-4 sm:mt-8 mx-auto text-[#8A8A8A] lg:text-lg text-sm leading-relaxed">
-            We aren't just another service provider. We act as a high-velocity
-            extension of your core engine, combining modern workflows with
-            precise tactical execution.
+            More than a service provider, we operate as a high-velocity extension of your core business—combining agile workflows with seamless, tactical execution.
           </p>
         </motion.div>
 
