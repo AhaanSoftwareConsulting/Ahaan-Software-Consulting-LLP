@@ -245,7 +245,6 @@ export const ContactUs: React.FC = () => {
 
           {/* RIGHT SIDE FORM */}
           <div className="w-full min-w-0 flex-1 rounded-[20px] bg-white p-[30px] shadow-[0_25px_50px_rgba(0,0,0,0.08)] sm:p-[40px] xl:p-[60px]">
-            <h3 className="mb-[40px] heading-primary">Send us a message</h3>
             <h3 className="mb-[40px] heading-primary">
               Tell Us About Your Project
             </h3>

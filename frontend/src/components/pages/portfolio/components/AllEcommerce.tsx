@@ -456,19 +456,6 @@ const AllEcommerce = () => {
                     >
                       {item.title}
                     </h3>
-
-                    {item.developer && (
-                      <p
-                        className="
-                            mt-2
-                            text-center
-                            text-sm
-                            text-gray-500
-                          "
-                      >
-                        Developed by {item.developer}
-                      </p>
-                    )}
                   </div>
                 </a>
               ))}
