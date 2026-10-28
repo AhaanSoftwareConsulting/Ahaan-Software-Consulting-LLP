@@ -9,111 +9,122 @@ interface Client {
 const clients: Client[] = [
   {
     id: 1,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/1.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/1.png",
     alt: "EKYAA",
   },
   {
     id: 2,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/2.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/2.png",
     alt: "LOGIX",
   },
   {
     id: 3,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/3.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/3.png",
     alt: "Fs",
   },
   {
     id: 4,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/4.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/4.png",
     alt: "Helli",
   },
   {
     id: 5,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/5.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/5.png",
     alt: "Jazzyln Nolen",
   },
   {
     id: 6,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/6.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/6.png",
     alt: "NextDoor Urgent Care",
   },
   {
     id: 7,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/8.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/8.png",
     alt: "Finanza Ally",
   },
   {
     id: 8,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/7.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/7.png",
     alt: "Johat Enterprises",
   },
   {
     id: 9,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/9.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/9.png",
     alt: "psitpops",
   },
   {
     id: 10,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/10.jpg",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/10.png",
     alt: "johat trust",
   },
   {
     id: 11,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/11.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/11.png",
     alt: "Orion Labs",
   },
   {
     id: 12,
-    src: "https://ahaanmedia.com/ahaanwebsite/clients/12.webp",
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/12.png",
+    alt: "Crestline Group",
+  },
+  {
+    id: 13,
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/16.png",
+    alt: "Crestline Group",
+  },
+  {
+    id: 14,
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/14.png",
+    alt: "Crestline Group",
+  },
+  {
+    id: 15,
+    src: "https://ahaanmedia.com/ahaanwebsite/clients/15.png",
     alt: "Crestline Group",
   },
 ];
 
-// Grid staggers in a diagonal wave (row + column offset combine into the
-// delay), each logo popping up from a blur — like lights switching on
-// across a wall in a diagonal sweep — and switching back off in reverse
-// when scrolled up past the section.
 const gridVariants = {
   hidden: {},
   visible: {
-    transition: { staggerChildren: 0.06, delayChildren: 0.1 as const },
+    transition: { staggerChildren: 0.05, delayChildren: 0.1 },
   },
 };
 
 const logoVariants = {
-  hidden: { opacity: 0, scale: 0.6, filter: "blur(6px)", y: 18 },
+  hidden: { opacity: 0, scale: 0.8, filter: "blur(4px)", y: 12 },
   visible: {
     opacity: 1,
     scale: 1,
     filter: "blur(0px)",
     y: 0,
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 
 export const OurClients = () => {
   return (
-    <section className="bg-white py-12">
-      <div className="mx-auto max-w-[1600px] px-4 lg:px-6 2xl:px-10">
-        {/* Simple Header */}
+    <section className="bg-[#F3F2F0] py-16 lg:py-24">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8 2xl:px-12">
+        {/* Header */}
         <motion.div
-          className="max-w-6xl mx-auto text-center px-4"
+          className="max-w-4xl mx-auto text-center px-4 mb-12 lg:mb-16"
           initial={{ opacity: 0, y: -24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.5 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h2 className="heading-primary">Our Clients</h2>
-          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed mx-auto mb-8">
+          <h2 className="heading-primary">Our Client's & Partners</h2>
+          <p className="lg:text-lg text-sm px-0 sm:px-8 mt-3 leading-relaxed mx-auto text-gray-600">
             We partner with U.S. SMBs across industries, helping them turn their
             visions into reliable digital solutions that support their long-term
             business goals.
           </p>
         </motion.div>
 
-        {/* Clean Logo Grid - 4 in a row */}
+        {/* Minimal Grid — 2nd Image Layout Style */}
         <motion.div
-          className="grid grid-cols-3 gap-2 lg:gap-4 md:grid-cols-6 items-center justify-items-center"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-x-8 gap-y-10 lg:gap-x-12 lg:gap-y-14 items-center justify-items-center"
           variants={gridVariants}
           initial="hidden"
           whileInView="visible"
@@ -123,12 +134,12 @@ export const OurClients = () => {
             <motion.div
               key={client.id}
               variants={logoVariants}
-              className="flex  w-full items-center justify-center rounded-md border border-gray-100 bg-white p-3 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]"
+              className="group relative flex h-20 w-full items-center justify-center p-2 cursor-pointer"
             >
               <img
                 src={client.src}
                 alt={client.alt}
-                className="max-h-full max-w-full object-contain"
+                className="max-h-16 max-w-[400px] w-auto h-auto object-contain grayscale opacity-60 contrast-125 transition-all duration-300 ease-out group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105"
                 loading="lazy"
               />
             </motion.div>

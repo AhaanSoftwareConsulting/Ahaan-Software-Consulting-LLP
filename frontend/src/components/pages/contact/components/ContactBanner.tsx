@@ -18,9 +18,7 @@ export const ContactBanner: React.FC = () => {
           </h1>
 
           <p className="max-w-[700px]  text-sm  md:text-base lg:text-lg leading-relaxed text-gray-100">
-            Let’s connect and discuss how we can help transform your business
-            with innovative digital solutions, strategic insights, and tailored
-            technology that drives measurable growth and long-term success.
+            Let’s connect and discuss how we can help transform your business with modern digital solutions, strategic insights, and tailored technology that drives measurable growth and long-term success.
           </p>
         </div>
       </div>
