@@ -459,7 +459,7 @@ export const Footer = () => {
 
     {/* Address 2 */}
     <p className="mt-0 leading-7 text-gray-100">
-      UNIT 1311, Arch Square, X2, EP Block,
+      UNIT 311, Arch Square, X2, EP Block,
       <br />
       Sector V, Bidhannagar, Kolkata,
       <br />
