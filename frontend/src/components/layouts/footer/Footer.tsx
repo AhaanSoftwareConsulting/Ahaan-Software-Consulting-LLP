@@ -450,31 +450,43 @@ export const Footer = () => {
                     </div>
 
                     {/* Address Content */}
-                    <div>
-                      {/* India Address */}
-                      <div>
-                        <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
-                          India Office
-                        </h4>
+<div>
+  {/* India Office */}
+  <div>
+    <h4 className="mb-2 text-sm font-semibold text-[#E6B33C]">
+      India Office
+    </h4>
 
-                        <p className="mt-0 leading-7 text-gray-100">
-                          Bengal Eco Intelligent Park, EM
-                          <br />
-                          Block, Sector V, Kolkata-700 091
-                        </p>
-                      </div>
+    {/* Address 2 */}
+    <p className="mt-0 leading-7 text-gray-100">
+      UNIT 1311, Arch Square, X2, EP Block,
+      <br />
+      Sector V, Bidhannagar, Kolkata,
+      <br />
+      West Bengal 700091
+    </p>
 
-                      {/* Singapore Address */}
-                      <div className="mt-4">
-                        <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
-                          Singapore Office
-                        </h4>
+    {/* Address 1 */}
+    <p className="mt-3 leading-7 text-gray-100">
+      Bengal Eco Intelligent Park, EM
+      <br />
+      Block, Sector V, Kolkata-700 091
+    </p>
 
-                        <p className="mt-0 leading-7 text-gray-100">
-                          36 Carpenter St, Singapore 059915
-                        </p>
-                      </div>
-                    </div>
+    
+  </div>
+
+  {/* Singapore Office */}
+  <div className="mt-4">
+    <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
+      Singapore Office
+    </h4>
+
+    <p className="mt-0 leading-7 text-gray-100">
+      36 Carpenter St, Singapore 059915
+    </p>
+  </div>
+</div>
                   </div>
 
                   {/* Phone */}
