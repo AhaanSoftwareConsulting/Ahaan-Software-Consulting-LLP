@@ -106,52 +106,48 @@ export const ContactUs: React.FC = () => {
             </div>
 
             {/* ADDRESS ITEM */}
-            <div className="mb-[30px] flex items-start gap-[18px]">
-              {" "}
-              {/* Address Icon */}{" "}
-              <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-black text-white">
-                {" "}
-                <MapPin size={20} weight="bold" />{" "}
-              </div>{" "}
-              {/* Address Content */}{" "}
-              <div>
-                {" "}
-                <strong className="text-[#0f1c2e]">Address</strong>{" "}
-                {/* India Address */}{" "}
-                <div className="mt-3">
-                  {" "}
-                  <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
-                    {" "}
-                    India Office{" "}
-                  </h4>{" "}
-                  <p className="m-0 text-[#4b5d73]">
-                    {" "}
-                    <a
-                      href="https://www.google.com/maps/dir//Ahaan+Software+Consulting,+Bengal+Eco+Intelligent+Park,+EM+Block,+Sector+V,+Bidhannagar,+Kolkata,+West+Bengal+700091/@22.577152,88.4309163,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3a0275d239b8d5d3:0x3fca68895852d152!2m2!1d88.4274345!2d22.5752084?entry=ttu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#000] no-underline hover:text-[#0f1c2e] hover:underline"
-                    >
-                      {" "}
-                      Bengal Eco Intelligent Park, Sector V, Bidhannagar,
-                      Kolkata-700091{" "}
-                    </a>{" "}
-                  </p>{" "}
-                </div>{" "}
-                {/* Singapore Address */}{" "}
-                <div className="mt-4">
-                  {" "}
-                  <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
-                    {" "}
-                    Singapore Office{" "}
-                  </h4>{" "}
-                  <p className="m-0 text-[#000]">
-                    {" "}
-                    36 Carpenter St, Singapore 059915{" "}
-                  </p>{" "}
-                </div>{" "}
-              </div>{" "}
-            </div>
+<div className="mb-[30px] flex items-start gap-[18px]">
+  {/* Address Icon */}
+  <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full bg-black text-white">
+    <MapPin size={20} weight="bold" />
+  </div>
+
+  {/* Address Content */}
+  <div>
+    <strong className="text-[#0f1c2e]">Address</strong>
+
+    {/* India Office */}
+    <div className="mt-3">
+      <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
+        India Office
+      </h4>
+
+      {/* New Address */}
+      <p className="m-0 text-[#000]">
+        UNIT 1311, Arch Square, X2, EP Block,
+        Sector V, Bidhannagar, Kolkata,
+        West Bengal 700091
+      </p>
+
+      {/* Existing Address */}
+      <p className="mt-3 text-[#000]">
+          Bengal Eco Intelligent Park, Sector V, Bidhannagar,
+          Kolkata-700091
+      </p>
+    </div>
+
+    {/* Singapore Address */}
+    <div className="mt-4">
+      <h4 className="mb-1 text-[15px] font-bold text-[#DBA531]">
+        Singapore Office
+      </h4>
+
+      <p className="m-0 text-[#000]">
+        36 Carpenter St, Singapore 059915
+      </p>
+    </div>
+  </div>
+</div>
 
             {/* SOCIAL LINKS */}
             <div className="mt-[40px] flex flex-wrap gap-[15px]">
