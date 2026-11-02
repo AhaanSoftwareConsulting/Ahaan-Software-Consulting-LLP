@@ -124,7 +124,7 @@ export const ContactUs: React.FC = () => {
 
       {/* New Address */}
       <p className="m-0 text-[#000]">
-        UNIT 1311, Arch Square, X2, EP Block,
+        UNIT 311, Arch Square, X2, EP Block,
         Sector V, Bidhannagar, Kolkata,
         West Bengal 700091
       </p>
