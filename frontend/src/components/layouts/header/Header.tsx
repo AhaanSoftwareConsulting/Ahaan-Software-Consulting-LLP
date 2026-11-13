@@ -74,7 +74,7 @@ export const Header = () => {
               <MapPinIcon size={34} weight="light" className="text-[#CE8827] w-8 h-8 xl:w-9 xl:h-9 shrink-0" />
               <div className="whitespace-nowrap">
                 <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">
-                  Bengal Eco Intelligent Park
+                  UNIT 311, Arch Square, X2, EP Block
                 </h5>
                 <p className="text-[11px] lg:text-xs xl:text-sm text-gray-500">Sector V, Kolkata </p>
               </div>
@@ -86,7 +86,7 @@ export const Header = () => {
             <div className="flex items-center gap-2 lg:gap-3 xl:gap-4 px-3 lg:px-4 xl:px-7">
               <AlarmIcon size={34} weight="light" className="text-[#CE8827] w-8 h-8 xl:w-9 xl:h-9 shrink-0" />
               <div className="whitespace-nowrap">
-                <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">10:00 AM to 8:00 PM</h5>
+                <h5 className="text-xs lg:text-[15px] xl:text-[17px] font-semibold">11:30 AM to 8:30 PM</h5>
                 <p className="text-[11px] lg:text-xs xl:text-sm text-gray-500">Monday to Friday</p>
               </div>
             </div>
