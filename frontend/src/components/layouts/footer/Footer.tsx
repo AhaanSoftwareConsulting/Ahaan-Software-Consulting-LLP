@@ -201,7 +201,7 @@ export const Footer = () => {
                 </h2>
 
                 <p className="mt-2 text-sm text-white lg:text-base lg:mt-3">
-                  Stay updated with insights on software, AI, UX, and digital
+                  Stay updated with insights on software, UX, and digital
                   growth.
                 </p>
               </div>
@@ -439,55 +439,52 @@ export const Footer = () => {
                 <div className="overflow-hidden space-y-6 sm:space-y-8">
                   {/* Address */}
 
-                  <div className="flex items-start gap-4">
-                    {/* Address Icon */}
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
-                      <MapPin
-                        size={22}
-                        weight="fill"
-                        className="text-[#E6B33C]"
-                      />
-                    </div>
-
-                    {/* Address Content */}
-<div>
-  {/* India Office */}
-  <div>
-    <h4 className="mb-2 text-sm font-semibold text-[#E6B33C]">
-      India Office
-    </h4>
-
-    {/* Address 2 */}
-    <p className="mt-0 leading-7 text-gray-100">
-      UNIT 311, Arch Square, X2, EP Block,
-      <br />
-      Sector V, Bidhannagar, Kolkata,
-      <br />
-      West Bengal 700091
-    </p>
-
-    {/* Address 1 */}
-    <p className="mt-3 leading-7 text-gray-100">
-      Bengal Eco Intelligent Park, EM
-      <br />
-      Block, Sector V, Kolkata-700 091
-    </p>
-
-    
+                  {/* Address */}
+<div className="flex w-full items-start gap-4">
+  {/* Address Icon */}
+  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10">
+    <MapPin
+      size={22}
+      weight="fill"
+      className="text-[#E6B33C]"
+    />
   </div>
 
-  {/* Singapore Office */}
-  <div className="mt-4">
-    <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
-      Singapore Office
-    </h4>
+  {/* Address Content */}
+  <div className="w-full min-w-0 flex-1">
+    {/* India Office */}
+    <div className="w-full">
+      <h4 className="mb-2 text-sm font-semibold text-[#E6B33C]">
+        India Office
+      </h4>
 
-    <p className="mt-0 leading-7 text-gray-100">
-      36 Carpenter St, Singapore 059915
-    </p>
+      <p className="mt-0 w-full leading-7 text-gray-100">
+        UNIT 311, Arch Square, X2, EP Block,
+        
+        Sector V, Bidhannagar, Kolkata,
+        
+        West Bengal 700091
+      </p>
+
+      <p className="mt-3 w-full leading-7 text-gray-100">
+        Bengal Eco Intelligent Park, EM
+        
+        Block, Sector V, Kolkata-700 091
+      </p>
+    </div>
+
+    {/* Singapore Office */}
+    <div className="mt-4 w-full">
+      <h4 className="mb-1 text-sm font-semibold text-[#E6B33C]">
+        Singapore Office
+      </h4>
+
+      <p className="mt-0 w-full leading-7 text-gray-100">
+        36 Carpenter St, Singapore 059915
+      </p>
+    </div>
   </div>
 </div>
-                  </div>
 
                   {/* Phone */}
                   <div className="flex items-start gap-4">
