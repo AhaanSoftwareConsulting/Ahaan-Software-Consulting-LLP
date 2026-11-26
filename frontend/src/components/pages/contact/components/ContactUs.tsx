@@ -404,7 +404,7 @@ export const ContactUs: React.FC = () => {
                 Send Project Details
               </button>
               <p className="mt-[5px] text-[14px] text-gray-600">We will use your information only to respond to this inquiry. See our: 
-                <a href="/privacy-policy" className="text-blue-500 hover:underline">
+                <a href="/policy/privacy-policy" className="text-blue-500 hover:underline">
                   Privacy Policy
                 </a>
               </p>
