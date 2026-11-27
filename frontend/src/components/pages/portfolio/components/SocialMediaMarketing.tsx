@@ -78,11 +78,7 @@ export default function SocialMediaMarketing() {
     const fetchSocialMedia = async () => {
       try {
         setLoading(true);
-
         const data = await getAllSocialMediaMarketingAPI();
-
-        console.log("Social Media Marketing API:", data);
-
         setSocialMedia(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("❌ Failed to fetch social media marketing:", error);
