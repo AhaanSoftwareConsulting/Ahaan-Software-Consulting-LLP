@@ -81,9 +81,6 @@ export default function AppDevelopment() {
         setLoading(true);
 
         const data = await getAllAppDevelopmentsAPI();
-
-        console.log("App Development API Data:", data);
-
         setAppDevelopments(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error(
